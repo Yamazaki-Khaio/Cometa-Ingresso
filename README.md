@@ -1,1 +1,1 @@
-# EXA857-MI-Egenharia-de-Sfotware
+# EXA857-MI-Egenharia-de-Software
