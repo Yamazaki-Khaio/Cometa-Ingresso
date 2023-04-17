@@ -1,7 +1,14 @@
-const cabecalho = 
-    <div>
-        <h1>Início</h1>
-        <h2>Ingressos Cometa</h2>
-    </div>
+import styles from '@/styles/Estiloso.module.css'
 
-export default cabecalho
+export default function Cabecalho(props: {Propriedades: string}){
+
+    return(
+        <header className= {styles.cabecalho}>
+            <div>
+                <h1> Cometa Ingressos - {props.Propriedades}</h1>
+            </div>
+        </header>
+    )
+
+
+}

@@ -1,3 +1,3 @@
-export default function carrinho(){
+export default function Carrinho(){
     return "carrinho"
 }

@@ -1,6 +1,17 @@
-import { cabecalho } from "../components/cabecalho.tsx"
-export default function home(){
+import Cabecalho from "@/components/cabecalho"
+import Botao from "@/components/botao"
+
+export default function Home(){
+   
     return (
-        {cabecalho}
+        <div>
+            <div>
+                <Cabecalho Propriedades="Inicio"/>
+            </div>
+            <div>
+                <Botao href="api/hello" NomeBotao="Teste API"/>
+                <Botao href="/exemplo" NomeBotao="Teste Cabecalhos"/>
+            </div>
+        </div>       
     )
 }
