@@ -1,5 +1,6 @@
 export default function BotaoEntrar(){
-    return(<div>
+    //Alternativa para construção do componente
+    /*return(<div>
         <button action='onValidate'>
             Entrar
         </button>
@@ -7,5 +8,10 @@ export default function BotaoEntrar(){
             onValidate(){
             }
         </Script>
-        </div>);
+        </div>);*/
+    return(
+        <div>
+            <input type='submit'>Entrar</input>
+        </div>
+    );
 }
