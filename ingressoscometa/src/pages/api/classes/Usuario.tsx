@@ -1,42 +1,85 @@
-class User {
-  private name: string;
-  private age: number;
+class Usuario {
+  private nome: string;
   private email: string;
   private senha: string;
+  private telefone: number;
+  private endereco: Endereco;
+  private cpf: number;
+  private tipoUsuario: number;
 
-  constructor(name: string, age: number, email: string, senha: string) {
-    this.name = name;
-    this.age = age;
-    this.email = email;
-    this.senha = senha;
+  constructor(nome: string, email: string, senha: string, telefone: number, endereco: Endereco, cpf: number, tipoUsuario: number) {
+      this.nome = nome;
+      this.email = email;
+      this.senha = senha;
+      this.telefone = telefone;
+      this.endereco = endereco;
+      this.cpf = cpf;
+      this.tipoUsuario = tipoUsuario;
   }
 
-  public getName(): string {
-    return this.name;
+  getNome(): string {
+      return this.nome;
   }
 
-  public getAge(): number {
-    return this.age;
+  getEmail(): string {
+      return this.email;
   }
 
-  public getEmail(): string {
-    return this.email;
+  getSenha(): string {
+      return this.senha;
   }
 
-  public getSenha(): string{
-    return this.senha;
+  getTelefone(): number {
+      return this.telefone;
   }
 
-  public login(loginAtual: string, senhaAtual: string){
-    var logado:boolean = false;
+  getEndereco(): Endereco {
+      return this.endereco;
+  }
 
-    if (loginAtual == this.email){
-      if(senhaAtual == this.senha){
-        logado = true;
+  getCpf(): number {
+      return this.cpf;
+  }
+
+  getTipoUsuario(): number {
+      return this.tipoUsuario;
+  }
+
+  editarCadastro(dado: string, tipoDado: number) {
+      switch (tipoDado) {
+          case 1:
+              this.nome = dado;
+              break;
+          case 2:
+              this.email = dado;
+              break;
+          case 3:
+              this.telefone = Number(dado);
+              break;
+          case 4:
+              //this.endereco = dado;
+              break;
+          case 5:
+              this.cpf = Number(dado);
+              break;
+          case 6:
+              this.tipoUsuario = Number(dado);
+              break;
+          default:
+              console.log("Tipo de dado inválido.");
       }
-    }
-
-    return logado;
   }
 
+  fazerLogin(email: string, senha: string) {
+      if (email === this.email && senha === this.senha) {
+          console.log("Login realizado com sucesso!");
+      } else {
+          console.log("E-mail ou senha inválidos.");
+      }
+  }
+
+  editarSenha(senha: string) {
+      this.senha = senha;
+      console.log("Senha editada com sucesso!");
+  }
 }
