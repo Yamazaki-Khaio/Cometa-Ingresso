@@ -1,14 +1,14 @@
+import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from "react"
 import Botao from "./botao"
-import styles from "../styles/Layout.module.css"
 
-export default function Layout(props){
+export default function Layout(props: { titulo: any; children: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined }){
     return(
-        <div className={styles.layout}>
-            <div className={styles.cabecalho}>
+        <div>
+            <div>
                 <h1>{props.titulo ?? 'Mais um exemplo'}</h1>
                 <Botao href="/" NomeBotao="Voltar"/>
             </div>
-            <div className={styles.conteudo}>
+            <div>
                 {props.children}
             </div>
         </div>

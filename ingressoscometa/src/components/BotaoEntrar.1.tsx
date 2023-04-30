@@ -11,7 +11,7 @@ export default function BotaoEntrar(){
         </div>);*/
     return(
         <div>
-            <input type='submit' value='Entrar'>
+            <input type='submit' value='Entrar' />
         </div>
     );
 }
