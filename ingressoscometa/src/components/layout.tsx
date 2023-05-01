@@ -1,16 +1,13 @@
-import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from "react"
-import Botao from "./botao"
+import Cabecalho from "./Cabecalho"
+import Rodope from "./Rodope"
 
-export default function Layout(props: { titulo: any; children: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | ReactFragment | ReactPortal | null | undefined }){
+export default function Layout(props: any){
     return(
-        <div>
-            <div>
-                <h1>{props.titulo ?? 'Mais um exemplo'}</h1>
-                <Botao href="/" NomeBotao="Voltar"/>
-            </div>
-            <div>
-                {props.children}
-            </div>
+        
+        <div className="flex flex-col justify-between h-screen">
+            <Cabecalho/> 
+            {props.pagina}
+            <Rodope/>
         </div>
     )
 

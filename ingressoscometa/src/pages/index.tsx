@@ -1,12 +1,11 @@
-import Bloco from "@/components/bloco"
+import Layout from "@/components/Layout"
+
 
 export default function Home(){
    
     return (
         <div>
-            <div>
-                <Bloco Propriedades="Inicio"/>
-            </div>
+            <Layout/>
         </div>       
     )
 }
