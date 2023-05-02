@@ -1,5 +1,34 @@
 import Botao from "./Botao";
+import { useState } from "react";
 
+export default function CampoCpf(props: any){
+  const [cpf, setCpf] = useState('');
+
+  function handleCpfChange(event: React.ChangeEvent<HTMLInputElement>) {
+    let cpfValue = event.target.value.replace(/\D/g, '');
+    cpfValue = cpfValue.replace(/(\d{3})(\d)/, '$1.$2');
+    cpfValue = cpfValue.replace(/(\d{3})(\d)/, '$1.$2');
+    cpfValue = cpfValue.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    setCpf(cpfValue);
+  }
+
+  return(
+    <div className="flex flex-col gap-4">
+      <label htmlFor="cpf">CPF</label>
+      <input 
+        type="text" 
+        maxLength={14} 
+        name="Cpf" 
+        id="cpf" 
+        placeholder="Insira apenas números" 
+        required 
+        className="border w-64 border-gray-400 rounded-md p-2 mb-8"
+        value={cpf}
+        onChange={handleCpfChange}
+      />
+    </div>
+  )
+}
 
 function isValidCPF(cpf: string) {
     if (typeof cpf !== "string") return false
@@ -36,11 +65,3 @@ function isValidCPF(cpf: string) {
     return true
 }
 
-export default function CampoCpf(props: any){
-    return(
-        <div className="flex flex-col gap-4">
-            <label htmlFor="login">CPF</label>
-            <input type="text" maxLength={14} name="Cpf" id="cpf" placeholder="Insira apenas números" required className="border w-64 border-gray-400 rounded-md p-2 mb-8"/>
-        </div>
-    )
-}
