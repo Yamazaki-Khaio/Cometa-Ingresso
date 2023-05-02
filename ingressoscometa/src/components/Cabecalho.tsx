@@ -1,11 +1,10 @@
 import Botao from "./Botao";
-import Logo from "ingressoscometa/public/Logo.svg";
-
 
 export default function Cabecalho(props: any){
     return(
         <div className="flex items-center justify-between p-8 w-screen h-32 bg-teal-300">
-            <div>
+            <div className="flex items-center gap-4">
+                <img src="/cometa2.png" alt="Logo" width="200" height="200"/>
                 <h2>Compre seus ingressos aqui!</h2>  
             </div>
         
@@ -14,6 +13,5 @@ export default function Cabecalho(props: any){
                 <Botao href="/cadastro" NomeBotao="Cadastro"/>
             </div>
         </div>
-        
     )
 }
