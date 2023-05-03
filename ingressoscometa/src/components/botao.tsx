@@ -1,7 +1,6 @@
 import Link from "next/link"
 
-export default function Botao(props: {href: string, NomeBotao: string}){
-
+export default function Botao(props: {href: string, NomeBotao: string }){
     return(
         <div>
             <Link href={props.href}>
