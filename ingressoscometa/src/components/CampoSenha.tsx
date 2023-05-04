@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export default function CampoSenha(props: any){
     const [senha, setSenha] = useState('');
@@ -8,8 +10,8 @@ export default function CampoSenha(props: any){
         setSenha(event.target.value);
     }
 
-    function handleMostrarSenhaChange(event: React.ChangeEvent<HTMLInputElement>) {
-        setMostrarSenha(event.target.checked);
+    function handleMostrarSenhaChange() {
+        setMostrarSenha(!mostrarSenha);
     }
 
     return(
@@ -24,15 +26,16 @@ export default function CampoSenha(props: any){
                     className="border w-64 border-gray-400 rounded-md p-2 mb-2"
                     onChange={handleSenhaChange}
                 />
-                <label htmlFor="mostrarSenha" className="flex items-center">
-                    <input 
-                        type="checkbox" 
-                        id="mostrarSenha" 
-                        className="mr-2"
-                        onChange={handleMostrarSenhaChange}
+                <button 
+                    type="button"
+                    className="absolute right-0 top-1/2 transform -translate-y-1/2 mr-2" 
+                    onClick={handleMostrarSenhaChange}
+                >
+                    <FontAwesomeIcon 
+                        icon={mostrarSenha ? faEye : faEyeSlash} 
+                        size="lg"
                     />
-                    <span>Mostrar senha</span>
-                </label>
+                </button>
             </div>
         </div>
     )
