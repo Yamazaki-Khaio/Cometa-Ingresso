@@ -5,9 +5,9 @@ const app = express();
 
 // Configuração do banco de dados
 const connection = mysql.createConnection({
-  host: "dbtecstorm-1.ciavjkfiolo8.us-east-2.rds.amazonaws.com",
-  user: "tecstorm",
-  password: "vaidormir",
+  host: "cometacngressosserver.mysql.database.azure.com",
+  user: "cometaingressos",
+  password: "Vaidormir23",
   database: "cometadb",
 });
 
