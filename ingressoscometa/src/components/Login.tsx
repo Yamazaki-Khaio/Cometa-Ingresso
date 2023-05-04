@@ -11,9 +11,10 @@ export default function Login() {
         <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
             <CampoCpf/>
             <CampoSenha/>
+            <EsqueciSenha/>
             <RadioButton/>
             <BotaoEntrar cpf={'11111111111'} password={'123'}/>
-            <EsqueciSenha/>
+
             
         </div>
     )
