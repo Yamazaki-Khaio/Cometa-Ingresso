@@ -10,10 +10,6 @@ export default function RadioButton(props: any){
                     <input type="radio" name="tipoUsuario" id="promoter" value="promoter"/>
                     <label htmlFor="promoter">Promoter</label>
                 </div>
-                <div className="flex items-center gap-2">
-                    <input type="radio" name="tipoUsuario" id="admin" value="admin"/>
-                    <label htmlFor="admin">Administrador</label>
-                </div>
             </div>
         </div>
     )
