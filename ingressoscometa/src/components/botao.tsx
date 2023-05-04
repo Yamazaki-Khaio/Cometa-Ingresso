@@ -5,11 +5,16 @@ export default function Botao(props: {href: string, NomeBotao: string }){
         <div>
             <Link href={props.href}>
                     <button className={`
-                    w-64 h-12
+                    w-48 h-12  // diminuindo o comprimento do botão
                      bg-teal-900 
                      text-white 
                      text-24 
-                     rounded-xl`}  role="button">
+                     rounded-3xl  // aumentando o valor do border-radius
+                     transition-all duration-300  // adicionando um efeito de transição
+                     hover:bg-teal-800  // adicionando uma cor de fundo quando o botão é hoverado
+                     active:bg-teal-700  // adicionando uma cor de fundo quando o botão é clicado
+                     `}
+                     role="button">
                         {props.NomeBotao}
                     </button>
             </Link>
