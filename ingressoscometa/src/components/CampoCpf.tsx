@@ -21,11 +21,15 @@ export default function CampoCpf(props: any){
         name="Cpf" 
         id="cpf" 
         placeholder="Insira apenas números" 
-        required 
         className="border w-64 border-gray-400 rounded-md p-2 mb-8"
         value={cpf}
         onChange={handleCpfChange}
-      />
+        required 
+        onInvalid={(e) => {
+          e.preventDefault();
+          alert("Algo deu errado. Tente novamente.");
+        }}
+        />
     </div>
   )
 }
