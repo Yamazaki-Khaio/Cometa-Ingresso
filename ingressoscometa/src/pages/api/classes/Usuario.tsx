@@ -31,8 +31,8 @@ class Usuario {
       var logado:boolean = false;
       let crypto = require('crypto');
       let senhaCriptografada = crypto.createHash('sha1').update(senhaAtual).digest('hex');
-      if (loginAtual == this.cpf_cnpj){
-        if(senhaCriptografada == this.senha){
+      if (loginAtual === this.cpf_cnpj){
+        if(senhaCriptografada === this.senha){
           logado = true;
         }
       }
