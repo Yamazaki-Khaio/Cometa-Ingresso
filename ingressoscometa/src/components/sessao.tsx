@@ -20,8 +20,12 @@ export default function Sessao(){
             </div>
         )
     }
-   if (process.browser){
-        route.replace('/login')
+   else{
+    return(
+        <div>
+            <h1>Você não está logado</h1>
+        </div>
+    ) 
     }
     
 }

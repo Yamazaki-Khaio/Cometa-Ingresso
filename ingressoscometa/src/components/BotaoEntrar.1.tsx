@@ -1,18 +1,17 @@
-import { signIn } from "next-auth/react";
 
-export default function BotaoEntrar(props : any){
-    const cpf = props.cpf;
-    const senha = props.password;
+
+export default function BotaoEntrar(){
+
     return(
         <div>
-            <button  className={`
+            <input type="submit" value="login" className={`
                     w-64 h-12
                      bg-teal-900 
                      text-white 
                      text-24 
-                    rounded-xl`}  role="button" onClick={() => {signIn("credentials",{cpf:cpf,password:senha,callbackUrl: "/home" })}}>
-                        Login
-            </button>
+                    rounded-xl`} />
+                
+         
         </div>
     )
 

@@ -16,7 +16,7 @@ const authOptions : NextAuthOptions = {
         authorize(credentials, req){
             const user = { id:"1", name:"alisson", email: "alissonbomfimsilva@outlook.com"}
             const {cpf, password} = credentials as {cpf:string; password:string;};
-            if(cpf === "11111111111" && password === "123"){
+            if(cpf === "111.111.111-11" && password === "123"){
                 return user;
             }
 

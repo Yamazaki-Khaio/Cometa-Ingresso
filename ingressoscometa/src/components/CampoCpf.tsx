@@ -4,6 +4,7 @@ import { useState } from "react";
 export default function CampoCpf(props: any){
   const [cpf, setCpf] = useState('');
 
+
   function handleCpfChange(event: React.ChangeEvent<HTMLInputElement>) {
     let cpfValue = event.target.value.replace(/\D/g, '');
     cpfValue = cpfValue.replace(/(\d{3})(\d)/, '$1.$2');
