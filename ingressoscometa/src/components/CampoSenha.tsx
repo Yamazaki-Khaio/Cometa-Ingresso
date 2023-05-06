@@ -16,7 +16,7 @@ export default function CampoSenha(props: any){
     function handleMostrarSenhaChange() {
         setMostrarSenha(!mostrarSenha); // Alterna o estado da opção de mostrar/ocultar a senha
     }
-    //teste commit
+
     // Renderiza o componente
     return(
         <div className="flex flex-col gap-4">
