@@ -30,9 +30,9 @@ class Usuario {
     public login(loginAtual: string, senhaAtual: string){
       var logado:boolean = false;
       let crypto = require('crypto');
-      let senhaCriptografada = crypto.createHash('sha1').update('str').digest('hex');
-      if (loginAtual == this.email){
-        if(senhaCriptografada == this.senha){
+      let senhaCriptografada = crypto.createHash('sha1').update(senhaAtual).digest('hex');
+      if (loginAtual === this.cpf_cnpj){
+        if(senhaCriptografada === this.senha){
           logado = true;
         }
       }

@@ -10,6 +10,7 @@ export default function Cadastro() {
             <CampoCpf/>
             <CampoEmail/>
             <CampoSenha/>
+            <RadioButton/>
             <Botao href="/cadastro" NomeBotao="Cadastro"/>
         </div>
     )

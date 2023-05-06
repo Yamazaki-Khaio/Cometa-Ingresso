@@ -4,6 +4,7 @@ import { useState } from "react";
 export default function CampoCpf(props: any){
   const [cpf, setCpf] = useState('');
 
+
   function handleCpfChange(event: React.ChangeEvent<HTMLInputElement>) {
     let cpfValue = event.target.value.replace(/\D/g, '');
     cpfValue = cpfValue.replace(/(\d{3})(\d)/, '$1.$2');
@@ -21,11 +22,15 @@ export default function CampoCpf(props: any){
         name="Cpf" 
         id="cpf" 
         placeholder="Insira apenas números" 
-        required 
         className="border w-64 border-gray-400 rounded-md p-2 mb-8"
         value={cpf}
         onChange={handleCpfChange}
-      />
+        required 
+        onInvalid={(e) => {
+          e.preventDefault();
+          alert("Algo deu errado. Tente novamente.");
+        }}
+        />
     </div>
   )
 }

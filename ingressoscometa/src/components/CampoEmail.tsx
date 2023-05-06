@@ -14,8 +14,13 @@ export default function CampoEmail(props: any){
         type="email" 
         name="email" 
         id="email" 
-        placeholder="Insira seu email" 
+        maxLength={30} 
+        placeholder="Insira seu e-mail" 
         required 
+        onInvalid={(e) => {
+          e.preventDefault();
+          alert("Algo deu errado. Tente novamente.");
+        }}
         className="border w-64 border-gray-400 rounded-md p-2 mb-8"
         value={email}
         onChange={handleEmailChange}
