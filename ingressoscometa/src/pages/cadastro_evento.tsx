@@ -1,10 +1,10 @@
 import Layout from "@/components/layout";
-import Cadastro from "@/components/Cadastro";
+import CadastroEvento from "@/components/Cadastro_Evento";
 
 export default function cadastro(){
     return(
         <div>
-            <Layout pagina={<Cadastro/>}/>
+            <Layout pagina={<CadastroEvento/>}/>
         </div>
     )
 }
