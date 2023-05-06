@@ -1,16 +1,15 @@
 import Botao from "./Botao";
-/*import CampoCpf from "./CampoCpf";
-import CampoEmail from "./CampoEmail";
-import CampoSenha from "./CampoSenha";
-import RadioButton from "./RadioButton";*/
+import CampoDescricaoEvento from "./CampoDescricaoEvento";
+import CampoNomeEvento from "./CampoNomeEvento";
+import CampoLocal from "./CampoLocal";
 
 export default function CadastroEvento() {
     return(
         <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
             <CampoNomeEvento/>
-            <CampoDesc/>
+            <CampoDescricaoEvento/>
             <CampoLocal/>
-            <Botao href="/cadastro" NomeBotao="Cadastro"/>
+            <Botao href="/novo-evento" NomeBotao="Novo Evento"/>
         </div>
     )
 }
