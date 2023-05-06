@@ -6,6 +6,7 @@ import BotaoEntrar from "./BotaoEntrar.1";
 import EsqueciSenha from "./EsqueciSenha";
 import { FormEventHandler, useState } from "react";
 import { signIn} from "next-auth/react";
+import { ok } from "assert";
 
 
 export default function Login() {
@@ -15,6 +16,7 @@ export default function Login() {
         e.preventDefault()
         console.log(document.getElementById('cpf')?.value)
        const res =  signIn("credentials",{cpf:document.getElementById('cpf')?.value,password:document.getElementById('senha')?.value,redirect:false})
+       res.then((resultado) => {console.log(resultado);})
     
     }
     return(
