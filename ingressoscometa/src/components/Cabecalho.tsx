@@ -1,6 +1,6 @@
 import Botao from "./Botao";
 
-export default function Cabecalho(props: { isBotaoOcultoLogin?: boolean, isBotaoOcultoCadastro?: boolean }) {
+export default function Cabecalho(props: { isBotaoOcultoLogin?: boolean,  isBotaoOcultoCadastro?: boolean, isBotaoOcultoEvento?: boolean}) {
 
     return(
         <div className="flex items-center justify-between p-8 w-screen h-32 bg-teal-300">
@@ -11,6 +11,7 @@ export default function Cabecalho(props: { isBotaoOcultoLogin?: boolean, isBotao
             <div className="flex gap-4">
                 <Botao href="/login" NomeBotao="Login" oculto={props.isBotaoOcultoLogin} />
                 <Botao href="/cadastro" NomeBotao="Cadastro" oculto={props.isBotaoOcultoCadastro} />
+                <Botao href="/novo-evento" NomeBotao="Novo Evento" oculto={props.isBotaoOcultoEvento} />
             </div>    
         </div>
     )
