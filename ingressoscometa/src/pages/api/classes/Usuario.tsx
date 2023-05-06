@@ -1,5 +1,5 @@
 class Usuario {
-    UsuarioID: number;
+    idUser: number;
     cpf: string;
     nome: string;
     senha: string;
@@ -8,7 +8,7 @@ class Usuario {
     email: string;
     endereco: Endereco;
     constructor(
-      UsuarioID: number,
+      idUser: number,
       cpf: string,
       nome: string,
       senha: string,
@@ -17,7 +17,7 @@ class Usuario {
       email: string,
       endereco: Endereco
     ) {
-      this.UsuarioID = UsuarioID;
+      this.idUser = idUser;
       this.cpf = cpf;
       this.nome = nome;
       this.senha = senha;
