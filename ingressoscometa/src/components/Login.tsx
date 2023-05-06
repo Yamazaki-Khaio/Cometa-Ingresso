@@ -19,9 +19,10 @@ export default function Login() {
        const res =  signIn("credentials",{cpf:document.getElementById('cpf')?.value,password:document.getElementById('senha')?.value,redirect:false})
        
        res.then((resultado) => {
-        const router = useRouter();
+        
         if(resultado.ok){
-            
+           
+            window.location.replace("/home")
        } })
        
       
