@@ -1,10 +1,10 @@
 import { useState } from "react";
 
-export default function CampoNomeEvento(props: any){
+export default function CampoDescricaoEvento(props: any){
   const [descricao, setDescricao] = useState('');
 
-  function handleNomeChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setNome(event.target.value);
+  function handleDescricaoChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setDescricao(event.target.value);
   }
 
   return(
@@ -18,7 +18,7 @@ export default function CampoNomeEvento(props: any){
         required 
         className="border w-64 border-gray-400 rounded-md p-2 mb-8"
         value={descricao}
-        onChange={handleNomeChange}
+        onChange={handleDescricaoChange}
       />
     </div>
   )
