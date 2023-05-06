@@ -1,6 +1,6 @@
 class Usuario {
     UsuarioID: number;
-    cpf_cnpj: string;
+    cpf: string;
     nome: string;
     senha: string;
     data_nascimento: Date;
@@ -9,7 +9,7 @@ class Usuario {
     endereco: Endereco;
     constructor(
       UsuarioID: number,
-      cpf_cnpj: string,
+      cpf: string,
       nome: string,
       senha: string,
       data_nascimento: Date,
@@ -18,7 +18,7 @@ class Usuario {
       endereco: Endereco
     ) {
       this.UsuarioID = UsuarioID;
-      this.cpf_cnpj = cpf_cnpj;
+      this.cpf = cpf;
       this.nome = nome;
       this.senha = senha;
       this.data_nascimento = data_nascimento;
@@ -31,7 +31,7 @@ class Usuario {
       var logado:boolean = false;
       let crypto = require('crypto');
       let senhaCriptografada = crypto.createHash('sha1').update(senhaAtual).digest('hex');
-      if (loginAtual === this.cpf_cnpj){
+      if (loginAtual === this.cpf){
         if(senhaCriptografada === this.senha){
           logado = true;
         }
