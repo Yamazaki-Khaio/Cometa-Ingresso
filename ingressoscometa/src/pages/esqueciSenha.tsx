@@ -1,10 +1,10 @@
 import Layout from "@/components/Layout"
-import CampoEsqueciSenha from "@/components/CampoEsqueciSenha"
+import CampoEmailEsqueciSenha from "@/components/CampoEmailEsqueciSenha"
 
 export default function esqueciSenha(){
     return (
-        <div>
-            <Layout pagina={<CampoEsqueciSenha/>} exibirBotao={true} exibirBotao2={false}/>
-        </div>       
+
+            <Layout pagina={<CampoEmailEsqueciSenha/>} exibirBotao={true} exibirBotao2={false}/>
+   
     )
 }
