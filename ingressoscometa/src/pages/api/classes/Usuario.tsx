@@ -40,4 +40,4 @@ class Usuario {
       return logado;
     }
   }
-  
+  export default Usuario;
