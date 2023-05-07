@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default function esqueciSenha(props: any){
+export default function CampoEsqueciSenha(props: any){
     return(
 
     <Link href="/index">

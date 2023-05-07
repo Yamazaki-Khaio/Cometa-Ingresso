@@ -3,7 +3,7 @@ import CampoCpf from "./CampoCpf";
 import CampoSenha from "./CampoSenha";
 import RadioButton from "./RadioButton";
 import BotaoEntrar from "./BotaoEntrar.1";
-import EsqueciSenha from "./EsqueciSenha";
+import CampoEsqueciSenha from "./CampoEsqueciSenha";
 import { FormEventHandler, useState } from "react";
 import { signIn} from "next-auth/react";
 import { ok } from "assert";
@@ -33,7 +33,7 @@ export default function Login() {
             <form onSubmit={hanldeSubmit}>
                 <CampoCpf/>
                 <CampoSenha/>
-                <EsqueciSenha/>
+                <CampoEsqueciSenha/>
                 <RadioButton/>
                 <BotaoEntrar/>
             </form>
