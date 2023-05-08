@@ -8,3 +8,4 @@ class Compra {
     this.data_compra = data_compra;
   }
 }
+export default Compra;
