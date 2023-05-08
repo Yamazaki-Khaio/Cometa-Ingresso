@@ -26,5 +26,4 @@ class Evento{
         this.quantiaIngressosPorSetor = quantiaIngressosPorSetor;
         this.setores = setores;
     }
-
 }
