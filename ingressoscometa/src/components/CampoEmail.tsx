@@ -15,7 +15,7 @@ export default function CampoEmail(props: any){
         name="email" 
         id="email" 
         maxLength={30} 
-        placeholder="Insira seu e-mail" 
+        placeholder="exemplo@gmail.com" 
         required 
         onInvalid={(e) => {
           e.preventDefault();
