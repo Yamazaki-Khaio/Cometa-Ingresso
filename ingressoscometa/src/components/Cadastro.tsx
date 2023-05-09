@@ -5,6 +5,7 @@ import CampoSenha from "./CampoSenhaERepetirSenha";
 import RadioButton from "./RadioButton";
 import Endereco from "./Endereco";
 import NomeCompleto from "./CampoNomeCompleto";
+import CampoTelefone from "./CampoTelefone";
 
 export default function Cadastro() {
     return(
@@ -12,6 +13,7 @@ export default function Cadastro() {
             <NomeCompleto/>
             <CampoCpf/>
             <CampoEmail/>
+            <CampoTelefone/>
             <CampoSenha/>
             <RadioButton/>
             <Endereco/>
