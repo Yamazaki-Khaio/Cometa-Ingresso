@@ -16,7 +16,10 @@ export default function Login() {
     
     const hanldeSubmit:FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault()
-       const res =  signIn("credentials",{cpf:document.getElementById('cpf')?.value,password:document.getElementById('senha')?.value,redirect:false})
+       const cpf = document.getElementById('cpf')
+       const senha = document.getElementById('senha')
+
+       const res =  signIn("credentials",{cpf:cpf?.value,password:senha?.value,redirect:false})
        
        res.then((resultado) => {
         
@@ -27,6 +30,8 @@ export default function Login() {
         const menssage = document.getElementById('menssage')
         if(menssage){
             menssage.style.display = 'block'
+            cpf.style.borderColor = 'red'
+            senha.style.borderColor = 'red' 
         }
        
        } })
