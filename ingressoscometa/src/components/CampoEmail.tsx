@@ -1,22 +1,27 @@
 import { useState } from "react";
 
-export default function CampoEmail(props: any){
+export default function CampoEmail(props: any) {
   const [email, setEmail] = useState('');
 
   function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setEmail(event.target.value);
+    const value = event.target.value;
+    const validCharactersRegex = /^[a-zA-Z0-9\-_.@]*$/; // Expressão regular para validar os caracteres permitidos no campo email
+
+    if (validCharactersRegex.test(value)) {
+      setEmail(value);
+    }
   }
 
-  return(
+  return (
     <div className="flex flex-col gap-4">
       <label htmlFor="email">Email</label>
-      <input 
-        type="email" 
-        name="email" 
-        id="email" 
-        maxLength={30} 
-        placeholder="exemplo@gmail.com" 
-        required 
+      <input
+        type="text"
+        name="email"
+        id="email"
+        maxLength={30}
+        placeholder="exemplo@gmail.com"
+        required
         onInvalid={(e) => {
           e.preventDefault();
           alert("Algo deu errado. Tente novamente.");
