@@ -3,6 +3,7 @@ import CampoCpf from "./CampoCpf";
 import CampoEmail from "./CampoEmail";
 import CampoSenha from "./CampoSenha";
 import RadioButton from "./RadioButton";
+import Endereco from "./Endereco";
 
 export default function Cadastro() {
     return(
@@ -11,6 +12,7 @@ export default function Cadastro() {
             <CampoEmail/>
             <CampoSenha/>
             <RadioButton/>
+            <Endereco/>
             <Botao href="/cadastro" NomeBotao="Cadastro"/>
         </div>
     )
