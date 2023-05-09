@@ -7,7 +7,7 @@ import Endereco from "./Endereco";
 
 export default function Cadastro() {
     return(
-        <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
+        <div className="flex flex-col justify-center items-center bg-gray-100 p-12">
             <CampoCpf/>
             <CampoEmail/>
             <CampoSenha/>
