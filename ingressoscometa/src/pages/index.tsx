@@ -5,7 +5,7 @@ export default function Home(){
    
     return (
         <div>
-            <Layout/>
+            <Layout exibirBotao={true} exibirBotao2={true} exibirBotao3={false}/>
         </div>       
     )
 }

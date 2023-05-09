@@ -5,7 +5,7 @@ import Layout from "@/components/layout";
 export default function cadastro(){
     return(
         <div>
-            <Layout pagina={<Cadastro/>} exibirBotao={true} exibirBotao2={false}/>
+            <Layout pagina={<Cadastro/>} exibirBotao={true} exibirBotao2={false} exibirBotao3={false}/>
         </div>
     )
 }
