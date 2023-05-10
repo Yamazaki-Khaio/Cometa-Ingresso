@@ -14,9 +14,12 @@ const authOptions : NextAuthOptions = {
             type: "password"
         } },
         authorize(credentials, req){
-            const user = { id:"1", name:"alisson", email: "alissonbomfimsilva@outlook.com"}
+            
+            //{ id:"1", name:"alisson", email: "alissonbomfimsilva@outlook.com"}
             const {cpf, password} = credentials as {cpf:string; password:string;};
-            if(cpf === "111.111.111-11" && password === "123"){
+            const user = api.get('/api/usuario',{cpf:cpf})
+            console.log(user.nome)
+            if(cpf === user.cpf_cnpj && password === "123"){
                 return user;
             }
 
@@ -47,5 +50,7 @@ const authOptions : NextAuthOptions = {
       },
 
 }
+
+
 
 export default NextAuth(authOptions);
