@@ -4,6 +4,7 @@ import CampoSenha from "./CampoSenha";
 import RadioButton from "./RadioButton";
 import BotaoEntrar from "./BotaoEntrar.1";
 import CampoEsqueciSenha from "./CampoEsqueciSenha";
+import Message from "./Mensagem";
 import { FormEventHandler, useState } from "react";
 import { signIn} from "next-auth/react";
 import { ok } from "assert";
@@ -15,14 +16,24 @@ export default function Login() {
     
     const hanldeSubmit:FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault()
-        console.log(document.getElementById('cpf')?.value)
-       const res =  signIn("credentials",{cpf:document.getElementById('cpf')?.value,password:document.getElementById('senha')?.value,redirect:false})
+       const cpf = document.getElementById('cpf')
+       const senha = document.getElementById('senha')
+
+       const res =  signIn("credentials",{cpf:cpf?.value,password:senha?.value,redirect:false})
        
        res.then((resultado) => {
         
         if(resultado.ok){
            
             window.location.replace("/home")
+       }else{
+        const menssage = document.getElementById('menssage')
+        if(menssage){
+            menssage.style.display = 'block'
+            cpf.style.borderColor = 'red'
+            senha.style.borderColor = 'red' 
+        }
+       
        } })
        
       
@@ -35,7 +46,10 @@ export default function Login() {
                 <CampoSenha/>
                 <CampoEsqueciSenha/>
                 <RadioButton/>
+                <div className="flex justify-center w-full">
                 <BotaoEntrar/>
+                </div>
+                <Message mensagem="cpf ou senha inválida"/>
             </form>
 
            

@@ -1,10 +1,11 @@
-import Layout from "@/components/Layout";
+
 import Cadastro from "@/components/Cadastro";
+import Layout from "@/components/Layout";
 
 export default function cadastro(){
     return(
         <div>
-            <Layout pagina={<Cadastro/>} exibirBotao={true} exibirBotao2={false}/>
+            <Layout pagina={<Cadastro/>} exibirBotao={true} exibirBotao2={false} exibirBotao3={false}/>
         </div>
     )
 }

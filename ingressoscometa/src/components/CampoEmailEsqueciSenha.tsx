@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Botao from "./Botao";
 
 export default function CampoEmailEsqueciSenha(props: any){
   const [email, setEmail] = useState('');
@@ -9,7 +10,7 @@ export default function CampoEmailEsqueciSenha(props: any){
 
   return(
     <div className="flex justify-center">
-      <div className="flex flex-col">
+      <div className="flex flex-col items-center">
         <label htmlFor="email">Insira seu email para procurar a sua conta</label>
         <input 
           type="email" 
@@ -26,6 +27,9 @@ export default function CampoEmailEsqueciSenha(props: any){
           value={email}
           onChange={handleEmailChange}
         />
+        <div className="flex justify-center w-full">
+          <Botao href="null" NomeBotao="Enviar"/>
+        </div>
       </div>
     </div>
   )

@@ -1,30 +1,34 @@
 class Evento{
-    idEvento: string;
+    idEvento: number;
     nome: string;
-    //promotorAssociado: Promotor;
     descricao: string;
     data: Date;
-    local: string;
-    //ingressos: Ingresso[];
-    quantiaIngressosPorSetor: number[];
-    setores: string[];
+    idLocal: number;
+    cpfPromotor: string;
+    idUser: number;
+    idSetor: number;
+    idTipo: number;
 
     constructor(
-        idEvento: string, 
+        idEvento: number, 
         nome: string, 
+        data: Date,
         descricao: string, 
-        data: Date, 
-        local: string, 
-        quantiaIngressosPorSetor: number[], 
-        setores: string[]
+        idLocal: number,
+        cpfPromotor: string, 
+        idUser: number,
+        idSetor: number,
+        idTipo: number,
     ){
         this.idEvento = idEvento;
         this.nome = nome;
-        this.descricao = descricao;
         this.data = data;
-        this.local = local;
-        this.quantiaIngressosPorSetor = quantiaIngressosPorSetor;
-        this.setores = setores;
+        this.descricao = descricao;
+        this.idLocal = idLocal;
+        this.cpfPromotor = cpfPromotor;
+        this.idUser = idUser;
+        this.idSetor = idSetor;
+        this.idTipo = idTipo;
     }
 }
 export default Evento;

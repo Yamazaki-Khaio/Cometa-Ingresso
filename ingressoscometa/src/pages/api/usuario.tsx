@@ -1,6 +1,37 @@
 import express from 'express';
 import {connection} from './db';
 import Usuario from './classes/Usuario';
+import { NextApiRequest, NextApiResponse } from 'next';
+
+export default function handler(req: NextApiRequest,res: NextApiResponse){
+    if(req.method === 'GET'){
+        if(!req.query){
+            const sql = 'SELECT * FROM usuario';
+            connection.query(sql, (error, results, fields) => {
+                if (error) {
+                console.error('Erro ao buscar usuários: ', error);
+                res.status(500).send('Erro ao buscar usuários.');
+                return;
+                }
+                res.json(results);
+            });
+      
+        }else{
+            if(req.query['cpf']){
+                const sql = 'SELECT * FROM usuario WHERE cpf_cnpj=?';
+                connection.query(sql,[req.query['cpf']], (error, results, fields) => {
+                    if (error) {
+                    console.error('Erro ao buscar usuários: ', error);
+                    res.status(500).send('Erro ao buscar usuários.');
+                    return;
+                    }
+                    res.json(results);
+                });
+                
+            }
+        }
+    }
+}
 
 const router = express.Router();
 
