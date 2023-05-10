@@ -14,7 +14,7 @@ export default function CampoNomeEvento(props: any){
         type="local" 
         name="local" 
         id="local" 
-        placeholder="Insira o locsl do evento" 
+        placeholder="Insira o local do evento" 
         required 
         className="border w-64 border-gray-400 rounded-md p-2 mb-8"
         value={local}

@@ -14,8 +14,8 @@ router.post('/', async (req, res) => {
         req.body.id_local_evento,
         req.body.cpf_cnpj_promoter,
         req.body.UsuarioID,
-        //req.body.idSetor,
-        //req.body.idTipo
+        req.body.idSetor,
+        req.body.idTipo
     );
     const sql = 'INSERT INTO evento SET ?';
     connection.query(sql, evento, (error, results, fields) => {

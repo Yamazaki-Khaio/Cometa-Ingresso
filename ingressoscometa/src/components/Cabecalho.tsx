@@ -13,7 +13,7 @@ export default function Cabecalho(props: { isBotaoOcultoLogin?: boolean,  isBota
             <div className="flex gap-4">
                 <Botao href="/login" NomeBotao="Login" oculto={props.isBotaoOcultoLogin} />
                 <Botao href="/cadastro" NomeBotao="Cadastro" oculto={props.isBotaoOcultoCadastro} />
-                <Botao href="/novo-evento" NomeBotao="Novo Evento" oculto={props.isBotaoOcultoEvento} />
+                <Botao href="/cadastro_evento" NomeBotao="Novo Evento" oculto={props.isBotaoOcultoEvento} />
             </div>    
         </div>
     )
