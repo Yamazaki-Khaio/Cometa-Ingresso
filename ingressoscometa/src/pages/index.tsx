@@ -1,11 +1,12 @@
 import Layout from "@/components/Layout"
+import HomeNaoLogin  from "@/components/HomeNaoLogin"
 
 
 export default function Home(){
    
     return (
         <div>
-            <Layout exibirBotao={true} exibirBotao2={true} exibirBotao3={false} pagina={<Home/>} />
+            <Layout pagina={<HomeNaoLogin/>} exibirBotao={true} exibirBotao2={true} exibirBotao3={false} />
         </div>       
     )
 }

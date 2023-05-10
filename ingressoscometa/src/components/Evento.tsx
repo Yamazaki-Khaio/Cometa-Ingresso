@@ -1,7 +1,7 @@
 export default function Evento(props:any) {
     return (
         <div className="bg-red-700">
-            <image>{props.image}</image>
+            <img src={props.Image}/>
             <p>{props.Nome}</p>
             <p>Data: {props.Data}</p>
             <p>A partir das: {props.Hora}</p>

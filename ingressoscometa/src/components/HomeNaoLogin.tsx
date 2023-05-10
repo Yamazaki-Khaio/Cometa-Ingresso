@@ -1,6 +1,6 @@
 import GridEvento from "./GrindEvento";
 
-export default function Home(props:any ){
+export default function HomeNaoLogin(props:any ){
     return(
         <div>
             <GridEvento/>
