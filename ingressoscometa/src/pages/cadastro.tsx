@@ -1,6 +1,6 @@
 
 import Cadastro from "@/components/Cadastro";
-import Layout from "@/components/layout";
+import Layout from "@/components/Layout";
 
 export default function cadastro(){
     return(
