@@ -1,6 +1,21 @@
 import NextAuth,{NextAuthOptions} from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { signOut } from "next-auth/react";
+import { createHash } from 'crypto';
+
+function removerMascaraCpf(cpfComMascara: string): string {
+    // Remove todos os caracteres que não são dígitos
+    const cpfSemMascara = cpfComMascara.replace(/\D/g, '');
+  
+    return cpfSemMascara;
+  }
+  
+  async function getUserCpf(cpf : string) :  Promise<any>{
+    
+    const result = await fetch('http://localhost:3000/api/usuario?cpf='+cpf)
+    return  result.json()
+
+}
 
 const authOptions : NextAuthOptions = {
     
@@ -13,14 +28,15 @@ const authOptions : NextAuthOptions = {
             label: "Senha",
             type: "password"
         } },
-        authorize(credentials, req){
+        async authorize(credentials, req){
             
-            //{ id:"1", name:"alisson", email: "alissonbomfimsilva@outlook.com"}
+            const hash = createHash('sha256');
             const {cpf, password} = credentials as {cpf:string; password:string;};
-            const user = api.get('/api/usuario',{cpf:cpf})
-            console.log(user.nome)
-            if(cpf === user.cpf_cnpj && password === "123"){
-                return user;
+            hash.update(password)
+            const cpfSemMascara = removerMascaraCpf(cpf);
+            const user = await getUserCpf(cpfSemMascara)
+            if(cpfSemMascara === user[0].cpf_cnpj && hash.digest('hex') === user[0].senha){
+                return {id:user[0].UsuarioID,name:user[0].nome};
             }
 
             return null;
