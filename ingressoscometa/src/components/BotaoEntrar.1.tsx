@@ -4,7 +4,7 @@ export default function BotaoEntrar(){
 
     return(
         <div>
-            <input type="submit" value="login" className={`
+            <input type="submit" value="Login" className={`
                     w-64 h-12
                      bg-teal-900 
                      text-white 
