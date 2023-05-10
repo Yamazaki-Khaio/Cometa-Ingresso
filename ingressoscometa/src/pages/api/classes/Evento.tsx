@@ -27,3 +27,4 @@ class Evento{
         this.setores = setores;
     }
 }
+export default Evento;

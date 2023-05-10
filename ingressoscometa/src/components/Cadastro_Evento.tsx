@@ -9,7 +9,7 @@ export default function CadastroEvento() {
             <CampoNomeEvento/>
             <CampoDescricaoEvento/>
             <CampoLocal/>
-            <Botao href="/novo-evento" NomeBotao="Novo Evento"/>
+            <Botao href="/cadastro_evento" NomeBotao="Novo Evento"/>
         </div>
     )
 }
