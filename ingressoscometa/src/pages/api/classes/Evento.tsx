@@ -31,3 +31,5 @@ class Evento{
         this.idTipo = idTipo;
     }
 }
+
+export default Evento;
