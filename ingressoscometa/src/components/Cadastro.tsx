@@ -3,7 +3,10 @@ import CampoCpf from "./CampoCpf";
 import CampoEmail from "./CampoEmail";
 import CampoSenha from "./CampoSenhaERepetirSenha";
 import RadioButton from "./RadioButton";
-import Endereco from "./Endereco";
+import CepCadastro from "./CepCadastro";
+import RuaCadastro from "./RuaCadastro";
+import NumeroDaCasaCadastro from "./NumeroDaCasaCadastro";
+import ComplementoEnderecoCadastro from "./ComplementoEnderecoCadastro";
 import NomeCompleto from "./CampoNomeCompleto";
 import CampoTelefone from "./CampoTelefone";
 
@@ -16,7 +19,11 @@ export default function Cadastro() {
             <CampoTelefone/>
             <CampoSenha/>
             <RadioButton/>
-            <Endereco/>
+            <label htmlFor="endereco">Endereço</label>
+            <CepCadastro/>
+            <RuaCadastro/>
+            <NumeroDaCasaCadastro/>
+            <ComplementoEnderecoCadastro/>
             <Botao href="/cadastro" NomeBotao="Cadastro"/>
         </div>
     )
