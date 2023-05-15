@@ -17,7 +17,7 @@ export default function CadastroEvento() {
             <CampoHorarioEvento/>
             <CampoPerfilEvento/>
             <CampoSetorEvento/>
-            <Botao href="/cadastro_evento" NomeBotao="Novo Evento"/>
+            <Botao href="/novoEvento" NomeBotao="Novo Evento"/>
         </div>
     )
 }
