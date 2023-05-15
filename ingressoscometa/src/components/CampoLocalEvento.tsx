@@ -1,11 +1,6 @@
 import { useState } from "react";
 
 export default function CampoLocalEvento(props: any){
-  const [local, setLocal] = useState('');
-
-  function handleLocalChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setLocal(event.target.value);
-  }
 
   return(
     <div className="flex flex-col gap-4">
@@ -17,8 +12,6 @@ export default function CampoLocalEvento(props: any){
         placeholder="Insira a descrição do local do evento" 
         required 
         className="border w-64 border-gray-400 rounded-md p-2 mb-8"
-        value={local}
-        onChange={handleLocalChange}
       />
     </div>
   )
