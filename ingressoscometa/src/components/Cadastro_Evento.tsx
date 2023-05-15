@@ -8,6 +8,7 @@ import CampoPerfilEvento from "./CampoPerfilEvento";
 import CampoSetorEvento from "./CampoSetorEvento";
 import { FormEventHandler, useState } from "react";
 import Evento from "./Evento";
+import { Input } from "postcss";
 
 export default function CadastroEvento() {
     const [formData, setformData] = useState({
@@ -21,10 +22,10 @@ export default function CadastroEvento() {
     }
     );
 
-    const handleformEdit = (e, name) =>{
+    const handleformEdit = (event, name) =>{
         setformData({
             ...formData, 
-            [name]: e.target.value
+            [name]: event.target.value
         })
     }
 
@@ -46,7 +47,7 @@ export default function CadastroEvento() {
 return(
         <div className="flex flex-col justify-center items-center p-12 bg-gray-100">
             <form onSubmit={handle}>
-            <CampoNomeEvento required value = {formData.nome} onChange={(e) => {handleformEdit(e, 'nome')}}/>
+            <CampoNomeEvento  required value = {formData.nome} onChange={(e) => {handleformEdit(e, 'nome')}}/>
             <CampoDescricaoEvento required value = {formData.desc} onChange={(e) => {handleformEdit(e, 'desc')}}/>
             <CampoLocal required value = {formData.local} onChange={(e) => {handleformEdit(e, 'local')}}/>
             <CampoDataEvento required value = {formData.data} onChange={(e) => {handleformEdit(e, 'data')}}/>
