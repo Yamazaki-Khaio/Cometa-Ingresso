@@ -22,7 +22,6 @@ export default function Login() {
        const res =  signIn("credentials",{cpf:cpf?.value,password:senha?.value,redirect:false})
        
        res.then((resultado) => {
-        
         if(resultado.ok){
            
             window.location.replace("/home")

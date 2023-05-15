@@ -6,6 +6,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 const router = express.Router();
 
 export default function handler(req: NextApiRequest,res: NextApiResponse){
+    res.status(200).json({ message: 'Vai dormir!' });
     if(req.method === 'GET'){
         if(!req.query){
             const sql = 'SELECT * FROM evento';
@@ -128,4 +129,4 @@ router.put('/:id', async (req, res) => {
         res.json(results);
         }
     );
-});
+})};
