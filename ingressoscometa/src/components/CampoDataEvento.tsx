@@ -1,11 +1,6 @@
 import { useState } from "react";
 
 export default function CampoDataEvento(props: any) {
-  const [data, setData] = useState('');
-
-  function handleDataChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setData(event.target.value);
-  }
 
   return (
     <div className="flex flex-col gap-4">
