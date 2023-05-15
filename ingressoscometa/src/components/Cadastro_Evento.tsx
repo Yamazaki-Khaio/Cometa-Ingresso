@@ -2,6 +2,10 @@ import Botao from "./Botao";
 import CampoDescricaoEvento from "./CampoDescricaoEvento";
 import CampoNomeEvento from "./CampoNomeEvento";
 import CampoLocal from "./CampoLocal";
+import CampoDataEvento from "./CampoDataEvento";
+import CampoHorarioEvento from "./CampoHorarioEvento";
+import CampoPerfilEvento from "./CampoPerfilEvento";
+import CampoSetorEvento from "./CampoSetorEvento";
 
 export default function CadastroEvento() {
     return(
@@ -9,6 +13,10 @@ export default function CadastroEvento() {
             <CampoNomeEvento/>
             <CampoDescricaoEvento/>
             <CampoLocal/>
+            <CampoDataEvento/>
+            <CampoHorarioEvento/>
+            <CampoPerfilEvento/>
+            <CampoSetorEvento/>
             <Botao href="/cadastro_evento" NomeBotao="Novo Evento"/>
         </div>
     )
