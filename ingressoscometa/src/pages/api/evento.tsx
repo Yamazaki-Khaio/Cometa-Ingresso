@@ -36,7 +36,28 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
         }
     }
     if(req.method === 'POST'){
-        
+        const evento = new Evento(
+            req.body.id_evento,
+            req.body.nome_evento,
+            req.body.data_evento,
+            req.body.descricao_evento,
+            req.body.id_local_evento,
+            req.body.cpf_cnpj_promoter,
+            req.body.eventoID,
+            req.body.idSetor,
+            req.body.idTipo
+        );
+        if(req.query['idEvento, nome, descricao, data, idLocal, cpfPromotor, idUser, idSetor, idTipo']){
+            const sql = 'INSERT into evento(idEvento, nome, descricao, data, idLocal, cpfPromotor, idUser, idSetor, idTipo';
+            connection.query(sql, evento, (error, results, fields) => {
+                if (error) {
+                console.error('Erro ao inserir novo evento', error);
+                res.status(500).send('Erro ao inserir novo evento.');
+                return;
+                }
+                res.json(results);
+        });
+
     }
 }
 
