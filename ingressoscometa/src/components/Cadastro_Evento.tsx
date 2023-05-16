@@ -22,6 +22,7 @@ export default function CadastroEvento() {
         const horarioEvento = document.getElementById('horario')
         const perfilEvento = document.getElementById('perfil')
         const setorEvento = document.getElementById('setorEvento')
+        console.log(nome)
     }
 
     const handle = async (e) => {
