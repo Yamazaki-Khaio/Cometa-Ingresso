@@ -35,7 +35,7 @@ const authOptions : NextAuthOptions = {
             hash.update(password)
             const cpfSemMascara = removerMascaraCpf(cpf);
             const user = await getUserCpf(cpfSemMascara)
-            if(cpfSemMascara === user[0].cpf_cnpj && hash.digest('hex') === user[0].senha){
+            if(cpfSemMascara === user[0].cpf && hash.digest('hex') === user[0].senha){
                 return {id:user[0].UsuarioID,name:user[0].nome};
             }
 

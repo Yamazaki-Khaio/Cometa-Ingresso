@@ -5,7 +5,7 @@ class Endereco {
     numero: string;
     complemento: string;
     UsuarioID: number;
-    localidade: Localidade;
+    
    
    
     constructor(
@@ -15,7 +15,7 @@ class Endereco {
       numero: string,
       complemento: string,
       UsuarioID: number,
-      localidade: Localidade
+      
     ) {
       this.id_endereco = id_endereco;
       this.cep = cep;
@@ -23,6 +23,6 @@ class Endereco {
       this.numero = numero;
       this.complemento = complemento;
       this.UsuarioID = UsuarioID;
-      this.localidade = localidade;
+      
     }
   }

@@ -14,11 +14,12 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
                 return;
                 }
                 res.json(results);
+                return;
             });
       
         }else{
             if(req.query['cpf']){
-                const sql = 'SELECT * FROM usuario WHERE cpf_cnpj=?';
+                const sql = 'SELECT * FROM usuario WHERE cpf=?';
                 connection.query(sql,[req.query['cpf']], (error, results, fields) => {
                     if (error) {
                     console.error('Erro ao buscar usuários: ', error);
@@ -26,11 +27,43 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
                     return;
                     }
                     res.json(results);
+                    return;
                 });
                 
             }
         }
     }
+    if(req.method === 'POST'){
+    
+        const sql = 'INSERT INTO usuario(cpf,cnpj,nome,senha,data_nascimento,tipo_user) VALUES ('+
+        req.body.cpf+
+        
+        ",'00000000000000'"
+        +','
+        +"'"+
+        req.body.nome+"'"+','
+        +"'"+
+        req.body.senha+"'"+
+        ','+
+        "'"+
+        req.body.data_nascimento+
+        "'"+
+        ','+
+        req.body.tipo_user+')';
+
+        connection.query(sql, (error, results, fields) => {
+            if (error) {
+            console.error('Erro ao inserir novo usuário: ', error);
+            res.status(500).send('Erro ao inserir novo usuário.');
+            return;
+            }
+            res.status(200).send('ok')
+            return;
+        });
+
+        
+    }
+
 }
 
 const router = express.Router();
