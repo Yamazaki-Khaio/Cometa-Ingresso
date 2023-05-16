@@ -6,6 +6,7 @@ class Evento{
     data: Date;
     descricao: string;
     ativado: boolean;
+    imagem: BinaryData;
 
     constructor(
         idEvento: number, 
@@ -13,7 +14,8 @@ class Evento{
         idLocal: number,
         nome: string, 
         data: Date,
-        descricao: string
+        descricao: string,
+        imagem: BinaryData
     ){
         this.id = idEvento;
         this.idUser = idUser;
@@ -22,6 +24,7 @@ class Evento{
         this.data = data;
         this.descricao = descricao;
         this.ativado = true;
+        this.imagem = imagem;
     }
 }
 export default Evento;

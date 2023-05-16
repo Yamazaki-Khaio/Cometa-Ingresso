@@ -36,15 +36,13 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
     }
     if(req.method === 'POST'){
         const evento = new Evento(
-            req.body.id_evento,
+            req.body.id,
+            req.body.id_usuario,
+            req.body.id_localidade,
             req.body.nome_evento,
             req.body.data_evento,
             req.body.descricao_evento,
-            req.body.id_local_evento,
-            req.body.cpf_cnpj_promoter,
-            req.body.eventoID,
-            req.body.idSetor,
-            req.body.idTipo
+            req.body.imagem
         );
         if(req.query['idEvento, nome, descricao, data, idLocal, cpfPromotor, idUser, idSetor, idTipo']){
             const sql = 'INSERT into evento VALUES(idEvento, nome, descricao, data, idLocal, cpfPromotor, idUser, idSetor, idTipo';
@@ -63,15 +61,13 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
 // Criar evento
 router.post('/', async (req, res) => {
     const evento = new Evento(
-        req.body.id_evento,
-        req.body.nome_evento,
-        req.body.data_evento,
-        req.body.descricao_evento,
-        req.body.id_local_evento,
-        req.body.cpf_cnpj_promoter,
-        req.body.eventoID,
-        req.body.idSetor,
-        req.body.idTipo
+        req.body.id,
+            req.body.id_usuario,
+            req.body.id_localidade,
+            req.body.nome_evento,
+            req.body.data_evento,
+            req.body.descricao_evento,
+            req.body.imagem
     );
     const sql = 'INSERT INTO evento SET ?';
     connection.query(sql, evento, (error, results, fields) => {
