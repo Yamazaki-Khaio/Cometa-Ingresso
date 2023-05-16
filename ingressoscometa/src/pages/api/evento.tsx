@@ -2,7 +2,7 @@ import express from 'express';
 import {connection} from './db';
 import Evento from './classes/Evento';
 import { NextApiRequest, NextApiResponse } from 'next';
- 
+
 const router = express.Router();
 
 export default function handler(req: NextApiRequest,res: NextApiResponse){
@@ -18,8 +18,6 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
                 }
                 res.json(results);
             });
-    
-      
         }
         
         else{
@@ -58,10 +56,8 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
                 }
                 res.json(results);
         });
-
     }
 }
-
 
 
 // Criar evento
@@ -87,7 +83,7 @@ router.post('/', async (req, res) => {
         res.json(results);
     });
 });
-  
+
 // Listar eventos
 router.get('/', async (req, res) => {
     const sql = 'SELECT * FROM evento';
