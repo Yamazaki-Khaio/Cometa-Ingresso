@@ -7,7 +7,7 @@ import CampoHorarioEvento from "./CampoHorarioEvento";
 import CampoPerfilEvento from "./CampoPerfilEvento";
 import CampoSetorEvento from "./CampoSetorEvento";
 import { FormEventHandler, useState } from "react";
-import Evento from "./Evento";
+import handler from "@/pages/api/evento";
 import { Input } from "postcss";
 
 export default function CadastroEvento() {
@@ -24,8 +24,15 @@ export default function CadastroEvento() {
 
     const handleformEdit = (event, name) =>{
         setformData({
-            ...formData, 
-            [name]: event.target.value
+            const x = document.getElementById("nome").value
+
+            ['desc']: formData.desc,
+            ['local']: formData.local,
+            ['data']: formData.data,
+            ['horario']: formData.horario,
+            ['perfil']: formData.perfil,
+            ['setor']: formData.setor,
+            [name]: event.target.value,
         })
     }
 
@@ -42,7 +49,7 @@ export default function CadastroEvento() {
             console.log(formData)
         } catch(err){
 
-    }
+   }
 }
 return(
         <div className="flex flex-col justify-center items-center p-12 bg-gray-100">
