@@ -16,8 +16,14 @@ export default function Login() {
     
     const hanldeSubmit:FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault()
+       const menssage = document.getElementById('menssage')
        const cpf = document.getElementById('cpf')
        const senha = document.getElementById('senha')
+       if(menssage?.style.display === 'block'){
+            menssage.style.display = 'none' 
+            cpf.style.borderColor = '#808080'
+            senha.style.borderColor = '#808080' 
+       }
 
        const res =  signIn("credentials",{cpf:cpf?.value,password:senha?.value,redirect:false})
        
@@ -26,7 +32,7 @@ export default function Login() {
            
             window.location.replace("/home")
        }else{
-        const menssage = document.getElementById('menssage')
+        
         if(menssage){
             menssage.style.display = 'block'
             cpf.style.borderColor = 'red'
