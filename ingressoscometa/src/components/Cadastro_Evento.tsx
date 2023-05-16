@@ -11,16 +11,15 @@ import handler from "@/pages/api/evento";
 import { Input } from "postcss";
 
 export default function CadastroEvento() {
-    const [formData, setformData] = useState({
-        nome:'',
-        desc:'',
-        local:'',
-        data:'',
-        horario:'',
-        perfil:'',
-        setor:''
-    }
-    );
+  const [formData, setFormData] = useState({
+    nome: "",
+    desc: "",
+    local: "",
+    data: "",
+    horario: "",
+    perfil: "",
+    setor: "",
+  });
 
     const handleformEdit = (event, name) =>{
         setformData({
@@ -36,18 +35,19 @@ export default function CadastroEvento() {
         })
     }
 
-    const handle = async (e) => {
-        try{
-            e.preventDefault()
-            const res = await fetch('/api/evento', {
-                method: 'POST',
-                body: JSON.stringify(formData)
-            })
-            const json = await res.json()
-            console.log(res.status)
-            console.log(json)
-            console.log(formData)
-        } catch(err){
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const res = await fetch("/api/evento", {
+        method: "POST",
+        body: JSON.stringify(formData),
+      });
+      const json = await res.json();
+      console.log(res.status);
+      console.log(json);
+      console.log(formData);
+    } catch (err) {}
+  };
 
    }
 }
@@ -64,5 +64,8 @@ return(
             <BotaoSubmitEvento/>
             </form>
         </div>
-    )
+        <BotaoSubmitEvento />
+      </form>
+    </div>
+  );
 }

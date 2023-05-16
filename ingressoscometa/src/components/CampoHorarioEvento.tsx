@@ -28,7 +28,7 @@ export default function CampoHorarioEvento(props: any) {
         value={horario}
         onChange={handleHorarioChange}
         maxLength={5} // Limita o comprimento máximo da entrada
-        className="border w-32 border-gray-400 rounded-md p-2 mb-8"
+        className="border w-24 border-gray-400 rounded-md p-2 mb-8"
       />
     </div>
   );
