@@ -49,7 +49,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
             req.body.idTipo
         );
         if(req.query['idEvento, nome, descricao, data, idLocal, cpfPromotor, idUser, idSetor, idTipo']){
-            const sql = 'INSERT into evento(idEvento, nome, descricao, data, idLocal, cpfPromotor, idUser, idSetor, idTipo';
+            const sql = 'INSERT into evento VALUES(idEvento, nome, descricao, data, idLocal, cpfPromotor, idUser, idSetor, idTipo';
             connection.query(sql, evento, (error, results, fields) => {
                 if (error) {
                 console.error('Erro ao inserir novo evento', error);
