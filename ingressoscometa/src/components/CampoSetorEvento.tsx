@@ -2,7 +2,6 @@ import { useState } from "react";
 
 export default function CampoSetorEvento(props: any) {
   const [setor, setSetor] = useState("");
-
   const handleSetorChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSetor(event.target.value);
   };
