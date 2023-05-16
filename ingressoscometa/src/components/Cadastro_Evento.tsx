@@ -27,6 +27,7 @@ export default function CadastroEvento() {
         console.log(localEvento.value)
         console.log(dataEvento.value)
         console.log(horarioEvento.value)
+        console.log(perfilEvento.value)
         console.log(setorEvento.value)
 
     }
