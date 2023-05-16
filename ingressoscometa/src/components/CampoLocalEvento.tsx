@@ -2,7 +2,6 @@ import { useState } from "react";
 
 export default function CampoLocalEvento(props: any){
   const [localEvento, setLocalEvento] = useState("");
-
   function handleLocalEventoChange(event: React.ChangeEvent<HTMLInputElement>){//Modifica o valor do nome do
     setLocalEvento(event.target.value);
   }
