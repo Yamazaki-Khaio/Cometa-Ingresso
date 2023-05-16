@@ -139,5 +139,5 @@ router.put('/:id', async (req, res) => {
         }
     );
 });
-
+//fim da rotas de usuario
 
