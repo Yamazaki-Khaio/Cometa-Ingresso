@@ -6,6 +6,7 @@ export default function CampoNomeEvento(props: any){
       <label htmlFor="nome">Nome</label>
       <input 
         id = "nome"
+        type='text'
         placeholder="Insira o nome do evento" 
         className="border w-64 border-gray-400 rounded-md p-2 mb-8"
       />
