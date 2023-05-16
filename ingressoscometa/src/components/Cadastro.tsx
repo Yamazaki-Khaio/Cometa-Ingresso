@@ -22,7 +22,7 @@ export default function Cadastro() {
   const [complemento, setComplemento] = useState("");
 
   function handleCadastro() {
-    // Aqui você pode realizar a lógica para enviar os dados ao backend e realizar o insert no banco de dados
+    // FAZER lógica do banco
 
     const data = {
       nome: nome,

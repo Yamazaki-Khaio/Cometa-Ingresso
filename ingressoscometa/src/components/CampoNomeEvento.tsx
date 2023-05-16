@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function CampoNomeEvento(props: any){
   const [nome, setNome] = useState(""); //Armazena o valor do nome do evento
-  function handleNomeChange(event: React.ChangeEvent<HTMLInputElement>){//Modifica o valor do nome do
+  function handleNomeChange(event: React.ChangeEvent<HTMLInputElement>){//Modifica o valor do nome do evento
     setNome(event.target.value);
   }
   return(
