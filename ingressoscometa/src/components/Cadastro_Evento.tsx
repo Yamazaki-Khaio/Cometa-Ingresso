@@ -21,12 +21,12 @@ export default function CadastroEvento() {
     setor: "",
   });
 
-  const handleFormEdit = (event, name) => {
-    setFormData({
-      ...formData,
-      [name]: event.target.value,
-    });
-  };
+    const handleformEdit = (event, name) =>{
+        setformData({
+            ...formData, 
+            [name]: event.target.value
+        })
+    }
 
   const handleSubmit = async (e) => {
     try {
@@ -42,59 +42,20 @@ export default function CadastroEvento() {
     } catch (err) {}
   };
 
-  return (
-    <div className="flex flex-col justify-center items-center p-12 bg-gray-100">
-      <form onSubmit={handleSubmit}>
-        <CampoNomeEvento
-          required
-          value={formData.nome}
-          onChange={(e) => {
-            handleFormEdit(e, "nome");
-          }}
-        />
-        <CampoDescricaoEvento
-          required
-          value={formData.desc}
-          onChange={(e) => {
-            handleFormEdit(e, "desc");
-          }}
-        />
-        <CampoLocal
-          required
-          value={formData.local}
-          onChange={(e) => {
-            handleFormEdit(e, "local");
-          }}
-        />
-        <CampoPerfilEvento
-          required
-          value={formData.perfil}
-          onChange={(e) => {
-            handleFormEdit(e, "perfil");
-          }}
-        />
-        <CampoSetorEvento
-          required
-          value={formData.setor}
-          onChange={(e) => {
-            handleFormEdit(e, "setor");
-          }}
-        />
-        <div className="flex flex-row gap-4">
-          <CampoDataEvento
-            required
-            value={formData.data}
-            onChange={(e) => {
-              handleFormEdit(e, "data");
-            }}
-          />
-          <CampoHorarioEvento
-            required
-            value={formData.horario}
-            onChange={(e) => {
-              handleFormEdit(e, "horario");
-            }}
-          />
+    }
+}
+return(
+        <div className="flex flex-col justify-center items-center p-12 bg-gray-100">
+            <form onSubmit={handle}>
+            <CampoNomeEvento  required value = {formData.nome} onChange={(e) => {handleformEdit(e, 'nome')}}/>
+            <CampoDescricaoEvento required value = {formData.desc} onChange={(e) => {handleformEdit(e, 'desc')}}/>
+            <CampoLocal required value = {formData.local} onChange={(e) => {handleformEdit(e, 'local')}}/>
+            <CampoDataEvento required value = {formData.data} onChange={(e) => {handleformEdit(e, 'data')}}/>
+            <CampoHorarioEvento required value = {formData.horario} onChange={(e) => {handleformEdit(e, 'horario')}}/>
+            <CampoPerfilEvento required value = {formData.perfil} onChange={(e) => {handleformEdit(e, 'perfil')}}/>
+            <CampoSetorEvento required value = {formData.setor} onChange={(e) => {handleformEdit(e, 'setor')}}/>
+            <BotaoSubmitEvento/>
+            </form>
         </div>
         <BotaoSubmitEvento />
       </form>

@@ -73,7 +73,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
 const router = express.Router();
 
 // Criar usuário
-router.post('/', async (req, res) => {
+router.post('/cadastro', async (req, res) => {
     const usuario = new Usuario(
         req.body.idUser,
         req.body.cpf,
