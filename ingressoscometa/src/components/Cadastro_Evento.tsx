@@ -21,10 +21,11 @@ export default function CadastroEvento() {
     setor: "",
   });
 
-    const handleformEdit = (event, name) =>{
+    const hanldeSubmit:FormEventHandler<HTMLFormElement> (event, name) =>{
         setformData({
             ...formData, 
             [name]: event.target.value
+            
         })
     }
 
@@ -47,7 +48,7 @@ export default function CadastroEvento() {
 return(
         <div className="flex flex-col justify-center items-center p-12 bg-gray-100">
             <form onSubmit={handle}>
-            <CampoNomeEvento  required value = {formData.nome} onChange={(e) => {handleformEdit(e, 'nome')}}/>
+            <CampoNomeEvento required value = {formData.nome} onChange={(e) => {handleformEdit(e, 'nome')}}/>
             <CampoDescricaoEvento required value = {formData.desc} onChange={(e) => {handleformEdit(e, 'desc')}}/>
             <CampoLocal required value = {formData.local} onChange={(e) => {handleformEdit(e, 'local')}}/>
             <CampoDataEvento required value = {formData.data} onChange={(e) => {handleformEdit(e, 'data')}}/>
