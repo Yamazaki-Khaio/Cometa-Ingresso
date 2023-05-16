@@ -13,27 +13,15 @@ import { Input } from "postcss";
 import CampoLocalEvento from "./CampoLocalEvento";
 
 export default function CadastroEvento() {
-    const [formData, setformData] = useState({
-        nome:'',
-        desc:'',
-        local:'',
-        data:'',
-        horario:'',
-        perfil:'',
-        setor:''
-    }
-    );
-
-    const handleSubmit = (x:string) =>{
-        setformData({
-            ['nome']: formData.nome,
-            ['desc']: formData.desc,
-            ['local']: formData.local,
-            ['data']: formData.data,
-            ['horario']: formData.horario,
-            ['perfil']: formData.perfil,
-            ['setor']: formData.setor,
-            })
+    const handleSubmit:FormEventHandler<HTMLFormElement> = (e) =>{
+        e.preventDefault()
+        const nome = document.getElementById('nome')
+        const descricao = document.getElementById('descricao')
+        const localEvento = document.getElementById('localEvento')
+        const dataEvento = document.getElementById('data')
+        const horarioEvento = document.getElementById('horario')
+        const perfilEvento = document.getElementById('perfil')
+        const setorEvento = document.getElementById('setorEvento')
     }
 
     const handle = async (e) => {
@@ -54,7 +42,7 @@ export default function CadastroEvento() {
 }
 return(
         <div className="flex flex-col justify-center items-center p-12 bg-gray-100">
-            <form onSubmit={handle}>
+            <form onSubmit={handleSubmit}>
             <CampoNomeEvento/>
             <CampoDescricaoEvento/>
             <CampoLocalEvento />

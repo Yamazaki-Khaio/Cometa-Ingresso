@@ -23,6 +23,7 @@ export default function CampoHorarioEvento(props: any) {
     <div className="flex flex-col gap-4">
       <label htmlFor="horario">Horário</label>
       <input
+        id = "horario"
         type="text"
         placeholder="00:00"
         value={horario}

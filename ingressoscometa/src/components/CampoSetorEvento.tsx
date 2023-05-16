@@ -11,6 +11,7 @@ export default function CampoSetorEvento(props: any) {
     <div className="flex flex-col gap-4">
       <label htmlFor="setor">Setor</label>
       <select
+        id="setorEvento"
         value={setor}
         onChange={handleSetorChange}
         className="border w-64 border-gray-400 rounded-md p-2 mb-8"
