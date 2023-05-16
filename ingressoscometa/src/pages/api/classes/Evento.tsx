@@ -6,7 +6,7 @@ class Evento{
     data: Date;
     descricao: string;
     ativado: boolean;
-    imagem: BinaryData;
+    imagem: Blob;
 
     constructor(
         idEvento: number, 
@@ -15,7 +15,7 @@ class Evento{
         nome: string, 
         data: Date,
         descricao: string,
-        imagem: BinaryData
+        imagem: Blob
     ){
         this.id = idEvento;
         this.idUser = idUser;
