@@ -4,7 +4,9 @@ import Usuario from './classes/Usuario';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default function handler(req: NextApiRequest,res: NextApiResponse){
+    //caso o metodo usado seja GET
     if(req.method === 'GET'){
+        //listando usuarios
         if(!req.query){
             const sql = 'SELECT * FROM usuario';
             connection.query(sql, (error, results, fields) => {
@@ -18,6 +20,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
             });
       
         }else{
+            //bbuscando usuario por cpf
             if(req.query['cpf']){
                 const sql = 'SELECT * FROM usuario WHERE cpf=?';
                 connection.query(sql,[req.query['cpf']], (error, results, fields) => {
@@ -33,6 +36,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
             }
         }
     }
+    //cadastro de usuario
     if(req.method === 'POST'){
     
         const sql = 'INSERT INTO usuario(cpf,cnpj,nome,senha,data_nascimento,tipo_user) VALUES ('+
