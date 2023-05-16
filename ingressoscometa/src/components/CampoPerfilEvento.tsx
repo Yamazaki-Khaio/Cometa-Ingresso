@@ -29,6 +29,7 @@ export default function CampoPerfilEvento(props: any){
     </div>
   );
 }
+}
 
 
 
