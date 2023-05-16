@@ -15,14 +15,20 @@ import CampoLocalEvento from "./CampoLocalEvento";
 export default function CadastroEvento() {
     const handleSubmit:FormEventHandler<HTMLFormElement> = (e) =>{
         e.preventDefault()
-        const nome = document.getElementById('nome')
+        const nome = document.getElementById('nome') //Lendo os valores dos campos
         const descricao = document.getElementById('descricao')
         const localEvento = document.getElementById('localEvento')
         const dataEvento = document.getElementById('data')
         const horarioEvento = document.getElementById('horario')
         const perfilEvento = document.getElementById('perfil')
         const setorEvento = document.getElementById('setorEvento')
-        console.log(nome)
+        console.log(nome.value) //Testando se os valores estão passando
+        console.log(descricao.value)
+        console.log(localEvento.value)
+        console.log(dataEvento.value)
+        console.log(horarioEvento.value)
+        console.log(setorEvento.value)
+
     }
 
     const handle = async (e) => {
