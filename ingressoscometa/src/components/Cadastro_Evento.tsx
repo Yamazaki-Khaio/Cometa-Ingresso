@@ -10,6 +10,7 @@ import Message from "./Mensagem";
 import { FormEventHandler, useState } from "react";
 import { signIn} from "next-auth/react";import handler from "@/pages/api/evento";
 import { Input } from "postcss";
+import CampoLocalEvento from "./CampoLocalEvento";
 
 export default function CadastroEvento() {
     const [formData, setformData] = useState({
@@ -56,7 +57,7 @@ return(
             <form onSubmit={handle}>
             <CampoNomeEvento/>
             <CampoDescricaoEvento/>
-            <CampoLocal />
+            <CampoLocalEvento />
             <CampoDataEvento/>
             <CampoHorarioEvento/>
             <CampoPerfilEvento/>
