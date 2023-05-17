@@ -44,8 +44,8 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
             req.body.descricao_evento,
             req.body.imagem
         );
-        if(req.query['idEvento, nome, descricao, data, idLocal, cpfPromotor, idUser, idSetor, idTipo']){
-            const sql = 'INSERT into evento VALUES(idEvento, nome, descricao, data, idLocal, cpfPromotor, idUser, idSetor, idTipo';
+        if(req.query['id, id_usuario, id_localidade, nome_evento, data_evento, descricao_evento, imagem']){
+            const sql = 'INSERT into evento VALUES(id, id_usuario, id_localidade, nome_evento, data_evento, descricao_evento, imagem)';
             connection.query(sql, evento, (error, results, fields) => {
                 if (error) {
                 console.error('Erro ao inserir novo evento', error);
@@ -62,12 +62,12 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
 router.post('/', async (req, res) => {
     const evento = new Evento(
         req.body.id,
-            req.body.id_usuario,
-            req.body.id_localidade,
-            req.body.nome_evento,
-            req.body.data_evento,
-            req.body.descricao_evento,
-            req.body.imagem
+        req.body.id_usuario,
+        req.body.id_localidade,
+        req.body.nome_evento,
+        req.body.data_evento,
+        req.body.descricao_evento,
+        req.body.imagem
     );
     const sql = 'INSERT INTO evento SET ?';
     connection.query(sql, evento, (error, results, fields) => {
