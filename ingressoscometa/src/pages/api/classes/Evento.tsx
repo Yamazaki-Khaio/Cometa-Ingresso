@@ -15,6 +15,7 @@ class Evento{
         nome: string, 
         data: Date,
         descricao: string,
+        ativado: boolean,
         imagem: Blob
     ){
         this.id = idEvento;
@@ -23,7 +24,7 @@ class Evento{
         this.nome = nome;
         this.data = data;
         this.descricao = descricao;
-        this.ativado = true;
+        this.ativado = ativado;
         this.imagem = imagem;
     }
 }

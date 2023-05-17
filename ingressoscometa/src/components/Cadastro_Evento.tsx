@@ -13,6 +13,12 @@ import { Input } from "postcss";
 import CampoLocalEvento from "./CampoLocalEvento";
 
 export default function CadastroEvento() {
+    const [nome, setNome] = useState ('');
+    const [descricao, setDescricao] = useState ('');
+    const [localEvento, setLocalEvento] = useState('');
+    const [dataEvento, setDataEvento] = useState('');
+    const [horarioEvento, setHorarioEvento] = useState('');
+
     const handleSubmit:FormEventHandler<HTMLFormElement> = (e) =>{
         e.preventDefault()
         const nome = document.getElementById('nome') //Lendo os valores dos campos
@@ -30,6 +36,26 @@ export default function CadastroEvento() {
         console.log(perfilEvento.value)
         console.log(setorEvento.value)
 
+    }
+
+    function handleNomeEventoChange(e: ChangeEvent<HTMLInputElement>){
+        setNome(e.target.value);
+    }
+
+    function handleDescricaoEventoChange(e: ChangeEvent<HTMLInputElement>){
+        setDescricao(e.target.value);
+    }
+
+    function handleLocalEventoChange(e: ChangeEvent<HTMLInputElement>){
+        setLocalEvento(e.target.value);
+    }
+
+    function handleDataEventoChange(e: ChangeEvent<HTMLInputElement>){
+        setDataEvento(e.target.value);
+    }
+
+    function handleHorarioEventoChange(e: ChangeEvent<HTMLInputElement>){
+        setHorarioEvento(e.target.value);
     }
 
     const handle = async (e) => {
