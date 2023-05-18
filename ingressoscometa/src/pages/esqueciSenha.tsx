@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout"
+import Layout from "@/components/layout"
 import CampoEmailEsqueciSenha from "@/components/CampoEmailEsqueciSenha"
 
 export default function esqueciSenha(){
