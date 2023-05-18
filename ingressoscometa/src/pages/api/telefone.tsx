@@ -63,30 +63,5 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
         }
 
     }
-    //caso metodo post
-    if(req.method==='POST'){
-        const sql = 'INSERT INTO telefone(id_usuario, telefone) VALUES('+req.body.idUser+','+req.body.telefone+')';
-        connection.query(sql, (error, results, fields) => {
-            if (error) {
-            console.error('Erro ao inserir novo telefone: ', error);
-            res.status(500).send('Erro ao inserir novo telefone.');
-            return;
-            }
-            res.status(200).send('ok')
-            return;
-        });
-    }
-    //caso metodo put
-    if(req.method==='PUT'){
-        const sql ='UPDATE telefone SET ? WHERE id_usuario=?';
-        connection.query(sql,(error, results, fields) => {
-            if (error) {
-                console.error('Erro ao atualizar telefone: ', error);
-                res.status(500).send('Erro ao atualizar telefone.');
-                return;
-            }
-            res.status(200).send('ok')
-            return;
-        });
-    }
+    
 }
