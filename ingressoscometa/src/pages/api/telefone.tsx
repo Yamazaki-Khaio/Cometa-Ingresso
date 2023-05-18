@@ -63,5 +63,22 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
         }
 
     }
+
+    if(req.method==='POST'){
+        try{
+            const data = req.query['id']+
+            ','+
+            req.query['id_usuario']+
+            ','+
+            req.query['telefone']+
+            ')'
+            const sql = 'INSERT INTO telefone(id,id_usuario,telefone) VALUES ('+data
+            res.status(200).send({res:'ok'})
+        }catch(error){
+            res.status(500).send('Erro ao inserir telefones.');
+        }
+    }
+
+
     
 }
