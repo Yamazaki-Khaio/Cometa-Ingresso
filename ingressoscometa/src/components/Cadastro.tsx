@@ -127,6 +127,11 @@ export default function Cadastro() {
           onChange={handleInputChange}
           name="numero"
         />
+        <ComplementoEnderecoCadastro
+        value = {formData.complemento}
+        onChange={handleInputChange}
+        name="complemento"
+        />
         <BotaoSubmitCadastro />
       </form>
     </div>
