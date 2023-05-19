@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, FormEventHandler } from "react";
 import React from "react";
 import Botao from "./Botao";
 import CampoCpf from "./CampoCpf";
@@ -13,6 +13,7 @@ import NomeCompleto from "./CampoNomeCompleto";
 import CampoTelefone from "./CampoTelefone";
 import axios from "axios";
 import BotaoSubmitCadastro from "./BotaoSubmitCadastro";
+import { signIn } from "next-auth/react";
 
 interface FormData {
   nome: string;
@@ -26,100 +27,67 @@ interface FormData {
 }
 
 export default function Cadastro() {
-  const [nome, setNome] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [email, setEmail] = useState("");
-  const [telefone, setTelefone] = useState("");
-  const [senha, setSenha] = useState("");
-  const [endereco, setEndereco] = useState("");
-  const [numeroCasa, setNumeroCasa] = useState("");
-  const [complemento, setComplemento] = useState("");
-  const [cadastroSucesso, setCadastroSucesso] = useState(false);
-  const [erroCadastro, setErroCadastro] = useState("");
+  const handleCadastro: FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    const message = document.getElementById('message');
+    const data = new FormData();
+    const nome = document.getElementById('nome') as HTMLInputElement;
+    const cpf = document.getElementById('cpf') as HTMLInputElement;
+    const email = document.getElementById('email') as HTMLInputElement;
+    const telefone = document.getElementById('telefone') as HTMLInputElement;
+    const senha = document.getElementById('senha') as HTMLInputElement;
+    const endereco = document.getElementById('endereco') as HTMLInputElement;
+    const numeroCasa = document.getElementById('numeroCasa') as HTMLInputElement;
+    const complemento = document.getElementById('complemento') as HTMLInputElement;
+    
+    if (nome && cpf && email && telefone && senha && endereco && numeroCasa && complemento) {
+      data.append('nome', nome.value);
+      data.append('cpf', cpf.value);
+      data.append('email', email.value);
+      data.append('telefone', telefone.value);
+      data.append('senha', senha.value);
+      data.append('endereco', endereco.value);
+      data.append('numeroCasa', numeroCasa.value);
+      data.append('complemento', complemento.value);
+    }
 
-  function handleCadastro() {
-    const data: FormData = {
-      nome: document.getElementById('nome').value,//nome
-      cpf: document.getElementById('cpf').value,//cpf
-      email: document.getElementById('email').value,//email
-      telefone: document.getElementById('telefone').value,//telefone
-      senha: document.getElementById('senha').value,//senha
-      endereco: document.getElementById('endereco').value,//endereço
-      numeroCasa: document.getElementById('numeroCasa').value,//numero da casa
-      complemento: document.getElementById('complemento').value,//complemento
-    };
+    if (message?.style.display === 'block') {
+      message.style.display = 'none';
+    }
 
-    axios
-      .post("/api/usuario", data)
-      .then((response) => {
-        // Cadastro realizado com sucesso
-        setCadastroSucesso(true);
-        setErroCadastro("");
-        console.log("Cadastro realizado com sucesso!");
-      })
-      .catch((error) => {
-        // Erro no cadastro
-        setCadastroSucesso(false);
-        setErroCadastro(
-          "Erro no cadastro. Por favor, tente novamente mais tarde."
-        );
-        console.error("Erro no cadastro:", error);
-      });
-  }
+    const res = signIn('credentials', {
+      cpf: data.get('cpf'),
+      password: data.get('senha'),
+      redirect: false
+    });
 
-  function handleNomeChange(e: ChangeEvent<HTMLInputElement>) {
-    setNome(e.target.value);
-  }
-
-  function handleCpfChange(e: ChangeEvent<HTMLInputElement>) {
-    setCpf(e.target.value);
-  }
-
-  function handleEmailChange(e: ChangeEvent<HTMLInputElement>) {
-    setEmail(e.target.value);
-  }
-
-  function handleTelefoneChange(e: ChangeEvent<HTMLInputElement>) {
-    setTelefone(e.target.value);
-  }
-
-  function handleSenhaChange(e: ChangeEvent<HTMLInputElement>) {
-    setSenha(e.target.value);
-  }
-
-  function handleEnderecoChange(e: ChangeEvent<HTMLInputElement>) {
-    setEndereco(e.target.value);
-  }
-
-  function handleNumeroCasaChange(e: ChangeEvent<HTMLInputElement>) {
-    setNumeroCasa(e.target.value);
-  }
-
-  function handleComplementoChange(e: ChangeEvent<HTMLInputElement>) {
-    setComplemento(e.target.value);
-  }
+    res.then((resultado) => {
+      if (resultado.ok) {
+        window.location.replace('/home');
+      } else {
+        if (message) {
+          message.style.display = 'block';
+        }
+      }
+    });
+  };
 
   return (
     <div className="flex flex-col justify-center items-center bg-gray-100 p-12">
       <form onSubmit={handleCadastro}>
-        <NomeCompleto value={nome} onChange={handleNomeChange}/>
-        <CampoCpf value={cpf} onChange={handleCpfChange} />
-        <CampoEmail value={email} onChange={handleEmailChange}/>
-        <CampoTelefone value={telefone} onChange={handleTelefoneChange}/>
-        <CampoSenha value={senha} onChange={handleSenhaChange}/>
+        <NomeCompleto value={''} />
+        <CampoCpf value={''} />
+        <CampoEmail value={''} />
+        <CampoTelefone value={''} />
+        <CampoSenha value={''} />
         <RadioButton />
-        <label htmlFor="endereco">Endereço</label>
-        <CepCadastro value={endereco} onChange={handleEnderecoChange}/>
-        <RuaCadastro />
-        <NumeroDaCasaCadastro value={numeroCasa} onChange={handleNumeroCasaChange}
-        />
-        <ComplementoEnderecoCadastro value={complemento} onChange={handleComplementoChange}/>
-        <BotaoSubmitCadastro/>
-
-        {cadastroSucesso && <p>Cadastro realizado com sucesso!</p>}
-        {erroCadastro && <p>{erroCadastro}</p>}
+        <p>Endereço</p>
+        <CepCadastro value={''} />
+        <RuaCadastro value={''} />
+        <NumeroDaCasaCadastro value={''} />
+        <ComplementoEnderecoCadastro value={''} />
+        <BotaoSubmitCadastro />
       </form>
-
     </div>
-  )
+  );
 }
