@@ -8,13 +8,15 @@ import CampoPerfilEvento from "./CampoPerfilEvento";
 import CampoSetorEvento from "./CampoSetorEvento";
 import Message from "./Mensagem";
 import { FormEventHandler, useState } from "react";
-import { signIn} from "next-auth/react";import handler from "@/pages/api/evento";
+import { signIn} from "next-auth/react";
+import handler from "@/pages/api/evento";
 import { Input } from "postcss";
 import CampoLocalEvento from "./CampoLocalEvento";
 
 export default function CadastroEvento() {
-    const handleSubmit:FormEventHandler<HTMLFormElement> = (e) =>{
+    const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
         e.preventDefault()
+        const data = req.body;
         const nome = document.getElementById('nome') //Lendo os valores dos campos
         const descricao = document.getElementById('descricao')
         const localEvento = document.getElementById('localEvento')
@@ -29,25 +31,15 @@ export default function CadastroEvento() {
         console.log(horarioEvento.value)
         console.log(perfilEvento.value)
         console.log(setorEvento.value)
-
-    }
-
-    const handle = async (e) => {
-        try{
-            e.preventDefault()
-            const nome = document.getElementById('nome')
-            const res = await fetch('/api/evento', {
-                method: 'POST',
-                body: JSON.stringify(formData)
+        const res = await fetch('/api/evento', {
+            method: 'POST',
+            body: 'pedro'
             })
             const json = await res.json()
             console.log(res.status)
             console.log(json)
-            //console.log(nome.value)
-        } catch(err){
 
    }
-}
 return(
         <div className="flex flex-col justify-center items-center p-12 bg-gray-100">
             <form onSubmit={handleSubmit}>

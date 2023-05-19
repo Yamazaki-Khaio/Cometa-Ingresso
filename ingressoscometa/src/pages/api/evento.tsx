@@ -37,6 +37,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
         }
     }
     if(req.method === 'POST'){
+        res.status(200).json({ message: 'Vai dormir!' });
         const evento = new Evento(
             req.body.id_evento,
             req.body.nome_evento,
@@ -48,8 +49,31 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
             req.body.idSetor,
             req.body.idTipo
         );
-        if(req.query['idEvento, nome, descricao, data, idLocal, cpfPromotor, idUser, idSetor, idTipo']){
-            const sql = 'INSERT into evento VALUES(idEvento, nome, descricao, data, idLocal, cpfPromotor, idUser, idSetor, idTipo';
+            const sql = "INSERT into evento(id, id_usuario, id_localidade, nome_evento, data_evento, descricao_evento, ativado, imagem) VALUES("
+        +
+        '00000000000000'
+        +','
+        +"'"+
+        '00000000000000'+"'"+','
+        +"'"+
+        req.body.id_local_evento+"'"+
+        ','+
+        "'"+
+        req.body.nome_evento+
+        "'"+
+        ','+
+        req.body.data_evento+
+        "'"+
+        ','+
+        req.body.descricao_evento+
+        "'"+
+        ','+
+        '0'+
+        "'"+
+        ','+
+        ''+
+        "'"+
+        ','+')';
             connection.query(sql, evento, (error, results, fields) => {
                 if (error) {
                 console.error('Erro ao inserir novo evento', error);
@@ -60,7 +84,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
         });
 
     }
-}
+//}
 
 
 
