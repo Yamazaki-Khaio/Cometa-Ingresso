@@ -6,7 +6,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const router = express.Router();
 
-  router.all('/', async (req, res) => {
+  router.use('/', async (req, res) => {
     if (req.method === 'POST') {
       // Criar usuário
       const sql =
@@ -56,7 +56,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       const sql = 'UPDATE usuario SET ? WHERE idUser=?';
       connection.query(
         sql,
-        [req.body, req.params.id],
+        [req.body, req.query.id],
         (error, results, fields) => {
           if (error) {
             console.error('Erro ao atualizar usuário: ', error);

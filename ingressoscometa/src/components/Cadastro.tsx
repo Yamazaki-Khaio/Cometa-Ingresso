@@ -81,7 +81,7 @@ export default function Cadastro() {
         <CampoNomeCompleto
           value={formData.nome}
           onChange={handleInputChange}
-          name="nome"
+          name="nomeCompleto"
         />
         <CampoCpf
           value={formData.cpf}
@@ -110,7 +110,7 @@ export default function Cadastro() {
         <CepCadastro
           value={formData.endereco}
           onChange={handleInputChange}
-          name="endereco"
+          name="cep"
         />
         <RuaCadastro
           value={formData.numeroCasa}
@@ -120,12 +120,12 @@ export default function Cadastro() {
         <CampoDataDeNascimento
           value={formData.data_nascimento}
           onChange={handleInputChange}
-          name="data_nascimento"
+          name="data"
         />
         <NumeroDaCasaCadastro
-          value={formData.complemento}
+          value={formData.numeroCasa}
           onChange={handleInputChange}
-          name="complemento"
+          name="numero"
         />
         <BotaoSubmitCadastro />
       </form>

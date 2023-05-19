@@ -1,12 +1,10 @@
 import { useState } from "react";
 
 export default function CampoDataDeNascimento(props: any) {
-  const [dataEvento, setDataEvento] = useState(new Date());
+  const [dataEvento, setDataEvento] = useState("");
 
   function handleDataEventoChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const selectedDate = new Date(event.target.value);
-    const formattedDate = selectedDate.toISOString().split('T')[0];
-    setDataEvento(formattedDate);
+    setDataEvento(event.target.value);
   }
 
   return (
@@ -16,9 +14,10 @@ export default function CampoDataDeNascimento(props: any) {
         type="date"
         name="data"
         id="data"
-        placeholder="  /  /  "
+        placeholder="AAAA/MM/DD"
         required
         className="border w-32 border-gray-400 rounded-md p-2 mb-8"
+        value={dataEvento}
         onChange={handleDataEventoChange}
       />
     </div>
