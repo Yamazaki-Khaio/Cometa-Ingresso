@@ -43,6 +43,13 @@ export default function Cadastro() {
     e.preventDefault();
 
     try {
+      console.log(formData.nome)
+      console.log(formData.cpf)
+      console.log(formData.email)
+      console.log(formData.telefone)
+      console.log(formData.senha)
+      console.log(formData.endereco)
+      console.log(formData.numeroCasa)
       const response = await fetch("/api/usuario/", {
         method: "POST",
         headers: {
@@ -81,7 +88,7 @@ export default function Cadastro() {
         <CampoNomeCompleto
           value={formData.nome}
           onChange={handleInputChange}
-          name="nome"
+          name="nomeCompleto"
         />
         <CampoCpf
           value={formData.cpf}
@@ -110,7 +117,7 @@ export default function Cadastro() {
         <CepCadastro
           value={formData.endereco}
           onChange={handleInputChange}
-          name="endereco"
+          name="cep"
         />
         <RuaCadastro
           value={formData.numeroCasa}
@@ -118,14 +125,14 @@ export default function Cadastro() {
           name="numeroCasa"
         />
         <CampoDataDeNascimento
-          value={formData.numeroCasa}
+          value={formData.data_nascimento}
           onChange={handleInputChange}
-          name="data_nascimento"
+          name="data"
         />
         <NumeroDaCasaCadastro
-          value={formData.complemento}
+          value={formData.numeroCasa}
           onChange={handleInputChange}
-          name="complemento"
+          name="numero"
         />
         <BotaoSubmitCadastro />
       </form>
