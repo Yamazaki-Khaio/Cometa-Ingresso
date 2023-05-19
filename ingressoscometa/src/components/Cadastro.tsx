@@ -1,16 +1,15 @@
 import { useState } from "react";
-import axios from "axios";
 
 import Botao from "./Botao";
 import CampoCpf from "./CampoCpf";
 import CampoEmail from "./CampoEmail";
-import CampoSenha from "./CampoSenhaERepetirSenha";
+import CampoSenhaERepetirSenha from "./CampoSenhaERepetirSenha";
 import RadioButton from "./RadioButton";
 import CepCadastro from "./CepCadastro";
 import RuaCadastro from "./RuaCadastro";
 import NumeroDaCasaCadastro from "./NumeroDaCasaCadastro";
 import ComplementoEnderecoCadastro from "./ComplementoEnderecoCadastro";
-import NomeCompleto from "./CampoNomeCompleto";
+import CampoNomeCompleto from "./CampoNomeCompleto";
 import CampoTelefone from "./CampoTelefone";
 import BotaoSubmitCadastro from "./BotaoSubmitCadastro";
 
@@ -37,22 +36,35 @@ export default function Cadastro() {
     complemento: ""
   });
 
-  const handleCadastro = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleCadastro = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    axios
-      .post("/api/Cadastro", formData)
-      .then((response) => {
-        console.log("Dados enviados com sucesso!");
-        // Lógica adicional após o envio bem-sucedido dos dados
-      })
-      .catch((error) => {
-        console.error("Erro ao enviar os dados:", error);
-        // Lógica adicional para lidar com erros no envio dos dados
+    try {
+      const response = await fetch("/api/usuario/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
       });
+
+      if (response.ok) {
+        console.log("Dados enviados com sucesso!");
+
+        // Lógica adicional após o envio bem-sucedido dos dados
+      } else {
+        console.error("Erro ao enviar os dados:", response.status);
+
+        // Lógica adicional para lidar com erros no envio dos dados
+      }
+    } catch (error) {
+      console.error("Erro ao enviar os dados:", error);
+
+      // Lógica adicional para lidar com erros no envio dos dados
+    }
   };
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -63,7 +75,7 @@ export default function Cadastro() {
   return (
     <div className="flex flex-col justify-center items-center bg-gray-100 p-12">
       <form onSubmit={handleCadastro}>
-        <NomeCompleto
+        <CampoNomeCompleto
           value={formData.nome}
           onChange={handleInputChange}
           name="nome"
@@ -83,7 +95,7 @@ export default function Cadastro() {
           onChange={handleInputChange}
           name="telefone"
         />
-        <CampoSenha
+        <CampoSenhaERepetirSenha
           value={formData.senha}
           onChange={handleInputChange}
           name="senha"
@@ -108,7 +120,6 @@ export default function Cadastro() {
           name="complemento"
         />
         <BotaoSubmitCadastro />
-
       </form>
     </div>
   );
