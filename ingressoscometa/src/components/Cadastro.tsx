@@ -118,7 +118,7 @@ export default function Cadastro() {
           name="numeroCasa"
         />
         <CampoDataDeNascimento
-          value={formData.numeroCasa}
+          value={formData.data_nascimento}
           onChange={handleInputChange}
           name="data_nascimento"
         />
