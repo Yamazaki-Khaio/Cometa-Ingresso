@@ -7,6 +7,7 @@ import CampoSenhaERepetirSenha from "./CampoSenhaERepetirSenha";
 import RadioButton from "./RadioButton";
 import CepCadastro from "./CepCadastro";
 import RuaCadastro from "./RuaCadastro";
+import CampoDataDeNascimento from "./CampoDataDeNascimento";
 import NumeroDaCasaCadastro from "./NumeroDaCasaCadastro";
 import ComplementoEnderecoCadastro from "./ComplementoEnderecoCadastro";
 import CampoNomeCompleto from "./CampoNomeCompleto";
@@ -22,6 +23,7 @@ interface FormData {
   endereco: string;
   numeroCasa: string;
   complemento: string;
+  data_nascimento: string;
 }
 
 export default function Cadastro() {
@@ -33,7 +35,8 @@ export default function Cadastro() {
     senha: "",
     endereco: "",
     numeroCasa: "",
-    complemento: ""
+    complemento: "",
+    data_nascimento: ""
   });
 
   const handleCadastro = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -113,6 +116,11 @@ export default function Cadastro() {
           value={formData.numeroCasa}
           onChange={handleInputChange}
           name="numeroCasa"
+        />
+        <CampoDataDeNascimento
+          value={formData.numeroCasa}
+          onChange={handleInputChange}
+          name="data_nascimento"
         />
         <NumeroDaCasaCadastro
           value={formData.complemento}
