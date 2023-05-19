@@ -43,7 +43,7 @@ export default function Cadastro() {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/usuario/", {
+      const response = await fetch("/api/usuario", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -118,7 +118,7 @@ export default function Cadastro() {
           name="numeroCasa"
         />
         <CampoDataDeNascimento
-          value={formData.numeroCasa}
+          value={formData.data_nascimento}
           onChange={handleInputChange}
           name="data_nascimento"
         />

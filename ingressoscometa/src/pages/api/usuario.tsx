@@ -6,11 +6,11 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const router = express.Router();
 
-  router.all('/', async (req, res) => {
+  router.use('/', async (req, res) => {
     if (req.method === 'POST') {
       // Criar usuário
       const sql =
-        'INSERT INTO usuario (cpf, nome, senha, data_nascimento, tipo_user, email, endereco) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+        'INSERT INTO usuario (cpf, nome, senha, data_nascimento, tipo_user, email, endereco) VALUES (?, ?, ?, ?, ?, ?, ?)';
       const params = [
         req.headers.cpf,
         req.headers.nome,
@@ -56,7 +56,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       const sql = 'UPDATE usuario SET ? WHERE idUser=?';
       connection.query(
         sql,
-        [req.body, req.params.id],
+        [req.body, req.query.id],
         (error, results, fields) => {
           if (error) {
             console.error('Erro ao atualizar usuário: ', error);
@@ -71,6 +71,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     }
   });
 
-  // Executing the router
-  router(req, res);
+  // Executando o router
+  router.handle(req, res);
 }
