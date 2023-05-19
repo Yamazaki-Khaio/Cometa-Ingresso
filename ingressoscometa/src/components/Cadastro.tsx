@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
+import React from "react";
 import Botao from "./Botao";
 import CampoCpf from "./CampoCpf";
 import CampoEmail from "./CampoEmail";
@@ -10,6 +11,19 @@ import NumeroDaCasaCadastro from "./NumeroDaCasaCadastro";
 import ComplementoEnderecoCadastro from "./ComplementoEnderecoCadastro";
 import NomeCompleto from "./CampoNomeCompleto";
 import CampoTelefone from "./CampoTelefone";
+import axios from "axios";
+import BotaoSubmitCadastro from "./BotaoSubmitCadastro";
+
+interface FormData {
+  nome: string;
+  cpf: string;
+  email: string;
+  telefone: string;
+  senha: string;
+  endereco: string;
+  numeroCasa: string;
+  complemento: string;
+}
 
 export default function Cadastro() {
   const [nome, setNome] = useState("");
@@ -20,42 +34,92 @@ export default function Cadastro() {
   const [endereco, setEndereco] = useState("");
   const [numeroCasa, setNumeroCasa] = useState("");
   const [complemento, setComplemento] = useState("");
+  const [cadastroSucesso, setCadastroSucesso] = useState(false);
+  const [erroCadastro, setErroCadastro] = useState("");
 
   function handleCadastro() {
-    // FAZER lógica do banco
-
-    const data = {
-      nome: nome,
-      cpf: cpf,
-      email: email,
-      telefone: telefone,
-      senha: senha,
-      endereco: endereco,
-      numeroCasa: numeroCasa,
-      complemento: complemento
+    const data: FormData = {
+      nome: document.getElementById('nome').value,//nome
+      cpf: document.getElementById('cpf').value,//cpf
+      email: document.getElementById('email').value,//email
+      telefone: document.getElementById('telefone').value,//telefone
+      senha: document.getElementById('senha').value,//senha
+      endereco: document.getElementById('endereco').value,//endereço
+      numeroCasa: document.getElementById('numeroCasa').value,//numero da casa
+      complemento: document.getElementById('complemento').value,//complemento
     };
 
-    // Enviar para o backend ou realizar a lógica de inserção no banco de dados aqui
-    console.log("Dados do cadastro:", data);
+    axios
+      .post("/api/usuario", data)
+      .then((response) => {
+        // Cadastro realizado com sucesso
+        setCadastroSucesso(true);
+        setErroCadastro("");
+        console.log("Cadastro realizado com sucesso!");
+      })
+      .catch((error) => {
+        // Erro no cadastro
+        setCadastroSucesso(false);
+        setErroCadastro(
+          "Erro no cadastro. Por favor, tente novamente mais tarde."
+        );
+        console.error("Erro no cadastro:", error);
+      });
+  }
+
+  function handleNomeChange(e: ChangeEvent<HTMLInputElement>) {
+    setNome(e.target.value);
+  }
+
+  function handleCpfChange(e: ChangeEvent<HTMLInputElement>) {
+    setCpf(e.target.value);
+  }
+
+  function handleEmailChange(e: ChangeEvent<HTMLInputElement>) {
+    setEmail(e.target.value);
+  }
+
+  function handleTelefoneChange(e: ChangeEvent<HTMLInputElement>) {
+    setTelefone(e.target.value);
+  }
+
+  function handleSenhaChange(e: ChangeEvent<HTMLInputElement>) {
+    setSenha(e.target.value);
+  }
+
+  function handleEnderecoChange(e: ChangeEvent<HTMLInputElement>) {
+    setEndereco(e.target.value);
+  }
+
+  function handleNumeroCasaChange(e: ChangeEvent<HTMLInputElement>) {
+    setNumeroCasa(e.target.value);
+  }
+
+  function handleComplementoChange(e: ChangeEvent<HTMLInputElement>) {
+    setComplemento(e.target.value);
   }
 
   return (
     <div className="flex flex-col justify-center items-center bg-gray-100 p-12">
-      <NomeCompleto value={nome} onChange={setNome} />
-      <CampoCpf value={cpf} onChange={setCpf} />
-      <CampoEmail value={email} onChange={setEmail} />
-      <CampoTelefone value={telefone} onChange={setTelefone} />
-      <CampoSenha value={senha} onChange={setSenha} />
-      <RadioButton />
-      <label htmlFor="endereco">Endereço</label>
-      <CepCadastro value={endereco} onChange={setEndereco} />
-      <RuaCadastro />
-      <NumeroDaCasaCadastro value={numeroCasa} onChange={setNumeroCasa} />
-      <ComplementoEnderecoCadastro
-        value={complemento}
-        onChange={setComplemento}
-      />
-      <Botao href="/cadastro" NomeBotao="Cadastro"/>
+      <form onSubmit={handleCadastro}>
+        <NomeCompleto value={nome} onChange={handleNomeChange}/>
+        <CampoCpf value={cpf} onChange={handleCpfChange} />
+        <CampoEmail value={email} onChange={handleEmailChange}/>
+        <CampoTelefone value={telefone} onChange={handleTelefoneChange}/>
+        <CampoSenha value={senha} onChange={handleSenhaChange}/>
+        <RadioButton />
+        <label htmlFor="endereco">Endereço</label>
+        <CepCadastro value={endereco} onChange={handleEnderecoChange}/>
+        <RuaCadastro />
+        <NumeroDaCasaCadastro value={numeroCasa} onChange={handleNumeroCasaChange}
+        />
+        <ComplementoEnderecoCadastro value={complemento} onChange={handleComplementoChange}/>
+        <BotaoSubmitCadastro/>
+
+        {cadastroSucesso && <p>Cadastro realizado com sucesso!</p>}
+        {erroCadastro && <p>{erroCadastro}</p>}
+      </form>
+
     </div>
-  );
+  )
 }

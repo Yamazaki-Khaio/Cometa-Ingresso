@@ -1,0 +1,265 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema cometadb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema cometadb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `cometadb` DEFAULT CHARACTER SET utf8mb3 ;
+USE `cometadb` ;
+
+-- -----------------------------------------------------
+-- Table `cometadb`.`usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cometadb`.`usuario` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `cpf` VARCHAR(11) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `cnpj` VARCHAR(14) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `nome` VARCHAR(30) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `senha` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `data_nascimento` DATE NOT NULL,
+  `tipo_user` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `cpf_cnpj` (`cpf` ASC) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `cometadb`.`banimento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cometadb`.`banimento` (
+  `id` INT NOT NULL,
+  `id_usuario` INT NOT NULL,
+  `motivo` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `data` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `banimento_usuario` (`id_usuario` ASC) VISIBLE,
+  CONSTRAINT `banimento_usuario`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `cometadb`.`usuario` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `cometadb`.`cardc`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cometadb`.`cardc` (
+  `id` INT NOT NULL,
+  `id_usuario` INT NOT NULL,
+  `nCard` CHAR(16) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `data_validade` DATE NULL DEFAULT NULL,
+  `cvv` INT NULL DEFAULT NULL,
+  `titular` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `cpf` VARCHAR(11) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  `cnpj` VARCHAR(14) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `cardc_usuario` (`id_usuario` ASC) VISIBLE,
+  CONSTRAINT `cardc_usuario`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `cometadb`.`usuario` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `cometadb`.`evento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cometadb`.`evento` (
+  `id` INT NOT NULL,
+  `id_usuario` INT NOT NULL,
+  `nome_evento` VARCHAR(100) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `data_evento` DATE NULL DEFAULT NULL,
+  `descricao_evento` VARCHAR(500) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `ativado` TINYINT(1) NOT NULL,
+  `imagem` BLOB NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `evento_usuario` (`id_usuario` ASC) VISIBLE,
+  CONSTRAINT `evento_usuario`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `cometadb`.`usuario` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `cometadb`.`setor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cometadb`.`setor` (
+  `id` INT NOT NULL,
+  `nome` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `cometadb`.`ingresso`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cometadb`.`ingresso` (
+  `id` INT NOT NULL,
+  `id_evento` INT NOT NULL,
+  `id_setor` INT NOT NULL,
+  `max_ingresso` INT NOT NULL,
+  `preco_ingresso` DECIMAL(5,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `evento_setor_evento` (`id_evento` ASC) VISIBLE,
+  INDEX `evento_setor_setor` (`id_setor` ASC) VISIBLE,
+  CONSTRAINT `evento_setor_evento`
+    FOREIGN KEY (`id_evento`)
+    REFERENCES `cometadb`.`evento` (`id`),
+  CONSTRAINT `evento_setor_setor`
+    FOREIGN KEY (`id_setor`)
+    REFERENCES `cometadb`.`setor` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `cometadb`.`carrinho`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cometadb`.`carrinho` (
+  `id` INT NOT NULL,
+  `id_usuario` INT NOT NULL,
+  `id_ingresso` INT NOT NULL,
+  `quant_ingresso` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `carrinho_usuario` (`id_usuario` ASC) VISIBLE,
+  INDEX `carrinho_evento_setor` (`id_ingresso` ASC) VISIBLE,
+  CONSTRAINT `carrinho_evento_setor`
+    FOREIGN KEY (`id_ingresso`)
+    REFERENCES `cometadb`.`ingresso` (`id`),
+  CONSTRAINT `carrinho_usuario`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `cometadb`.`usuario` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `cometadb`.`compra`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cometadb`.`compra` (
+  `id` INT NOT NULL,
+  `id_usuario` INT NOT NULL,
+  `id_cardc` INT NOT NULL,
+  `data` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `compra_usuario` (`id_usuario` ASC) VISIBLE,
+  INDEX `compra_cardc` (`id_cardc` ASC) VISIBLE,
+  CONSTRAINT `compra_cardc`
+    FOREIGN KEY (`id_cardc`)
+    REFERENCES `cometadb`.`cardc` (`id`),
+  CONSTRAINT `compra_usuario`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `cometadb`.`usuario` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `cometadb`.`carrinho_compra`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cometadb`.`carrinho_compra` (
+  `id` INT NOT NULL,
+  `id_carrinho` INT NOT NULL,
+  `id_compra` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `carrinho_compra_carrinho` (`id_carrinho` ASC) VISIBLE,
+  INDEX `carrinho_compra_compra` (`id_compra` ASC) VISIBLE,
+  CONSTRAINT `carrinho_compra_carrinho`
+    FOREIGN KEY (`id_carrinho`)
+    REFERENCES `cometadb`.`carrinho` (`id`),
+  CONSTRAINT `carrinho_compra_compra`
+    FOREIGN KEY (`id_compra`)
+    REFERENCES `cometadb`.`compra` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `cometadb`.`email`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cometadb`.`email` (
+  `id` INT NOT NULL,
+  `id_usuario` INT NOT NULL,
+  `email` VARCHAR(45) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `email_usuario` (`id_usuario` ASC) VISIBLE,
+  CONSTRAINT `email_usuario`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `cometadb`.`usuario` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `cometadb`.`endereco`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cometadb`.`endereco` (
+  `id` INT NOT NULL,
+  `id_usuario_evento` INT NOT NULL,
+  `cep` VARCHAR(8) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `rua` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `numero` VARCHAR(10) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  `complemento` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `endereco_usuario` (`id_usuario_evento` ASC) VISIBLE,
+  CONSTRAINT `endereco_evento`
+    FOREIGN KEY (`id_usuario_evento`)
+    REFERENCES `cometadb`.`evento` (`id`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `endereco_usuario`
+    FOREIGN KEY (`id_usuario_evento`)
+    REFERENCES `cometadb`.`usuario` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `cometadb`.`estorno`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cometadb`.`estorno` (
+  `id` INT NOT NULL,
+  `compra_id` INT NOT NULL,
+  `data` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `estorno_compra` (`compra_id` ASC) VISIBLE,
+  CONSTRAINT `estorno_compra`
+    FOREIGN KEY (`compra_id`)
+    REFERENCES `cometadb`.`compra` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `cometadb`.`telefone`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `cometadb`.`telefone` (
+  `id` INT NOT NULL,
+  `id_usuario` INT NOT NULL,
+  `telefone` VARCHAR(11) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_0900_ai_ci' NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `telefone_usuario` (`id_usuario` ASC) VISIBLE,
+  CONSTRAINT `telefone_usuario`
+    FOREIGN KEY (`id_usuario`)
+    REFERENCES `cometadb`.`usuario` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

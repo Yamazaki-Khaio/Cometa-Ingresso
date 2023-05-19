@@ -1,34 +1,31 @@
 class Evento{
-    idEvento: number;
-    nome: string;
-    descricao: string;
-    data: Date;
-    idLocal: number;
-    cpfPromotor: string;
+    id: number;
     idUser: number;
-    idSetor: number;
-    idTipo: number;
+    idLocal: number;
+    nome: string;
+    data: Date;
+    descricao: string;
+    ativado: boolean;
+    imagem: Blob;
 
     constructor(
         idEvento: number, 
+        idUser: number,
+        idLocal: number,
         nome: string, 
         data: Date,
-        descricao: string, 
-        idLocal: number,
-        cpfPromotor: string, 
-        idUser: number,
-        idSetor: number,
-        idTipo: number,
+        descricao: string,
+        ativado: boolean,
+        imagem: Blob
     ){
-        this.idEvento = idEvento;
+        this.id = idEvento;
+        this.idUser = idUser;
+        this.idLocal = idLocal;
         this.nome = nome;
         this.data = data;
         this.descricao = descricao;
-        this.idLocal = idLocal;
-        this.cpfPromotor = cpfPromotor;
-        this.idUser = idUser;
-        this.idSetor = idSetor;
-        this.idTipo = idTipo;
+        this.ativado = ativado;
+        this.imagem = imagem;
     }
 }
 export default Evento;

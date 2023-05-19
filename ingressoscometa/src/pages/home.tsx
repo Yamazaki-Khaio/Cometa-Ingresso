@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout";
+import Layout from "@/components/layout";
 import { signOut,useSession } from "next-auth/react";
 import { json } from "stream/consumers";
 import Sessao from "@/components/sessao";

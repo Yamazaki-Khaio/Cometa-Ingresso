@@ -2,7 +2,7 @@ import express from 'express';
 import {connection} from './db';
 import Evento from './classes/Evento';
 import { NextApiRequest, NextApiResponse } from 'next';
- 
+
 const router = express.Router();
 
 export default function handler(req: NextApiRequest,res: NextApiResponse){
@@ -18,8 +18,6 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
                 }
                 res.json(results);
             });
-    
-      
         }
         
         else{
@@ -39,15 +37,14 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
     if(req.method === 'POST'){
         res.status(200).json({ message: 'Vai dormir!' });
         const evento = new Evento(
-            req.body.id_evento,
+            req.body.id,
+            req.body.id_usuario,
+            req.body.id_localidade,
             req.body.nome_evento,
             req.body.data_evento,
             req.body.descricao_evento,
-            req.body.id_local_evento,
-            req.body.cpf_cnpj_promoter,
-            req.body.eventoID,
-            req.body.idSetor,
-            req.body.idTipo
+            req.body.ativado,
+            req.body.imagem
         );
             const sql = "INSERT into evento(id, id_usuario, id_localidade, nome_evento, data_evento, descricao_evento, ativado, imagem) VALUES("
         +
@@ -82,24 +79,21 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
                 }
                 res.json(results);
         });
-
     }
 //}
-
 
 
 // Criar evento
 router.post('/', async (req, res) => {
     const evento = new Evento(
-        req.body.id_evento,
+        req.body.id,
+        req.body.id_usuario,
+        req.body.id_localidade,
         req.body.nome_evento,
         req.body.data_evento,
         req.body.descricao_evento,
-        req.body.id_local_evento,
-        req.body.cpf_cnpj_promoter,
-        req.body.eventoID,
-        req.body.idSetor,
-        req.body.idTipo
+        req.body.ativado,
+        req.body.imagem
     );
     const sql = 'INSERT INTO evento SET ?';
     connection.query(sql, evento, (error, results, fields) => {
@@ -111,7 +105,7 @@ router.post('/', async (req, res) => {
         res.json(results);
     });
 });
-  
+
 // Listar eventos
 router.get('/', async (req, res) => {
     const sql = 'SELECT * FROM evento';
