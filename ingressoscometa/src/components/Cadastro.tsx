@@ -1,5 +1,6 @@
-import { useState, ChangeEvent, FormEventHandler } from "react";
-import React from "react";
+import { useState } from "react";
+import axios from "axios";
+
 import Botao from "./Botao";
 import CampoCpf from "./CampoCpf";
 import CampoEmail from "./CampoEmail";
@@ -11,9 +12,7 @@ import NumeroDaCasaCadastro from "./NumeroDaCasaCadastro";
 import ComplementoEnderecoCadastro from "./ComplementoEnderecoCadastro";
 import NomeCompleto from "./CampoNomeCompleto";
 import CampoTelefone from "./CampoTelefone";
-import axios from "axios";
 import BotaoSubmitCadastro from "./BotaoSubmitCadastro";
-import { signIn } from "next-auth/react";
 
 interface FormData {
   nome: string;
@@ -27,66 +26,89 @@ interface FormData {
 }
 
 export default function Cadastro() {
-  const handleCadastro: FormEventHandler<HTMLFormElement> = (e) => {
+  const [formData, setFormData] = useState<FormData>({
+    nome: "",
+    cpf: "",
+    email: "",
+    telefone: "",
+    senha: "",
+    endereco: "",
+    numeroCasa: "",
+    complemento: ""
+  });
+
+  const handleCadastro = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const message = document.getElementById('message');
-    const data = new FormData();
-    const nome = document.getElementById('nome') as HTMLInputElement;
-    const cpf = document.getElementById('cpf') as HTMLInputElement;
-    const email = document.getElementById('email') as HTMLInputElement;
-    const telefone = document.getElementById('telefone') as HTMLInputElement;
-    const senha = document.getElementById('senha') as HTMLInputElement;
-    const endereco = document.getElementById('endereco') as HTMLInputElement;
-    const numeroCasa = document.getElementById('numeroCasa') as HTMLInputElement;
-    const complemento = document.getElementById('complemento') as HTMLInputElement;
-    
-    if (nome && cpf && email && telefone && senha && endereco && numeroCasa && complemento) {
-      data.append('nome', nome.value);
-      data.append('cpf', cpf.value);
-      data.append('email', email.value);
-      data.append('telefone', telefone.value);
-      data.append('senha', senha.value);
-      data.append('endereco', endereco.value);
-      data.append('numeroCasa', numeroCasa.value);
-      data.append('complemento', complemento.value);
-    }
 
-    if (message?.style.display === 'block') {
-      message.style.display = 'none';
-    }
+    axios
+      .post("/api/Cadastro", formData)
+      .then((response) => {
+        console.log("Dados enviados com sucesso!");
+        // Lógica adicional após o envio bem-sucedido dos dados
+      })
+      .catch((error) => {
+        console.error("Erro ao enviar os dados:", error);
+        // Lógica adicional para lidar com erros no envio dos dados
+      });
+  };
 
-    const res = signIn('credentials', {
-      cpf: data.get('cpf'),
-      password: data.get('senha'),
-      redirect: false
-    });
-
-    res.then((resultado) => {
-      if (resultado.ok) {
-        window.location.replace('/home');
-      } else {
-        if (message) {
-          message.style.display = 'block';
-        }
-      }
-    });
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
   };
 
   return (
     <div className="flex flex-col justify-center items-center bg-gray-100 p-12">
       <form onSubmit={handleCadastro}>
-        <NomeCompleto value={''} />
-        <CampoCpf value={''} />
-        <CampoEmail value={''} />
-        <CampoTelefone value={''} />
-        <CampoSenha value={''} />
-        <RadioButton />
+        <NomeCompleto
+          value={formData.nome}
+          onChange={handleInputChange}
+          name="nome"
+        />
+        <CampoCpf
+          value={formData.cpf}
+          onChange={handleInputChange}
+          name="cpf"
+        />
+        <CampoEmail
+          value={formData.email}
+          onChange={handleInputChange}
+          name="email"
+        />
+        <CampoTelefone
+          value={formData.telefone}
+          onChange={handleInputChange}
+          name="telefone"
+        />
+        <CampoSenha
+          value={formData.senha}
+          onChange={handleInputChange}
+          name="senha"
+        />
+        <RadioButton
+          // Adicione as propriedades necessárias
+        />
         <p>Endereço</p>
-        <CepCadastro value={''} />
-        <RuaCadastro value={''} />
-        <NumeroDaCasaCadastro value={''} />
-        <ComplementoEnderecoCadastro value={''} />
+        <CepCadastro
+          value={formData.endereco}
+          onChange={handleInputChange}
+          name="endereco"
+        />
+        <RuaCadastro
+          value={formData.numeroCasa}
+          onChange={handleInputChange}
+          name="numeroCasa"
+        />
+        <NumeroDaCasaCadastro
+          value={formData.complemento}
+          onChange={handleInputChange}
+          name="complemento"
+        />
         <BotaoSubmitCadastro />
+
       </form>
     </div>
   );
