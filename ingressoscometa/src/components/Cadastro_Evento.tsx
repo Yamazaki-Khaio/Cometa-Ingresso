@@ -14,15 +14,14 @@ import { Input } from "postcss";
 import CampoLocalEvento from "./CampoLocalEvento";
 
 export default function CadastroEvento() {
-    const [nome, setNome] = useState ('');
-    const [descricao, setDescricao] = useState ('');
+    const [n, setNome] = useState ('');
+    const [d, setDescricao] = useState ('');
     const [localEvento, setLocalEvento] = useState('');
     const [dataEvento, setDataEvento] = useState('');
     const [horarioEvento, setHorarioEvento] = useState('');
 
     const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
         e.preventDefault()
-        const data = req.body;
         const nome = document.getElementById('nome') //Lendo os valores dos campos
         const descricao = document.getElementById('descricao')
         const localEvento = document.getElementById('localEvento')
@@ -39,9 +38,9 @@ export default function CadastroEvento() {
         console.log(setorEvento.value)
         const res = await fetch('/api/evento', {
             method: 'POST',
-            body: 'pedro'
-
-    }
+            body: JSON.stringify(n)
+        })
+        }
 
     function handleNomeEventoChange(e: ChangeEvent<HTMLInputElement>){
         setNome(e.target.value);
@@ -64,18 +63,18 @@ export default function CadastroEvento() {
     }
 
     const handle = async (e) => {
-        try{
             e.preventDefault()
             const nome = document.getElementById('nome')
             const res = await fetch('/api/evento', {
                 method: 'POST',
-                body: JSON.stringify(formData)
+                body: JSON.stringify(n)
             })
             const json = await res.json()
             console.log(res.status)
             console.log(json)
 
-   }
+}
+
 return(
         <div className="flex flex-col justify-center items-center p-12 bg-gray-100">
             <form onSubmit={handleSubmit}>
