@@ -16,6 +16,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         req.headers.nome,
         req.headers.senha,
         req.headers.tipo_user,
+        req.headers.data_nascimento,
         req.headers.email,
         req.headers.endereco,
       ];
