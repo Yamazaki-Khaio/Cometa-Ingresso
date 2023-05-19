@@ -78,7 +78,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
     }
     //caso metodo put
     if(req.method==='PUT'){
-        const sql ='UPDATE telefone SET ? WHERE id_usuario=?';
+        const sql ='UPDATE telefone SET telefone=? WHERE id_usuario=?';
         connection.query(sql,(error, results, fields) => {
             if (error) {
                 console.error('Erro ao atualizar telefone: ', error);
@@ -89,4 +89,17 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
             return;
         });
     }
+    //caso metodo delete
+    if(req.method==='DELETE'){
+        const sql ='DELETE from telefone WHERE id_usuario=?';
+        connection.query(sql,(error, results, fields) => {
+            if (error) {
+                console.error('Erro ao deletar telefone: ', error);
+                res.status(500).send('Erro ao deletar telefone.');
+                return;
+            }
+            res.status(200).send('ok')
+            return;
+        });
+
 }
