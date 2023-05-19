@@ -7,6 +7,7 @@ class Usuario {
     tipo_user: number;
     email: string;
     endereco: Endereco;
+    telefone: number;
     constructor(
       idUser: number,
       cpf: string,
@@ -15,7 +16,8 @@ class Usuario {
       data_nascimento: Date,
       tipo_user: number,
       email: string,
-      endereco: Endereco
+      endereco: Endereco,
+      telefone: number
     ) {
       this.idUser = idUser;
       this.cpf = cpf;
@@ -25,6 +27,7 @@ class Usuario {
       this.tipo_user = tipo_user;
       this.email = email;
       this.endereco = endereco;
+      this.telefone = telefone;
     }
 
   }
