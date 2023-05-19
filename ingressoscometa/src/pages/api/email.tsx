@@ -6,61 +6,56 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const router = express.Router();
 
-  router.use('/', async (req, res) => {
+  router.all('/', async (req, res) => {
     if (req.method === 'POST') {
-      // Criar usuário
+      // Criar email
       const sql =
-        'INSERT INTO usuario (cpf, nome, senha, data_nascimento, tipo_user) VALUES (?, ?, ?, ?, ?)';
+        'INSERT INTO email (id_usuario, email) VALUES (?, ?)';
       const params = [
-        req.headers.cpf,
-        req.headers.nome,
-        req.headers.senha,
-        req.headers.data_nascimento,
-        req.headers.tipo_user,
-        //req.headers.email,
-        //req.headers.endereco,
+        req.headers.id_usuario,
+        req.headers.email
       ];
 
       connection.query(sql, params, (error, results, fields) => {
         if (error) {
-          console.error('Erro ao inserir novo usuário: ', error);
-          res.status(500).send('Erro ao inserir novo usuário.');
+          console.error('Erro ao inserir novo email: ', error);
+          res.status(500).send('Erro ao inserir novo email.');
           return;
         }
         res.json(results);
       });
     } else if (req.method === 'GET') {
-      // Listar usuários
-      const sql = 'SELECT * FROM usuario';
+      // Listar emails
+      const sql = 'SELECT * FROM email';
       connection.query(sql, (error, results, fields) => {
         if (error) {
-          console.error('Erro ao buscar usuários: ', error);
-          res.status(500).send('Erro ao buscar usuários.');
+          console.error('Erro ao buscar emails: ', error);
+          res.status(500).send('Erro ao buscar emails.');
           return;
         }
         res.json(results);
       });
     } else if (req.method === 'DELETE') {
-      // Remover usuário
-      const sql = 'DELETE FROM usuario WHERE idUser=?';
+      // Remover email
+      const sql = 'DELETE FROM email WHERE id=?';
       connection.query(sql, [req.body.idUser], (error, results, fields) => {
         if (error) {
-          console.error('Erro ao remover usuário: ', error);
-          res.status(500).send('Erro ao remover usuário.');
+          console.error('Erro ao remover email: ', error);
+          res.status(500).send('Erro ao remover email.');
           return;
         }
         res.json(results);
       });
     } else if (req.method === 'PUT') {
-      // Atualizar usuário
-      const sql = 'UPDATE usuario SET ? WHERE idUser=?';
+      // Atualizar email
+      const sql = 'UPDATE email SET ? WHERE id=?';
       connection.query(
         sql,
-        [req.body, req.query.id],
+        [req.body, req.params.id],
         (error, results, fields) => {
           if (error) {
-            console.error('Erro ao atualizar usuário: ', error);
-            res.status(500).send('Erro ao atualizar usuário.');
+            console.error('Erro ao atualizar email: ', error);
+            res.status(500).send('Erro ao atualizar email.');
             return;
           }
           res.json(results);
