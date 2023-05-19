@@ -43,13 +43,6 @@ export default function Cadastro() {
     e.preventDefault();
 
     try {
-      console.log(formData.nome)
-      console.log(formData.cpf)
-      console.log(formData.email)
-      console.log(formData.telefone)
-      console.log(formData.senha)
-      console.log(formData.endereco)
-      console.log(formData.numeroCasa)
       const response = await fetch("/api/usuario/", {
         method: "POST",
         headers: {
