@@ -20,10 +20,12 @@ interface FormData {
   email: string;
   telefone: string;
   senha: string;
-  endereco: string;
+  cepCadastro: string,
+  ruaCadastro: string;
   numeroCasa: string;
   complemento: string;
   data_nascimento: string;
+  tipoUsuario: string;
 }
 
 export default function Cadastro() {
@@ -33,17 +35,19 @@ export default function Cadastro() {
     email: "",
     telefone: "",
     senha: "",
-    endereco: "",
+    cepCadastro: "",
+    ruaCadastro: "",
     numeroCasa: "",
     complemento: "",
-    data_nascimento: ""
+    data_nascimento: "",
+    tipoUsuario: ""
   });
 
   const handleCadastro = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/usuario/", {
+      const response = await fetch("/api/usuario", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -108,14 +112,14 @@ export default function Cadastro() {
         />
         <p>Endereço</p>
         <CepCadastro
-          value={formData.endereco}
+          value={formData.cepCadastro}
           onChange={handleInputChange}
           name="cep"
         />
         <RuaCadastro
-          value={formData.numeroCasa}
+          value={formData.ruaCadastro}
           onChange={handleInputChange}
-          name="numeroCasa"
+          name="rua"
         />
         <CampoDataDeNascimento
           value={formData.data_nascimento}
@@ -126,6 +130,11 @@ export default function Cadastro() {
           value={formData.numeroCasa}
           onChange={handleInputChange}
           name="numero"
+        />
+        <ComplementoEnderecoCadastro
+        value = {formData.complemento}
+        onChange={handleInputChange}
+        name="complemento"
         />
         <BotaoSubmitCadastro />
       </form>
