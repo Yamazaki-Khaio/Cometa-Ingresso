@@ -46,16 +46,10 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
             req.body.ativado,
             req.body.imagem
         );
-            const sql = "INSERT into evento(id, id_usuario, id_localidade, nome_evento, data_evento, descricao_evento, ativado, imagem) VALUES("
-        +
-        '00000000000000'
-        +','
-        +"'"+
-        '00000000000000'+"'"+','
-        +"'"+
-        req.body.id_local_evento+"'"+
-        ','+
+            const sql = "INSERT into evento(id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem) VALUES("+
+        '0'
         "'"+
+        ','+
         req.body.nome_evento+
         "'"+
         ','+
