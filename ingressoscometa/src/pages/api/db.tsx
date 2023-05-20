@@ -4,7 +4,7 @@ import mysql from "mysql2";
 const app = express();
 
 // Configuração do banco de dados
-export const connection = mysql.createConnection({
+const connection = mysql.createConnection({
   host: "cometacngressosserver.mysql.database.azure.com",
   user: "cometaingressos",
   password: "Vaidormir23",
