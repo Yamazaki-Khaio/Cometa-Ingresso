@@ -10,15 +10,14 @@ export default async function handler(req: NextApiRequest,res: NextApiResponse){
   router.use('/', async (req, res) => {
     if (req.method === 'POST') {
       // Criar evento
-      const sql = "INSERT INTO usuarios (nome, cpf, email, telefone, senha, endereco, numeroCasa, complemento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      const sql = "INSERT INTO usuario (id, nome, cpf, data_nascimento, senha, tipo_user) VALUES (?, ?, ?, ?, ?, ?)";
       const params = [
         x,
-        '1',
         req.body.nome,
         req.body.cpf,
-        req.body.email,
+        req.body.data_nascimento,
+        req.body.senha,
         '1',
-        '',
       ];
             connection.query(sql, params, (error, results, fields) => {
                 if (error) {
@@ -30,7 +29,7 @@ export default async function handler(req: NextApiRequest,res: NextApiResponse){
         });
         } else if (req.method === 'GET') {
           // Listar usuários
-          const sql = 'SELECT * FROM evento';
+          const sql = 'SELECT * FROM usuario';
           connection.query(sql, (error, results, fields) => {
             if (error) {
               console.error('Erro ao buscar usuario: ', error);
@@ -41,7 +40,7 @@ export default async function handler(req: NextApiRequest,res: NextApiResponse){
           });
         } else if (req.method === 'DELETE') {
           // Remover usuário
-          const sql = 'DELETE FROM evento WHERE id=?';
+          const sql = 'DELETE FROM usuario WHERE id=?';
           connection.query(sql, [req.body.idUser], (error, results, fields) => {
             if (error) {
               console.error('Erro ao remover usuario: ', error);

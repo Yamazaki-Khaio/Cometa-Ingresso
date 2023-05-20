@@ -16,9 +16,8 @@ import { useState, FormEvent, ChangeEvent, EventHandler } from "react";
 
 interface FormData{
     nome: string,
-    email: string,
-    data_nascimento: string,
     cpf: string,
+    data_nascimento: string,
     senha: string
 }
 
@@ -26,9 +25,8 @@ export default function CadastroUsuario() {
 
     const [formData, setFormData] = useState<FormData>({
         nome: "",
-        email: "",
-        data_nascimento: "2000-01-01",
         cpf: "",
+        data_nascimento: "2000-01-01",
         senha: ""
       });
     
@@ -36,9 +34,8 @@ export default function CadastroUsuario() {
       const handleSubmit: EventHandler<FormEvent<HTMLFormElement>> = async (e) => {
         try{
           formData.nome = document.getElementById('nome').value
-          formData.email = document.getElementById('email').value
-          formData.data_nascimento = document.getElementById('data_nascimento').value
           formData.cpf = document.getElementById('cpf').value
+          formData.data_nascimento = document.getElementById('data_nascimento').value
           formData.senha = document.getElementById('senha').value
         e.preventDefault()
         
@@ -78,7 +75,7 @@ export default function CadastroUsuario() {
         <CampoCpf value={formData.cpf} onChange={handleInputChange} name="cpf"/>
         <CampoSenhaERepetirSenha value={formData.senha} onChange={handleInputChange} name="senha"/>
         <RadioButton/>
-        <CampoDataDeNascimento value={formData.data_nascimento} onChange={handleInputChange} name="data"/>
+        <CampoDataDeNascimento value={formData.data_nascimento} onChange={handleInputChange} name="data_nascimento"/>
         <BotaoSubmitCadastro />
       </form>
     </div>
