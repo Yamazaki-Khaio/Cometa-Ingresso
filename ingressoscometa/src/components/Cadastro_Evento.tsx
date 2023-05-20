@@ -36,10 +36,10 @@ export default function CadastroEvento() {
     const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
         try{
           formData.nome = document.getElementById('nome').value
-          formData.descricao = document.getElementById('nome').value
-          formData.localEvento = document.getElementById('nome').value
-          formData.dataEvento = document.getElementById("data").value
-          formData.horarioEvento = document.getElementById('nome').value
+          formData.descricao = document.getElementById('descricao').value
+          formData.localEvento = document.getElementById('localEvento').value
+          formData.dataEvento = document.getElementById('data').value
+          formData.horarioEvento = document.getElementById('horario').value
         e.preventDefault()
         
         const res = await fetch('/api/evento', {
