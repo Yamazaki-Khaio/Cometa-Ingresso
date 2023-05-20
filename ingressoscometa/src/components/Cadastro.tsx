@@ -22,7 +22,7 @@ interface FormData{
     senha: string
 }
 
-export default function CadastroEvento() {
+export default function CadastroUsuario() {
 
     const [formData, setFormData] = useState<FormData>({
         nome: "",
