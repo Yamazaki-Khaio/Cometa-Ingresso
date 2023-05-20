@@ -17,14 +17,8 @@ import BotaoSubmitCadastro from "./BotaoSubmitCadastro";
 interface FormData {
   nome: string;
   cpf: string;
-  email: string;
-  telefone: string;
   data_nascimento: string;
   senha: string;
-  cepCadastro: string,
-  ruaCadastro: string;
-  numeroCasa: string;
-  complemento: string;
   tipoUsuario: string;
 }
 
@@ -32,13 +26,7 @@ export default function Cadastro() {
   const [formData, setFormData] = useState<FormData>({
     nome: "",
     cpf: "",
-    email: "",
-    telefone: "",
     senha: "",
-    cepCadastro: "",
-    ruaCadastro: "",
-    numeroCasa: "",
-    complemento: "",
     data_nascimento: "",
     tipoUsuario: ""
   });
@@ -92,16 +80,6 @@ export default function Cadastro() {
           onChange={handleInputChange}
           name="cpf"
         />
-        <CampoEmail
-          value={formData.email}
-          onChange={handleInputChange}
-          name="email"
-        />
-        <CampoTelefone
-          value={formData.telefone}
-          onChange={handleInputChange}
-          name="telefone"
-        />
         <CampoSenhaERepetirSenha
           value={formData.senha}
           onChange={handleInputChange}
@@ -110,31 +88,10 @@ export default function Cadastro() {
         <RadioButton
           // Adicione as propriedades necessárias
         />
-        <p>Endereço</p>
-        <CepCadastro
-          value={formData.cepCadastro}
-          onChange={handleInputChange}
-          name="cep"
-        />
-        <RuaCadastro
-          value={formData.ruaCadastro}
-          onChange={handleInputChange}
-          name="rua"
-        />
         <CampoDataDeNascimento
           value={formData.data_nascimento}
           onChange={handleInputChange}
           name="data"
-        />
-        <NumeroDaCasaCadastro
-          value={formData.numeroCasa}
-          onChange={handleInputChange}
-          name="numero"
-        />
-        <ComplementoEnderecoCadastro
-        value = {formData.complemento}
-        onChange={handleInputChange}
-        name="complemento"
         />
         <BotaoSubmitCadastro />
       </form>

@@ -1,76 +1,65 @@
-import express from 'express';
-import { connection } from './db';
-import Usuario from './classes/Usuario';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { Sequelize, Model, DataTypes } from 'sequelize';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  const router = express.Router();
+const sequelize = new Sequelize({
+  dialect: 'mysql',
+  host: 'localhost',
+  username: 'seu_usuario',
+  password: 'sua_senha',
+  database: 'nome_do_banco_de_dados',
+});
 
-  router.use('/', async (req, res) => {
-    if (req.method === 'POST') {
-      // Criar usuário
-      const sql =
-        'INSERT INTO usuario (cpf, nome, senha, data_nascimento, tipo_user) VALUES (?, ?, ?, ?, ?)';
-      const params = [
-        req.headers.cpf,
-        req.headers.nome,
-        req.headers.senha,
-        req.headers.data_nascimento,
-        req.headers.tipo_user,
-        //req.headers.email,
-        //req.headers.endereco,
-      ];
+interface UsuarioAttributes {
+  nome: string;
+  cpf: string;
+  data_nascimento: Date; // Alterado para tipo Date
+  senha: string;
+  tipoUsuario: string;
+}
 
-      connection.query(sql, params, (error, results, fields) => {
-        if (error) {
-          console.error('Erro ao inserir novo usuário: ', error);
-          res.status(500).send('Erro ao inserir novo usuário.');
-          return;
-        }
-        res.json(results);
+class UsuarioModel extends Model<UsuarioAttributes> implements UsuarioAttributes {
+  public nome!: string;
+  public cpf!: string;
+  public data_nascimento!: Date; // Alterado para tipo Date
+  public senha!: string;
+  public tipoUsuario!: string;
+}
+
+UsuarioModel.init(
+  {
+    nome: DataTypes.STRING,
+    cpf: DataTypes.STRING,
+    data_nascimento: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    senha: DataTypes.STRING,
+    tipoUsuario: DataTypes.STRING,
+  },
+  { sequelize, modelName: 'usuario' }
+);
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'POST') {
+    try {
+      const { nome, cpf, data_nascimento, senha, tipoUsuario } = req.body as UsuarioAttributes;
+
+      await sequelize.sync(); // Sincroniza o modelo com o banco de dados antes de criar um usuário
+
+      await UsuarioModel.create({
+        nome,
+        cpf,
+        data_nascimento,
+        senha,
+        tipoUsuario,
       });
-    } else if (req.method === 'GET') {
-      // Listar usuários
-      const sql = 'SELECT * FROM usuario';
-      connection.query(sql, (error, results, fields) => {
-        if (error) {
-          console.error('Erro ao buscar usuários: ', error);
-          res.status(500).send('Erro ao buscar usuários.');
-          return;
-        }
-        res.json(results);
-      });
-    } else if (req.method === 'DELETE') {
-      // Remover usuário
-      const sql = 'DELETE FROM usuario WHERE idUser=?';
-      connection.query(sql, [req.body.idUser], (error, results, fields) => {
-        if (error) {
-          console.error('Erro ao remover usuário: ', error);
-          res.status(500).send('Erro ao remover usuário.');
-          return;
-        }
-        res.json(results);
-      });
-    } else if (req.method === 'PUT') {
-      // Atualizar usuário
-      const sql = 'UPDATE usuario SET ? WHERE idUser=?';
-      connection.query(
-        sql,
-        [req.body, req.query.id],
-        (error, results, fields) => {
-          if (error) {
-            console.error('Erro ao atualizar usuário: ', error);
-            res.status(500).send('Erro ao atualizar usuário.');
-            return;
-          }
-          res.json(results);
-        }
-      );
-    } else {
-      res.status(404).send('Rota não encontrada.');
+
+      res.status(200).json({ message: 'Usuário cadastrado com sucesso!' });
+    } catch (error) {
+      console.error('Erro ao salvar os dados do usuário:', error);
+      res.status(500).json({ message: 'Erro ao salvar os dados do usuário' });
     }
-  });
-
-  // Executing the router
-  router.handle(req, res);
+  } else {
+    res.status(405).json({ message: 'Método não permitido' });
+  }
 }
