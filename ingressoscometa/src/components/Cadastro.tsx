@@ -5,12 +5,21 @@ import CampoDataDeNascimento from "./CampoDataDeNascimento";
 import CampoNomeCompleto from "./CampoNomeCompleto";
 import BotaoSubmitCadastro from "./BotaoSubmitCadastro";
 import {FormEventHandler, useState } from "react";
+import { createHash } from 'crypto';
 
 interface FormData{
     nome: string,
     cpf: string,
     data_nascimento: string,
     senha: string
+}
+
+
+function removerMascaraCpf(cpfComMascara: string): string {
+  // Remove todos os caracteres que não são dígitos
+  const cpfSemMascara = cpfComMascara.replace(/\D/g, '');
+
+  return cpfSemMascara;
 }
 
 export default function CadastroUsuario() {
@@ -21,35 +30,39 @@ export default function CadastroUsuario() {
         data_nascimento: "2000-01-01",
         senha: ""
       });
-    
+
 
     const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
+      e.preventDefault()
+
         try{
-          formData.nome = document.getElementById('nome').value
-          formData.cpf = document.getElementById('cpf').value
-          formData.data_nascimento = document.getElementById('data_nascimento').value
-          formData.senha = document.getElementById('senha').value
-        e.preventDefault()
+          const hash = createHash('sha256');
+          hash.update(document.getElementById('senha').value)
+          const form = {nome : document.getElementById('nomeCompleto').value,
+          cpf: removerMascaraCpf(document.getElementById('cpf').value),
+          data_nascimento: document.getElementById('data').value,
+          senha: hash.digest('hex')}
+       
         
         const res = await fetch('/api/usuario', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"
               },
-            body: JSON.stringify(formData),
+            body: JSON.stringify(form),
         })
         .then(function (res) {
             return res.json();
         })
         .then(function (data) {
-            console.log(formData) //Testando se os valores estão passando
+            console.log(form) //Testando se os valores estão passando
             console.log(data)
         });
-                  } catch (error) {
-                    console.error("Erro ao enviar os dados:", error);
+        } catch (error) {
+          console.error("Erro ao enviar os dados:", error);
               
-                    // Lógica adicional para lidar com erros no envio dos dados
-                  }
+          // Lógica adicional para lidar com erros no envio dos dados
+         }
                 };
           
         const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
