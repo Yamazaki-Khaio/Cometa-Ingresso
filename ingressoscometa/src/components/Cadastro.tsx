@@ -57,6 +57,7 @@ export default function CadastroUsuario() {
         .then(function (data) {
             console.log(form) //Testando se os valores estão passando
             console.log(data)
+            window.location.replace("/login")
         });
         } catch (error) {
           console.error("Erro ao enviar os dados:", error);
