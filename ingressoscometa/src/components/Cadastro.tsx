@@ -19,12 +19,12 @@ interface FormData {
   cpf: string;
   email: string;
   telefone: string;
+  data_nascimento: string;
   senha: string;
   cepCadastro: string,
   ruaCadastro: string;
   numeroCasa: string;
   complemento: string;
-  data_nascimento: string;
   tipoUsuario: string;
 }
 
@@ -47,7 +47,7 @@ export default function Cadastro() {
     e.preventDefault();
 
     try {
-      const response = await fetch("/api/usuario", {
+      const response = await fetch("/api/usuario/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
