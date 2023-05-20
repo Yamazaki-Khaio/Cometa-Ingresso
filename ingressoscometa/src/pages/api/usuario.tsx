@@ -9,14 +9,14 @@ export default async function handler(req: NextApiRequest,res: NextApiResponse){
     var x = randomInt(1000)
   router.use('/', async (req, res) => {
     if (req.method === 'POST') {
-      // Criar evento
-      const sql = "INSERT INTO usuario (id, nome, cpf, data_nascimento, senha, tipo_user) VALUES (?, ?, ?, ?, ?, ?)";
+      // Criar usuario
+      const sql = "INSERT into usuario (id, cpf, nome, senha, data_nascimento, tipo_user) VALUES (?, ?, ?, ?, ?, ?)";
       const params = [
         x,
-        req.body.nome,
         req.body.cpf,
-        req.body.data_nascimento,
+        req.body.nome,
         req.body.senha,
+        req.body.data_nascimento,
         '1',
       ];
             connection.query(sql, params, (error, results, fields) => {
@@ -50,7 +50,7 @@ export default async function handler(req: NextApiRequest,res: NextApiResponse){
             res.json(results);
           });
         } else if (req.method === 'PUT') {
-          // Atualizar evento
+          // Atualizar usuario
           const sql = 'UPDATE evento SET ? WHERE id=?';
           connection.query(
             sql,

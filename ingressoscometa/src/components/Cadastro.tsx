@@ -1,18 +1,10 @@
-import handler from "@/pages/api/usuario";
-import Botao from "./Botao";
 import CampoCpf from "./CampoCpf";
-import CampoEmail from "./CampoEmail";
 import CampoSenhaERepetirSenha from "./CampoSenhaERepetirSenha";
 import RadioButton from "./RadioButton";
-import CepCadastro from "./CepCadastro";
-import RuaCadastro from "./RuaCadastro";
 import CampoDataDeNascimento from "./CampoDataDeNascimento";
-import NumeroDaCasaCadastro from "./NumeroDaCasaCadastro";
-import ComplementoEnderecoCadastro from "./ComplementoEnderecoCadastro";
 import CampoNomeCompleto from "./CampoNomeCompleto";
-import CampoTelefone from "./CampoTelefone";
 import BotaoSubmitCadastro from "./BotaoSubmitCadastro";
-import { useState, FormEvent, ChangeEvent, EventHandler } from "react";
+import {FormEventHandler, useState } from "react";
 
 interface FormData{
     nome: string,
@@ -31,7 +23,7 @@ export default function CadastroUsuario() {
       });
     
 
-      const handleSubmit: EventHandler<FormEvent<HTMLFormElement>> = async (e) => {
+    const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
         try{
           formData.nome = document.getElementById('nome').value
           formData.cpf = document.getElementById('cpf').value
@@ -79,5 +71,5 @@ export default function CadastroUsuario() {
         <BotaoSubmitCadastro />
       </form>
     </div>
-  );
+  )
 }

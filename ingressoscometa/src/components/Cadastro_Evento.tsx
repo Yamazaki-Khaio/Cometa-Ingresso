@@ -1,18 +1,11 @@
 import BotaoSubmitEvento from "./BotaoSubmitEvento";
 import CampoDescricaoEvento from "./CampoDescricaoEvento";
 import CampoNomeEvento from "./CampoNomeEvento";
-import CampoLocal from "./CampoLocal";
 import CampoDataEvento from "./CampoDataEvento";
 import CampoHorarioEvento from "./CampoHorarioEvento";
-import CampoPerfilEvento from "./CampoPerfilEvento";
-import CampoSetorEvento from "./CampoSetorEvento";
-import Message from "./Mensagem";
 import { FormEventHandler, useState } from "react";
-import { signIn} from "next-auth/react";
-import handler from "@/pages/api/evento";
-import { Input } from "postcss";
 import CampoLocalEvento from "./CampoLocalEvento";
-import { ChangeEvent } from "react";
+
 
 interface FormData{
     nome: string,
