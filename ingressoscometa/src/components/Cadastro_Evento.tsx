@@ -17,11 +17,11 @@ import { ChangeEvent } from "react";
 export default function CadastroEvento() {
     const [n, setNome] = useState ('');
     const [d, setDescricao] = useState ('');
-    const [localEvento, setLocalEvento] = useState('');
-    const [dataEvento, setDataEvento] = useState('');
-    const [horarioEvento, setHorarioEvento] = useState('');
-    const [perfilEvento, setPerfilEvento] = useState('');
-    const [setorEvento, setSetorEvento] = useState('');
+    const [l, setLocalEvento] = useState('');
+    const [de, setDataEvento] = useState('');
+    const [h, setHorarioEvento] = useState('');
+    const [p, setPerfilEvento] = useState('');
+    const [s, setSetorEvento] = useState('');
 
     const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
         try{
@@ -46,13 +46,13 @@ export default function CadastroEvento() {
                 "Content-Type": "application/json"
               },
             body: JSON.stringify({
-                nome,
-                descricao,
-                localEvento,
-                dataEvento,
-                horarioEvento,
-                perfilEvento,
-                setorEvento
+                n,
+                d,
+                l,
+                de,
+                h,
+                p,
+                s
             }),
         })
             if (res.ok) {
@@ -97,11 +97,11 @@ return(
             <form onSubmit={handleSubmit}>
             <CampoNomeEvento value={n} />
             <CampoDescricaoEvento value={d}/>
-            <CampoLocalEvento value={localEvento}/>
-            <CampoDataEvento value={dataEvento}/>
-            <CampoHorarioEvento value={horarioEvento}/>
-            <CampoPerfilEvento value={perfilEvento}/>
-            <CampoSetorEvento value={setorEvento}/>
+            <CampoLocalEvento value={l}/>
+            <CampoDataEvento value={de}/>
+            <CampoHorarioEvento value={h}/>
+            <CampoPerfilEvento value={p}/>
+            <CampoSetorEvento value={s}/>
             <BotaoSubmitEvento/>
             </form>
         </div>
