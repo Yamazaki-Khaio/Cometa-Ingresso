@@ -40,6 +40,7 @@ export default function CadastroEvento() {
         console.log(horarioEvento.value)
         console.log(perfilEvento.value)
         console.log(setorEvento.value)
+
         const res = await fetch('/api/evento', {
             method: 'POST',
             headers: {
@@ -55,15 +56,12 @@ export default function CadastroEvento() {
                 s
             }),
         })
-            if (res.ok) {
-            console.log("Dados enviados com sucesso!");
-              
-                      // Lógica adicional após o envio bem-sucedido dos dados
-                    } else {
-                      console.error("Erro ao enviar os dados:", res.status);
-              
-                      // Lógica adicional para lidar com erros no envio dos dados
-                    }
+        .then(function (res) {
+            return res.json();
+        })
+        .then(function (data) {
+            console.log(data)
+        });
                   } catch (error) {
                     console.error("Erro ao enviar os dados:", error);
               

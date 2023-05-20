@@ -3,69 +3,23 @@ import {connection} from './db';
 import Evento from './classes/Evento';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const router = express.Router();
+export default async function handler(req: NextApiRequest,res: NextApiResponse){
+    const router = express.Router();
 
-export default function handler(req: NextApiRequest,res: NextApiResponse){
-    res.status(200).json({ message: 'Vai dormir!' });
-    if(req.method === 'GET'){
-        if(!req.query){
-            const sql = 'SELECT * FROM evento';
+  router.use('/', async (req, res) => {
+    if (req.method === 'POST') {
+      // Criar evento
+      const sql = "INSERT into evento(id, id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem) VALUES('1', '1', 'pedro festa', '1999-09-08', 'descricao.html', '0', '')";
+      const params = [
+        //req.headers.cpf,
+        //req.headers.nome,
+        //req.headers.senha,
+        //req.headers.data_nascimento,
+        //req.headers.tipo_user,
+        //req.headers.email,
+        //req.headers.endereco,
+      ];
             connection.query(sql, (error, results, fields) => {
-                if (error) {
-                console.error('Erro ao buscar eventos: ', error);
-                res.status(500).send('Erro ao buscar eventos.');
-                return;
-                }
-                res.json(results);
-            });
-        }
-        
-        else{
-            if(req.query['idEvento']){
-                const sql = 'SELECT * FROM evento WHERE idEvento=?';
-                connection.query(sql,[req.query['idEvento']], (error, results, fields) => {
-                    if (error) {
-                    console.error('Erro ao buscar eventos: ', error);
-                    res.status(500).send('Erro ao buscar eventos.');
-                    return;
-                    }
-                    res.json(results);
-                });
-            }
-        }
-    }
-    if(req.method === 'POST'){
-        res.status(200).json({ message: 'Vai dormir!' });
-        const evento = new Evento(
-            req.body.id,
-            req.body.id_usuario,
-            req.body.id_localidade,
-            req.body.nome_evento,
-            req.body.data_evento,
-            req.body.descricao_evento,
-            req.body.ativado,
-            req.body.imagem
-        );
-            const sql = "INSERT into evento(id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem) VALUES("+
-        '0'
-        "'"+
-        ','+
-        req.body.nome_evento+
-        "'"+
-        ','+
-        req.body.data_evento+
-        "'"+
-        ','+
-        req.body.descricao_evento+
-        "'"+
-        ','+
-        '0'+
-        "'"+
-        ','+
-        ''+
-        "'"+
-        ','+')';
-            connection.query(sql, evento, (error, results, fields) => {
                 if (error) {
                 console.error('Erro ao inserir novo evento', error);
                 res.status(500).send('Erro ao inserir novo evento.');
@@ -73,72 +27,48 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
                 }
                 res.json(results);
         });
+        } else if (req.method === 'GET') {
+          // Listar usuários
+          const sql = 'SELECT * FROM usuario';
+          connection.query(sql, (error, results, fields) => {
+            if (error) {
+              console.error('Erro ao buscar usuários: ', error);
+              res.status(500).send('Erro ao buscar usuários.');
+              return;
+            }
+            res.json(results);
+          });
+        } else if (req.method === 'DELETE') {
+          // Remover usuário
+          const sql = 'DELETE FROM usuario WHERE idUser=?';
+          connection.query(sql, [req.body.idUser], (error, results, fields) => {
+            if (error) {
+              console.error('Erro ao remover usuário: ', error);
+              res.status(500).send('Erro ao remover usuário.');
+              return;
+            }
+            res.json(results);
+          });
+        } else if (req.method === 'PUT') {
+          // Atualizar usuário
+          const sql = 'UPDATE usuario SET ? WHERE idUser=?';
+          connection.query(
+            sql,
+            [req.body, req.query.id],
+            (error, results, fields) => {
+              if (error) {
+                console.error('Erro ao atualizar usuário: ', error);
+                res.status(500).send('Erro ao atualizar usuário.');
+                return;
+              }
+              res.json(results);
+            }
+          );
+        } else {
+          res.status(404).send('Rota não encontrada.');
+        }
+      });
+    
+      // Executing the router
+      router.handle(req, res);
     }
-//}
-
-
-// Criar evento
-router.post('/', async (req, res) => {
-    const evento = new Evento(
-        req.body.id,
-        req.body.id_usuario,
-        req.body.id_localidade,
-        req.body.nome_evento,
-        req.body.data_evento,
-        req.body.descricao_evento,
-        req.body.ativado,
-        req.body.imagem
-    );
-    const sql = 'INSERT INTO evento SET ?';
-    connection.query(sql, evento, (error, results, fields) => {
-        if (error) {
-        console.error('Erro ao inserir novo evento: ', error);
-        res.status(500).send('Erro ao inserir novo evento.');
-        return;
-        }
-        res.json(results);
-    });
-});
-
-// Listar eventos
-router.get('/', async (req, res) => {
-    const sql = 'SELECT * FROM evento';
-    connection.query(sql, (error, results, fields) => {
-        if (error) {
-        console.error('Erro ao buscar eventos: ', error);
-        res.status(500).send('Erro ao buscar eventos.');
-        return;
-        }
-        res.json(results);
-    });
-});
-
-// Buscar evento por ID
-router.get('/:id', async (req, res) => {
-    const sql = 'SELECT * FROM evento WHERE idEvento=?';
-    connection.query(sql, [req.params.id], (error, results, fields) => {
-        if (error) {
-            console.error('Erro ao buscar evento: ', error);
-            res.status(500).send('Erro ao buscar evento.');
-            return;
-        }
-        res.json(results);
-    });
-});
-
-// Atualizar evento:
-router.put('/:id', async (req, res) => {
-    const sql = 'UPDATE evento SET ? WHERE idEvento=?';
-    connection.query(
-        sql,
-        [req.body, req.params.id],
-        (error, results, fields) => {
-        if (error) {
-            console.error('Erro ao atualizar evento: ', error);
-            res.status(500).send('Erro ao atualizar evento.');
-            return;
-        }
-        res.json(results);
-        }
-    );
-})};
