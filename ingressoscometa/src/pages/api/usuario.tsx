@@ -72,5 +72,5 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   });
 
   // Executing the router
-  router.handle(req, res);
+  router.handler(req, res);
 }
