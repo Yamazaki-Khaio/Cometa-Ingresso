@@ -2,24 +2,25 @@ import express from 'express';
 import {connection} from './db';
 import Evento from './classes/Evento';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { randomInt } from 'crypto';
 
 export default async function handler(req: NextApiRequest,res: NextApiResponse){
     const router = express.Router();
-
+    var x = randomInt(1000)
   router.use('/', async (req, res) => {
     if (req.method === 'POST') {
       // Criar evento
-      const sql = "INSERT into evento(id, id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem) VALUES('1', '1', 'pedro festa', '1999-09-08', 'descricao.html', '0', '')";
+      const sql = "INSERT into evento(id, id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem) VALUES(?, ?, ?, ?, ?, ?, ?)";
       const params = [
-        //req.headers.cpf,
-        //req.headers.nome,
-        //req.headers.senha,
-        //req.headers.data_nascimento,
-        //req.headers.tipo_user,
-        //req.headers.email,
-        //req.headers.endereco,
+        x,
+        '1',
+        req.body.nome,
+        req.body.dataEvento,
+        req.body.descricao,
+        '1',
+        '',
       ];
-            connection.query(sql, (error, results, fields) => {
+            connection.query(sql, params, (error, results, fields) => {
                 if (error) {
                 console.error('Erro ao inserir novo evento', error);
                 res.status(500).send('Erro ao inserir novo evento.');
