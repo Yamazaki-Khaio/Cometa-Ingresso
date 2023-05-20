@@ -1,78 +1,75 @@
+import express from 'express';
+import {connection} from './db';
+import Evento from './classes/Usuario';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Sequelize, Model, DataTypes } from 'sequelize';
+import { randomInt } from 'crypto';
 
-const sequelize = new Sequelize({
-  dialect: 'mysql',
-  host: 'localhost',
-  username: 'seu_usuario',
-  password: 'sua_senha',
-  database: 'nome_do_banco_de_dados',
-});
-
-interface UsuarioAttributes {
-  nome: string;
-  cpf: string;
-  data_nascimento: Date; // Alterado para tipo Date
-  senha: string;
-  tipoUsuario: string;
-}
-
-class UsuarioModel extends Model<UsuarioAttributes> implements UsuarioAttributes {
-  public nome!: string;
-  public cpf!: string;
-  public data_nascimento!: Date; // Alterado para tipo Date
-  public senha!: string;
-  public tipoUsuario!: string;
-}
-
-UsuarioModel.init(
-  {
-    nome: DataTypes.STRING,
-    cpf: DataTypes.STRING,
-    data_nascimento: {
-      type: DataTypes.DATEONLY,
-      allowNull: false,
-    },
-    senha: DataTypes.STRING,
-    tipoUsuario: DataTypes.STRING,
-  },
-  { sequelize, modelName: 'usuario' }
-);
-
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'POST') {
-    try {
-      const { nome, cpf, data_nascimento, senha, tipoUsuario } = req.body as UsuarioAttributes;
-
-      await sequelize.sync(); // Sincroniza o modelo com o banco de dados antes de criar um usuário
-
-      await UsuarioModel.create({
-        nome,
-        cpf,
-        data_nascimento,
-        senha,
-        tipoUsuario,
-      });
-    } else if (req.method === 'PUT') {
-      // Atualizar usuário
-      const sql = 'UPDATE usuario SET ? WHERE idUser=?';
-      connection.query(
-        sql,
-        [req.body, req.query.id],
-        (error, results, fields) => {
-          if (error) {
-            console.error('Erro ao atualizar usuário: ', error);
-            res.status(500).send('Erro ao atualizar usuário.');
-            return;
-          }
-          res.json(results);
+export default async function handler(req: NextApiRequest,res: NextApiResponse){
+    const router = express.Router();
+    var x = randomInt(1000)
+  router.use('/', async (req, res) => {
+    if (req.method === 'POST') {
+      // Criar evento
+      const sql = "INSERT INTO usuarios (nome, cpf, email, telefone, senha, endereco, numeroCasa, complemento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      const params = [
+        x,
+        '1',
+        req.body.nome,
+        req.body.cpf,
+        req.body.email,
+        '1',
+        '',
+      ];
+            connection.query(sql, params, (error, results, fields) => {
+                if (error) {
+                console.error('Erro ao inserir novo usuario', error);
+                res.status(500).send('Erro ao inserir novo usuario.');
+                return;
+                }
+                res.json(results);
+        });
+        } else if (req.method === 'GET') {
+          // Listar usuários
+          const sql = 'SELECT * FROM evento';
+          connection.query(sql, (error, results, fields) => {
+            if (error) {
+              console.error('Erro ao buscar usuario: ', error);
+              res.status(500).send('Erro ao buscar usuario.');
+              return;
+            }
+            res.json(results);
+          });
+        } else if (req.method === 'DELETE') {
+          // Remover usuário
+          const sql = 'DELETE FROM evento WHERE id=?';
+          connection.query(sql, [req.body.idUser], (error, results, fields) => {
+            if (error) {
+              console.error('Erro ao remover usuario: ', error);
+              res.status(500).send('Erro ao remover usuario.');
+              return;
+            }
+            res.json(results);
+          });
+        } else if (req.method === 'PUT') {
+          // Atualizar evento
+          const sql = 'UPDATE evento SET ? WHERE id=?';
+          connection.query(
+            sql,
+            [req.body, req.query.id],
+            (error, results, fields) => {
+              if (error) {
+                console.error('Erro ao atualizar usuario: ', error);
+                res.status(500).send('Erro ao atualizar usuario.');
+                return;
+              }
+              res.json(results);
+            }
+          );
+        } else {
+          res.status(404).send('Rota não encontrada.');
         }
-      );
-    } else {
-      res.status(404).send('Rota não encontrada.');
+      });
+    
+      // Executing the router
+      router.handle(req, res);
     }
-  });
-
-  // Executing the router
-  router.handle(req, res);
-}
