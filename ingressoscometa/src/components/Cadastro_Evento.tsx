@@ -12,6 +12,7 @@ import { signIn} from "next-auth/react";
 import handler from "@/pages/api/evento";
 import { Input } from "postcss";
 import CampoLocalEvento from "./CampoLocalEvento";
+import { ChangeEvent } from "react";
 
 export default function CadastroEvento() {
     const [n, setNome] = useState ('');
@@ -19,8 +20,11 @@ export default function CadastroEvento() {
     const [localEvento, setLocalEvento] = useState('');
     const [dataEvento, setDataEvento] = useState('');
     const [horarioEvento, setHorarioEvento] = useState('');
+    const [perfilEvento, setPerfilEvento] = useState('');
+    const [setorEvento, setSetorEvento] = useState('');
 
     const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
+        try{
         e.preventDefault()
         const nome = document.getElementById('nome') //Lendo os valores dos campos
         const descricao = document.getElementById('descricao')
@@ -38,9 +42,34 @@ export default function CadastroEvento() {
         console.log(setorEvento.value)
         const res = await fetch('/api/evento', {
             method: 'POST',
-            body: JSON.stringify(n)
+            headers: {
+                "Content-Type": "application/json"
+              },
+            body: JSON.stringify({
+                nome,
+                descricao,
+                localEvento,
+                dataEvento,
+                horarioEvento,
+                perfilEvento,
+                setorEvento
+            }),
         })
-        }
+            if (res.ok) {
+            console.log("Dados enviados com sucesso!");
+              
+                      // Lógica adicional após o envio bem-sucedido dos dados
+                    } else {
+                      console.error("Erro ao enviar os dados:", res.status);
+              
+                      // Lógica adicional para lidar com erros no envio dos dados
+                    }
+                  } catch (error) {
+                    console.error("Erro ao enviar os dados:", error);
+              
+                    // Lógica adicional para lidar com erros no envio dos dados
+                  }
+                };
 
     function handleNomeEventoChange(e: ChangeEvent<HTMLInputElement>){
         setNome(e.target.value);
@@ -61,30 +90,18 @@ export default function CadastroEvento() {
     function handleHorarioEventoChange(e: ChangeEvent<HTMLInputElement>){
         setHorarioEvento(e.target.value);
     }
-
-    const handle = async (e) => {
-            e.preventDefault()
-            const nome = document.getElementById('nome')
-            const res = await fetch('/api/evento', {
-                method: 'POST',
-                body: JSON.stringify(n)
-            })
-            const json = await res.json()
-            console.log(res.status)
-            console.log(json)
-
-}
+          
 
 return(
         <div className="flex flex-col justify-center items-center p-12 bg-gray-100">
             <form onSubmit={handleSubmit}>
-            <CampoNomeEvento/>
-            <CampoDescricaoEvento/>
-            <CampoLocalEvento />
-            <CampoDataEvento/>
-            <CampoHorarioEvento/>
-            <CampoPerfilEvento/>
-            <CampoSetorEvento/>
+            <CampoNomeEvento value={n} />
+            <CampoDescricaoEvento value={d}/>
+            <CampoLocalEvento value={localEvento}/>
+            <CampoDataEvento value={dataEvento}/>
+            <CampoHorarioEvento value={horarioEvento}/>
+            <CampoPerfilEvento value={perfilEvento}/>
+            <CampoSetorEvento value={setorEvento}/>
             <BotaoSubmitEvento/>
             </form>
         </div>
