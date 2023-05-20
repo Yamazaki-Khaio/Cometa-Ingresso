@@ -30,36 +30,36 @@ export default async function handler(req: NextApiRequest,res: NextApiResponse){
         });
         } else if (req.method === 'GET') {
           // Listar usuários
-          const sql = 'SELECT * FROM usuario';
+          const sql = 'SELECT * FROM evento';
           connection.query(sql, (error, results, fields) => {
             if (error) {
-              console.error('Erro ao buscar usuários: ', error);
-              res.status(500).send('Erro ao buscar usuários.');
+              console.error('Erro ao buscar eventos: ', error);
+              res.status(500).send('Erro ao buscar eventos.');
               return;
             }
             res.json(results);
           });
         } else if (req.method === 'DELETE') {
           // Remover usuário
-          const sql = 'DELETE FROM usuario WHERE idUser=?';
+          const sql = 'DELETE FROM evento WHERE id=?';
           connection.query(sql, [req.body.idUser], (error, results, fields) => {
             if (error) {
-              console.error('Erro ao remover usuário: ', error);
-              res.status(500).send('Erro ao remover usuário.');
+              console.error('Erro ao remover evento: ', error);
+              res.status(500).send('Erro ao remover evento.');
               return;
             }
             res.json(results);
           });
         } else if (req.method === 'PUT') {
-          // Atualizar usuário
-          const sql = 'UPDATE usuario SET ? WHERE idUser=?';
+          // Atualizar evento
+          const sql = 'UPDATE evento SET ? WHERE id=?';
           connection.query(
             sql,
             [req.body, req.query.id],
             (error, results, fields) => {
               if (error) {
-                console.error('Erro ao atualizar usuário: ', error);
-                res.status(500).send('Erro ao atualizar usuário.');
+                console.error('Erro ao atualizar evento: ', error);
+                res.status(500).send('Erro ao atualizar evento.');
                 return;
               }
               res.json(results);
