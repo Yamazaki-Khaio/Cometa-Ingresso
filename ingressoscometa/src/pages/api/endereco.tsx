@@ -2,89 +2,78 @@ import express from 'express';
 import { connection } from './db';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const router = express.Router();
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const router = express.Router();
 
-router.all('/', async (req, res) => {
-    if (req.method === 'GET') {
-        try {
-            const sql = 'SELECT * FROM endereco';
-            connection.query(sql, (error, results, fields) => {
+    router.use('/', async (req, res) => {
+        if (req.method === 'POST') {
+            // Cadastrar endereço
+            const { cep, rua, numero, complemento, UsuarioID } = req.headers;
+            const sql =
+                'INSERT INTO endereco (cep, rua, numero, complemento, UsuarioID) VALUES (?, ?, ?, ?, ?)';
+            const params = [cep, rua, numero, complemento, UsuarioID];
+            connection.query(sql, params, (error, results, fields) => {
                 if (error) {
-                    console.error('Erro ao buscar endereços: ', error);
-                    res.status(500).send('Erro ao buscar endereços.');
+                    console.error('Erro ao cadastrar endereço:', error);
+                    res.status(500).send('Erro ao cadastrar endereço.');
                     return;
                 }
                 res.json(results);
             });
-        } catch (error) {
-            console.error('Erro ao buscar endereços: ', error);
-            res.status(500).send('Erro ao buscar endereços.');
-        }
-    } else if (req.method === 'POST') {
-        try {
-            const sql = 'INSERT INTO endereco SET id_endereco=?, cep=?, rua=?, numero=?, complemento=?, UsuarioID=?';
-            const values = [
-                req.headers.id_endereco,
-                req.headers.cep,
-                req.headers.rua,
-                req.headers.numero,
-                req.headers.complemento,
-                req.headers.UsuarioID
-            ];
-            connection.query(sql, values, (error, results, fields) => {
+        } else if (req.method === 'GET') {
+            if (req.query && req.query.id) {
+                // Obter endereço por ID
+                const sql = 'SELECT * FROM endereco WHERE id_endereco=?';
+                connection.query(sql, [req.query.id], (error, results, fields) => {
+                    if (error) {
+                        console.error('Erro ao buscar endereço:', error);
+                        res.status(500).send('Erro ao buscar endereço.');
+                        return;
+                    }
+                    res.json(results);
+                });
+            } else {
+                // Obter todos os endereços
+                const sql = 'SELECT * FROM endereco';
+                connection.query(sql, (error, results, fields) => {
+                    if (error) {
+                        console.error('Erro ao buscar endereços:', error);
+                        res.status(500).send('Erro ao buscar endereços.');
+                        return;
+                    }
+                    res.json(results);
+                });
+            }
+        } else if (req.method === 'PUT') {
+            // Atualizar endereço
+            const { cep, rua, numero, complemento, UsuarioID } = req.headers;
+            const sql =
+                'UPDATE endereco SET cep=?, rua=?, numero=?, complemento=?, UsuarioID=? WHERE id_endereco=?';
+            const params = [cep, rua, numero, complemento, UsuarioID, req.query.id];
+            connection.query(sql, params, (error, results, fields) => {
                 if (error) {
-                    console.error('Erro ao inserir novo endereço: ', error);
-                    res.status(500).send('Erro ao inserir novo endereço.');
-                    return;
-                }
-                res.json(results);
-            });
-        } catch (error) {
-            console.error('Erro ao inserir novo endereço: ', error);
-            res.status(500).send('Erro ao inserir novo endereço.');
-        }
-    } else if (req.method === 'PUT') {
-        try {
-            const sql = 'UPDATE endereco SET cep=?, rua=?, numero=?, complemento=?, UsuarioID=? WHERE id_endereco=?';
-            const values = [
-                req.headers.cep,
-                req.headers.rua,
-                req.headers.numero,
-                req.headers.complemento,
-                req.headers.UsuarioID,
-                req.headers.id_endereco
-            ];
-            connection.query(sql, values, (error, results, fields) => {
-                if (error) {
-                    console.error('Erro ao atualizar endereço: ', error);
+                    console.error('Erro ao atualizar endereço:', error);
                     res.status(500).send('Erro ao atualizar endereço.');
                     return;
                 }
                 res.json(results);
             });
-        } catch (error) {
-            console.error('Erro ao atualizar endereço: ', error);
-            res.status(500).send('Erro ao atualizar endereço.');
-        }
-    } else if (req.method === 'DELETE') {
-        try {
+        } else if (req.method === 'DELETE') {
+            // Deletar endereço
             const sql = 'DELETE FROM endereco WHERE id_endereco=?';
-            const values = [req.headers.id_endereco];
-            connection.query(sql, values, (error, results, fields) => {
+            connection.query(sql, [req.query.id], (error, results, fields) => {
                 if (error) {
-                    console.error('Erro ao deletar endereço: ', error);
+                    console.error('Erro ao deletar endereço:', error);
                     res.status(500).send('Erro ao deletar endereço.');
                     return;
                 }
                 res.json(results);
             });
-        } catch (error) {
-            console.error('Erro ao deletar endereço: ', error);
-            res.status(500).send('Erro ao deletar endereço.');
+        } else {
+            res.status(404).send('Rota não encontrada.');
         }
-    } else {
-        res.status(405).send('Method Not Allowed');
-    }
-});
+    });
 
-export default router;
+    // Executing the router
+    router.handle(req, res);
+}
