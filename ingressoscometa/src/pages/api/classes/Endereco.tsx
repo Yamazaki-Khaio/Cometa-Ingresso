@@ -6,8 +6,6 @@ class Endereco {
     complemento: string;
     UsuarioID: number;
     
-   
-   
     constructor(
       id_endereco: number,
       cep: string,
@@ -26,3 +24,4 @@ class Endereco {
       
     }
   }
+export default Endereco;
