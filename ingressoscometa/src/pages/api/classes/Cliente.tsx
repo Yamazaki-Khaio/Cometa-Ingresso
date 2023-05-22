@@ -1,15 +1,23 @@
+import Usuario from "./Usuario";
+import Endereco from "./Endereco";
 class Cliente extends Usuario {
-    private cartaoDeCredito: string;
-    //private carrinhoDeCompras: Carrinho;
-    //private compras: Compra[];
-    private creditoEstorno: number;
+    
 
-    constructor(nome: string, email: string, senha: string, telefone: number, endereco: Endereco, cpf: number, tipoUsuario: number, cartaoDeCredito: string) {
-        super(nome, email, senha, telefone, endereco, cpf, tipoUsuario);
-        this.cartaoDeCredito = cartaoDeCredito;
+    constructor(
+        idUser: number,
+        cpf: string,
+        nome: string,
+        senha: string,
+        data_nascimento: Date,
+        tipo_user: number,
+        email: string,
+        endereco: Endereco,
+        telefone: number) {
+        super(idUser, cpf, nome, senha, data_nascimento, tipo_user, email,endereco, telefone );
+        
         //this.carrinhoDeCompras = new Carrinho();
         //this.compras = [];
-        this.creditoEstorno = 0;
+        
     }
 
     cadastro(nome: string, email: string, senha: string, telefone: number, endereco: Endereco, cpf: number, cartaoDeCredito: string) {
@@ -18,7 +26,7 @@ class Cliente extends Usuario {
         super.editarCadastro(String(telefone), 3);
         //super.editarCadastro(endereco, 4);
         super.editarCadastro(String(cpf), 5);
-        this.cartaoDeCredito = cartaoDeCredito;
+        
     }
 
     //adicionarAoCarrinho(item: Item) {
