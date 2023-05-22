@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTicketAlt } from "@fortawesome/free-solid-svg-icons";
+import { faShareAlt } from "@fortawesome/free-solid-svg-icons";
 
-export default function BotaoIngressos() {
+export default function BotaoCompartilhar() {
   return (
     <div>
       <button
@@ -10,14 +10,13 @@ export default function BotaoIngressos() {
           bg-transparent
           text-black
           text-28 // Aumentando o tamanho do ícone
-          rounded-3xl
+          rounded-full // Alterando para formato circular
           transition-all duration-300
           hover:text-green-600
           h-14 // Aumentando a altura do botão
         `}
       >
-        <FontAwesomeIcon icon={faTicketAlt} className="mr-2" />
-        Ingressos
+        <FontAwesomeIcon icon={faShareAlt} />
       </button>
     </div>
   );

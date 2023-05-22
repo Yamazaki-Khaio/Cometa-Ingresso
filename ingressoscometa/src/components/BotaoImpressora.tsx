@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTicketAlt } from "@fortawesome/free-solid-svg-icons";
+import { faPrint } from "@fortawesome/free-solid-svg-icons";
 
-export default function BotaoIngressos() {
+export default function BotaoImpressora() {
   return (
     <div>
       <button
@@ -16,8 +16,7 @@ export default function BotaoIngressos() {
           h-14 // Aumentando a altura do botão
         `}
       >
-        <FontAwesomeIcon icon={faTicketAlt} className="mr-2" />
-        Ingressos
+        <FontAwesomeIcon icon={faPrint} />
       </button>
     </div>
   );

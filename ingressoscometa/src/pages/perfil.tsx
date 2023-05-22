@@ -1,4 +1,4 @@
-import Layout from "@/components/layout";
+import Layout from "@/components/layoutCliente";
 import Perfil from "@/components/TelaPerfil";
 
 export default function perfil(){

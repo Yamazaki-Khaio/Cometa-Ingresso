@@ -55,16 +55,15 @@ export default function CadastroEvento() {
     }));
   };
 
-  return (
-    <div className="flex flex-col justify-center items-center p-12 bg-gray-100">
-      <form onSubmit={handleSubmit}>
-        <CampoNomeEvento value={formData.nome} onChange={handleInputChange} name="nome" />
-        <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao" />
-        <CampoLocalEvento value={formData.localEvento} onChange={handleInputChange} name="localEvento" />
-        <CampoDataEvento value={formData.dataEvento} onChange={handleInputChange} name="dataEvento" />
-        <CampoHorarioEvento value={formData.horarioEvento} onChange={handleInputChange} name="horarioEvento" />
-        <BotaoSubmitEvento />
-      </form>
-    </div>
-  )
+return(
+        <div className="flex flex-col justify-center items-center p-12 bg-gray-100">
+            <form onSubmit={handleSubmit}>
+            <CampoNomeEvento value={formData.nome} onChange={handleInputChange} name="nome"/>
+            <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao"/>
+            <CampoLocalEvento value={formData.localEvento} onChange={handleInputChange} name="localEvento"/>
+            <CampoDataEvento value={formData.dataEvento} onChange={handleInputChange} name="dataEvento"/>
+            <BotaoSubmitEvento/>
+            </form>
+        </div>
+    )
 }

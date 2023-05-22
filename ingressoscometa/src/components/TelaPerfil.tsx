@@ -10,14 +10,12 @@ import PerfilNumeroCasa from "./PerfilNumeroCasa";
 import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 
 export default function Perfil(){
-    const hanldeSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
-      };
+
 
     return(
         <div className="grid grid-cols-8">
-            <div className="col-start-2 col-span-5 flex justify-start items-start">
+            <div className="col-start-2 col-span-2 flex justify-start items-start">
                 <form>
-                <label className="text-xl">Bem Vindo(a), Fulano!</label>
                     <PerfilCampoNome/>
                     <PerfilCampoEmail/>
                     <PerfilCampoCpf/>
