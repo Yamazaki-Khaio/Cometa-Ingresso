@@ -1,8 +1,9 @@
+import Image from 'next/image'
 export default function PaginaEvento(props: any){
     return(
         <div className="flex items-center content-center justify-between">
             <div className="h-128 ml-80 ">
-                <img src="Evento-Corporativo.jpg" alt="Capa" className=" object-contain rounded-xl border border-black"/>
+                <Image width={720} height={480} src="Evento-Corporativo.jpg" alt="Capa" className=" object-contain rounded-xl border border-black"/>
             </div>
             <div className="w-64 mr-80 text-lg font-bold">
                 <p>Calourada de Fisica</p>
