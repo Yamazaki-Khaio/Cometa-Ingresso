@@ -1,4 +1,8 @@
+import Endereco from "./Endereco";
 class Usuario {
+    editarCadastro(nome: string, arg1: number) {
+        throw new Error("Method not implemented.");
+    }
     idUser: number;
     cpf: string;
     nome: string;
