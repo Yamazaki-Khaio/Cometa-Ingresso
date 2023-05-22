@@ -38,17 +38,6 @@ export default function PerfilCampoCpf(props: any){
             value={cpf}
             onChange={handleCpfChange} 
             disabled/>
-        <span className="input-group-btn p-4">
-            <button
-                type="button"
-                className="btn btn-default"
-                onClick={handleEditar}
-            >
-                <FontAwesomeIcon
-                    icon={faPenToSquare}
-                    size="lg" />
-            </button>
-        </span>
     </div></>
       
   )
