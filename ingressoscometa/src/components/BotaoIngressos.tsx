@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTicketAlt } from "@fortawesome/free-solid-svg-icons";
 
-export default function BotaoEntrar() {
+export default function BotaoIngressos() {
   return (
     <div>
       <button

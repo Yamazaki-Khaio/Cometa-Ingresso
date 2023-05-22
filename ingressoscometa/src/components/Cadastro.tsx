@@ -33,36 +33,40 @@ export default function CadastroUsuario() {
 
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
-  
+    e.preventDefault()
+
     try {
       const hash = createHash('sha256');
-      hash.update(formData.senha);
+      hash.update(document.getElementById('senha').value)
       const form = {
-        nome: formData.nome,
-        cpf: removerMascaraCpf(formData.cpf),
-        data_nascimento: formData.data_nascimento,
+        nome: document.getElementById('nomeCompleto').value,
+        cpf: removerMascaraCpf(document.getElementById('cpf').value),
+        data_nascimento: document.getElementById('data').value,
         senha: hash.digest('hex')
-      };
-  
-      const res = await fetch('/api/usuario/', {
+      }
+
+
+      const res = await fetch('/api/usuario', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(form),
-      });
-  
-      const data = await res.json();
-      console.log(form); // Testando se os valores estão passando
-      console.log(data);
-      window.location.replace("/login");
+      })
+        .then(function (res) {
+          return res.json();
+        })
+        .then(function (data) {
+          console.log(form) //Testando se os valores estão passando
+          console.log(data)
+          window.location.replace("/login")
+        });
     } catch (error) {
       console.error("Erro ao enviar os dados:", error);
+
       // Lógica adicional para lidar com erros no envio dos dados
     }
   };
-  
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

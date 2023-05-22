@@ -12,46 +12,55 @@ import { useRouter } from 'next/router';
 
 
 export default function Login() {
-    const [cpf, setCpf] = useState("");
-    const [senha, setSenha] = useState("");
-    const [mensagemErro, setMensagemErro] = useState("");
 
-    const router = useRouter();
 
-    const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-        e.preventDefault();
-
-        try {
-            const res = await signIn("credentials", {
-                cpf: cpf,
-                password: senha,
-                redirect: false
-            });
-
-            if (res && res.ok) {
-                router.replace("/home");
-            } else {
-                setMensagemErro("CPF ou senha inválida");
-            }
-        } catch (error) {
-            console.error("Erro ao realizar o login:", error);
-            setMensagemErro("Ocorreu um erro ao realizar o login");
+    const hanldeSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault()
+        const menssage = document.getElementById('menssage')
+        const cpf = document.getElementById('cpf')
+        const senha = document.getElementById('senha')
+        if (menssage?.style.display === 'block') {
+            menssage.style.display = 'none'
+            cpf.style.borderColor = '#808080'
+            senha.style.borderColor = '#808080'
         }
-    };
+
+        const res = signIn("credentials", { cpf: cpf?.value, password: senha?.value, redirect: false })
+
+        res.then((resultado) => {
+            if (resultado.ok) {
+
+                window.location.replace("/home")
+            } else {
+
+                if (menssage) {
+                    menssage.style.display = 'block'
+                    cpf.style.borderColor = 'red'
+                    senha.style.borderColor = 'red'
+                }
+
+            }
+        })
 
 
+
+    }
     return (
         <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
-            <form onSubmit={handleSubmit}>
-                <CampoCpf value={cpf} onChange={(e:any) => setCpf(e.target.value)} />
-                <CampoSenha value={senha} onChange={(e:any) => setSenha(e.target.value)} />
+            <form onSubmit={hanldeSubmit}>
+                <CampoCpf />
+                <CampoSenha />
                 <CampoEsqueciSenha />
                 <RadioButton />
                 <div className="flex justify-center w-full">
                     <BotaoEntrar />
                 </div>
-                {mensagemErro && <Message mensagem={mensagemErro} />}
+                <Message mensagem="cpf ou senha inválida" />
             </form>
+
+
+
+
         </div>
-    );
+    )
 }
