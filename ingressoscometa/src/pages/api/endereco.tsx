@@ -73,7 +73,4 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             res.status(404).send('Rota não encontrada.');
         }
     });
-
-    // Executing the router
-    router.handle(req, res);
 }
