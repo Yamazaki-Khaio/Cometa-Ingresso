@@ -1,8 +1,12 @@
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import {useSession } from "next-auth/react";
+import Router, { useRouter } from "next/router";
 
 export default function PerfilCampoNome(props: any){
+    const { data: session } = useSession()
+    const route = useRouter()
   const [nome, setNome] = useState("Dino da Silva Sauro"); //Armazena o valor do nome
   function handleNomeChange(event: React.ChangeEvent<HTMLInputElement>){//Modifica o valor do nome
     setNome(event.target.value);
