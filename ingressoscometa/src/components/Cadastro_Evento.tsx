@@ -78,7 +78,6 @@ return(
             <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao"/>
             <CampoLocalEvento value={formData.localEvento} onChange={handleInputChange} name="localEvento"/>
             <CampoDataEvento value={formData.dataEvento} onChange={handleInputChange} name="dataEvento"/>
-            <CampoHorarioEvento value={formData.horarioEvento} onChange={handleInputChange} name="horarioEvento"/>
             <BotaoSubmitEvento/>
             </form>
         </div>

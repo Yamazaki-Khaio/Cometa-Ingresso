@@ -41,7 +41,6 @@ UsuarioModel.init(
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
-    try {
       const { nome, cpf, data_nascimento, senha, tipoUsuario } = req.body as UsuarioAttributes;
 
       await sequelize.sync(); // Sincroniza o modelo com o banco de dados antes de criar um usuário
