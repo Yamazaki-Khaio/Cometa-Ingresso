@@ -10,8 +10,7 @@ import PerfilNumeroCasa from "./PerfilNumeroCasa";
 import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 
 export default function Perfil(){
-    const hanldeSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
-      };
+
 
     return(
         <div className="grid grid-cols-8">
