@@ -1,10 +1,10 @@
-import {useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import BotaoCarrinho from "./BotaoCarrinho";
 import BotaoIngressos from "./BotaoIngressos";
 import BotaoEventos from "./BotaoEventos";
 import BotaoPerfil from "./BotaoPerfil";
-    
+
 export default function CabecalhoCliente(props: { isBotaoOcultoLogin?: boolean,  isBotaoOcultoCadastro?: boolean, isBotaoOcultoEvento?: boolean}) {
     const { data: session } = useSession()
     const route = useRouter()
@@ -20,7 +20,8 @@ export default function CabecalhoCliente(props: { isBotaoOcultoLogin?: boolean, 
                 <BotaoCarrinho/>
                 <BotaoIngressos/>
                 <BotaoEventos/>
-                <BotaoPerfil/>
+                <a href="/perfil"> <BotaoPerfil />
+                </a>
             </div>    
         </div>
     )
