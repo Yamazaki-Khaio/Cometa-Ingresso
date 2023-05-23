@@ -6,7 +6,7 @@ export default function Home(){
    
     return (
         <div>
-            <Layout pagina={<HomeNaoLogin/>} exibirBotao={true} exibirBotao2={true} exibirBotao3={false} />
+            <Layout pagina={<HomeNaoLogin/>} exibirBotao={true} exibirBotao2={true} exibirBotao3={false} exibirBotao4={false} />
         </div>       
     )
 }
