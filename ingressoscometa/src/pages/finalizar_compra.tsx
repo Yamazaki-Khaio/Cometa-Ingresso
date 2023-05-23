@@ -1,5 +1,5 @@
 import Layout from "@/components/layout";
-import FinalizarCompra from "@/components/Tela Finalizar Compra/FinalizarCompra";
+import FinalizarCompra from "@/components/FinalizarCompra/FinalizarCompra";
 
 export default function finalizar(){
     return(
