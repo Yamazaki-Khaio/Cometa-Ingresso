@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function PerfilCampoCep(props: any){
     const [cep, setCep] = useState('123.456-000');
+    const [editando, setEditando] = useState(false); // Estado de edição
 
     function handleCepChange(event: React.ChangeEvent<HTMLInputElement>) {
         let cepValue = event.target.value.replace(/\D/g, '');
@@ -13,10 +14,11 @@ export default function PerfilCampoCep(props: any){
         setCep(cepValue);
     }
 
-    function handleEditar(event: React.ChangeEvent<HTMLInputElement>): void {
-        throw new Error("Function not implemented.");
-    }
-
+    function handleEditar() {
+        setEditando(true); // Habilita a edição ao clicar no botão "Editar"
+        setCep("")
+      }
+    
     return(
         <><label className="flex flex-col gap-1 rounded-md mb-2"  htmlFor="cep">Cep
         </label >

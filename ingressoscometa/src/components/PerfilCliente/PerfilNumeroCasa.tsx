@@ -6,15 +6,18 @@ import { useState } from "react";
 
 export default function PerfilNumeroCasa(props: any){
     const [numero, setNumero] = useState('10');
+    const [editando, setEditando] = useState(false); // Estado de edição
 
 
     function handleNumeroChange(event: React.ChangeEvent<HTMLInputElement>) {
         setNumero(event.target.value);
     }
 
-    function handleEditar(event: React.ChangeEvent<HTMLInputElement>): void {
-        throw new Error("Function not implemented.");
-    }
+    function handleEditar() {
+        setEditando(true); // Habilita a edição ao clicar no botão "Editar"
+        setNumero("")
+      }
+    
 
     return(
         <><label className="flex flex-col gap-1 rounded-md mb-2"  htmlFor="numero">Número da Casa

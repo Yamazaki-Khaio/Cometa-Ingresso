@@ -6,14 +6,17 @@ import { useState } from "react";
 
 export default function PerfilCampoRua(props: any){
     const [rua, setRua] = useState('Rua 1');
+    const [editando, setEditando] = useState(false); // Estado de edição
 
     function handleRuaChange(event: React.ChangeEvent<HTMLInputElement>) {
         setRua(event.target.value);
     }
 
-    function handleEditar(event: React.ChangeEvent<HTMLInputElement>): void {
-        throw new Error("Function not implemented.");
-    }
+    function handleEditar() {
+        setEditando(true); // Habilita a edição ao clicar no botão "Editar"
+        setRua("")
+      }
+    
 
     return(
         <><label className="flex flex-col gap-1 rounded-md mb-2"  htmlFor="rua">Rua

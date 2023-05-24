@@ -6,14 +6,17 @@ import { useState } from "react";
 
 export default function PerfilComplementoCasa(props: any){
     const [complemento, setComplemento] = useState('Condoomínio');
+    const [editando, setEditando] = useState(false); // Estado de edição
 
     function handleComplementoChange(event: React.ChangeEvent<HTMLInputElement>) {
         setComplemento(event.target.value);
     }
 
-    function handleEditar(event: React.ChangeEvent<HTMLInputElement>): void {
-        throw new Error("Function not implemented.");
-    }
+    function handleEditar() {
+        setEditando(true); // Habilita a edição ao clicar no botão "Editar"
+        setComplemento("")
+      }
+    
 
     return(
         <><label className="flex flex-col gap-1 rounded-md mb-2"  htmlFor="complemento">Complemento
