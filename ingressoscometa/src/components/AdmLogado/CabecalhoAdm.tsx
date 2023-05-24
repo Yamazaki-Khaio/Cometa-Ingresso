@@ -4,7 +4,7 @@ import BotaoCarrinho from "../CabecalhoCliente/BotaoCarrinho"
 import BotaoEventos from "../CabecalhoCliente/BotaoEventos"
 import BotaoIngressos from "../CabecalhoCliente/BotaoIngressos"
 import BotaoPerfil from "../CabecalhoCliente/BotaoPerfil"
-import Botao from "../Cabecalho/botao"
+import Botao from "../CabecalhoCadastro/botao"
 
 export default function CabecalhoAdm(props: { isBotaoOcultoLogin?: boolean, isBotaoOcultoCadastro?: boolean, isBotaoOcultoEvento?: boolean, isBotaoOcultoBackup?: boolean }) {
     const { data: session } = useSession()

@@ -1,4 +1,4 @@
-import Layout from "@/components/Cabecalho/layout";
+import Layout from "@/components/CabecalhoCadastro/layout";
 import FinalizarCompra from "@/components/FinalizarCompra/FinalizarCompra";
 
 export default function finalizar(){
