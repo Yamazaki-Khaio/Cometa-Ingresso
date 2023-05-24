@@ -6,14 +6,12 @@ import { randomInt } from 'crypto';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const router = express.Router();
-  var x = randomInt(1000);
 
   router.use('/', async (req, res) => {
     if (req.method === 'POST') {
       // Criar evento
-      const sql = "INSERT INTO evento (id, id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem) VALUES (?, ?, ?, ?, ?, ?, ?)";
+      const sql = "INSERT INTO evento (id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem) VALUES (?, ?, ?, ?, ?, ?)";
       const params = [
-        x,
         '1',
         req.body.nome,
         req.body.dataEvento,
