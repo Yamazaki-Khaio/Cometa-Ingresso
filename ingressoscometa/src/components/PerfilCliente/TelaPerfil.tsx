@@ -1,4 +1,3 @@
-import { deflate } from "zlib";
 import PerfilCampoCep from "./PerfilCampoCep";
 import PerfilCampoCpf from "./PerfilCampoCpf";
 import PerfilCampoEmail from "./PerfilCampoEmail";
@@ -7,7 +6,6 @@ import PerfilCampoRua from "./PerfilCampoRua";
 import PerfilCampoTelefone from "./PerfilCampoTelefone";
 import PerfilComplementoCasa from "./PerfilComplementoCasa";
 import PerfilNumeroCasa from "./PerfilNumeroCasa";
-import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 
 export default function Perfil(){
 
@@ -28,6 +26,4 @@ export default function Perfil(){
             </div>
             </div>
         )
-    }
-
-
+}
