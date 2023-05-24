@@ -1,10 +1,8 @@
-import React from 'react'
-import Slider from 'react-slick'
-import Evento from './Evento'
-import { eventos } from './GrindEvento'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import { ALL } from 'dns'
+import React, { useEffect, useState } from 'react';
+import Slider from 'react-slick';
+import axios from 'axios';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const settings = {
   className: "center mx-5",
@@ -21,19 +19,32 @@ const settings = {
   initialSlide: 0,
   sliderWidth: 100,
   slideMargin: 100,
-  
-  
-}
+};
 
 export default function DestaqueSemana(props: any) {
+  const [eventos, setEventos] = useState([]);
+
+  useEffect(() => {
+    fetchEventosDestaque();
+  }, []);
+
+  const fetchEventosDestaque = async () => {
+    try {
+      const response = await axios.get('/api/evento');
+      setEventos(response.data);
+    } catch (error) {
+      console.error('Erro ao buscar eventos de destaque:', error);
+    }
+  };
+
   return (
     <div className="relative flex-wrap justify-center items-center p-4 gap-4">
       <Slider {...settings}>
-        {eventos.map((eventoDestaque, index) => (
+        {eventos.map((eventoDestaque: any, index: number) => (
           <div key={index} className="destaque-evento">
             <img
-              src={eventoDestaque.Image}
-              alt={eventoDestaque.Nome}
+              src={eventoDestaque.imagem}
+              alt={eventoDestaque.nome_evento}
               className="w-[500px] h-[300px] object-cover rounded-xl border-separate border-4 border-white"
             />
           </div>
