@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+.custom-table td,
+.custom-table th {
+  border-color: #ffffff;
+}

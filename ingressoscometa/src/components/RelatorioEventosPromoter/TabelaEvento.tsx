@@ -12,20 +12,20 @@ interface TabelaProps {
 
 const Tabela: React.FC<TabelaProps> = ({ dados }) => {
   return (
-    <table>
+    <table className="w-full border-collapse custom-table">
       <thead>
         <tr>
-          <th>Eventos</th>
-          <th>Total de Ingressos Vendidos</th>
-          <th>Total Arrecadado</th>
+          <th className="py-2 px-4 bg-blue-100 rounded-tl-lg">Eventos</th>
+          <th className="py-2 px-4 bg-blue-100">Total de Ingressos Vendidos</th>
+          <th className="py-2 px-4 bg-blue-100 rounded-tr-lg">Total Arrecadado R$</th>
         </tr>
       </thead>
       <tbody>
         {dados.map((item, index) => (
           <tr key={index}>
-            <td>{item.evento}</td>
-            <td>{item.ingressosVendidos}</td>
-            <td>{item.totalArrecadado}</td>
+            <td className="py-2 px-4 border text-center">{item.evento}</td>
+            <td className="py-2 px-4 border text-center">{item.ingressosVendidos}</td>
+            <td className="py-2 px-4 border text-center">{item.totalArrecadado}</td>
           </tr>
         ))}
       </tbody>
