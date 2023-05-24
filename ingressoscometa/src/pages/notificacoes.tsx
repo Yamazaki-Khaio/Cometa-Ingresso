@@ -1,4 +1,4 @@
-import Notificacao from "@/components/Notificacao"
+import Notificacao from "@/components/AdmLogado/Notificacao"
 import Layout from "@/components/layout"
 import iNotificacao from "./api/classes/iNotificacao"
 
