@@ -27,7 +27,7 @@ export default function PerfilNumeroCasa(props: any){
                 type="text"
                 name="numero"
                 id="numero"
-                disabled
+                disabled={!editando} // Define o estado de desabilitado com base na variável de estado "editando"
                 maxLength={50}
                 placeholder="Insira o numero"
                 required

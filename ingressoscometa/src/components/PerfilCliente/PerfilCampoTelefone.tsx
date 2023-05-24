@@ -25,7 +25,7 @@ export default function PerfilCampoTelefone(props: any) {
             type="text"
             name="telefone"
             id="telefone"
-            disabled
+            disabled={!editando} // Define o estado de desabilitado com base na variável de estado "editando"
             maxLength={50}
             placeholder="Insira o telefone"
             required

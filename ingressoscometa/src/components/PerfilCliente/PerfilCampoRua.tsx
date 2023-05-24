@@ -29,7 +29,7 @@ export default function PerfilCampoRua(props: any){
                 maxLength={50}
                 placeholder="Insira o rua"
                 required
-                disabled
+                disabled={!editando} // Define o estado de desabilitado com base na variável de estado "editando"
                 onInvalid={(e) => {
                     e.preventDefault();
                     alert("Algo deu errado. Tente novamente.");

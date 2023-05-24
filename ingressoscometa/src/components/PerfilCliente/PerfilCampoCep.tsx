@@ -28,7 +28,7 @@ export default function PerfilCampoCep(props: any){
                 name="cep"
                 id="cep"
                 maxLength={50}
-                disabled
+                disabled={!editando} // Define o estado de desabilitado com base na variável de estado "editando"
                 placeholder="Insira o cep"
                 required
                 onInvalid={(e) => {

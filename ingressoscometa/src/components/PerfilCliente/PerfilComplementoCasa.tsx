@@ -23,7 +23,7 @@ export default function PerfilComplementoCasa(props: any){
         </label >
         <div className="input-group border w-64 border-gray-400 rounded-md p-2 mb-4">
             <input
-                disabled
+                disabled={!editando} // Define o estado de desabilitado com base na variável de estado "editando"
                 type="text"
                 name="complemento"
                 id="complemento"
