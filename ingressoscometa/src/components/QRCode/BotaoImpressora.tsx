@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPrint } from "@fortawesome/free-solid-svg-icons";
 
-export default function BotaoImpressora() {
+export default function BotaoImpressora({ onClick }: { onClick: () => void }) {
   return (
     <div>
       <button
@@ -15,6 +15,7 @@ export default function BotaoImpressora() {
           hover:text-green-600
           h-14 // Aumentando a altura do botão
         `}
+        onClick={onClick}
       >
         <FontAwesomeIcon icon={faPrint} />
       </button>

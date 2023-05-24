@@ -1,4 +1,4 @@
-import Layout from "@/components/layoutCliente";
+import Layout from "@/components/CabecalhoCliente/layoutCliente";
 import { signOut,useSession } from "next-auth/react";
 import { json } from "stream/consumers";
 import Sessao from "@/components/sessao";

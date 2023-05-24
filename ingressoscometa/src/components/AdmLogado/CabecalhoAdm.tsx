@@ -1,9 +1,9 @@
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/router"
-import BotaoCarrinho from "../BotaoCarrinho"
-import BotaoEventos from "../BotaoEventos"
-import BotaoIngressos from "../BotaoIngressos"
-import BotaoPerfil from "../BotaoPerfil"
+import BotaoCarrinho from "../CabecalhoCliente/BotaoCarrinho"
+import BotaoEventos from "../CabecalhoCliente/BotaoEventos"
+import BotaoIngressos from "../CabecalhoCliente/BotaoIngressos"
+import BotaoPerfil from "../CabecalhoCliente/BotaoPerfil"
 import Botao from "../Botao"
 
 export default function CabecalhoAdm(props: { isBotaoOcultoLogin?: boolean, isBotaoOcultoCadastro?: boolean, isBotaoOcultoEvento?: boolean, isBotaoOcultoBackup?: boolean }) {
