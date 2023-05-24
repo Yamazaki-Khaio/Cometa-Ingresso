@@ -1,5 +1,5 @@
-import Layout from "@/components/layoutCliente";
-import Perfil from "@/components/TelaPerfil";
+import Layout from "@/components/CabecalhoCliente/layoutCliente";
+import Perfil from "@/components/PerfilCliente/TelaPerfil";
 
 export default function perfil(){
     return(
