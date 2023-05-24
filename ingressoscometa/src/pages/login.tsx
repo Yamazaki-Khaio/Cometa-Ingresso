@@ -1,4 +1,4 @@
-import Layout from "@/components/layout";
+import Layout from "@/components/Cabecalho/layout";
 import Login from "@/components/Login";
 
 export default function login(){

@@ -1,4 +1,4 @@
-import Layout from "@/components/layout"
+import Layout from "@/components/Cabecalho/layout"
 import AdmLogado  from "@/components/AdmLogado/AdmLogado"
 import LayoutAdm from "@/components/AdmLogado/LayoutAdm"
 

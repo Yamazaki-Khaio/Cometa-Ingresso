@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Botao from "./Botao";
+import Botao from "./botao";
 import Image from 'next/image'
 
 export default function Cabecalho(props: { isBotaoOcultoLogin?: boolean,  isBotaoOcultoCadastro?: boolean, isBotaoOcultoEvento?: boolean, isBotaoOcultoBackup?: boolean}) {

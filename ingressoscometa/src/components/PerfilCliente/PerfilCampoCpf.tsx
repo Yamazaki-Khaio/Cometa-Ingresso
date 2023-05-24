@@ -1,6 +1,6 @@
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Botao from "../Botao";
+import Botao from "../Cabecalho/botao";
 import { useState } from "react";
 
 export default function PerfilCampoCpf(props: any){

@@ -1,7 +1,7 @@
 
 import Login from "@/components/Login";
 import PaginaEvento from "@/components/PaginaEvento";
-import Layout from "@/components/layout";
+import Layout from "@/components/Cabecalho/layout";
 
 export default function evento(props: any){
     return(

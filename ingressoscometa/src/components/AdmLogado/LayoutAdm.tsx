@@ -1,4 +1,4 @@
-import Rodape from "../Rodape"
+import Rodape from "../Cabecalho/Rodape"
 import CabecalhoAdm from "./cabecalhoAdm"
 
 export default function LayoutAdm(props: any){

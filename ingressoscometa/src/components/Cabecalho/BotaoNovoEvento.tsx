@@ -1,4 +1,4 @@
-import Botao from "./Botao";
+import Botao from "./botao";
 
 export default function BotaoNovoEvento(props: any){
     return(

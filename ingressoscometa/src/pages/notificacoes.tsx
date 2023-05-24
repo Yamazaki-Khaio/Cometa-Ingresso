@@ -1,5 +1,5 @@
 import Notificacao from "@/components/AdmLogado/Notificacao"
-import Layout from "@/components/layout"
+import Layout from "@/components/Cabecalho/layout"
 import iNotificacao from "./api/classes/iNotificacao"
 
 //APENAS TESTE DO COMPONENTE
