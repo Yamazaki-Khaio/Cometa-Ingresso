@@ -1,5 +1,5 @@
 import Layout from "@/components/layout";
-import CadastroEvento from "@/components/Cadastro_Evento";
+import CadastroEvento from "@/components/CadastroEvento/Cadastro_Evento";
 
 export default function cadastro(){
     return(

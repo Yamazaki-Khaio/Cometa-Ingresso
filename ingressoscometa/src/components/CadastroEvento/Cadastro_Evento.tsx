@@ -1,4 +1,4 @@
-import BotaoSubmitEvento from "./BotaoSubmitEvento";
+import BotaoSubmitEvento from "../BotaoSubmitEvento";
 import CampoDescricaoEvento from "./CampoDescricaoEvento";
 import CampoNomeEvento from "./CampoNomeEvento";
 import CampoDataEvento from "./CampoDataEvento";
