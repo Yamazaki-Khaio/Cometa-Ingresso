@@ -4,7 +4,7 @@ import CampoSenha from "./CadastroUsuario/CampoSenha";
 import RadioButton from "./CadastroUsuario/RadioButton";
 import BotaoEntrar from "./CadastroUsuario/BotaoEntrar.1";
 import CampoEsqueciSenha from "./CadastroUsuario/CampoEsqueciSenha";
-import Message from "./Mensagem";
+import Message from "./Cabecalho/Mensagem";
 import { FormEventHandler, useState } from "react";
 import { signIn } from "next-auth/react";
 import { ok } from "assert";

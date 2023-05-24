@@ -1,6 +1,6 @@
 import React, { use, useEffect, useState } from 'react'
 import axios from 'axios';
-import Evento from '../Evento'
+import Evento from '../CadastroEvento/Evento'
 
 
 export default function GrindEvento(props: any) {
