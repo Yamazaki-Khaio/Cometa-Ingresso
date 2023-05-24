@@ -16,6 +16,7 @@ export default function PerfilCampoNome({ onClick }: { onClick: () => void }) {
 
   function handleEditar() {
     setEditando(true); // Habilita a edição ao clicar no botão "Editar"
+    setNome("")
   }
 
   return (
