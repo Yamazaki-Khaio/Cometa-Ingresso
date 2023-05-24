@@ -1,5 +1,5 @@
 import Layout from "@/components/layout"
-import HomeNaoLogin  from "@/components/HomeNaoLogin"
+import HomeNaoLogin  from "@/components/Index/HomeNaoLogin"
 
 
 export default function Home(){
