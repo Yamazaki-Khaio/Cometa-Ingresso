@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Botao from "./Botao";
+import Botao from "../Botao";
 
 export default function CampoEmailEsqueciSenha(props: any){
   const [email, setEmail] = useState('');

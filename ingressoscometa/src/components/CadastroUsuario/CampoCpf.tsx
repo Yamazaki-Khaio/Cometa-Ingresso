@@ -1,4 +1,4 @@
-import Botao from "./Botao";
+import Botao from "../Botao";
 import { useState } from "react";
 
 export default function CampoCpf(props: any){
