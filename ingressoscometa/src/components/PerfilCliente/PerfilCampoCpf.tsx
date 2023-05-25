@@ -15,10 +15,7 @@ export default function PerfilCampoCpf(props: any){
     setCpf(cpfValue);
   }
 
-   
-  function handleEditar(event: React.ChangeEvent<HTMLInputElement>): void {
-    throw new Error("Function not implemented.");
-  }
+  
 
   return(
     <><label className="flex flex-col gap-1 rounded-md mb-2"  htmlFor="cpf">Cpf
@@ -28,7 +25,7 @@ export default function PerfilCampoCpf(props: any){
             type="text"
             name="cpf"
             id="cpf"
-            maxLength={50}
+            maxLength={14}
             placeholder="Insira o cpf"
             required
             onInvalid={(e) => {

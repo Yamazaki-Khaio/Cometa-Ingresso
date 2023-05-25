@@ -27,7 +27,7 @@ export default function PerfilCampoCep(props: any){
                 type="text"
                 name="cep"
                 id="cep"
-                maxLength={50}
+                maxLength={9}
                 disabled={!editando} // Define o estado de desabilitado com base na variável de estado "editando"
                 placeholder="Insira o cep"
                 required

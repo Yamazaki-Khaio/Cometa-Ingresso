@@ -1,9 +1,12 @@
-import PerfilCampoNome from "./PerfilCampoNome";
+import BotaoSalvarCartao from "./botaoSalvarCartao";
+import Campocvv from "./cartaoCvv";
+import CampoNumeroCartao from "./cartaoNumero";
+import CampoValidade from "./cartaoValidade";
 
 export default function BlocoCartaoDeCredito() {
   return (
     <div
-      className="flex flex-col items-center justify-center w-96 h-60 bg-purple-500 mx-auto relative"
+      className="flex flex-col items-center justify-center w-96 h-60 bg-teal-300 mx-auto relative"
       style={{
         marginTop: "-100vh", // Metade negativa da altura para centralizar verticalmente
         color: "black", // Definir a cor do texto como preto
@@ -12,7 +15,7 @@ export default function BlocoCartaoDeCredito() {
         borderRadius: "30px", // Adicionar bordas levemente arredondadas
       }}
     >
-      <PerfilCampoNome
+      <CampoNumeroCartao
         style={{
           position: "absolute", // Posicionamento absoluto para ficar acima do bloco
           top: "-30px", // Ajustar a distância vertical
@@ -22,6 +25,9 @@ export default function BlocoCartaoDeCredito() {
           textTransform: "uppercase", // Converter o texto em letras maiúsculas
         }}
       />
+      <Campocvv/>
+      <CampoValidade/>
+      <BotaoSalvarCartao/>
     </div>
   );
 }

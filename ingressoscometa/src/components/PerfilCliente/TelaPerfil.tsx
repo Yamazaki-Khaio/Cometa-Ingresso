@@ -35,7 +35,9 @@ export default function Perfil(){
                 
                 <BotaoSalvarPerfil/>
             </div>
+            <div className="col-start-6 col-span-6 flex justify-center items-center">
             <BlocoCartaoDeCredito/>
+            </div>
             </div>
             
         )
