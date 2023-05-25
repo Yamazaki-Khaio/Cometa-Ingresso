@@ -1,6 +1,6 @@
 import React, { use, useEffect, useState } from 'react'
 import axios from 'axios';
-import Evento from '../CadastroEvento/Evento'
+import Evento from '../cadastroEvento/Evento';
 
 
 export default function GrindEvento(props: any) {
@@ -19,17 +19,17 @@ export default function GrindEvento(props: any) {
   }
 
   return (
-    
+
     <div className="flex flex-wrap gap-5 justify-center items-center p-4">
       {eventos.map((evento: any, index: number) => (
         <Evento
-        key={evento.id}
-        Nome={evento.nome_evento}
-        Data={new Date(evento.data_evento).toLocaleDateString()}
-        Hora={new Date(evento.data_evento).toLocaleTimeString()}
-        Local={evento.descricao_evento}
-        Image={evento.imagem} // Aqui você precisa ajustar como a imagem é passada para o componente Evento
-         
+          key={evento.id}
+          Nome={evento.nome_evento}
+          Data={new Date(evento.data_evento).toLocaleDateString()}
+          Hora={new Date(evento.data_evento).toLocaleTimeString()}
+          Local={evento.descricao_evento}
+          Image={evento.imagem} // Aqui você precisa ajustar como a imagem é passada para o componente Evento
+
         />
       ))}
     </div>
