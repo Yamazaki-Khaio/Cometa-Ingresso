@@ -1,5 +1,6 @@
-import DestaqueSemana from "../DestaqueSemana";
-import GrindEvento from "../GrindEvento";
+import DestaqueSemana from "../Index/DestaqueSemana";
+import GrindEvento from "../Index/GrindEvento";
+
 
 export default function AdmLogado() {
     return(
