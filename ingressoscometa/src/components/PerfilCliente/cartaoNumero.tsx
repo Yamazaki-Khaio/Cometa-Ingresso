@@ -7,6 +7,7 @@ export default function CampoNumeroCartao(props: any) {
   const [editando, setEditando] = useState(false); // Estado de ediçãos
   function handleNumeroCartaoChange(event: React.ChangeEvent<HTMLInputElement>) {
     let numeroCartaoValue = event.target.value.replace(/\D/g, '');
+    numeroCartaoValue = numeroCartaoValue.replace(/(\d{4})(\d{4})(\d{4})(\d{4})$/, '$1 $2 $3 $4' )
     setNumeroCartao(numeroCartaoValue);
   }
 

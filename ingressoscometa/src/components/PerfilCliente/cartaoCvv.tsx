@@ -25,7 +25,7 @@ export default function CampoCvv(props: any) {
             name="cvv"
             id="cvv"
             disabled={!editando} // Define o estado de desabilitado com base na variável de estado "editando"
-            maxLength={50}
+            maxLength={3}
             placeholder="CVV"
             required
             onInvalid={(e) => {

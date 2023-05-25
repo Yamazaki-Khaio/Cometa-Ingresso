@@ -7,6 +7,7 @@ export default function CampoValidade(props: any) {
   const [editando, setEditando] = useState(false); // Estado de ediçãos
   function handleValidadeChange(event: React.ChangeEvent<HTMLInputElement>) {
     let validadeValue = event.target.value.replace(/\D/g, '');
+    validadeValue = validadeValue.replace(/(\d{2})(\d{2})$/, '$1/$2' )
     setValidade(validadeValue);
   }
 
@@ -21,12 +22,13 @@ export default function CampoValidade(props: any) {
     <>
     <div className="input-group border w-64 border-gray-400 rounded-md bg-white">
         <input
-            type="date"
+            type="text"
             name="validade"
             id="validade"
             disabled={!editando} // Define o estado de desabilitado com base na variável de estado "editando"
             placeholder="DD/AA"
             required
+            maxLength={5}
             onInvalid={(e) => {
                 e.preventDefault();
                 alert("Algo deu errado. Tente novamente.");
