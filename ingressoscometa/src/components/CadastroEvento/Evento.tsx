@@ -1,6 +1,7 @@
 import Image from 'next/image'
 export default function Evento(props:any) {
     const { imageSizeClass } = props;
+    
     return (
         <div className="relative h-80 w-80 bg-zinc-300 border border-zinc-400 rounded-2xl">
         <div className="absolute inset-0 mx-auto rounded-2xl overflow-hidden">
