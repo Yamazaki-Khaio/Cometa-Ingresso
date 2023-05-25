@@ -12,7 +12,8 @@ interface FormData {
   descricao: string,
   localEvento: string,
   dataEvento: string,
-  horarioEvento: string
+  horarioEvento: string,
+  imagem : any
 }
 
 export default function CadastroEvento() {
@@ -22,7 +23,8 @@ export default function CadastroEvento() {
     descricao: "",
     localEvento: "",
     dataEvento: "2000-01-01",
-    horarioEvento: ""
+    horarioEvento: "",
+    imagem: ""
   });
 
 
@@ -33,6 +35,26 @@ export default function CadastroEvento() {
       formData.localEvento = document.getElementById('nome').value
       formData.dataEvento = document.getElementById("data").value
       formData.horarioEvento = document.getElementById('nome').value
+      try{
+        const reader = new FileReader();
+        const file = document.querySelector("input[type=file]").files[0];
+        reader.addEventListener(
+          "load",
+          () => {
+            formData.imagem = reader.result;
+          },
+          false
+        );
+        reader.readAsDataURL(file)
+        
+        console.log(formData.imagem);
+       
+      } catch (error) {
+        console.error("Erro ao salvar imagem:", error);
+
+        // Lógica adicional para lidar com erros no envio dos dados
+      }
+
     e.preventDefault()
 
     const res = await fetch('/api/evento', {
@@ -57,6 +79,7 @@ export default function CadastroEvento() {
             };
   
 
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -72,7 +95,7 @@ return(
             <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao"/>
             <CampoLocalEvento value={formData.localEvento} onChange={handleInputChange} name="localEvento"/>
             <CampoDataEvento value={formData.dataEvento} onChange={handleInputChange} name="dataEvento"/>
-            <CampoEnvioImagem/>
+            <CampoEnvioImagem onChange={handleInputChange} name="arquivo"/>
             <BotaoSubmitEvento/>
             </form>
         </div>

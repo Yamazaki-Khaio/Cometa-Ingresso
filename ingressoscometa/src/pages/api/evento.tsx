@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         req.body.dataEvento,
         req.body.descricao,
         '1',
-        '',
+        req.body.imagem,
       ];
       connection.query(sql, params, (error, results, fields) => {
         if (error) {

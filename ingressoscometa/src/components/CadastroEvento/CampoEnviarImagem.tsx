@@ -4,7 +4,9 @@ export default function CampoEnvioImagem(props:any){
     const [imagem,setImagem] = useState("");
 
     function handleImagechange (event: React.ChangeEvent<HTMLInputElement>){
-        setImagem(event.target.value);
+        const reader = new FileReader();
+        reader.readAsDataURL(event.currentTarget.files[0]);
+        setImagem(reader.result);
     }
  
     return(
