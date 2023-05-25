@@ -7,6 +7,7 @@ import PerfilCampoTelefone from "./PerfilCampoTelefone";
 import PerfilComplementoCasa from "./PerfilComplementoCasa";
 import PerfilNumeroCasa from "./PerfilNumeroCasa";
 import BotaoSalvarPerfil from "./botaoSalvarPerfil";
+import BlocoCartaoDeCredito from "./BlocoCartaoCredito";
 
 export default function Perfil(){
 
@@ -34,7 +35,7 @@ export default function Perfil(){
                 
                 <BotaoSalvarPerfil/>
             </div>
-            
+            <BlocoCartaoDeCredito/>
             </div>
             
         )
