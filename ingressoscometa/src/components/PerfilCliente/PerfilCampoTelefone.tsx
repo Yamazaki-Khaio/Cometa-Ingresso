@@ -7,7 +7,9 @@ export default function PerfilCampoTelefone(props: any) {
   const [telefone, setTelefone] = useState('(99)99999-9999');
   const [editando, setEditando] = useState(false); // Estado de ediçãos
   function handleTelefoneChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setTelefone(event.target.value);
+    let telefoneValue = event.target.value.replace(/\D/g, '');
+    telefoneValue = telefoneValue.replace(/(\d{5})(\d{1,4})$/, '$1-$2' )
+    setTelefone(telefoneValue);
   }
 
 
