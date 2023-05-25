@@ -13,7 +13,7 @@ export default function Perfil(){
 
     return(
         
-        <div className="grid grid-cols-8">
+        <div className="grid grid-cols-8 p-4">
             <div className="col-start-2 col-span-2 flex justify-start items-start">
                 <form>
                     <PerfilCampoNome/>
