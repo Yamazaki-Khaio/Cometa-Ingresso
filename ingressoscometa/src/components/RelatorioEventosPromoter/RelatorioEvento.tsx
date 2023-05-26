@@ -1,5 +1,6 @@
 import React from 'react';
 import Tabela from './TabelaEvento';
+import MenuLateralPromoter from './MenuLateralPromoter';
 
 const dados = [
   { evento: 'Sandy e Júnior: o retorno Pleno', ingressosVendidos: 52, totalArrecadado: 200000.00 },
@@ -11,13 +12,18 @@ const dados = [
 
 const App: React.FC = () => {
   return (
-    <div >
-      <div className="mt-4 p-4">
-        <h1 className="text-2xl font-bold">Relatório de Eventos</h1>
-      </div>
-      <div className="p-4 bg-white-100 rounded-lg shadow-xl">
-        <h3 className="text-xl font-semibold mt-4">Tabela de Eventos</h3>
-        <Tabela dados={dados} />
+    <div className="flex">
+      <MenuLateralPromoter />
+      <div className="flex-1">
+        <div className="p-4">
+          <div className="mt-4">
+            <h1 className="text-2xl font-bold">Relatório de Eventos</h1>
+          </div>
+          <div className="bg-white rounded-lg shadow-xl p-4 mt-4">
+            <h3 className="text-xl font-semibold">Tabela de Eventos</h3>
+            <Tabela dados={dados} />
+          </div>
+        </div>
       </div>
     </div>
   );
