@@ -26,7 +26,7 @@ export default function CampoNumeroCartao(props: any) {
             name="numeroCartao"
             id="numeroCartao"
             disabled={!editando} // Define o estado de desabilitado com base na variável de estado "editando"
-            maxLength={50}
+            maxLength={19}
             placeholder="Insira o número do cartão"
             required
             onInvalid={(e) => {
