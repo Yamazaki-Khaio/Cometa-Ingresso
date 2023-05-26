@@ -1,6 +1,7 @@
 import React, { use, useEffect, useState } from 'react'
 import axios from 'axios';
 import EventoLogado from './EventoLogado';
+import { Buffer } from 'buffer';
 
 
 export default function ListaEventosCliente(props: any) {
@@ -18,6 +19,12 @@ export default function ListaEventosCliente(props: any) {
     }
   }
 
+  const convertBufferToUrl = (buffer: any) => {
+    const imageData = Buffer.from(buffer.data).toString('base64');
+    return `data:image/png;base64,${imageData}`;
+  };
+
+
   return (
 
     <div className="flex flex-wrap gap-5 justify-center items-center p-4 bg-slate-200">
@@ -28,7 +35,7 @@ export default function ListaEventosCliente(props: any) {
           Data={new Date(evento.data_evento).toLocaleDateString()}
           Hora={new Date(evento.data_evento).toLocaleTimeString()}
           Local={evento.local}
-          Image={evento.imagem} // Aqui você precisa ajustar como a imagem é passada para o componente Evento
+          Image={convertBufferToUrl (evento.imagem)} // Aqui você precisa ajustar como a imagem é passada para o componente Evento
 
         />
       ))}

@@ -1,6 +1,11 @@
 import Image from 'next/image'
+import React, { useEffect } from 'react';
+
+
+
+
 export default function Evento(props:any) {
-    const { imageSizeClass } = props;
+    const { imageSizeClass } = props
     
     return (
         <div className="relative h-80 w-80 bg-zinc-300 border border-zinc-400 rounded-2xl">
@@ -20,3 +25,6 @@ export default function Evento(props:any) {
 
 
     )}
+
+
+    
