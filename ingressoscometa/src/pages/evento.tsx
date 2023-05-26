@@ -1,6 +1,6 @@
 
 import Login from "@/components/Login";
-import PaginaEvento from "@/components/PaginaEvento";
+import PaginaEvento from "@/components/CadastroEvento/PaginaEvento";
 import Layout from "@/components/CabecalhoCadastro/layout";
 
 export default function evento(props: any){
