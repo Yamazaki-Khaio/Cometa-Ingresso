@@ -7,7 +7,7 @@ export default function homeadm(){
 
     return (
         <div>
-            <LayoutAdm pagina={<AdmLogado/>} exibirBotao={false} exibirBotao2={false} exibirBotao3={false} exibirBotao4={true} />
+            <LayoutAdm pagina={<AdmLogado/>} />
         </div>       
     )
 }

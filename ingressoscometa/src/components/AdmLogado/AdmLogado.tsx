@@ -1,3 +1,4 @@
+import ListaEventosCliente from "../ClienteLogado/ListaEventosCliente";
 import DestaqueSemana from "../Index/DestaqueSemana";
 import GrindEvento from "../Index/GrindEvento";
 
@@ -5,8 +6,7 @@ import GrindEvento from "../Index/GrindEvento";
 export default function AdmLogado() {
     return(
         <div>
-            <DestaqueSemana/>
-            <GrindEvento/>   
+            <ListaEventosCliente/>   
         </div>
     )
 }
