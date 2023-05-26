@@ -1,12 +1,17 @@
 import Rodape from "../CabecalhoCadastro/Rodape"
-import CabecalhoAdm from "./cabecalhoAdm"
+import ListaEventosCliente from "../ClienteLogado/ListaEventosCliente"
+import CabecalhoAdm from "./CabecalhoAdm"
+import ListaEventosAdm from "./ListaEventosAdm"
 
-export default function LayoutAdm(props: any){
-    return(
-        <div className="flex flex-col justify-between h-screen bg-gray-100">
-            <CabecalhoAdm isBotaoOcultoLogin={props.exibirBotao === false} isBotaoOcultoCadastro={props.exibirBotao2 === false} isBotaoOcultoEvento = {props.exibirBotao3 === false} isBotaoOcultoBackup = {props.exibirBotao4 === false} /> 
-                {props.pagina}
-            <Rodape/>
+export default function LayoutAdm(props: any) {
+    return (
+        <div>
+            <CabecalhoAdm />
+            <div className="flex justify-end bg-gray-100">
+                <ListaEventosAdm />
+            </div>
+            
         </div>
+
     )
 }
