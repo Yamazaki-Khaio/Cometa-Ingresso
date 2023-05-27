@@ -6,14 +6,15 @@ import CampoNomeCompleto from "./CampoNomeCompleto";
 import BotaoSubmitCadastro from "./BotaoSubmitCadastro";
 import { FormEventHandler, useState } from "react";
 import { createHash } from 'crypto';
+import CampoEmail from "./CampoEmail";
 
 interface FormData {
   nome: string,
   cpf: string,
   data_nascimento: string,
-  senha: string
+  senha: string,
+  email: string
 }
-
 
 function removerMascaraCpf(cpfComMascara: string): string {
   // Remove todos os caracteres que não são dígitos
@@ -28,7 +29,8 @@ export default function CadastroUsuario() {
     nome: "",
     cpf: "",
     data_nascimento: "2000-01-01",
-    senha: ""
+    senha: "",
+    email: ""
   });
 
 
@@ -42,7 +44,8 @@ export default function CadastroUsuario() {
         nome: document.getElementById('nomeCompleto').value,
         cpf: removerMascaraCpf(document.getElementById('cpf').value),
         data_nascimento: document.getElementById('data').value,
-        senha: hash.digest('hex')
+        senha: hash.digest('hex'),
+        email:  document.getElementById('email').value
       }
 
 
@@ -80,6 +83,7 @@ export default function CadastroUsuario() {
     <div className="flex flex-col justify-center items-center bg-gray-100 p-12">
       <form onSubmit={handleSubmit}>
         <CampoNomeCompleto value={formData.nome} onChange={handleInputChange} name="nome" />
+        <CampoEmail value={formData.email} onChange={handleInputChange} name="email"/>
         <CampoCpf value={formData.cpf} onChange={handleInputChange} name="cpf" />
         <CampoSenhaERepetirSenha value={formData.senha} onChange={handleInputChange} name="senha" />
         <RadioButton />
