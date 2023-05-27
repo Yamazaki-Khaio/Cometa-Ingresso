@@ -1,17 +1,16 @@
 import React from 'react';
-import BotaoEnviarEmail from "./BotaoEnviarEmail";
 import BotaoConfirmarSenhaNova from "./BotaoConfirmarSenhaNova";
 import BotaoCancelar from './BotaoCancelar';
-import CampoEmailEsqueciSenha from '../CadastroUsuario/CampoEmailEsqueciSenha';
+import CampoSenhaERepetirSenha from "../CadastroUsuario/CampoSenhaERepetirSenha";
 
 const EsquecerSenha: React.FC = () => {
     return (
       <div className="flex flex-col items-center">
-            <h2 className="font-bold p-5">Informe seu e-mail associado a sua conta!</h2>
-            <CampoEmailEsqueciSenha/>
+            <h2 className="font-bold p-5">Insira a nova senha!</h2>
+            <CampoSenhaERepetirSenha/>
             <div className="flex">
                 <BotaoCancelar/>
-                <BotaoEnviarEmail/>
+                <BotaoConfirmarSenhaNova/>
             </div>
       </div>
     );
