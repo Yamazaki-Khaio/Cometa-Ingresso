@@ -4,8 +4,10 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
+
 export default function PerfilCampoNome() {
-  const [nome, setNome] = useState("Dino da Silva Sauro");
+  const { data: session } = useSession()
+  const [nome, setNome] = useState(session?.user?.name);
   const [editando, setEditando] = useState(false); // Estado de edição
 
   function handleNomeChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -14,7 +16,6 @@ export default function PerfilCampoNome() {
 
   function handleEditar() {
     setEditando(true); // Habilita a edição ao clicar no botão "Editar"
-    setNome("")
   }
 
   return (
