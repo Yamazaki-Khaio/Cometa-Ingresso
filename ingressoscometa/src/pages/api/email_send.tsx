@@ -1,11 +1,9 @@
 import express, { Request, Response } from 'express';
-import nodemailer from 'nodemailer';
-
-const app = express();
-
-app.use(express.json());
+import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  port: 587,
   service: 'gmail',
   auth: {
     user: 'cometanoreply@gmail.com',
@@ -13,26 +11,18 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-app.post('/email_send', async (req: Request, res: Response) => {
-  try {
-    const { email } = req.body;
+// Exemplo de envio de email
+const mailOptions = {
+  from: 'cometanoreply@gmail.com',
+  to: 'tassiocarvalhor@gmail.com',
+  subject: 'Bem-vindo Tássio!',
+  text: 'Olá, bem-vindo ao nosso site!'
+};
 
-    const mailOptions = {
-      from: 'tassiocarvalhor@gmail.com',
-      to: email,
-      subject: 'Bem-vindo!',
-      text: 'Olá, bem-vindo ao nosso site!'
-    };
-
-    await transporter.sendMail(mailOptions);
-
-    res.status(200).json({ message: 'E-mail de boas-vindas enviado com sucesso!' });
-  } catch (error) {
+transporter.sendMail(mailOptions, (error, info) => {
+  if (error) {
     console.error('Erro ao enviar o e-mail de boas-vindas:', error);
-    res.status(500).json({ error: 'Erro ao enviar o e-mail de boas-vindas.' });
+  } else {
+    console.log('E-mail de boas-vindas enviado com sucesso!', info.response);
   }
-});
-
-app.listen(3000, () => {
-  console.log('Servidor iniciado na porta 3000');
 });
