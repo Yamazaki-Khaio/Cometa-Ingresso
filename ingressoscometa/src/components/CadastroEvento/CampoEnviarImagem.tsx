@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaTimes } from "react-icons/fa";
 
 export default function CampoEnvioImagem(props: any) {
   const [imagem, setImagem] = useState("");
@@ -36,12 +37,17 @@ export default function CampoEnvioImagem(props: any) {
       <div className="pb-6">
         {preview ? (
           <div className="relative">
-            <img src={preview} alt="Imagem" className="max-w-full h-auto" />
+            <img
+              src={preview}
+              alt="Imagem"
+              className="max-w-64 h-auto"
+              style={{ maxWidth: "200px" }}
+            />
             <button
               className="absolute top-0 right-0 bg-gray-500 text-white px-2 py-1 rounded"
               onClick={handleRemoveImage}
             >
-              Remover
+              <FaTimes className="text-red-500" />
             </button>
           </div>
         ) : (
