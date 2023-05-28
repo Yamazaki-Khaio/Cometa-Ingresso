@@ -1,7 +1,7 @@
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 
@@ -36,7 +36,7 @@ export default function PerfilCampoNome() {
             e.preventDefault();
             alert("Algo deu errado. Tente novamente.");
           }}
-          value={nome}
+          value={session?.user?.name}
           onChange={handleNomeChange}
         />
         <span className="input-group-btn p-4">

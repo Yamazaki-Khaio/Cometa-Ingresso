@@ -8,19 +8,22 @@ export default function CabecalhoPromoter(props: { isBotaoOcultoLogin?: boolean,
     const { data: session } = useSession()
     const route = useRouter()
     return(
-        <div className="flex items-center justify-between p-8 w-screen h-32 bg-white">
-            <div className="flex items-center gap-4">
+        <div className="flex flex-shrink-0 justify-center p-8 w-1/6 h-full fixed bg-white ">
+            <div className="flex flex-col gap-4">
                 <a href="/">
                     <img src="/cometa2.png" alt="Logo" width="200" height="200"/>
                 </a>
-                <h2 className="font-bold text-xl">Olá {session?.user?.name}</h2>  
-            </div>
-            <div className="flex gap-6">
+                <h2 className="font-bold text-xl">Olá {session?.user?.name}</h2>
+                
+                <div className="column gap-6">
                 <BotaoEventos/>
                 <BotaoRelatorios/>
-                <a href="/perfil"> <BotaoPerfil />
+                <a href="/perfilpromoter"> <BotaoPerfil />
                 </a>
-            </div>    
+                </div>    
+            </div>
+            
         </div>
     )
+
 }
