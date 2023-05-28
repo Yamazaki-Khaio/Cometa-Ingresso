@@ -1,13 +1,12 @@
 import express, { Request, Response } from 'express';
 import nodemailer from "nodemailer";
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  service: 'gmail',
+var transporter = nodemailer.createTransport({
+  host: "sandbox.smtp.mailtrap.io",
+  port: 2525,
   auth: {
-    user: 'cometanoreply@gmail.com',
-    pass: 'Vaidormir23'
+    user: "70bd5991213dfe",
+    pass: "1be91b5035c5ac"
   }
 });
 
