@@ -10,43 +10,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   router.use('/', async (req, res) => {
     if (req.method === 'POST') {
       // Criar usuário
-      const incrementQuery = 'SELECT id FROM usuario ORDER BY id DESC LIMIT 1'; //busca o ultimo id do usuario
-      const sql = 'INSERT INTO usuario (id, cpf, nome, senha, data_nascimento, tipo_user) VALUES (?, ?, ?, ?, ?, ?)';
-      const emailSql = 'INSERT INTO email (id, id_usuario, email) VALUES (?, ?, ?)';
+      //const incrementQuery = 'SELECT id FROM usuario ORDER BY id DESC LIMIT 1'; //busca o ultimo id do usuario
+      const sql = 'INSERT INTO usuario (cpf, nome, senha, data_nascimento, tipo_user) VALUES (?, ?, ?, ?, ?)';
+      const emailSql = 'INSERT INTO email (id_usuario, email) VALUES (?, ?)';
+      const params = [
+        req.body.cpf,
+        req.body.nome,
+        req.body.senha,
+        req.body.data_nascimento,
+        '1',
+      ];
       
-      connection.query(incrementQuery, (error, results2, fields) => {
+      connection.query(sql, params, (error, results, fields) => {
         if (error) {
-          console.error('Erro ao buscar o último ID do usuário: ', error);
-          res.status(500).send('Erro ao buscar o último ID do usuário.');
+          console.error('Erro ao inserir novo usuário: ', error);
+          res.status(500).send('Erro ao inserir novo usuário.');
           return;
         }
       
-        const lastId = results2[0].id; //proximo id
-        const newId = lastId + 1; //o novo id adicionado
-      
-        const params = [
-          newId,
-          req.body.cpf,
-          req.body.nome,
-          req.body.senha,
-          req.body.data_nascimento,
-          '1',
-        ];
+        const usuarioId = results.insertId; // Obtém o ID do usuário recém-inserido
       
         const emailParams = [
-          x,
-          newId,
+          usuarioId,
           req.body.email
         ];
-      
-        connection.query(sql, params, (error, results, fields) => {
-          if (error) {
-            console.error('Erro ao inserir novo usuário: ', error);
-            res.status(500).send('Erro ao inserir novo usuário.');
-            return;
-          }
-          res.json(results);
-        });
       
         connection.query(emailSql, emailParams, (error, results, fields) => {
           if (error) {
@@ -54,10 +41,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             res.status(500).send('Erro ao inserir novo email.');
             return;
           }
+      
           res.json(results);
         });
       });
-      
+      //});
 
     } else if (req.method === 'GET') {
       if (!req.query) {
