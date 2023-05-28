@@ -3,7 +3,7 @@ import CampoEmail from './CampoEmail'
 
 export default function CampoEsqueciSenha(props: any){
     return(
-        <Link href="/esqueciSenha">
+        <Link href="/esqueceu_senha">
         <div style={{ cursor: 'pointer' }}>Esqueci a senha</div>
         </Link>
     )

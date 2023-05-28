@@ -10,7 +10,7 @@ const EsquecerSenha: React.FC = () => {
             <h2 className="font-bold p-5">Informe seu e-mail associado a sua conta!</h2>
             <CampoEmailEsqueciSenha/>
             <div className="flex">
-                <BotaoCancelar/>
+                <BotaoCancelar href='/login'/>
                 <BotaoEnviarEmail/>
             </div>
       </div>

@@ -45,7 +45,7 @@ export default function Login() {
                     <BotaoEntrar />
                 </div>
                 <div className="flex justify-center w-full">
-                    <CampoEsqueciSenha />
+                    <CampoEsqueciSenha/>
                 </div>
                 <Message mensagem="cpf ou senha inválida" />
             </form>
