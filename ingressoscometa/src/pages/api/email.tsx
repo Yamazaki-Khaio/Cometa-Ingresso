@@ -31,6 +31,16 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
         }
         res.json(results);
       });
+    }else if (req.query['email']) {
+        const sql = 'SELECT * FROM email WHERE email=?';
+        connection.query(sql, [req.query['email']], (error, results, fields) => {
+          if (error) {
+            console.error('Erro ao buscar email: ', error);
+            res.status(500).send('Erro ao buscar email.');
+            return;
+          }
+          res.json(results);
+        });
     } else if (req.method === 'DELETE') {
       // Remover email
       const sql = 'DELETE FROM email WHERE id=?';

@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import { connection } from './db';
 import nodemailer from "nodemailer";
 
 var transporter = nodemailer.createTransport({
@@ -15,8 +16,8 @@ var transporter = nodemailer.createTransport({
 const mailOptions = {
   from: 'ingressoscometanaoresponda@outlook.com',
   to: 'tassiocarvalhor@gmail.com',
-  subject: 'Bem-vindo Tássio!',
-  text: 'Olá, bem-vindo ao nosso site!'
+  subject: 'Bem-vindo ao Cometa Ingressos',
+  text: 'Olá, bem-vindo ao Cometa Ingressos faça suas compras seguras aqui'
 };
 
 transporter.sendMail(mailOptions, (error, info) => {

@@ -100,8 +100,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.json(results);
       });
 
-      ///////////////////
-    }else if (req.method === 'GET') {
+      /////////////////// email
+    /*}else if (req.method === 'GET') {
         if (!req.query) {
           const emailSql = 'SELECT * FROM email';
           connection.query(emailSql, (error, results, fields) => {
@@ -116,8 +116,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           const emailSql = 'SELECT * FROM email WHERE email=?';
           connection.query(emailSql, [req.query['email']], (error, results, fields) => {
             if (error) {
-              console.error('Erro ao buscar usuário: ', error);
-              res.status(500).send('Erro ao buscar usuário.');
+              console.error('Erro ao buscar email: ', error);
+              res.status(500).send('Erro ao buscar email.');
               return;
             }
             res.json(results);
@@ -148,11 +148,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     } else if (req.method === 'PUT') {
       // Atualizar usuário
-      const sql = 'UPDATE evento SET ? WHERE id=?';
+      const sql = 'UPDATE email SET ? WHERE id=?';
       connection.query(sql, [req.body, req.query.id], (error, results, fields) => {
         if (error) {
-          console.error('Erro ao atualizar usuário: ', error);
-          res.status(500).send('Erro ao atualizar usuário.');
+          console.error('Erro ao atualizar email: ', error);
+          res.status(500).send('Erro ao atualizar email.');
           return;
         }
         res.json(results);
@@ -160,7 +160,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } else {
       res.status(404).send('Rota não encontrada.');
     }
-  });
+  });*/
 
   router(req, res); // Invoke the router with req and res objects
 }
