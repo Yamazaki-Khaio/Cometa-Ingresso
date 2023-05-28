@@ -2,17 +2,18 @@ import express, { Request, Response } from 'express';
 import nodemailer from "nodemailer";
 
 var transporter = nodemailer.createTransport({
-  host: "sandbox.smtp.mailtrap.io",
-  port: 2525,
+    host: 'smtp.office365.com',
+    port: 587,
+    secure: false, // Não está usando SSL/TLS, mas sim STARTTLS
   auth: {
-    user: "70bd5991213dfe",
-    pass: "1be91b5035c5ac"
+    user: "ingressoscometanaoresponda@outlook.com",
+    pass: "Vaidormir23"
   }
 });
 
 // Exemplo de envio de email
 const mailOptions = {
-  from: 'cometanoreply@gmail.com',
+  from: 'ingressoscometanaoresponda@outlook.com',
   to: 'tassiocarvalhor@gmail.com',
   subject: 'Bem-vindo Tássio!',
   text: 'Olá, bem-vindo ao nosso site!'
