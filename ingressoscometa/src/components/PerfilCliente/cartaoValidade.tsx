@@ -26,7 +26,7 @@ export default function CampoValidade(props: any) {
             name="validade"
             id="validade"
             disabled={!editando} // Define o estado de desabilitado com base na variável de estado "editando"
-            placeholder="DD/AA"
+            placeholder="MM/AA"
             required
             maxLength={5}
             onInvalid={(e) => {
