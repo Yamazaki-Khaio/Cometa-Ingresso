@@ -11,9 +11,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
       // Criar usuário
       const sql =
-        'INSERT INTO usuario (id, cpf, nome, senha, data_nascimento, tipo_user) VALUES (?, ?, ?, ?, ?, ?)';
+        'INSERT INTO usuario (cpf, nome, senha, data_nascimento, tipo_user) VALUES (?, ?, ?, ?, ?)';
       const params = [
-        x,
         req.body.cpf,
         req.body.nome,
         req.body.senha,
