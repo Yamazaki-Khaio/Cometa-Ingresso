@@ -33,6 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     await transporter.sendMail(mailOptions);
+    console.log("Eles passarão")
     const res = await fetch(`/api/usuario`, {
         method: 'PUT',
         headers: {

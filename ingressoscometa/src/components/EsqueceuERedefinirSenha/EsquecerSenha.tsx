@@ -33,6 +33,13 @@ const EsquecerSenha: React.FC = () => {
           console.log("O email está no banco");
           setEmailExists(true);
           form.id_usuario = data[0].id_usuario
+          const res = await fetch(`/api/email_esqueci_senha`, {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(form),
+          });
 
           setIsButtonDisabled(true); // Desativa o botão de enviar
         } else {

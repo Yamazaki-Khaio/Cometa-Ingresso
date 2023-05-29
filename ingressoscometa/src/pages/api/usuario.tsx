@@ -102,6 +102,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     
     } else if (req.method === 'PUT') {
+      console.log("oi")
       // Atualizar usuário
       const sql = 'UPDATE email SET ? WHERE id=?';
       connection.query(sql, [req.body, req.query.id], (error, results, fields) => {
