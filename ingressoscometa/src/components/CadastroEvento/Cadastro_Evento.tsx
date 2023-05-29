@@ -70,7 +70,7 @@ export default function CadastroEvento() {
     .then(function (data) {
         console.log(formData) //Testando se os valores estão passando
         console.log(data)
-        window.location.replace("/login");
+        window.location.replace("/home");
     });
               } catch (error) {
                 console.error("Erro ao enviar os dados:", error);
