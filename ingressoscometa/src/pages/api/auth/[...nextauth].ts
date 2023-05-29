@@ -36,7 +36,7 @@ const authOptions : NextAuthOptions = {
             const cpfSemMascara = removerMascaraCpf(cpf);
             const user = await getUserCpf(cpfSemMascara)
             if(cpfSemMascara === user[0].cpf && hash.digest('hex') === user[0].senha){
-                return {id:user[0].UsuarioID,name:user[0].nome};
+                return {id:user[0].id,name:user[0].nome,tipo:user[0].tipo_user};
             }
 
             return null;
@@ -47,12 +47,14 @@ const authOptions : NextAuthOptions = {
         jwt: async ({ token, user }) => {
           if (user) {
             token.id = user.id;
+            token.tipo = user.tipo;
           }
     
           return token;
         },
         session:  ({ session, token }) => {
-            
+            session.user.id = token.id;
+            session.user.tipo = token.tipo
             return session;
           },
       },
