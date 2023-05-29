@@ -1,16 +1,17 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
 import crypto, { createHash } from 'crypto';
+import fetch from 'isomorphic-unfetch';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {email} = req.body;
-  const {id_user} = req.body.id_usuario
+  const {id_user} = req.body.id
   const novaSenha = crypto.randomBytes(4).toString("hex")
   const hash = createHash('sha256')
   hash.update(novaSenha)
   console.log(req)
   const form = {
-    id_usuario: id_user,
+    id: id_user,
     senha: hash.digest('hex'),
   }
   console.log(form.senha)
