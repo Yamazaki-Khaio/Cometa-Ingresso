@@ -1,29 +1,30 @@
-import express, { Request, Response } from 'express';
-import { connection } from './db';
 import nodemailer from "nodemailer";
 
-var transporter = nodemailer.createTransport({
+export default async function handler(req, res) {
+  const { email } = req.body;
+
+  const transporter = nodemailer.createTransport({
     host: 'smtp.office365.com',
     port: 587,
-    secure: false, // Não está usando SSL/TLS, mas sim STARTTLS
-  auth: {
-    user: "ingressoscometanaoresponda@outlook.com",
-    pass: "Vaidormir23"
-  }
-});
+    secure: false,
+    auth: {
+      user: "ingressoscometanaoresponda@outlook.com",
+      pass: "Vaidormir23"
+    }
+  });
 
-// Exemplo de envio de email
-const mailOptions = {
-  from: 'ingressoscometanaoresponda@outlook.com',
-  to: 'tassiocarvalhor@gmail.com',
-  subject: 'Bem-vindo ao Cometa Ingressos',
-  text: 'Olá, bem-vindo ao Cometa Ingressos faça suas compras seguras aqui'
-};
+  const mailOptions = {
+    from: 'ingressoscometanaoresponda@outlook.com',
+    to: email,
+    subject: 'Bem-vindo ao Cometa Ingressos',
+    text: 'Olá, bem-vindo ao Cometa Ingressos! Faça suas compras seguras aqui.'
+  };
 
-transporter.sendMail(mailOptions, (error, info) => {
-  if (error) {
+  try {
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: 'E-mail de boas-vindas enviado com sucesso!' });
+  } catch (error) {
     console.error('Erro ao enviar o e-mail de boas-vindas:', error);
-  } else {
-    console.log('E-mail de boas-vindas enviado com sucesso!', info.response);
+    res.status(500).json({ error: 'Erro ao enviar o e-mail de boas-vindas.' });
   }
-});
+}

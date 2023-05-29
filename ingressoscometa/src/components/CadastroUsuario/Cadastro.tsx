@@ -7,7 +7,7 @@ import BotaoSubmitCadastro from "./BotaoSubmitCadastro";
 import { FormEventHandler, useState } from "react";
 import { createHash } from 'crypto';
 import CampoEmail from "./CampoEmail";
-
+import sendEmail from "@/pages/api/email_send";
 interface FormData {
   nome: string,
   cpf: string,
@@ -48,7 +48,7 @@ export default function CadastroUsuario() {
         email:  document.getElementById('email').value
       }
 
-
+      //console.log(form.email)
       const res = await fetch('/api/usuario', {
         method: 'POST',
         headers: {
@@ -62,6 +62,22 @@ export default function CadastroUsuario() {
         .then(function (data) {
           console.log(form) //Testando se os valores estão passando
           console.log(data)
+// Envie uma requisição para a API interna para enviar o e-mail de boas-vindas
+        fetch('/api/email_send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email: form.email }),
+        })
+          .then((response) => response.json())
+          .then((responseData) => {
+            console.log(responseData.message);
+          })
+          .catch((error) => {
+            console.error('Erro ao enviar o e-mail de boas-vindas:', error);
+          });
+
           window.location.replace("/login")
         });
     } catch (error) {

@@ -3,6 +3,7 @@ import BotaoEnviarEmail from "./BotaoEnviarEmail";
 import BotaoConfirmarSenhaNova from "./BotaoConfirmarSenhaNova";
 import BotaoCancelar from './BotaoCancelar';
 import CampoEmailEsqueciSenha from '../CadastroUsuario/CampoEmailEsqueciSenha';
+import fetch from 'isomorphic-unfetch';
 
 const EsquecerSenha: React.FC = () => {
   const [emailSent, setEmailSent] = useState(false);
@@ -14,14 +15,15 @@ const EsquecerSenha: React.FC = () => {
       const form = {
         email: document.getElementById('email').value
       };  
-      console.log(form.email)
+
+
       const res = await fetch(`/api/email?email=${form.email}`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json"
         },
       });
-      console.log(res)
+
       if (res.ok) {
         const data = await res.json();
         if (data.exists) {
