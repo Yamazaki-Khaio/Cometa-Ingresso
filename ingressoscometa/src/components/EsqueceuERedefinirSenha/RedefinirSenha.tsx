@@ -9,7 +9,7 @@ const EsquecerSenha: React.FC = () => {
             <h2 className="font-bold p-5">Insira a nova senha!</h2>
             <CampoSenhaERepetirSenha/>
             <div className="flex">
-                <BotaoCancelar/>
+                <BotaoCancelar href='/login'/>
                 <BotaoConfirmarSenhaNova/>
             </div>
       </div>

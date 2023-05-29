@@ -17,15 +17,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const mailOptions = {
     from: 'ingressoscometanaoresponda@outlook.com',
     to: email,
-    subject: 'Bem-vindo ao Cometa Ingressos',
-    text: 'Olá, bem-vindo ao Cometa Ingressos! Faça suas compras seguras aqui.'
+    subject: 'Esqueci a minha senha',
+    text: 'Acesse o seguinte link para redefinir a sua senha.'
   };
 
   try {
     await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: 'E-mail de boas-vindas enviado com sucesso!' });
+    res.status(200).json({ message: 'E-mail de redefinir senha enviado com sucesso!' });
   } catch (error) {
-    console.error('Erro ao enviar o e-mail de boas-vindas:', error);
-    res.status(500).json({ error: 'Erro ao enviar o e-mail de boas-vindas.' });
+    console.error('Erro ao enviar o e-mail de redefinir senha:', error);
+    res.status(500).json({ error: 'Erro ao enviar o e-mail de redefinir senha.' });
   }
 }

@@ -1,6 +1,10 @@
 import React from 'react';
 
-export default function BotaoEnviar() {
+interface BotaoEnviarProps {
+  disabled?: boolean;
+}
+
+export default function BotaoEnviar({ disabled }: BotaoEnviarProps) {
   return (
     <div className="p-2">
       <input
@@ -16,6 +20,7 @@ export default function BotaoEnviar() {
           hover:bg-teal-800
           active:bg-teal-700
         `}
+        disabled={disabled} // Aplica a propriedade disabled ao botão
       />
     </div>
   );
