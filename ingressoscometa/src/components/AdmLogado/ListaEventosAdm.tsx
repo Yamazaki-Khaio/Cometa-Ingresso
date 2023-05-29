@@ -3,6 +3,7 @@ import axios from 'axios';
 import EventoLogado from '../ClienteLogado/EventoLogado';
 import { Buffer } from 'buffer';
 import EventoAdm from './EventoAdm';
+import { useSession } from 'next-auth/react';
 
 
 export default function ListaEventosAdm(props: any) {
@@ -25,10 +26,13 @@ export default function ListaEventosAdm(props: any) {
         return `data:image/png;base64,${imageData}`;
     };
 
+    const { data: session } = useSession()
 
     return (
 
         <div className="flex flex-wrap gap-5 justify-center w-5/6 items-center p-4 ">
+            <h2 className="justify-center items-center font-bold text-xl">Olá {session?.user?.name}</h2>
+            
             {eventos.map((evento: any, index: number) => (
                 <EventoAdm
                     key={evento.id}
