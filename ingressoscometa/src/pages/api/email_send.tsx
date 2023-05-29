@@ -4,6 +4,7 @@ import nodemailer from "nodemailer";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { email } = req.body;
 
+
   const transporter = nodemailer.createTransport({
     host: 'smtp.office365.com',
     port: 587,

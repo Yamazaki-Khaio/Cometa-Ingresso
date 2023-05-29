@@ -15,13 +15,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           return;
         }
         
-        if (results.length >0) {
+        if (results.length > 0) {
           console.log("email no banco")
-          res.status(200).json({ exists: true });
-
+          res.json(results);
         } else {
           console.log("email não esta no banco")
-          res.status(200).json({ exists: false });
+          res.status(500);
         }
       });
     } else {
