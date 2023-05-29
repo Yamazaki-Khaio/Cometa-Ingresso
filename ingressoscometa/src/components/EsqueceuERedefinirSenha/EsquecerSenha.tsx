@@ -21,19 +21,23 @@ const EsquecerSenha: React.FC = () => {
           "Content-Type": "application/json"
         },
       });
-      
+      console.log(res)
       if (res.ok) {
-        // O email existe no banco de dados
-        console.log("O email está no banco")
+        const data = await res.json();
+        if (data.exists) {
+          // O email existe no banco de dados
+          console.log("O email está no banco");
+          setEmailExists(true);
+        } else {
+          // O email não existe no banco de dados
+          console.log("O email não está no banco");
+          setEmailExists(false);
+        }
         setEmailSent(true);
-        setEmailExists(true);
       } else {
-        // O email não existe no banco de dados
-        console.log("O email não está no banco")
-        setEmailSent(true);
-        setEmailExists(false);
+        // Lógica adicional para lidar com erros na resposta da API
+        console.log("Erro ao verificar o email no banco de dados");
       }
-
     } catch (error) {
       console.error("Erro ao enviar os dados:", error);
       // Lógica adicional para lidar com erros no envio dos dados
@@ -43,7 +47,7 @@ const EsquecerSenha: React.FC = () => {
   return (
     <div className="flex flex-col items-center">
       <form onSubmit={handleSubmit}>
-        <h2 className="font-bold p-5">Informe seu e-mail associado a sua conta!</h2>
+        <h2 className="font-bold p-5">Informe seu e-mail associado à sua conta!</h2>
         <CampoEmailEsqueciSenha />
         <div className="flex">
           <BotaoCancelar href='/login' />
@@ -52,7 +56,7 @@ const EsquecerSenha: React.FC = () => {
       </form>
 
       {emailSent && (
-        <p>{emailExists ? "Email encontrado no banco de dados!" : "Email não existe no banco de dados."}</p>
+        <p>{emailExists ? "E-mail encontrado no banco de dados!" : "E-mail não encontrado no banco de dados."}</p>
       )}
     </div>
   );
