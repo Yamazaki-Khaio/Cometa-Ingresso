@@ -13,21 +13,23 @@ const EsquecerSenha: React.FC = () => {
     try {
       const form = {
         email: document.getElementById('email').value
-      };
-
+      };  
+      console.log(form.email)
       const res = await fetch(`/api/email?email=${form.email}`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json"
-        }
+        },
       });
-
+      
       if (res.ok) {
         // O email existe no banco de dados
+        console.log("O email está no banco")
         setEmailSent(true);
         setEmailExists(true);
       } else {
         // O email não existe no banco de dados
+        console.log("O email não está no banco")
         setEmailSent(true);
         setEmailExists(false);
       }

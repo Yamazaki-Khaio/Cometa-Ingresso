@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const router = express.Router();
 
-  router.all('/', async (req, res) => {
+  router.use('/', async (req, res) => {
     if (req.method === 'POST') {
       // Criar email
       const { id_usuario, email } = req.headers;
