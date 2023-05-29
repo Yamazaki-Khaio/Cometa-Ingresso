@@ -14,7 +14,8 @@ const EsquecerSenha: React.FC = () => {
     e.preventDefault();
     try {
       const form = {
-        email: document.getElementById('email').value
+        email: document.getElementById('email').value,
+        id_usuario: ''
       };
       console.log(form.email)
       const res = await fetch(`/api/email?email=${form.email}`, {
@@ -26,18 +27,12 @@ const EsquecerSenha: React.FC = () => {
       console.log(res)
       if (res.ok) {
         const data = await res.json();
-        if (data.exists) {
+        console.log(data[0].id_usuario)
+        if (data) {
           // O email existe no banco de dados
           console.log("O email está no banco");
           setEmailExists(true);
-
-          const res = await fetch(`/api/email_esqueci_senha`, {
-            method: 'POST',
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify(form),
-          });
+          form.id_usuario = data[0].id_usuario
 
           setIsButtonDisabled(true); // Desativa o botão de enviar
         } else {
