@@ -4,16 +4,18 @@ import BotaoConfirmarSenhaNova from "./BotaoConfirmarSenhaNova";
 import BotaoCancelar from './BotaoCancelar';
 import CampoEmailEsqueciSenha from '../CadastroUsuario/CampoEmailEsqueciSenha';
 import fetch from 'isomorphic-unfetch';
+import 'tailwindcss/tailwind.css'
 const EsquecerSenha: React.FC = () => {
   const [emailSent, setEmailSent] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     try {
       const form = {
         email: document.getElementById('email').value
-      };  
+      };
       console.log(form.email)
       const res = await fetch(`/api/email?email=${form.email}`, {
         method: 'GET',
@@ -37,11 +39,12 @@ const EsquecerSenha: React.FC = () => {
             body: JSON.stringify(form),
           });
 
+          setIsButtonDisabled(true); // Desativa o botão de enviar
         } else {
           // O email não existe no banco de dados
           console.log("O email não está no banco");
           setEmailExists(false);
-          
+          setIsButtonDisabled(false); // Habilita o botão de enviar
         }
         setEmailSent(true);
       } else {
@@ -61,7 +64,10 @@ const EsquecerSenha: React.FC = () => {
         <CampoEmailEsqueciSenha />
         <div className="flex">
           <BotaoCancelar href='/login' />
-          <BotaoEnviarEmail />
+          <BotaoEnviarEmail
+            disabled={isButtonDisabled}
+            className={`bg-teal-900 text-white text-24 rounded-3xl transition-all duration-300 hover:bg-teal-800 active:bg-teal-700 ${isButtonDisabled ? 'bg-opacity-0 text-opacity-0 cursor-not-allowed' : ''}`}
+          />
         </div>
       </form>
 
