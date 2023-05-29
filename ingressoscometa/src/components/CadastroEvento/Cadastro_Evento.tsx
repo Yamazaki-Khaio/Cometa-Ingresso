@@ -28,7 +28,6 @@ export default function CadastroEvento() {
     imagem: ""
   });
 
-
   const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
     try{
       formData.nome = document.getElementById('nome').value
@@ -71,6 +70,7 @@ export default function CadastroEvento() {
     .then(function (data) {
         console.log(formData) //Testando se os valores estão passando
         console.log(data)
+        window.location.replace("/login");
     });
               } catch (error) {
                 console.error("Erro ao enviar os dados:", error);
