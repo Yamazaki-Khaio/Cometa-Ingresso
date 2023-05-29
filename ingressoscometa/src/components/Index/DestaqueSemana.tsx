@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import axios from 'axios';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { Buffer } from 'buffer'; 
 
 const settings = {
   className: "center mx-5",
@@ -35,7 +36,11 @@ export default function DestaqueSemana(props: any) {
     } catch (error) {
       console.error('Erro ao buscar eventos de destaque:', error);
     }
-  };
+  }
+  const convertBufferToUrl = (buffer: any) => {
+    const imageData = Buffer.from(buffer.data).toString('base64');
+    return `data:image/png;base64,${imageData}`;
+  }
 
   return (
     <div className="relative flex-wrap justify-center items-center p-4 gap-4">
@@ -43,7 +48,7 @@ export default function DestaqueSemana(props: any) {
         {eventos.map((eventoDestaque: any, index: number) => (
           <div key={index} className="destaque-evento">
             <img
-              src={eventoDestaque.imagem}
+              src={convertBufferToUrl(eventoDestaque.imagem)}
               alt={eventoDestaque.nome_evento}
               className="w-[500px] h-[300px] object-cover rounded-xl border-separate border-4 border-white"
             />

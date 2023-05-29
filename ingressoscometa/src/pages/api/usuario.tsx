@@ -10,8 +10,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   router.use('/', async (req, res) => {
     if (req.method === 'POST') {
       // Criar usuário
-      const sql =
-        'INSERT INTO usuario (cpf, nome, senha, data_nascimento, tipo_user) VALUES (?, ?, ?, ?, ?)';
+      //const incrementQuery = 'SELECT id FROM usuario ORDER BY id DESC LIMIT 1'; //busca o ultimo id do usuario
+      const sql = 'INSERT INTO usuario (cpf, nome, senha, data_nascimento, tipo_user) VALUES (?, ?, ?, ?, ?)';
+      const emailSql = 'INSERT INTO email (id_usuario, email) VALUES (?, ?)';
       const params = [
         req.body.cpf,
         req.body.nome,
@@ -19,14 +20,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         req.body.data_nascimento,
         '1',
       ];
+      
       connection.query(sql, params, (error, results, fields) => {
         if (error) {
-          console.error('Erro ao inserir novo usuário', error);
+          console.error('Erro ao inserir novo usuário: ', error);
           res.status(500).send('Erro ao inserir novo usuário.');
           return;
         }
-        res.json(results);
+      
+        const usuarioId = results.insertId; // Obtém o ID do usuário recém-inserido
+      
+        const emailParams = [
+          usuarioId,
+          req.body.email
+        ];
+      
+        connection.query(emailSql, emailParams, (error, results, fields) => {
+          if (error) {
+            console.error('Erro ao inserir novo email: ', error);
+            res.status(500).send('Erro ao inserir novo email.');
+            return;
+          }
+      
+          res.json(results);
+        });
       });
+
     } else if (req.method === 'GET') {
       if (!req.query) {
         const sql = 'SELECT * FROM usuario';
@@ -80,13 +99,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
         res.json(results);
       });
+
+    
     } else if (req.method === 'PUT') {
       // Atualizar usuário
-      const sql = 'UPDATE evento SET ? WHERE id=?';
+      const sql = 'UPDATE email SET ? WHERE id=?';
       connection.query(sql, [req.body, req.query.id], (error, results, fields) => {
         if (error) {
-          console.error('Erro ao atualizar usuário: ', error);
-          res.status(500).send('Erro ao atualizar usuário.');
+          console.error('Erro ao atualizar email: ', error);
+          res.status(500).send('Erro ao atualizar email.');
           return;
         }
         res.json(results);

@@ -5,15 +5,19 @@ import InputMask from "react-input-mask";
 
 export default function PerfilCampoTelefone(props: any) {
   const [telefone, setTelefone] = useState('(99)99999-9999');
-
+  const [editando, setEditando] = useState(false); // Estado de ediçãos
   function handleTelefoneChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setTelefone(event.target.value);
+    let telefoneValue = event.target.value.replace(/\D/g, '');
+    telefoneValue = telefoneValue.replace(/(\d{5})(\d{1,4})$/, '$1-$2' )
+    setTelefone(telefoneValue);
   }
 
 
-    function handleEditar(event: React.ChangeEvent<HTMLInputElement>): void {
-        throw new Error("Function not implemented.");
-    }
+  function handleEditar() {
+    setEditando(true); // Habilita a edição ao clicar no botão "Editar"
+    setTelefone("")
+  }
+
 
   return(
     <><label className="flex flex-col gap-1 rounded-md mb-2"  htmlFor="telefone">telefone
@@ -23,7 +27,7 @@ export default function PerfilCampoTelefone(props: any) {
             type="text"
             name="telefone"
             id="telefone"
-            disabled
+            disabled={!editando} // Define o estado de desabilitado com base na variável de estado "editando"
             maxLength={50}
             placeholder="Insira o telefone"
             required

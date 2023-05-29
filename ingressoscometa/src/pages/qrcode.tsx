@@ -1,11 +1,11 @@
 import Layout from "@/components/CabecalhoCliente/layoutCliente";
-import DivisoriaQrCode from "@/components/QRCode/DivisoriaQrCode";
+import BlocoGeralQrCode from "@/components/QRCode/BlocoGeralQrCode";
 
 export default function qrcode(){
     return(
         <div>
             <Layout/>
-            <DivisoriaQrCode/>
+            <BlocoGeralQrCode/>
         </div>
     )
 }

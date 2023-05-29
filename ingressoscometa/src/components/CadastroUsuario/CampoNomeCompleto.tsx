@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function CampoEmail(props: any) {
+export default function CampoNomeCompleto(props: any) {
   const [nomeCompleto, setNomeCompleto] = useState("");
 
   function handleNomeCompletoChange(event: React.ChangeEvent<HTMLInputElement>) {
