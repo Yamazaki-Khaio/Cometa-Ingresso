@@ -6,7 +6,7 @@ import ClienteLogado from "./ClienteLogado/ClienteLogado";
 export default function Sessao() {
     const { data: session } = useSession()
     const route = useRouter()
-    console.log(session?.user)
+
     if (session) {
         return (
             <div>
