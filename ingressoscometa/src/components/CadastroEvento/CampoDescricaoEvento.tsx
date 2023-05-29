@@ -7,7 +7,7 @@ export default function CampoDescricaoEvento(props: any){
   }
   return(
     <div className="flex flex-col gap-4">
-      <label htmlFor="descricao">Descricao</label>
+      <label htmlFor="descricao">Descrição</label>
       <input 
         id = "descricao"
         type = "text"

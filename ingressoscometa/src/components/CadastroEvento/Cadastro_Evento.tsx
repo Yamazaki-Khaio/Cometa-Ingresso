@@ -6,6 +6,7 @@ import CampoHorarioEvento from "./CampoHorarioEvento";
 import { FormEventHandler, useState } from "react";
 import CampoLocalEvento from "./CampoLocalEvento";
 import CampoEnvioImagem from "./CampoEnviarImagem";
+import CampoSetorEvento from "./CampoSetorEvento";
 
 interface FormData {
   nome: string,
@@ -95,6 +96,7 @@ return(
             <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao"/>
             <CampoLocalEvento value={formData.localEvento} onChange={handleInputChange} name="localEvento"/>
             <CampoDataEvento value={formData.dataEvento} onChange={handleInputChange} name="dataEvento"/>
+            <CampoSetorEvento></CampoSetorEvento>
             <CampoEnvioImagem onChange={handleInputChange} name="arquivo"/>
             <BotaoSubmitEvento/>
             </form>
