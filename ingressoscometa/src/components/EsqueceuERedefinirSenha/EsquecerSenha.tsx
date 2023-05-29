@@ -4,7 +4,6 @@ import BotaoConfirmarSenhaNova from "./BotaoConfirmarSenhaNova";
 import BotaoCancelar from './BotaoCancelar';
 import CampoEmailEsqueciSenha from '../CadastroUsuario/CampoEmailEsqueciSenha';
 import fetch from 'isomorphic-unfetch';
-
 const EsquecerSenha: React.FC = () => {
   const [emailSent, setEmailSent] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
@@ -15,25 +14,34 @@ const EsquecerSenha: React.FC = () => {
       const form = {
         email: document.getElementById('email').value
       };  
-
-
+      console.log(form.email)
       const res = await fetch(`/api/email?email=${form.email}`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json"
         },
       });
-
+      console.log(res)
       if (res.ok) {
         const data = await res.json();
         if (data.exists) {
           // O email existe no banco de dados
           console.log("O email está no banco");
           setEmailExists(true);
+
+          const res = await fetch(`/api/email_esqueci_senha`, {
+            method: 'POST',
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(form),
+          });
+
         } else {
           // O email não existe no banco de dados
           console.log("O email não está no banco");
           setEmailExists(false);
+          
         }
         setEmailSent(true);
       } else {
