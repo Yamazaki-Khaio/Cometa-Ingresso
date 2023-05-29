@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/react";
+import {signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import BotaoEventos from "../CabecalhoCliente/BotaoEventos";
 import BotaoPerfil from "../CabecalhoCliente/BotaoPerfil";
@@ -14,7 +14,13 @@ export default function CabecalhoPromoter(props: { isBotaoOcultoLogin?: boolean,
                     <img src="/cometa2.png" alt="Logo" width="200" height="200"/>
                 </a>
                 <h2 className="font-bold text-xl">Olá {session?.user?.name}</h2>
-                
+                <button className={`
+                        w-25 h-12
+                        bg-teal-900 
+                        text-white 
+                        text-24 
+                        rounded-xl`} role="button"
+                    onClick={() => { signOut({ callbackUrl: 'http://localhost:3000/login' }) }}>Sair</button>
                 <div className="column gap-6">
                 <BotaoEventos/>
                 <BotaoRelatorios/>

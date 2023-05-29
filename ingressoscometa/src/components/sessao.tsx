@@ -1,6 +1,6 @@
 import { signOut, useSession } from "next-auth/react";
 import Router, { useRouter } from "next/router";
-import ClienteLogado from "./ClienteLogado/ClienteLogado";
+
 
 
 export default function Sessao() {
@@ -18,7 +18,7 @@ export default function Sessao() {
                         rounded-xl`} role="button"
                     onClick={() => { signOut({ callbackUrl: 'http://localhost:3000/login' }) }} >Sair</button>
                 <h1>olá {session?.user?.name}, Bem vindo</h1>
-                <ClienteLogado />
+                
             </div>
         )
     }
