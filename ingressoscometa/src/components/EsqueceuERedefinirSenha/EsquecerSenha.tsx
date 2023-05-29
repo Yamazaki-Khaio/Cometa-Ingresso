@@ -66,7 +66,7 @@ const EsquecerSenha: React.FC = () => {
           <BotaoCancelar href='/login' />
           <BotaoEnviarEmail
             disabled={isButtonDisabled}
-            className={`bg-teal-900 text-white text-24 rounded-3xl transition-all duration-300 hover:bg-teal-800 active:bg-teal-700 ${isButtonDisabled ? 'bg-opacity-0 text-opacity-0 cursor-not-allowed' : ''}`}
+            className={`bg-teal-900 text-white text-24 rounded-3xl transition-all duration-300 hover:bg-teal-800 active:bg-teal-700 ${isButtonDisabled ? 'bg-teal-200 cursor-not-allowed' : ''}`}
           />
         </div>
       </form>
