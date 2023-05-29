@@ -72,7 +72,7 @@ const EsquecerSenha: React.FC = () => {
       </form>
 
       {emailSent && (
-        <p>{emailExists ? "E-mail encontrado no banco de dados!" : "E-mail não encontrado no banco de dados."}</p>
+        <p>{emailExists ? "Email de alteração de senha enviado, verifique sua caixa de email" : "E-mail não encontrado no banco de dados."}</p>
       )}
     </div>
   );
