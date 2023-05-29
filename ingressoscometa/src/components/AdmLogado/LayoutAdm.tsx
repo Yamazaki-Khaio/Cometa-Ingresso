@@ -1,5 +1,3 @@
-import Rodape from "../CabecalhoCadastro/Rodape"
-import ListaEventosCliente from "../ClienteLogado/ListaEventosCliente"
 import CabecalhoAdm from "./CabecalhoAdm"
 import ListaEventosAdm from "./ListaEventosAdm"
 

@@ -6,8 +6,7 @@ import BotaoEventosAdm from "./BotaoEventosAdm"
 import BotaoPerfilAdm from "./BotaoPerfilAdm"
 
 export default function CabecalhoAdm(props: any) {
-    const { data: session } = useSession()
-    const route = useRouter()
+    
     return (
         <div className="flex flex-shrink-0 justify-center p-8 w-1/6 h-full fixed m-4 rounded-md bg-white shadow-2xl ">
             <div className="flex flex-col gap-4">
@@ -17,9 +16,6 @@ export default function CabecalhoAdm(props: any) {
                 <BotaoEventosAdm Pagina="/eventos" NomeBotao="Eventos" icone= "faHome"/>
                 <BotaoRelatorioAdm Pagina="/relatorios_adm" NomeBotao="Relatórios" icone= "faHome"/>
                 <BotaoPerfilAdm Pagina="/perfil" NomeBotao="Evento" icone= "faHome"/>
-
-                
-
 
             </div>
             
