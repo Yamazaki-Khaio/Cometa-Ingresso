@@ -30,11 +30,11 @@ export default function CadastroEvento() {
 
   const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
     try{
+      e.preventDefault()
       formData.nome = document.getElementById('nome').value
-      formData.descricao = document.getElementById('nome').value
-      formData.localEvento = document.getElementById('nome').value
+      formData.descricao = document.getElementById('descricao').value
+      formData.localEvento = document.getElementById('localEvento').value
       formData.dataEvento = document.getElementById("data").value
-      formData.horarioEvento = document.getElementById('nome').value
       try{
         const reader = new FileReader();
         const file = document.querySelector("input[type=file]").files[0];
@@ -54,8 +54,6 @@ export default function CadastroEvento() {
 
         // Lógica adicional para lidar com erros no envio dos dados
       }
-
-    e.preventDefault()
 
     const res = await fetch('/api/evento', {
         method: 'POST',
