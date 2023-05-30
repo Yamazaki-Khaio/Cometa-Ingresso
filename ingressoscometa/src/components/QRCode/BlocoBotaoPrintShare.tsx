@@ -7,7 +7,7 @@ export default function BlocoBotaoPrintShare() {
     };
     return (
       <div
-        className="flex items-center justify-start w-20 h-7 bg-gray-300 mx-auto relative"
+        className="flex items-center justify-start w-20 h-7 bg-white mx-auto relative"
         style={{
           top: "24vh", // Movendo o bloco para baixo
           left: "14vh",

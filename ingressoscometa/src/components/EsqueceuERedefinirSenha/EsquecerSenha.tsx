@@ -4,7 +4,8 @@ import BotaoConfirmarSenhaNova from "./BotaoConfirmarSenhaNova";
 import BotaoCancelar from './BotaoCancelar';
 import CampoEmailEsqueciSenha from '../CadastroUsuario/CampoEmailEsqueciSenha';
 import fetch from 'isomorphic-unfetch';
-import 'tailwindcss/tailwind.css'
+import 'tailwindcss/tailwind.css';
+
 const EsquecerSenha: React.FC = () => {
   const [emailSent, setEmailSent] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
@@ -56,7 +57,6 @@ const EsquecerSenha: React.FC = () => {
         setEmailExists(false);
       }
     } catch (error) {
-
       console.error("Erro ao enviar os dados:", error);
       // Lógica adicional para lidar com erros no envio dos dados
     }
@@ -77,7 +77,11 @@ const EsquecerSenha: React.FC = () => {
       </form>
 
       {emailSent && (
-        <p>{emailExists ? "Email de alteração de senha enviado, verifique sua caixa de email" : "E-mail não encontrado no banco de dados."}</p>
+        <p className={`${!emailExists ? 'text-red-500' : ''}`}>
+          {emailExists
+            ? "Email de alteração de senha enviado, verifique sua caixa de email"
+            : "E-mail não encontrado no banco de dados."}
+        </p>
       )}
     </div>
   );

@@ -7,7 +7,7 @@ import CampoSetor from "./CampoSetor";
 export default function BlocoDadosIngresso() {
   return (
     <div
-      className="flex items-center justify-start w-65 h-60 bg-gray-200 mx-auto relative"
+      className="flex items-center justify-start w-65 h-60 bg-white mx-auto relative"
       style={{
         marginTop: "-15vh", // Metade negativa da altura para centralizar verticalmente
         color: "black", // Definir a cor do texto como preto
