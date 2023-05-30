@@ -1,17 +1,16 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import nodemailer from "nodemailer";
 import crypto, { createHash } from 'crypto';
-import fetch from 'isomorphic-unfetch';
+
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {email} = req.body;
-  const {id_user} = req.body.id
   const novaSenha = crypto.randomBytes(4).toString("hex")
   const hash = createHash('sha256')
   hash.update(novaSenha)
   console.log(req)
   const form = {
-    id: id_user,
+    id: req.body.id,
     senha: hash.digest('hex'),
   }
   console.log(form.senha)
@@ -35,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     await transporter.sendMail(mailOptions);
     console.log("Eles passarão")
-    const res = await fetch(`/api/usuario`, {
+    const res = await fetch(`http://localhost:3000/api/usuario?id=${req.body.id}`, {
         method: 'PUT',
         headers: {
           "Content-Type": "application/json"
