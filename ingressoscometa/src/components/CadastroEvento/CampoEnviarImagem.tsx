@@ -1,28 +1,42 @@
-import { useState } from "react";
+import { ChangeEventHandler ,useState } from "react";
 import { FaTimes } from "react-icons/fa";
 
-export default function CampoEnvioImagem(props: any) {
-  const [imagem, setImagem] = useState("");
-  const [preview, setPreview] = useState("");
+interface ImageData {
+  type: string;
+  data: number[];
+}
 
-  function handleImageChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const file = event.currentTarget.files[0];
-    const reader = new FileReader();
+interface CampoEnvioImagemProps {
+  onChange: (file: ImageData | undefined ) => void;
+  name: string;
+}
 
-    reader.onloadend = () => {
-      setImagem(file);
-      setPreview(reader.result as string);
-    };
+export default function CampoEnvioImagem({ onChange, name }: CampoEnvioImagemProps) {
+  const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
 
+  const handleFileChange: ChangeEventHandler<HTMLInputElement> = async (event) => {
+    const file = event.target.files?.[0];
     if (file) {
-      reader.readAsDataURL(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const arrayBuffer = reader.result as ArrayBuffer;
+        const array = Array.from(new Uint8Array(arrayBuffer));
+        onChange({ type: "Buffer", data: array });
+        setImageUrl(URL.createObjectURL(file));
+      };
+      reader.readAsArrayBuffer(file);
+    } else {
+      onChange(undefined);
+      setImageUrl(undefined);
     }
-  }
+  };
+  
 
-  function handleRemoveImage() {
-    setImagem("");
-    setPreview("");
-  }
+  const handleRemoveImage = () => {
+    setImageUrl(undefined);
+    onChange(undefined);
+  };
+
 
   return (
     <div>
@@ -35,10 +49,10 @@ export default function CampoEnvioImagem(props: any) {
         </p>
       </div>
       <div className="pb-6">
-        {preview ? (
+        {imageUrl ? (
           <div className="relative">
             <img
-              src={preview}
+              src={imageUrl}
               alt="Imagem"
               className="max-w-64 h-auto"
               style={{ maxWidth: "200px" }}
@@ -52,7 +66,7 @@ export default function CampoEnvioImagem(props: any) {
           </div>
         ) : (
           <label
-            htmlFor="arquivo"
+            htmlFor={"arquivo"}
             className="block box-border w-100 h-5 text-center left-760 top-33 bg-gray-500 border-2 border-gray-300 rounded-lg pb-6 cursor-pointer"
           >
             Enviar Arquivo
@@ -60,10 +74,11 @@ export default function CampoEnvioImagem(props: any) {
         )}
         <input
           type="file"
+          accept="image/*"
           id="arquivo"
-          name="arquivo"
+          name={name}
           className="hidden"
-          onChange={handleImageChange}
+          onChange={handleFileChange}
         />
       </div>
     </div>

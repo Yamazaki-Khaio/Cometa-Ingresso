@@ -11,7 +11,7 @@ export default function GrindEvento(props: any) {
   useEffect(() => {
     fetchEventos()
   }, [])
-
+//busca todos os eventos no banco de dados
   const fetchEventos = async () => {
     try {
       const response = await axios.get('/api/evento')
@@ -23,13 +23,14 @@ export default function GrindEvento(props: any) {
       console.log(error)
     }
   }
+  //converte buffer to url image base64
   const convertBufferToUrl = (buffer: any) => {
     const imageData = Buffer.from(buffer.data).toString('base64');
     return `data:image/png;base64,${imageData}`;
   };
 
   return (
-
+//renderiza todos os eventos cadastrados
     <div className="flex flex-wrap gap-5 justify-center items-center p-4">
       {eventos.map((evento: any, index: number) => (
         

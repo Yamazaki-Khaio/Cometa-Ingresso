@@ -4,7 +4,7 @@ import axios from 'axios';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Buffer } from 'buffer'; 
-
+// configuração do slider de eventos em destaque
 const settings = {
   className: "center mx-5",
   dots: false,
@@ -28,7 +28,7 @@ export default function DestaqueSemana(props: any) {
   useEffect(() => {
     fetchEventosDestaque();
   }, []);
-
+  //busca os eventos em destaque no banco de dados
   const fetchEventosDestaque = async () => {
     try {
       const response = await axios.get('/api/evento');
@@ -37,11 +37,12 @@ export default function DestaqueSemana(props: any) {
       console.error('Erro ao buscar eventos de destaque:', error);
     }
   }
+  //convertendo a imagem para url base64
   const convertBufferToUrl = (buffer: any) => {
     const imageData = Buffer.from(buffer.data).toString('base64');
     return `data:image/png;base64,${imageData}`;
   }
-
+// renderiza os eventos cadastrado no slide de eventos em destaque
   return (
     <div className="relative flex-wrap justify-center items-center p-4 gap-4">
       <Slider {...settings}>
