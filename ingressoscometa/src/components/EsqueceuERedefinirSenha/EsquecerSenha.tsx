@@ -28,7 +28,7 @@ const EsquecerSenha: React.FC = () => {
       if (res.ok) {
         const data = await res.json();
         console.log(data[0].id_usuario)
-        if (data) {
+        if (data[0].id_usuario) {
           // O email existe no banco de dados
           console.log("O email está no banco");
           setEmailExists(true);
@@ -52,8 +52,11 @@ const EsquecerSenha: React.FC = () => {
       } else {
         // Lógica adicional para lidar com erros na resposta da API
         console.log("Erro ao verificar o email no banco de dados");
+        setEmailSent(true);
+        setEmailExists(false);
       }
     } catch (error) {
+
       console.error("Erro ao enviar os dados:", error);
       // Lógica adicional para lidar com erros no envio dos dados
     }
