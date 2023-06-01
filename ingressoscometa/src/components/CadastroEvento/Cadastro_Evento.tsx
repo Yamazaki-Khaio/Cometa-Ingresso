@@ -5,6 +5,7 @@ import CampoDataEvento from "./CampoDataEvento";
 import { FormEventHandler, useState } from "react";
 import CampoLocalEvento from "./CampoLocalEvento";
 import CampoEnvioImagem from "./CampoEnviarImagem";
+import CampoSetorEvento from "./CampoSetorEvento";
 
 
 
@@ -18,6 +19,7 @@ interface FormData {
     type: string,
     data: number[]
   } | undefined
+  setor: string
   }
 
 
@@ -29,7 +31,8 @@ export default function CadastroEvento() {
     localEvento: "",
     dataEvento: "",
     horarioEvento: "",
-    imagem: undefined
+    imagem: undefined,
+    setor: "N"
   });
 
   const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
@@ -39,7 +42,7 @@ export default function CadastroEvento() {
       formData.descricao = (document.getElementById('descricao') as HTMLInputElement)?.value;
       formData.localEvento = (document.getElementById('localEvento') as HTMLInputElement)?.value;
       formData.dataEvento = (document.getElementById('data') as HTMLInputElement)?.value;
-      
+      formData.setor = (document.getElementById('setor') as HTMLInputElement)?.value;
       
       const res = await fetch('/api/evento', {
         method: 'POST',
@@ -86,9 +89,8 @@ return(
             <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao"/>
             <CampoLocalEvento value={formData.localEvento} onChange={handleInputChange} name="localEvento"/>
             <CampoDataEvento value={formData.dataEvento} onChange={handleInputChange} name="dataEvento"/>
-            <h2>Selecione os setores de seu evento, a</h2>
-            <h2>quantidade de ingressos a venda em</h2>
-            <h2>cada um deles, e seus respectivos preços</h2>
+            <h2>Setores</h2>
+            <CampoSetorEvento value={formData.setor} onChange={handleInputChange} name="setor"/>
             <CampoEnvioImagem  onChange={handleFileChange} name="imagem"/>
             <BotaoSubmitEvento/>
             </form>

@@ -19,15 +19,19 @@ export default function CampoSetorEvento(props: any) {
       console.log("backstage")
     }
 
+    function NenhumClick(){
+      setChecked(checked)
+      console.log("nenhum")
+    }
+
   return (
-    <div className="flex flex-col gap-4">
-      <label htmlFor="setor">Setores</label>
-      <div className="r1">
+    <div className="flex flex-col gap-4 items-center">
+            <div className="r1">
       VIP: <input 
       type="checkbox" 
       id="Vip" 
       onClick={VipClick}
-      className="border w-1/2 border-gray-400 rounded-md">
+      className="border w-10 border-gray-400 rounded-md">
       </input>
       </div>
       <div className="r2">
@@ -44,6 +48,14 @@ export default function CampoSetorEvento(props: any) {
       id="Backstage" 
       onClick={BackstageClick}
       className="border w-10 border-gray-400 rounded-md">
+      </input>
+      </div>
+      <div className="r4">
+      Nenhum: <input 
+      type="checkbox" 
+      id="Nenhum" 
+      onClick={NenhumClick}
+      className="border w-10 border-gray-400 rounded-md mb-8">
       </input>
       </div>
       </div>
