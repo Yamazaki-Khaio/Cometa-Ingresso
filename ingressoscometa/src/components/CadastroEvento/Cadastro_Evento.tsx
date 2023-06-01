@@ -6,6 +6,8 @@ import { FormEventHandler, useState } from "react";
 import CampoLocalEvento from "./CampoLocalEvento";
 import CampoEnvioImagem from "./CampoEnviarImagem";
 import CampoSetoresEvento from "./CampoSetoresEvento";
+import CampoPrecoVi from "./CampoPrecoVip";
+import CampoPrecoVip from "./CampoPrecoVip";
 
 
 
@@ -90,7 +92,6 @@ return(
             <h2>Selecione os setores de seu evento, a</h2>
             <h2>quantidade de ingressos a venda em</h2>
             <h2>cada um deles, e seus respectivos preços</h2>
-            <CampoSetoresEvento/>
             <CampoEnvioImagem  onChange={handleFileChange} name="imagem"/>
             <BotaoSubmitEvento/>
             </form>
