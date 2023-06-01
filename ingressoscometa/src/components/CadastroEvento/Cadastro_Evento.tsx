@@ -86,6 +86,9 @@ return(
             <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao"/>
             <CampoLocalEvento value={formData.localEvento} onChange={handleInputChange} name="localEvento"/>
             <CampoDataEvento value={formData.dataEvento} onChange={handleInputChange} name="dataEvento"/>
+            <h2>Selecione os setores de seu evento, a</h2>
+            <h2>quantidade de ingressos a venda em</h2>
+            <h2>cada um deles, e seus respectivos preços</h2>
             <CampoEnvioImagem  onChange={handleFileChange} name="imagem"/>
             <BotaoSubmitEvento/>
             </form>
