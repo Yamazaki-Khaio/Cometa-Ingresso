@@ -29,10 +29,12 @@ export default function ListaEventosAdm(props: any) {
     const { data: session } = useSession()
 
     return (
-
+<div>
+        
         <div className="flex flex-wrap gap-5 justify-center w-5/6 items-center p-4 ">
-            <h2 className="justify-center items-center font-bold text-xl">Olá {session?.user?.name}</h2>
-            
+            <div className='justify-start w-5/6'>
+                <h2>Olá {session?.user?.name}</h2>
+            </div>
             {eventos.map((evento: any, index: number) => (
                 <EventoAdm
                     key={evento.id}
@@ -45,6 +47,8 @@ export default function ListaEventosAdm(props: any) {
                 />
             ))}
         </div>
+</div>
+        
     )
     
     }

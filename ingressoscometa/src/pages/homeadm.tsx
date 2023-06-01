@@ -1,13 +1,11 @@
-import Layout from "@/components/CabecalhoCadastro/layout"
-import AdmLogado  from "@/components/AdmLogado/AdmLogado"
 import LayoutAdm from "@/components/AdmLogado/LayoutAdm"
-
+import HomeAdm from "@/components/AdmLogado/HomeAdm"
 
 export default function homeadm(){
 
     return (
         <div>
-            <LayoutAdm pagina={<AdmLogado/>} />
+            <LayoutAdm pagina={<HomeAdm/>} />
         </div>       
     )
 }

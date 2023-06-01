@@ -1,5 +1,3 @@
-import { useSession } from "next-auth/react"
-import { useRouter } from "next/router"
 import Link from "next/link"
 import BotaoRelatorioAdm from "./BotaoRelatorioAdm"
 import BotaoEventosAdm from "./BotaoEventosAdm"
@@ -14,7 +12,7 @@ export default function CabecalhoAdm(props: any) {
                     <img src="/cometa2.png" alt="Logo" width="200" height="200" />
                 </Link>
                 <BotaoEventosAdm Pagina="/eventos" NomeBotao="Eventos" icone= "faHome"/>
-                <BotaoRelatorioAdm Pagina="/relatorios_adm" NomeBotao="Relatórios" icone= "faHome"/>
+                <BotaoRelatorioAdm Pagina="/relatoriosadm" NomeBotao="Relatórios" icone= "faHome"/>
                 <BotaoPerfilAdm Pagina="/perfil" NomeBotao="Evento" icone= "faHome"/>
 
             </div>
