@@ -5,6 +5,9 @@ import CampoDataEvento from "./CampoDataEvento";
 import { FormEventHandler, useState } from "react";
 import CampoLocalEvento from "./CampoLocalEvento";
 import CampoEnvioImagem from "./CampoEnviarImagem";
+import CampoSetoresEvento from "./CampoSetoresEvento";
+import CampoPrecoVi from "./CampoPrecoVip";
+import CampoPrecoVip from "./CampoPrecoVip";
 import CampoSetorEvento from "./CampoSetorEvento";
 
 
