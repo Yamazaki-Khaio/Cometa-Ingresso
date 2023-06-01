@@ -92,7 +92,6 @@ return(
             <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao"/>
             <CampoLocalEvento value={formData.localEvento} onChange={handleInputChange} name="localEvento"/>
             <CampoDataEvento value={formData.dataEvento} onChange={handleInputChange} name="dataEvento"/>
-            <h2>Setores</h2>
             <CampoSetorEvento value={formData.setor} onChange={handleInputChange} name="setor"/>
             <CampoEnvioImagem  onChange={handleFileChange} name="imagem"/>
             <BotaoSubmitEvento/>
