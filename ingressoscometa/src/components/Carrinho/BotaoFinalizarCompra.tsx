@@ -1,5 +1,8 @@
+import Link from "next/link";
+
 export default function BotaoFinalizarCompra(){
     return(
+        <Link href={"finalizar_compra"}>
         <div>
             <input type="submit" value="Finalizar Compra" className={`
                      w-48 h-12  // diminuindo o comprimento do botão
@@ -12,5 +15,6 @@ export default function BotaoFinalizarCompra(){
                      active:bg-teal-700  // adicionando uma cor de fundo quando o botão é clicado
                 `} />
         </div>
+        </Link>
     )
 }
