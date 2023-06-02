@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   router.use('/', async (req: Request, res: Response) => {
     if (req.method === 'POST') {
       // Criar evento
-      const sql = "INSERT INTO evento (id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem, horario_evento) VALUES (?, ?, ?, ?, ?, ?. ?)";
+      const sql = "INSERT INTO evento (id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem, horario_evento) VALUES (?, ?, ?, ?, ?, ?, ?)";
       const setorSql = "INSERT INTO setor(nome, quantidade_ingresso, id_evento, preco) VALUES (?, ?, ?, ?)"
       const params = [
         '998',
@@ -24,14 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         '',
         req.body.horarioEvento,
       ];
-      const eventoId = results.insertId;
-      const setorParams = [
-        eventoId,
-        req.body.nome,
-        req.body.preco,
-        req.body.evento
-      ];
-
+      //const eventoId = results.insertId;
       const setorParams = [
         req.body.setor,
         '100',
