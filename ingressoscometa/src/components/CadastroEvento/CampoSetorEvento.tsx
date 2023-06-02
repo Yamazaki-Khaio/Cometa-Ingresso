@@ -2,35 +2,35 @@ import { useState } from "react";
 
 
 export default function CampoSetorEvento(props: any) {
-  const[camarote, setCamarote] = useState(false)
-  const[vip, setVip] = useState(false)
-  const[backstage, setBackstage] = useState(false)
-  const[nenhum, setNenhum] = useState(false)
+  const[camarote, setCamarote] = useState("")
+  const[vip, setVip] = useState("")
+  const[backstage, setBackstage] = useState("")
+  const[nenhum, setNenhum] = useState("")
 
     function CamaroteClick(){
-      setCamarote(camarote)
+      setCamarote("Camarote")
       console.log("camarote")
     }
 
     function VipClick(){
-      setVip(vip)
+      setVip("Vip")
       console.log("vip")
     }
 
     function BackstageClick(){
-      setBackstage(backstage)
+      setBackstage("Backstage")
       console.log("backstage")
     }
 
     function NenhumClick(){
-      setNenhum(nenhum)
+      setNenhum("Nenhum")
       console.log("nenhum")
     }
 
   return (
     <div className="flex flex-col gap-4 justify-center items-left ">
-    <div className="x" style={{wordSpacing: '15px'}} >Setores Preço Quantidade</div>
-      <div className="r1">
+    <div className="x" style={{wordSpacing: '30px'}} >Setores Preço Quantidade</div>
+      <div className="r1" style={{wordSpacing: '30px'}}>
       VIP: <input 
       type="checkbox" 
       id="VipCheck" 
