@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Criar evento
       const sql = "INSERT INTO evento (id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem) VALUES (?, ?, ?, ?, ?, ?)";
       const params = [
-        '1',
+        '998',
         req.body.nome,
         req.body.dataEvento,
         req.body.descricao,
