@@ -4,14 +4,17 @@ import Evento from './classes/Evento';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { randomInt } from 'crypto';
 
+
+
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const router = express.Router();
 
   router.use('/', async (req: Request, res: Response) => {
     if (req.method === 'POST') {
       // Criar evento
-      const sql =
-        'INSERT INTO evento (id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem, horario_evento) VALUES (?, ?, ?, ?, ?, ?, ?)';
+      const sql = "INSERT INTO evento (id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem, horario_evento) VALUES (?, ?, ?, ?, ?, ?, ?)";
+      const setorSql = "INSERT INTO setor(nome, quantidade_ingresso, id_evento, preco) VALUES (?, ?, ?, ?)"
       const params = [
         '998',
         req.body.nome,
@@ -21,6 +24,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         '',
         req.body.horarioEvento,
       ];
+      //const eventoId = results.insertId;
+      const setorParams = [
+        req.body.setor,
+        '100',
+        '1320',
+        '1.99'
+      ];
       connection.query(sql, params, (error, results, fields) => {
         if (error) {
           console.error('Erro ao inserir novo evento', error);
@@ -29,6 +39,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
         res.json(results);
       });
+
+      connection.query(setorSql, setorParams, (error, results, fields) => {
+        if (error) {
+          console.error('Erro ao inserir novo evento', error);
+          res.status(500).send('Erro ao inserir novo evento.');
+          return;
+        }
+        res.json(results);
+      });
+
     } else if (req.method === 'GET') {
       if (req.query.id) {
         // Buscar evento pelo ID

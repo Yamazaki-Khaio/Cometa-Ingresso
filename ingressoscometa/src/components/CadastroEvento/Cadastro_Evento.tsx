@@ -49,6 +49,7 @@ export default function CadastroEvento() {
       formData.dataEvento = (document.getElementById('data') as HTMLInputElement)?.value;
       formData.setor = (document.getElementById('setor') as HTMLInputElement)?.value;
       
+      
       const res = await fetch('/api/evento', {
         method: 'POST',
         headers: {

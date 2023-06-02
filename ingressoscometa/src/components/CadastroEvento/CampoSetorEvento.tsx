@@ -2,38 +2,43 @@ import { useState } from "react";
 
 
 export default function CampoSetorEvento(props: any) {
-  const[camarote, setCamarote] = useState(false)
-  const[vip, setVip] = useState(false)
-  const[backstage, setBackstage] = useState(false)
-  const[nenhum, setNenhum] = useState(false)
+  const[setor, setSetor] = useState("")
 
     function CamaroteClick(){
-      setCamarote(camarote)
+      setSetor("Camarote")
       console.log("camarote")
     }
 
     function VipClick(){
-      setVip(vip)
+      setSetor("Vip")
       console.log("vip")
     }
 
     function BackstageClick(){
-      setBackstage(backstage)
+      setSetor("Backstage")
       console.log("backstage")
     }
 
     function NenhumClick(){
-      setNenhum(nenhum)
+      setSetor("Nenhum")
       console.log("nenhum")
     }
 
   return (
     <div className="flex flex-col gap-4 justify-center items-left ">
-    <div className="x" style={{wordSpacing: '15px'}} >Setores Preço Quantidade</div>
-      <div className="r1">
+      <input 
+        id = "setor"
+        type="text"
+        className="border w-64 border-gray-400 rounded-md p-2 mb-8"
+        value={setor}
+        //onChange={handleNomeChange}
+      />
+    <div className="x" style={{wordSpacing: '30px'}} >Setores Preço Quantidade</div>
+      <div className="r1" style={{wordSpacing: '30px'}}>
       VIP: <input 
       type="checkbox" 
       id="VipCheck" 
+      value = {setor}
       onClick={VipClick}
       className="border w-10 border-gray-400 justify-center rounded-md">
       </input>
@@ -58,6 +63,7 @@ export default function CampoSetorEvento(props: any) {
       Camarote: <input 
       type="checkbox" 
       id="CamaroteCheck"
+      value = {setor}
       onClick={CamaroteClick}
       className="border w-10 border-gray-400 justify-center rounded-md">
       </input>
@@ -82,6 +88,7 @@ export default function CampoSetorEvento(props: any) {
       Backstage: <input 
       type="checkbox" 
       id="BackstageCheck" 
+      value = {setor}
       onClick={BackstageClick}
       className="border w-10 border-gray-400 justify-center rounded-md">
       </input>
@@ -106,6 +113,7 @@ export default function CampoSetorEvento(props: any) {
       Nenhum: <input 
       type="checkbox" 
       id="NenhumCheck" 
+      value = {setor}
       onClick={NenhumClick}
       className="border w-10 border-gray-400 justify-center rounded-md mb-8">
       </input>
