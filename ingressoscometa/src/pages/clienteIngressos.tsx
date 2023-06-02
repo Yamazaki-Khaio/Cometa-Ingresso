@@ -1,5 +1,5 @@
 import Sessao from "@/components/sessao";
-import IngressosAdquiridos from '../components/IngressosCliente/ingressosAdquiridos'
+import IngressosAdquiridos from '../components/IngressosCliente/IngressosAdquiridos';
 import Layout from "@/components/CabecalhoCliente/layoutCliente";
 
 

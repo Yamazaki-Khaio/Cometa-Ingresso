@@ -19,7 +19,8 @@ export default function CabecalhoCliente(props: { isBotaoOcultoLogin?: boolean, 
             <div className="flex gap-6">
                 <a href="/carrinho"> <BotaoCarrinho />
                 </a>
-                <BotaoIngressos/>
+                <a href="/clienteIngressos"><BotaoIngressos/></a>
+                
                 <BotaoEventos/>
                 <a href="/perfil"> <BotaoPerfil />
                 </a>

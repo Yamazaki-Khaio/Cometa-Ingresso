@@ -7,9 +7,6 @@ export default function EventoLogado(props: any) {
             <div className="w-92 h-44 ml-8">
                 <Image width={720} height={480} src={props.Image} alt={props.Nome} className=" w-full h-full object-cover rounded-3xl " />
             </div>
-
-
-
             <div className="ml-12">
                 <p className="font-bold  text-3xl">{props.Nome}</p>
                 <p className="font-sans text-4sm">Local: {props.Local}</p>
