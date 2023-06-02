@@ -8,12 +8,14 @@ import { FormEventHandler, useState } from "react";
 import { createHash } from 'crypto';
 import CampoEmail from "./CampoEmail";
 import sendEmail from "@/pages/api/email_send";
+import CampoTelefone from "./CampoTelefone";
 interface FormData {
   nome: string,
   cpf: string,
   data_nascimento: string,
   senha: string,
-  email: string
+  email: string,
+  telefone: string
 }
 
 function removerMascaraCpf(cpfComMascara: string): string {
@@ -30,7 +32,8 @@ export default function CadastroUsuario() {
     cpf: "",
     data_nascimento: "2000-01-01",
     senha: "",
-    email: ""
+    email: "",
+    telefone: ""
   });
 
 
@@ -45,7 +48,8 @@ export default function CadastroUsuario() {
         cpf: removerMascaraCpf(document.getElementById('cpf').value),
         data_nascimento: document.getElementById('data').value,
         senha: hash.digest('hex'),
-        email:  document.getElementById('email').value
+        email:  document.getElementById('email').value,
+        telefone: document.getElementById('telefone').value
       }
 
       //console.log(form.email)
@@ -103,6 +107,7 @@ export default function CadastroUsuario() {
         <CampoCpf value={formData.cpf} onChange={handleInputChange} name="cpf" />
         <CampoSenhaERepetirSenha value={formData.senha} onChange={handleInputChange} name="senha" />
         <RadioButton />
+        <CampoTelefone value={formData.telefone} onChange={handleInputChange} name="telefone"/> 
         <CampoDataDeNascimento value={formData.data_nascimento} onChange={handleInputChange} name="data_nascimento" />
         <BotaoSubmitCadastro />
       </form>

@@ -13,6 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       //const incrementQuery = 'SELECT id FROM usuario ORDER BY id DESC LIMIT 1'; //busca o ultimo id do usuario
       const sql = 'INSERT INTO usuario (cpf, nome, senha, data_nascimento, tipo_user) VALUES (?, ?, ?, ?, ?)';
       const emailSql = 'INSERT INTO email (id_usuario, email) VALUES (?, ?)';
+      const telSql = 'INSERT INTO telefone (id_usuario, telefone) VALUES (?, ?)';
       const params = [
         req.body.cpf,
         req.body.nome,
@@ -35,13 +36,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           req.body.email
         ];
       
+        const telParams = [
+          usuarioId,
+          req.body.telefone
+        ]
+        connection.query(telSql, telParams, (error, results, fields) => {
+          if (error) {
+            console.error('Erro ao inserir novo telefone: ', error);
+            res.status(500).send('Erro ao inserir novo telefone.');
+            return;
+          }
+          res.json(results);
+        });
         connection.query(emailSql, emailParams, (error, results, fields) => {
           if (error) {
             console.error('Erro ao inserir novo email: ', error);
             res.status(500).send('Erro ao inserir novo email.');
             return;
           }
-      
           res.json(results);
         });
       });
