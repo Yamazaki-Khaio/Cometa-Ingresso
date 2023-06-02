@@ -29,8 +29,8 @@ export default function CampoSetorEvento(props: any) {
 
   return (
     <div className="flex flex-col gap-4 justify-center items-left ">
-    <div className="x" style={{wordSpacing: '15px'}} >Setores Preço Quantidade</div>
-      <div className="r1">
+    <div className="x" style={{wordSpacing: '30px'}} >Setores Preço Quantidade</div>
+      <div className="r1" style={{wordSpacing: '30px'}}>
       VIP: <input 
       type="checkbox" 
       id="VipCheck" 
