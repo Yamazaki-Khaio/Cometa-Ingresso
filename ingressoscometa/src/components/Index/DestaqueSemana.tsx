@@ -51,7 +51,7 @@ export default function DestaqueSemana(props: any) {
             <img
               src={convertBufferToUrl(eventoDestaque.imagem)}
               alt={eventoDestaque.nome_evento}
-              className="w-[500px] h-[300px] object-cover rounded-xl border-separate border-4 border-white"
+              className="w-[500px] h-[300px] object-cover rounded-xl border-separate border-4 border-zinc-100"
             />
           </div>
         ))}

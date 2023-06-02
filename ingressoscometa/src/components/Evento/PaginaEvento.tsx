@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
 export default function PaginaEvento(props: any) {
-    const [evento, setEvento] = useState(null);
+    const [evento, setEvento] = useState<any>(null);
     const { data: session } = useSession();
 
     useEffect(() => {
@@ -13,10 +13,12 @@ export default function PaginaEvento(props: any) {
 
     const fetchEventoById = async (id) => {
         try {
-            const response = await axios.get(`/api/evento/${props.id}`);
+            const response = await axios.get(`/api/evento?id=${props.id}`);
             const eventoData = response.data;
             setEvento(eventoData);
             console.log(eventoData);
+            console.log(evento);
+            
             // Do something with the event data
         } catch (error) {
             console.log(error);
@@ -25,7 +27,7 @@ export default function PaginaEvento(props: any) {
 
     const convertBufferToUrl = (buffer: any) => {
         const imageData = Buffer.from(buffer.data).toString('base64');
-        return `data:image/png;base64,${imageData}`;
+        return `data:image/jpeg;base64,${imageData}`;
     };
 
     return (
