@@ -3,6 +3,7 @@ import axios from 'axios';
 import EventoComprado from './EventoComprado';
 import { Buffer } from 'buffer';
 import Paginacao from './Paginacao';
+import Filtro from './Filtro';
 
 export default function ListaEventosCliente(props: any) {
   const [eventos, setEventos] = useState<any[]>([]);
@@ -41,6 +42,7 @@ export default function ListaEventosCliente(props: any) {
   return (
     <div>
       <div className="flex flex-wrap gap-5 justify-center items-center p-4 bg-slate-200">
+        <Filtro/>
         {currentEvents.map((evento: any) => (
           <EventoComprado
             key={evento.id}
