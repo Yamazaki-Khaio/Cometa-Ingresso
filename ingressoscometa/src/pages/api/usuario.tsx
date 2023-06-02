@@ -10,16 +10,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   router.use('/', async (req, res) => {
     if (req.method === 'POST') {
       // Criar usuário
-      //const incrementQuery = 'SELECT id FROM usuario ORDER BY id DESC LIMIT 1'; //busca o ultimo id do usuario
       const sql = 'INSERT INTO usuario (cpf, nome, senha, data_nascimento, tipo_user) VALUES (?, ?, ?, ?, ?)';
       const emailSql = 'INSERT INTO email (id_usuario, email) VALUES (?, ?)';
       const telSql = 'INSERT INTO telefone (id_usuario, telefone) VALUES (?, ?)';
+      //const endSql = 'INSERT INTO endereco (id_usuario, cep, rua, numero, complemento, id_evento)  VALUES (?, ?, ?, ?, ?, ?)'
       const params = [
         req.body.cpf,
         req.body.nome,
         req.body.senha,
         req.body.data_nascimento,
-        req.body.tipo,
+        req.body.tipo
       ];
       
       connection.query(sql, params, (error, results, fields) => {
@@ -40,6 +40,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           usuarioId,
           req.body.telefone
         ]
+        /*const endParams = [
+          usuarioId,
+          req.body.cep,
+          req.body.rua,
+          req.body.numero,
+          req.body.complemento,
+          '1320'
+        ]*/
+
         connection.query(telSql, telParams, (error, results, fields) => {
           if (error) {
             console.error('Erro ao inserir novo telefone: ', error);
@@ -48,6 +57,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           }
           res.json(results);
         });
+        /*connection.query(endSql, endParams, (error, results, fields) => {
+          if (error) {
+            console.error('Erro ao inserir novo endereco: ', error);
+            res.status(500).send('Erro ao inserir novo endereco.');
+            return;
+          }
+          res.json(results);
+        });*/
         connection.query(emailSql, emailParams, (error, results, fields) => {
           if (error) {
             console.error('Erro ao inserir novo email: ', error);
