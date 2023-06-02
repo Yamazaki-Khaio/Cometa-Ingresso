@@ -1,21 +1,25 @@
-export default function BotaoCancelarCompra(){
+import React from 'react';
+import Link from "next/link"
 
-    return(
-        <div>
-            <input type="cancelar" value="            Cancelar" className={`
-                    flex flex-col items-center justify-center
-                    w-25 h-12  // diminuindo o comprimento do botão
-                     bg-gray-400 
-                     text-black 
-                     text-10
-                     rounded-3xl  // aumentando o valor do border-radius
-                     transition-all duration-300  // adicionando um efeito de transição
-                     hover:white-800  // adicionando uma cor de fundo quando o botão é hoverado
-                     active:white-700  // adicionando uma cor de fundo quando o botão é clicado
-                `} />
-                
-         
-        </div>
-    )
-
-}
+export default function BotaoCancelarCompra(props: {href: string}) {
+    return (
+      <div className="p-2">
+         <Link href={props.href}>
+        <input
+          type="submit"
+          value="Cancelar"
+          className={`
+            w-48 h-12
+            bg-white
+            text-black
+            border border-black
+            rounded-3xl
+            transition-all duration-300
+            hover:bg-gray-200
+          `}
+        />
+        </Link>
+      </div>
+    );
+  }
+  

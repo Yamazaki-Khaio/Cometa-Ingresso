@@ -59,7 +59,7 @@ export default function FinalizarCompra() {
                 </button>
             </div>
             <div className="absolute bottom-0 left-0 ...">
-            <BotaoCancelarCompra/>
+            <BotaoCancelarCompra href="/carrinho"/>
             </div>
                 
                 <div className="absolute left-30 top-10 text-xl ...">Deseja confirmar a compra?</div>
