@@ -10,14 +10,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   router.use('/', async (req, res) => {
     if (req.method === 'POST') {
       // Criar evento
-      const sql = "INSERT INTO evento (id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem) VALUES (?, ?, ?, ?, ?, ?)";
+      const sql = "INSERT INTO evento (id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem, horario_evento) VALUES (?, ?, ?, ?, ?, ?. ?)";
       const params = [
         '998',
         req.body.nome,
         req.body.dataEvento,
         req.body.descricao,
         '1',
-        req.body.imagem,
+        "",
+        req.body.horarioEvento,
       ];
       connection.query(sql, params, (error, results, fields) => {
         if (error) {

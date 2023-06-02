@@ -9,6 +9,7 @@ import CampoSetoresEvento from "./CampoSetoresEvento";
 import CampoPrecoVi from "./CampoPrecoVip";
 import CampoPrecoVip from "./CampoPrecoVip";
 import CampoSetorEvento from "./CampoSetorEvento";
+import CampoHorarioEvento from "./CampoHorarioEvento";
 
 
 
@@ -35,7 +36,7 @@ export default function CadastroEvento() {
     dataEvento: "",
     horarioEvento: "",
     imagem: undefined,
-    setor: "N"
+    setor: "Nenhum"
   });
 
   const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
@@ -44,6 +45,7 @@ export default function CadastroEvento() {
       formData.nome = (document.getElementById('nome') as HTMLInputElement)?.value;
       formData.descricao = (document.getElementById('descricao') as HTMLInputElement)?.value;
       formData.localEvento = (document.getElementById('localEvento') as HTMLInputElement)?.value;
+      formData.horarioEvento = (document.getElementById('horarioEvento') as HTMLInputElement)?.value;
       formData.dataEvento = (document.getElementById('data') as HTMLInputElement)?.value;
       formData.setor = (document.getElementById('setor') as HTMLInputElement)?.value;
       
@@ -92,6 +94,7 @@ return(
             <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao"/>
             <CampoLocalEvento value={formData.localEvento} onChange={handleInputChange} name="localEvento"/>
             <CampoDataEvento value={formData.dataEvento} onChange={handleInputChange} name="dataEvento"/>
+            <CampoHorarioEvento value={formData.horarioEvento} onChange={handleInputChange} name="horarioEvento"/>
             <CampoSetorEvento value={formData.setor} onChange={handleInputChange} name="setor"/>
             <CampoEnvioImagem  onChange={handleFileChange} name="imagem"/>
             <BotaoSubmitEvento/>

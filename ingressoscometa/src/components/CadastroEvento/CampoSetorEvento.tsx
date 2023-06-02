@@ -2,25 +2,28 @@ import { useState } from "react";
 
 
 export default function CampoSetorEvento(props: any) {
-  const[checked, setChecked] = useState(false)
+  const[camarote, setCamarote] = useState(false)
+  const[vip, setVip] = useState(false)
+  const[backstage, setBackstage] = useState(false)
+  const[nenhum, setNenhum] = useState(false)
 
     function CamaroteClick(){
-      setChecked(checked)
+      setCamarote(camarote)
       console.log("camarote")
     }
 
     function VipClick(){
-      setChecked(checked)
+      setVip(vip)
       console.log("vip")
     }
 
     function BackstageClick(){
-      setChecked(checked)
+      setBackstage(backstage)
       console.log("backstage")
     }
 
     function NenhumClick(){
-      setChecked(checked)
+      setNenhum(nenhum)
       console.log("nenhum")
     }
 
