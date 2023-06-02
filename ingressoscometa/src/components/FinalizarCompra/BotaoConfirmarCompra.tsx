@@ -1,8 +1,11 @@
+import Link from "next/link";
+
 export default function BotaoConfirmarCompra(){
 
     return(
+        <Link href={"/qrcode"}>
         <div>
-            <input type="confirmar" value="            Confirmar" className={`
+            <input type="submit" value="            Confirmar" className={`
             
                     flex flex-col items-center justify-center
                      w-25 h-12  // diminuindo o comprimento do botão
@@ -14,9 +17,9 @@ export default function BotaoConfirmarCompra(){
                      hover:bg-teal-800  // adicionando uma cor de fundo quando o botão é hoverado
                      active:bg-teal-700  // adicionando uma cor de fundo quando o botão é clicado
                 `} />
-                
          
         </div>
+       </Link>
     )
 
 }

@@ -24,9 +24,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: 'E-mail de boas-vindas enviado com sucesso!' });
+    res.status(200).json({ message: 'E-mail de finalização de compra enviado com sucesso!' });
   } catch (error) {
-    console.error('Erro ao enviar o e-mail de boas-vindas:', error);
-    res.status(500).json({ error: 'Erro ao enviar o e-mail de boas-vindas.' });
+    console.error('Erro ao enviar o e-mail de finalização de compra:', error);
+    res.status(500).json({ error: 'Erro ao enviar o e-mail de finalização de compra.' });
   }
 }
