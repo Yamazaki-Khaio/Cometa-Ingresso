@@ -15,7 +15,8 @@ interface FormData {
   data_nascimento: string,
   senha: string,
   email: string,
-  telefone: string
+  telefone: string,
+  tipo:string
 }
 
 function removerMascaraCpf(cpfComMascara: string): string {
@@ -33,7 +34,8 @@ export default function CadastroUsuario() {
     data_nascimento: "2000-01-01",
     senha: "",
     email: "",
-    telefone: ""
+    telefone: "",
+    tipo:""
   });
 
 
@@ -41,6 +43,16 @@ export default function CadastroUsuario() {
     e.preventDefault()
 
     try {
+      const radios = document.querySelectorAll('input[name="tipoUsuario"]')
+     
+      var tipo:number = 0
+     
+      for(var i:number = 0;i<radios.length;i++){
+         if(radios[i].checked){
+           tipo = i + 1;
+           break;
+         }
+      }
       const hash = createHash('sha256');
       hash.update(document.getElementById('senha').value)
       const form = {
@@ -49,10 +61,12 @@ export default function CadastroUsuario() {
         data_nascimento: document.getElementById('data').value,
         senha: hash.digest('hex'),
         email:  document.getElementById('email').value,
-        telefone: document.getElementById('telefone').value
+        telefone: document.getElementById('telefone').value,
+        tipo: tipo.toString()
       }
 
-      //console.log(form.email)
+    
+
       const res = await fetch('/api/usuario', {
         method: 'POST',
         headers: {
@@ -66,7 +80,7 @@ export default function CadastroUsuario() {
         .then(function (data) {
           console.log(form) //Testando se os valores estão passando
           console.log(data)
-// Envie uma requisição para a API interna para enviar o e-mail de boas-vindas
+      // Envie uma requisição para a API interna para enviar o e-mail de boas-vindas
         fetch('/api/email_send', {
           method: 'POST',
           headers: {
@@ -76,9 +90,11 @@ export default function CadastroUsuario() {
         })
           .then((response) => response.json())
           .then((responseData) => {
+            alert(responseData.message)
             console.log(responseData.message);
           })
           .catch((error) => {
+            alert('Erro ao enviar o e-mail de boas-vindas:')
             console.error('Erro ao enviar o e-mail de boas-vindas:', error);
           });
 
@@ -86,6 +102,7 @@ export default function CadastroUsuario() {
         });
     } catch (error) {
       console.error("Erro ao enviar os dados:", error);
+      alert("Erro ao enviar os dados:")
 
       // Lógica adicional para lidar com erros no envio dos dados
     }

@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         req.body.nome,
         req.body.senha,
         req.body.data_nascimento,
-        '1',
+        req.body.tipo,
       ];
       
       connection.query(sql, params, (error, results, fields) => {
