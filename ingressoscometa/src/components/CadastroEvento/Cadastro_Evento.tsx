@@ -10,7 +10,8 @@ import CampoPrecoVi from "./CampoPrecoVip";
 import CampoPrecoVip from "./CampoPrecoVip";
 import CampoSetorEvento from "./CampoSetorEvento";
 import CampoHorarioEvento from "./CampoHorarioEvento";
-
+import CampoQntIngresso from "./CampoQntIngresso";
+import { FLOAT } from "sequelize";
 
 
 interface FormData {
@@ -24,6 +25,16 @@ interface FormData {
     data: number[]
   } | undefined
   setor: string
+
+  qnt_vip: string
+  qnt_camarote: string
+  qnt_backstage: string
+  qnt_nenhum: string
+  
+  preco_vip: string
+  preco_camarote: string
+  preco_backstage: string
+  preco_nenhum: string
   }
 
 
@@ -36,7 +47,17 @@ export default function CadastroEvento() {
     dataEvento: "",
     horarioEvento: "",
     imagem: undefined,
-    setor: "Nenhum"
+    setor: "Nenhum",
+
+    qnt_vip: "",
+    qnt_camarote: "",
+    qnt_backstage: "",
+    qnt_nenhum: "",
+    
+    preco_vip: "",
+    preco_camarote: "",
+    preco_backstage: "",
+    preco_nenhum: ""
   });
 
   const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
@@ -48,8 +69,9 @@ export default function CadastroEvento() {
       formData.horarioEvento = (document.getElementById('horarioEvento') as HTMLInputElement)?.value;
       formData.dataEvento = (document.getElementById('data') as HTMLInputElement)?.value;
       formData.setor = (document.getElementById('setor') as HTMLInputElement)?.value;
-      
-      
+      formData.qnt_vip = (document.getElementById('qnt') as HTMLInputElement)?.value;
+
+
       const res = await fetch('/api/evento', {
         method: 'POST',
         headers: {
@@ -96,7 +118,19 @@ return(
             <CampoLocalEvento value={formData.localEvento} onChange={handleInputChange} name="localEvento"/>
             <CampoDataEvento value={formData.dataEvento} onChange={handleInputChange} name="dataEvento"/>
             <CampoHorarioEvento value={formData.horarioEvento} onChange={handleInputChange} name="horarioEvento"/>
-            <CampoSetorEvento value={formData.setor} onChange={handleInputChange} name="setor"/>
+            <div className="x" style={{wordSpacing: '50px'}} >Setores Preço Quantidade</div>
+            <div className="" style={{display: "flex"}}>
+            <CampoSetorEvento value={formData.setor} onChange={handleInputChange} name="setor"/> 
+            <CampoQntIngresso></CampoQntIngresso>
+            </div>
+            <div className="" style={{display: "flex"}}>
+            <CampoSetorEvento/> 
+            <CampoQntIngresso></CampoQntIngresso>
+            </div>
+            <div className="" style={{display: "flex"}}>
+            <CampoSetorEvento/> 
+            <CampoQntIngresso></CampoQntIngresso>
+            </div>
             <CampoEnvioImagem  onChange={handleFileChange} name="imagem"/>
             <BotaoSubmitEvento/>
             </form>

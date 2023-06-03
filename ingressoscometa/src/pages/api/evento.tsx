@@ -24,21 +24,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         '',
         req.body.horarioEvento,
       ];
-      //const eventoId = results.insertId;
-      const setorParams = [
-        req.body.setor,
-        '100',
-        '1320',
-        '1.99'
-      ];
       connection.query(sql, params, (error, results, fields) => {
         if (error) {
           console.error('Erro ao inserir novo evento', error);
           res.status(500).send('Erro ao inserir novo evento.');
           return;
         }
-        res.json(results);
-      });
+
+      const eventoId = results.insertId;
+      const setorParams = [
+        req.body.setor,
+        "10",
+       eventoId,
+        '1.99'
+      ];
 
       connection.query(setorSql, setorParams, (error, results, fields) => {
         if (error) {
@@ -48,6 +47,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
         res.json(results);
       });
+    });
 
     } else if (req.method === 'GET') {
       if (req.query.id) {
