@@ -6,6 +6,12 @@ import EventoAdm from './EventoAdm';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 
+function formatarNome(nome: string): string {
+    const nomesSeparados = nome.toLowerCase().split(' ');
+    const nomesFormatados = nomesSeparados.map((nome) => nome.charAt(0).toUpperCase() + nome.slice(1));
+    return nomesFormatados.join(' ');
+}
+  
 
 export default function ListaEventosAdm(props: any) {
     const [eventos, setEventos] = useState([])
@@ -34,7 +40,7 @@ export default function ListaEventosAdm(props: any) {
 
             <div className="flex flex-col gap-5 items-center p-4 ">
                 <div>
-                    <h2>Olá {session?.user?.name}</h2>
+                    <h2 className='text-4xl font-black'>Olá, {formatarNome(session?.user?.name)}</h2>
                 </div>
                 {eventos.map((evento: any, index: number) => (
                     <Link className="relative flex  justify-start content-center h-60 w-full ml-12 mr-12 border bg-white shadow-md rounded-3xl" href={`/evento/?id=${evento.id}`} key={evento.id}>
