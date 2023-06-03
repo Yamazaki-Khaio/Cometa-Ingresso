@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 
 export default function PerfilCampoNome() {
-  const { data: session } = useSession()
+  const  { data: session } = useSession()
   const [nome, setNome] = useState(session?.user?.name);
   const [editando, setEditando] = useState(false); // Estado de edição
 
@@ -36,7 +36,7 @@ export default function PerfilCampoNome() {
             e.preventDefault();
             alert("Algo deu errado. Tente novamente.");
           }}
-          value={session?.user?.name}
+          value={nome}
           onChange={handleNomeChange}
         />
         <span className="input-group-btn p-4">
