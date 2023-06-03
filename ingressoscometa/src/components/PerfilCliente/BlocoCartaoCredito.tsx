@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BotaoSalvarCartao from "./botaoSalvarCartao";
-import Campocvv from "./cartaoCvv";
+import CampoCvv from "./cartaoCvv";
 import CampoNumeroCartao from "./cartaoNumero";
 import CampoValidade from "./cartaoValidade";
 import Image from 'next/image';
@@ -45,14 +45,17 @@ export default function BlocoCartaoDeCredito() {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-            <div><CampoNumeroCartao/></div>
-      <div><Campocvv /></div>
-      <div><CampoValidade /></div>
-      <div><BotaoSalvarCartao /></div>
-      <div style={{ marginRight: "300px", marginTop: "-90px" }}>
+      <CampoNumeroCartao />
+      <div className="flex">
+        <CampoCvv />
+        <CampoValidade />
+      </div>
+      <div style={{ marginBottom: "100px" , marginTop: "40px"}}>
+        <BotaoSalvarCartao />
+      </div>
+      <div style={{ marginRight: "300px", marginTop: "-200px" }}>
         <Image src="/chip.png" alt="chip" width="50" height="50" />
       </div>
-
     </div>
   );
 }
