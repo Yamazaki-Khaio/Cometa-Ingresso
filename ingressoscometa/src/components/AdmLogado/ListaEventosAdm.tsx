@@ -6,12 +6,17 @@ import EventoAdm from './EventoAdm';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 
-function formatarNome(nome: string): string {
+function formatarNome(nome: string | null | undefined): string {
+    if (nome == null) {
+        return ''; // ou faça algo adequado para tratar o valor nulo ou indefinido
+    }
+
     const nomesSeparados = nome.toLowerCase().split(' ');
     const nomesFormatados = nomesSeparados.map((nome) => nome.charAt(0).toUpperCase() + nome.slice(1));
     return nomesFormatados.join(' ');
 }
-  
+
+
 
 export default function ListaEventosAdm(props: any) {
     const [eventos, setEventos] = useState([])
