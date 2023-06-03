@@ -131,19 +131,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     
     } else if (req.method === 'PUT') {
-      console.log("oi")
+      console.log("passo1")
       // Atualizar usuário
-      const sql = 'UPDATE usuario SET senha = ? WHERE id = ?';
-      connection.query(sql, [req.body, req.query.id], (error, results, fields) => {
-        if (error) {
-          console.error('Erro ao atualizar email: ', error);
-          res.status(500).send('Erro ao atualizar email.');
-          return;
-        }
-        res.json(results);
-      });
-    } else {
-      res.status(404).send('Rota não encontrada.');
+      if (req.body['senha']){
+        const sql = 'UPDATE usuario SET senha = ? WHERE id = ?';
+        connection.query(sql, [req.body, req.query.id], (error, results, fields) => {
+          if (error) {
+            console.error('Erro ao atualizar senha: ', error);
+            res.status(500).send('Erro ao atualizar senha.');
+            return;
+          }
+          res.json(results);
+        });
+      }
+      else if (req.body['nome']) {
+        console.log("passo2")
+        const sql = 'UPDATE usuario SET nome = ? WHERE id = ?';
+        connection.query(sql, [req.body['nome'], req.query.id], (error, results, fields) => {
+          if (error) {
+            console.error('Erro ao atualizar senha: ', error);
+            res.status(500).send('Erro ao atualizar senha.');
+            return;
+          }
+          res.json(results);
+        });
+      }
     }
   });
 
