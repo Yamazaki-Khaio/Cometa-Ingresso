@@ -31,9 +31,9 @@ export default function PaginaEvento(props: any) {
     };
 
     return (
-        <div className="flex items-center content-center justify-between">
+        <div className="">
             {evento && (
-                <div>
+                <div className='flex gap-8'>
                     <div className="h-128 ml-80">
                         <Image
                             width={720}
@@ -44,11 +44,11 @@ export default function PaginaEvento(props: any) {
                         />
                     </div>
                     <div className="w-64 mr-80 text-lg font-bold">
-                        <p>{evento.nome_evento}</p>
-                        <p>{new Date(evento.data_evento).toLocaleDateString()}</p>
-                        <p>{new Date(evento.data_evento).toLocaleTimeString()}</p>
-                        <p>{evento.local}</p>
-                        <p>{evento.descricao_evento}</p>
+                        <p className=' font-black text-3xl'>{evento.nome_evento}</p>
+                        <p className=' font-thin'>{evento.local}</p>
+                        <p className=' font-thin text-xl'>{new Date(evento.data_evento).toLocaleDateString()}</p>
+                        <p className=' font-thin text-md'>{new Date(evento.data_evento).toLocaleTimeString()}</p>
+                        <p className=' font-normal text-xl'>{evento.descricao_evento}</p>
                     </div>
                 </div>
             )}
