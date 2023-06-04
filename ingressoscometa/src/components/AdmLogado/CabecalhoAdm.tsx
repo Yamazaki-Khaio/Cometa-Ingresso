@@ -2,6 +2,8 @@ import Link from "next/link"
 import BotaoRelatorioAdm from "./BotaoRelatorioAdm"
 import BotaoEventosAdm from "./BotaoEventosAdm"
 import BotaoPerfilAdm from "./BotaoPerfilAdm"
+import BotaoNotificacoesAdm from "./BotaoNotificacoesAdm"
+import BotaoPromotersAdm from "./BotaoPromotersAdm"
 
 export default function CabecalhoAdm(props: any) {
     
@@ -11,9 +13,11 @@ export default function CabecalhoAdm(props: any) {
                 <Link href="/">
                     <img src="/cometa2.png" alt="Logo" width="200" height="200" />
                 </Link>
-                <BotaoEventosAdm Pagina="/eventos" NomeBotao="Eventos" icone= "faHome"/>
-                <BotaoRelatorioAdm Pagina="/relatoriosadm" NomeBotao="Relatórios" icone= "faHome"/>
-                <BotaoPerfilAdm Pagina="/perfil" NomeBotao="Evento" icone= "faHome"/>
+                <BotaoEventosAdm Pagina="/eventos" NomeBotao="Eventos" />
+                <BotaoRelatorioAdm Pagina="/relatoriosadm" NomeBotao="Relatórios" />
+                <BotaoPerfilAdm Pagina="/perfil" NomeBotao="Perfil" />
+                <BotaoNotificacoesAdm Pagina="/notificacoes" NomeBotao="Notificações" />
+                <BotaoPromotersAdm Pagina="/promoters" NomeBotao="Promoters"/>
 
             </div>
             

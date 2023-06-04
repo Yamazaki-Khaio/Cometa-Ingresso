@@ -14,9 +14,7 @@ export default function EventoAdm(props: any) {
                 <p className="font-sans text-4sm">A partir das: {props.Hora}</p>
                 <p className="font-sans text-4sm">{props.Descricao}</p>
             </div>
-            <div className="absolute bottom-8 right-8">
-                <Botao href="/carrinho" NomeBotao="Adicionar ao carrinho" />
-            </div>
+            
 
         </div>
 
