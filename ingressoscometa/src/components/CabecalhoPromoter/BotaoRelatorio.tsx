@@ -1,24 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileLines } from "@fortawesome/free-solid-svg-icons";
+import { faFileText, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
-export default function BotaoRelatorios() {
+export default function BotaoRelatorios(props: any) {
   return (
-    <div>
-      <button
-        className={`
-          flex items-center
-          bg-transparent
-          text-black
-          text-28 // Aumentando o tamanho do ícone
-          rounded-3xl
-          transition-all duration-300
-          hover:text-green-600
-          h-14 // Aumentando a altura do botão
-        `}
-      >
-        <FontAwesomeIcon icon={faFileLines} className="mr-1" />
-        Relatorios
-      </button>
+    <div className="flex flex-col gap-4">
+      <Link href= {props.Pagina}>
+          <div className="content-center flex-row items-start bg-white  hover:bg-slate-200 hover:text-teal-700 font-bold py-2 px-18 rounded">
+              <FontAwesomeIcon icon={faFileText} className="mr-2" />
+              {props.NomeBotao}
+
+          </div>
+      </Link>
     </div>
   );
 }
