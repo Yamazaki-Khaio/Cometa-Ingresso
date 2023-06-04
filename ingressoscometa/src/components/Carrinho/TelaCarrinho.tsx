@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import BotaoFinalizarCompra from "./BotaoFinalizarCompra";
+import Modal from "../Modal";
 
 interface Item {
     id: number;
@@ -12,6 +13,7 @@ interface CartProps {
   
 
 export default function TelaCarrinho({cartItems}: CartProps) {
+    
     return (
         <div>
             <h2 className="text-2xl font-bold">Carrinho de Compras </h2>

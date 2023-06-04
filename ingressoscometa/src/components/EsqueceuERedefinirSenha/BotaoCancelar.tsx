@@ -1,10 +1,15 @@
 import React from 'react';
 import Link from "next/link"
 
-export default function BotaoCancelar(props: {href: string}) {
-    return (
-      <div className="p-2">
-         <Link href={props.href}>
+interface BotaoCancelarProps {
+  href: string;
+  onClick?: () => void;
+}
+
+export default function BotaoCancelar(props: BotaoCancelarProps) {
+  return (
+    <div className="p-2">
+      <Link href={props.href}>
         <input
           type="submit"
           value="Cancelar"
@@ -17,11 +22,9 @@ export default function BotaoCancelar(props: {href: string}) {
             transition-all duration-300
             hover:bg-gray-200
           `}
+          onClick={props.onClick}
         />
-        </Link>
-      </div>
-    );
-  }
-  
-  
-  
+      </Link>
+    </div>
+  );
+}
