@@ -4,6 +4,7 @@ import CampoCvv from "./cartaoCvv";
 import CampoNumeroCartao from "./cartaoNumero";
 import CampoValidade from "./cartaoValidade";
 import Image from 'next/image';
+import CampoNomeCartao from './cartaoNome';
 
 export default function BlocoCartaoDeCredito() {
   const [hovered, setHovered] = useState(false);
@@ -45,12 +46,21 @@ export default function BlocoCartaoDeCredito() {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <CampoNumeroCartao />
-      <div className="flex">
-        <CampoCvv />
-        <CampoValidade />
+      <div style={{ marginBottom: "10px" }}>
+        <CampoNomeCartao />
       </div>
-      <div style={{ marginBottom: "100px" , marginTop: "40px"}}>
+      <div style={{ marginBottom: "10px" }}>
+        <CampoNumeroCartao />
+      </div>
+      <div className="flex">
+        <div style={{ marginRight: "23px" }}>
+          <CampoCvv />
+        </div>
+        <div style={{ marginLeft: "23px" }}>
+          <CampoValidade />
+        </div>
+      </div>
+      <div style={{ marginBottom: "100px", marginTop: "40px" }}>
         <BotaoSalvarCartao />
       </div>
       <div style={{ marginRight: "300px", marginTop: "-200px" }}>
