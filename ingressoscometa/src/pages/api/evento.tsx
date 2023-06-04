@@ -37,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
        eventoId,
         '1.99'
       ];
-      if (setorParams.req.body.setor != ""){
+      if (req.body.setor != ""){
       connection.query(setorSql, setorParams, (error, results, fields) => {
         if (error) {
           console.error('Erro ao inserir novo evento', error);
