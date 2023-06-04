@@ -46,8 +46,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
         res.json(results);
       });
-    });
-  }
+    }
+  });
 
     } else if (req.method === 'GET') {
       if (req.query.id) {
