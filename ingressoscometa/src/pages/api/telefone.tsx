@@ -79,7 +79,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
     //caso metodo put
     if(req.method==='PUT'){
         const sql ='UPDATE telefone SET telefone=? WHERE id_usuario=?';
-        connection.query(sql,(error, results, fields) => {
+        connection.query(sql,[req.body, req.query.id], (error, results, fields) => {
             if (error) {
                 console.error('Erro ao atualizar telefone: ', error);
                 res.status(500).send('Erro ao atualizar telefone.');

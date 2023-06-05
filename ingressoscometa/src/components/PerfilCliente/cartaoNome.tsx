@@ -24,7 +24,7 @@ export default function CampoNomeCartao(props: any) {
           name="nomeCartao"
           id="nomeCartao"
           maxLength={50}
-          placeholder={!editando ? "Nome do cartão" : ""}
+          placeholder={!editando ? "Nome do titular do cartão" : ""}
           required
           onInvalid={(e) => {
             e.preventDefault();

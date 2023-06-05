@@ -1,12 +1,49 @@
-import React, { useState } from 'react';
+import React, { FormEventHandler, useEffect, useState } from 'react';
 import BotaoSalvarCartao from "./botaoSalvarCartao";
 import CampoCvv from "./cartaoCvv";
 import CampoNumeroCartao from "./cartaoNumero";
 import CampoValidade from "./cartaoValidade";
 import Image from 'next/image';
 import CampoNomeCartao from './cartaoNome';
+import { getSession } from 'next-auth/react';
 
 export default function BlocoCartaoDeCredito() {
+
+  const [id_usuario, setIdUsuario] = useState("");
+
+  useEffect(() => {
+    async function getUserId() {
+      const user = await getSession();
+      const userId = user?.user.id;
+      setIdUsuario(userId);
+    }
+
+    getUserId();
+  }, []);
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    try{
+    const formCartao = {
+      id: id_usuario,
+      nCard: document.getElementById('numeroCartao').value,
+      data_validade: document.getElementById('validade').value,
+      cvv: document.getElementById('cvv').value,
+      titular: document.getElementById('nomeCartao').value,
+      }
+
+      const res = await fetch(`/api/cardc?id_usuario=${formCartao.id}`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formCartao)
+      });
+    } catch(error){
+      console.error("Erro ao enviar os dados:", error);
+    }
+  }
+  
   const [hovered, setHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -46,8 +83,9 @@ export default function BlocoCartaoDeCredito() {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      <form onSubmit={handleSubmit}>
       <div style={{ marginBottom: "10px" }}>
-        <CampoNomeCartao />
+        <CampoNomeCartao value/>
       </div>
       <div style={{ marginBottom: "10px" }}>
         <CampoNumeroCartao />
@@ -63,9 +101,10 @@ export default function BlocoCartaoDeCredito() {
       <div style={{ marginBottom: "100px", marginTop: "40px" }}>
         <BotaoSalvarCartao />
       </div>
+      </form>
       <div style={{ marginRight: "300px", marginTop: "-200px" }}>
         <Image src="/chip.png" alt="chip" width="50" height="50" />
       </div>
     </div>
-  );
-}
+    );
+  }

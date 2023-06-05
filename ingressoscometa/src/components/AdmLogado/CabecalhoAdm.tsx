@@ -15,7 +15,7 @@ export default function CabecalhoAdm(props: any) {
                 </Link>
                 <BotaoEventosAdm Pagina="/eventos" NomeBotao="Eventos" />
                 <BotaoRelatorioAdm Pagina="/relatoriosadm" NomeBotao="Relatórios" />
-                <BotaoPerfilAdm Pagina="/perfil" NomeBotao="Perfil" />
+                <BotaoPerfilAdm Pagina="/perfiladm" NomeBotao="Perfil" />
                 <BotaoNotificacoesAdm Pagina="/notificacoes" NomeBotao="Notificações" />
                 <BotaoPromotersAdm Pagina="/promotores" NomeBotao="Promoters"/>
 
