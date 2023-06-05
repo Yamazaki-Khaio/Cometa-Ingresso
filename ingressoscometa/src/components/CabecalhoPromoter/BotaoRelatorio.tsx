@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFileLines } from "@fortawesome/free-solid-svg-icons";
 import { faFileText, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
