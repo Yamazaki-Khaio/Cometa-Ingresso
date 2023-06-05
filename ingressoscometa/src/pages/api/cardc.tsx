@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const sql = 'INSERT INTO cardc (id_usuario, nCard, data_validade, cvv, titular) VALUES (?, ?, ?, ?, ?)';
       
       const params = [
-        '1000',
+        req.body.id,
         req.body.nCard,
         req.body.data_validade,
         req.body.cvv,

@@ -1,29 +1,48 @@
-import React, { useState } from 'react';
+import React, { FormEventHandler, useEffect, useState } from 'react';
 import BotaoSalvarCartao from "./botaoSalvarCartao";
 import CampoCvv from "./cartaoCvv";
 import CampoNumeroCartao from "./cartaoNumero";
 import CampoValidade from "./cartaoValidade";
 import Image from 'next/image';
 import CampoNomeCartao from './cartaoNome';
-
-interface FormData {
-  id_usuario: string,
-  nCard: string,
-  data_validade: string,
-  cvv: string,
-  titular: string,
-}
+import { getSession } from 'next-auth/react';
 
 export default function BlocoCartaoDeCredito() {
 
-  const [formData, setFormData] = useState<FormData>({
-    id_usuario: "",
-    nCard: "",
-    data_validade: "",
-    cvv: "",
-    titular: "",
-  });
+  const [id_usuario, setIdUsuario] = useState("");
 
+  useEffect(() => {
+    async function getUserId() {
+      const user = await getSession();
+      const userId = user?.user.id;
+      setIdUsuario(userId);
+    }
+
+    getUserId();
+  }, []);
+
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    try{
+    const formCartao = {
+      id: id_usuario,
+      nCard: document.getElementById('numeroCartao').value,
+      data_validade: document.getElementById('validade').value,
+      cvv: document.getElementById('cvv').value,
+      titular: document.getElementById('nomeCartao').value,
+      }
+
+      const res = await fetch(`/api/cardc?id_usuario=${formCartao.id}`, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formCartao)
+      });
+    } catch(error){
+      console.error("Erro ao enviar os dados:", error);
+    }
+  }
   
   const [hovered, setHovered] = useState(false);
 
@@ -64,6 +83,7 @@ export default function BlocoCartaoDeCredito() {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
+      <form onSubmit={handleSubmit}>
       <div style={{ marginBottom: "10px" }}>
         <CampoNomeCartao />
       </div>
@@ -83,7 +103,10 @@ export default function BlocoCartaoDeCredito() {
       </div>
       <div style={{ marginRight: "300px", marginTop: "-200px" }}>
         <Image src="/chip.png" alt="chip" width="50" height="50" />
+        
       </div>
+      </form>
     </div>
-  );
-}
+    
+    );
+  }

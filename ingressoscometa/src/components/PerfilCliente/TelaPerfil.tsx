@@ -29,25 +29,32 @@ export default function Perfil(){
         
         try {   
 
-            const form = {
+            const formUsuario = {
                 nome: document.getElementById('nome').value,
                 id: id_usuario
               };
-              console.log(`/api/usuario?id=${form.id}`)
-              const resUsuario = await fetch(`/api/usuario?id=${form.id}`, {
+            console.log(`/api/usuario?id=${formUsuario.id}`)
+            const resUsuario = await fetch(`/api/usuario?id=${form.id}`, {
                 method: 'PUT',
                 headers: {
                   "Content-Type": "application/json"
                 },
-                body: JSON.stringify(form)
+                body: JSON.stringify(formUsuario)
               });
-             /* const resTelefone = await fetch(`/api/telefone?id_usuario=${form.id}`, {
+
+            const formTelefone = {
+                telefone: document.getElementById('telefone').value,
+                id: id_usuario
+              };
+
+            const resTelefone = await fetch(`/api/telefone?id_usuario=${formTelefone.id}`, {
                 method: 'PUT',
                 headers: {
                   "Content-Type": "application/json"
                 },
+                body: JSON.stringify(formTelefone)
               });
-              const resEndereco = await fetch(`/api/endereco?id_usuario=${form.id}`, {
+            /*const resEndereco = await fetch(`/api/endereco?id_usuario=${form.id}`, {
                 method: 'PUT',
                 headers: {
                   "Content-Type": "application/json"
