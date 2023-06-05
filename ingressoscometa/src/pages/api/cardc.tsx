@@ -10,15 +10,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   router.use('/', async (req, res) => {
     if (req.method === 'POST') {
       // Criar usuário
-      const sql = 'INSERT INTO cardc (id_usuario, nCard, data_validade, cvv, titular, cpf) VALUES (?, ?, ?, ?, ?, ?)';
+      const sql = 'INSERT INTO cardc (id_usuario, nCard, data_validade, cvv, titular) VALUES (?, ?, ?, ?, ?)';
       
       const params = [
-        req.body.id_usuario,
+        '1000',
         req.body.nCard,
         req.body.data_validade,
         req.body.cvv,
         req.body.titular,
-        req.body.cpf
       ];
       
       connection.query(sql, params, (error, results, fields) => {

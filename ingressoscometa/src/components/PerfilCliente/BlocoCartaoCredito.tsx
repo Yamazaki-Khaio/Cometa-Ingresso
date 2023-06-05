@@ -6,7 +6,25 @@ import CampoValidade from "./cartaoValidade";
 import Image from 'next/image';
 import CampoNomeCartao from './cartaoNome';
 
+interface FormData {
+  id_usuario: string,
+  nCard: string,
+  data_validade: string,
+  cvv: string,
+  titular: string,
+}
+
 export default function BlocoCartaoDeCredito() {
+
+  const [formData, setFormData] = useState<FormData>({
+    id_usuario: "",
+    nCard: "",
+    data_validade: "",
+    cvv: "",
+    titular: "",
+  });
+
+  
   const [hovered, setHovered] = useState(false);
 
   const handleMouseEnter = () => {
