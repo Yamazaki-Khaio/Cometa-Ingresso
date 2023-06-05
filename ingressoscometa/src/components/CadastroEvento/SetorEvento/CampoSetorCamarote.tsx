@@ -19,8 +19,12 @@ export default function CampoSetorCamarote(props: any) {
     }
 
     function CamaroteClick(){
-      setSetor("Camarote")
-      console.log("camarote")
+      if (setor == ""){
+        setSetor("Camarote")
+      }else{
+        setSetor("")
+
+      }
     }
 
   return (

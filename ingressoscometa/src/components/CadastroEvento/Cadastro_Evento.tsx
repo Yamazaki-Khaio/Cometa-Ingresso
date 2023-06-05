@@ -27,7 +27,11 @@ interface FormData {
     type: string,
     data: number[]
   } | undefined
+
   setor: string
+  setor_camarote: string
+  setor_backstage: string
+  setor_nenhum: string
 
   qnt_vip: string
   qnt_camarote: string
@@ -50,7 +54,11 @@ export default function CadastroEvento() {
     dataEvento: "",
     horarioEvento: "",
     imagem: undefined,
+
     setor: "",
+    setor_camarote: "",
+    setor_backstage: "",
+    setor_nenhum: "",
 
     qnt_vip: "",
     qnt_camarote: "",
@@ -123,7 +131,7 @@ return(
             <CampoHorarioEvento value={formData.horarioEvento} onChange={handleInputChange} name="horarioEvento"/>
             <div style={{wordSpacing: '50px'}} >Setores Preço Quantidade</div>
             <div style={{display: "flex"}}>
-            <CampoSetorVip/> 
+            <CampoSetorVip value={formData.setor} onChange={handleInputChange} name="setor"/> 
             <CampoQntIngresso value={formData.qnt_vip} onChange={handleInputChange} name="qnt_vip"/>
             </div>
             <div className="" style={{display: "flex"}}>
@@ -131,7 +139,7 @@ return(
             <CampoQntIngresso/>
             </div>
             <div className="" style={{display: "flex"}}>
-            <CampoSetorBackstage value={formData.setor} onChange={handleInputChange} name="setor"/> 
+            <CampoSetorBackstage/> 
             <CampoQntIngresso/>
             </div>
             <div className="" style={{display: "flex"}}>

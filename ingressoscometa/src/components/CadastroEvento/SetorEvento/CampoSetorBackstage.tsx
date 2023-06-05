@@ -19,8 +19,12 @@ export default function CampoSetorBackstage(props: any) {
     }
 
     function BackstageClick(){
-      setSetor("Backstage")
-      console.log("Backstage")
+      if (setor == ""){
+        setSetor("Backstage")
+      }else{
+        setSetor("")
+
+      }
     }
 
   return (

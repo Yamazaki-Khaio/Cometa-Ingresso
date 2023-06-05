@@ -19,8 +19,12 @@ export default function CampoSetorNenhum(props: any) {
     }
 
     function NenhumClick(){
-      setSetor("Nenhum")
-      console.log("Nenhum")
+      if (setor == ""){
+        setSetor("Nenhum")
+      }else{
+        setSetor("")
+
+      }
     }
 
   return (
