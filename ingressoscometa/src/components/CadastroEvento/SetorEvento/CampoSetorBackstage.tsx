@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-export default function CampoSetorEvento(props: any) {
+export default function CampoSetorBackstage(props: any) {
   const[setor, setSetor] = useState("")
   const[qnt, setQnt] = useState("")
   const[preco, setPreco] = useState("")
@@ -18,9 +18,13 @@ export default function CampoSetorEvento(props: any) {
       setPreco(event.target.value)
     }
 
-    function VipClick(){
-      setSetor("VIP")
-      console.log("vip")
+    function BackstageClick(){
+      if (setor == ""){
+        setSetor("Backstage")
+      }else{
+        setSetor("")
+
+      }
     }
 
   return (
@@ -35,11 +39,11 @@ export default function CampoSetorEvento(props: any) {
         onChange={handleSetorChange}
       />
       <div className="r1" style={{wordSpacing: '30px'}}>
-      VIP: <input 
+      Backstage: <input 
       type="checkbox" 
-      id="VipCheck" 
+      id="BackstageCheck" 
       value = {setor}
-      onClick={VipClick}
+      onClick={BackstageClick}
       className="border w-10 border-gray-400 justify-center rounded-md">
       </input>
       <input 

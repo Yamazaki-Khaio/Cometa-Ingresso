@@ -1,6 +1,5 @@
 import express, { Request, Response } from 'express';
 import { connection } from './db';
-import Evento from './classes/Evento';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { randomInt } from 'crypto';
 
@@ -38,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
        eventoId,
         '1.99'
       ];
-
+      if (req.body.setor != ""){
       connection.query(setorSql, setorParams, (error, results, fields) => {
         if (error) {
           console.error('Erro ao inserir novo evento', error);
@@ -47,7 +46,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
         res.json(results);
       });
-    });
+    }
+  });
 
     } else if (req.method === 'GET') {
       if (req.query.id) {
