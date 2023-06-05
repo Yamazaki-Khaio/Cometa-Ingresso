@@ -22,7 +22,7 @@ interface CartProps {
             </li>
           ))}
         </ul>
-        <BotaoFinalizarCompra />
+        <BotaoFinalizarCompra frase="Deseja confirmar sua compra?" caminho="/qrcode"/>
       </div>
     );
   }
