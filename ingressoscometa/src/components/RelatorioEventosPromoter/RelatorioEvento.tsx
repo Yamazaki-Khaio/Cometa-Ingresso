@@ -13,13 +13,12 @@ const dados = [
 const App: React.FC = () => {
   return (
     <div className="flex">
-      <MenuLateralPromoter />
       <div className="flex-1">
-        <div className="p-4">
+        <div className="p-4 ml-60">
           <div className="mt-4">
             <h1 className="text-2xl font-bold">Relatório de Eventos</h1>
           </div>
-          <div className="bg-white rounded-lg shadow-xl p-4 mt-4">
+          <div className="bg-white rounded-lg shadow-xl p-4 mt-4 ">
             <h3 className="text-xl font-semibold">Tabela de Eventos</h3>
             <Tabela dados={dados} />
           </div>

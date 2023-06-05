@@ -1,9 +1,10 @@
 import Relatorio_evento from "@/components/RelatorioEventosPromoter/RelatorioEvento";
+import Layout from "@/components/CabecalhoPromoter/LayoutPromoter";
 
 export default function cadastro(){
     return(
         <div>
-            <Relatorio_evento/>
+            <Layout pagina={<Relatorio_evento/>}/>
         </div>
     )
 }

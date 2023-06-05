@@ -15,7 +15,7 @@ export default function CabecalhoPromoter(props: { isBotaoOcultoLogin?: boolean,
                 </a>
                 <h2 className="font-bold text-xl">Olá {session?.user?.name}</h2>
                 <div className="flex flex-col gap-4">
-                <BotaoEventosAdm Pagina="/eventos" NomeBotao="Eventos" icone= "faHome"/>
+                <BotaoEventosAdm Pagina="/homepromoter" NomeBotao="Eventos" icone= "faHome"/>
                 <BotaoRelatorios Pagina="/relatorio_evento_promoter" NomeBotao="Relatórios" icone= "faHome"/>
                 <BotaoPerfil Pagina="/perfilpromoter" NomeBotao="Perfil" icone= "faHome"/>
                 <button className={`
