@@ -85,7 +85,7 @@ export default function BlocoCartaoDeCredito() {
     >
       <form onSubmit={handleSubmit}>
       <div style={{ marginBottom: "10px" }}>
-        <CampoNomeCartao />
+        <CampoNomeCartao value/>
       </div>
       <div style={{ marginBottom: "10px" }}>
         <CampoNumeroCartao />
