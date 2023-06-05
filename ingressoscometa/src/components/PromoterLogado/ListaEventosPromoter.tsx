@@ -34,8 +34,8 @@ export default function ListaEventosPromoters(props: any) {
         <div className="flex flex-wrap gap-5 justify-end items-end p-4 ">
             <div className='justify-start w-5/6'>
                 <h2 className="font-bold  text-3xl"> Eventos Cadastrados</h2>
-                <div className="absolute top-3 right-2/4">
-                <Botao href="/cadastro_evento" NomeBotao="Cadastrar Novo Evento" />
+                <div className="absolute top-3 right-8">
+                    <Botao href="/cadastro_evento" NomeBotao="Cadastrar Novo Evento" />
                 </div>
             </div>
             {eventos.map((evento: any, index: number) => (

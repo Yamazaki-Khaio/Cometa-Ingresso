@@ -20,13 +20,13 @@ export default function EventoPromoter(props: any) {
                 <p className="font-sans text-4sm">{props.Descricao}</p>
             </div>
             <div className="absolute bottom-1/3 right-8">
-                <Botao href="/carrinho" NomeBotao="Suspender" />
+                <Botao href="/supender" NomeBotao="Suspender" />
             </div>
             <div className="absolute bottom-5 right-8">
-                <Botao href="/carrinho" NomeBotao="Cancelar" />
+                <Botao href="/cancelar" NomeBotao="Cancelar" />
             </div>
             <div className="absolute bottom-3/4 right-8">
-                < a href="/carrinho" className="btn btn-default">
+                < a href="/editar" className="btn btn-default">
                     <button
                     type="button"
                     className="btn btn-default"

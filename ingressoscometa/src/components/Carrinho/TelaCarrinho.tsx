@@ -11,18 +11,19 @@ interface CartProps {
   }
   
 
-export default function TelaCarrinho({cartItems}: CartProps) {
+  export default function TelaCarrinho({ cartItems }: CartProps) {
     return (
-        <div>
-            <h2 className="text-2xl font-bold">Carrinho de Compras </h2>
-            <BotaoFinalizarCompra/>
-            <ul>
-                {cartItems.map((item) => ( 
-                    <li key={item.id}>
-                        {item.name} - R${item.price.toFixed(2)}
-                    </li>
-                ))}
-            </ul>
-        </div>
-    )
-}
+      <div className="flex flex-col items-center">
+        <h2 className="text-2xl font-bold">Carrinho de Compras</h2>
+        <ul className="mt-4">
+          {cartItems.map((item) => (
+            <li key={item.id}>
+              {item.name} - R${item.price.toFixed(2)}
+            </li>
+          ))}
+        </ul>
+        <BotaoFinalizarCompra frase="Deseja confirmar sua compra?" caminho="/qrcode"/>
+      </div>
+    );
+  }
+  
