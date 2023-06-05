@@ -31,14 +31,66 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
       const eventoId = results.insertId;
-      const setorParams = [
-        req.body.setor,
-        "10",
+      const setorVipParams = [
+        req.body.setor_vip,
+        req.body.qnt_vip,
        eventoId,
-        '1.99'
+       req.body.preco_vip,
       ];
-      if (req.body.setor != ""){
-      connection.query(setorSql, setorParams, (error, results, fields) => {
+
+      const setorCamaroteParams = [
+        req.body.setor_camarote,
+        req.body.qnt_camarote,
+       eventoId,
+       req.body.preco_camarote,
+      ];
+
+      const setorBackstageParams = [
+        req.body.setor_backstage,
+        req.body.qnt_backstage,
+       eventoId,
+       req.body.preco_backstage,
+      ];
+
+      const setorNenhumParams = [
+        req.body.setor_nenhum,
+        req.body.qnt_nenhum,
+       eventoId,
+       req.body.preco_nenhum,
+      ];
+
+      if (req.body.setor_vip != ""){
+      connection.query(setorSql, setorVipParams, (error, results, fields) => {
+        if (error) {
+          console.error('Erro ao inserir novo evento', error);
+          res.status(500).send('Erro ao inserir novo evento.');
+          return;
+        }
+        res.json(results);
+      });
+    }
+    if (req.body.setor_camarote != ""){
+      connection.query(setorSql, setorCamaroteParams, (error, results, fields) => {
+        if (error) {
+          console.error('Erro ao inserir novo evento', error);
+          res.status(500).send('Erro ao inserir novo evento.');
+          return;
+        }
+        res.json(results);
+      });
+    }
+    if (req.body.setor_backstage != ""){
+      connection.query(setorSql, setorBackstageParams, (error, results, fields) => {
+        if (error) {
+          console.error('Erro ao inserir novo evento', error);
+          res.status(500).send('Erro ao inserir novo evento.');
+          return;
+        }
+        res.json(results);
+      });
+    }
+    if (req.body.setor_nenhum != ""){
+      connection.query(setorSql, setorNenhumParams, (error, results, fields) => {
         if (error) {
           console.error('Erro ao inserir novo evento', error);
           res.status(500).send('Erro ao inserir novo evento.');

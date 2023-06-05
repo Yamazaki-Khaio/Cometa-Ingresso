@@ -15,7 +15,7 @@ export default function CampoDataEvento(props: any) {
         id="data"
         placeholder="  /  /  "
         required
-        className="border w-32 border-gray-400 rounded-md p-2 mb-8"
+        className="border w-128 border-gray-400 rounded-md p-2 mb-8"
         onChange={handleDataEventoChange}
       />
     </div>

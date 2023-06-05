@@ -12,7 +12,7 @@ export default function CampoDescricaoEvento(props: any){
         id = "descricao"
         type = "text"
         placeholder="Insira a descrição do evento" 
-        className="border w-64 border-gray-400 rounded-md p-2 mb-8"
+        className="border w-128 border-gray-400 rounded-md p-2 mb-8"
         value = {descricao}
         onChange={handleDescricaoChange}
       />

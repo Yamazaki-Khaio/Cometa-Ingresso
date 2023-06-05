@@ -16,7 +16,7 @@ export default function CampoHorarioEvento(props: any) {
         placeholder="00:00"
         value={horarioEvento}
         onChange={handleHorarioChange}
-        className="border w-32 border-gray-400 rounded-md p-2 mb-8"
+        className="border w-128 border-gray-400 rounded-md p-2 mb-8"
       />
     </div>
   );

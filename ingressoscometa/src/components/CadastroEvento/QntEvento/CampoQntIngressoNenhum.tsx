@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PassThrough } from "stream";
 
 
-export default function CampoQntIngresso(props: any) {
+export default function CampoQntIngressoNenhum(props: any) {
   const[qnt, setQnt] = useState("")
   const[preco, setPreco] = useState("")
 
@@ -11,7 +11,7 @@ export default function CampoQntIngresso(props: any) {
     }
 
   return (
-    <div className="flex flex-col gap-4 items-left ">
+    <div className="flex flex-col gap-4 justify-center items-left ">
         <input 
         id = ""
         type="text"
@@ -20,10 +20,10 @@ export default function CampoQntIngresso(props: any) {
       />
       
         <input 
-        id = "VipQnt"
+        id = "qnt_nenhum"
         type="text"
         placeholder="Qtd." 
-        className="border border-gray-400 rounded-md p-2 mb-8"
+        className="border border-gray-400 rounded-md p-2"
         style={{width: "100px"}}
         value={qnt}
         onChange={handleQntChange}

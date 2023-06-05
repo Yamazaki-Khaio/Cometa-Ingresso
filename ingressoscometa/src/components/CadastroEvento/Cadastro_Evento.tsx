@@ -2,20 +2,26 @@ import BotaoSubmitEvento from "./BotaoSubmitEvento";
 import CampoDescricaoEvento from "./CampoDescricaoEvento";
 import CampoNomeEvento from "./CampoNomeEvento";
 import CampoDataEvento from "./CampoDataEvento";
-import { FormEventHandler, useState } from "react";
+import { FormEventHandler, cloneElement, useState } from "react";
 import CampoLocalEvento from "./CampoLocalEvento";
 import CampoEnvioImagem from "./CampoEnviarImagem";
 import CampoSetoresEvento from "./SetorEvento/CampoSetoresEvento";
-import CampoPrecoVi from "./CampoPrecoVip";
-import CampoPrecoVip from "./CampoPrecoVip";
+import CampoPrecoVi from "./PrecoEvento/CampoPreco";
+import CampoPreco from "./PrecoEvento/CampoPreco";
 import CampoSetorVip from "./SetorEvento/CampoSetorVip";
 import CampoSetorBackstage from "./SetorEvento/CampoSetorBackstage";
 import CampoSetorCamarote from "./SetorEvento/CampoSetorCamarote";
 import CampoSetorNenhum from "./SetorEvento/CampoSetorNenhum";
 import CampoHorarioEvento from "./CampoHorarioEvento";
-import CampoQntIngresso from "./SetorEvento/CampoQntIngresso";
+import CampoQntIngressoVip from "./QntEvento/CampoQntIngresso";
+import CampoQntIngressoBackstage from "./QntEvento/CampoQntIngressoBack";
+import CampoQntIngressoCamarote from "./QntEvento/CampoQntIngressoCam";
+import CampoQntIngressoNenhum from "./QntEvento/CampoQntIngressoNenhum";
+import CampoPrecoVip from "./PrecoEvento/CampoPreco";
+import CampoPrecoCamarote from "./PrecoEvento/CampoPrecoCam";
+import CampoPrecoBackstage from "./PrecoEvento/CampoPrecoBack";
+import CampoPrecoNenhum from "./PrecoEvento/CampoPrecoNenhum";
 import { FLOAT } from "sequelize";
-
 
 interface FormData {
   nome: string,
@@ -28,7 +34,7 @@ interface FormData {
     data: number[]
   } | undefined
 
-  setor: string
+  setor_vip: string
   setor_camarote: string
   setor_backstage: string
   setor_nenhum: string
@@ -55,7 +61,7 @@ export default function CadastroEvento() {
     horarioEvento: "",
     imagem: undefined,
 
-    setor: "",
+    setor_vip: "",
     setor_camarote: "",
     setor_backstage: "",
     setor_nenhum: "",
@@ -79,8 +85,23 @@ export default function CadastroEvento() {
       formData.localEvento = (document.getElementById('localEvento') as HTMLInputElement)?.value;
       formData.horarioEvento = (document.getElementById('horarioEvento') as HTMLInputElement)?.value;
       formData.dataEvento = (document.getElementById('data') as HTMLInputElement)?.value;
-      formData.setor = (document.getElementById('setor') as HTMLInputElement)?.value;
+
+      formData.setor_vip = (document.getElementById('setor_vip') as HTMLInputElement)?.value;
       formData.qnt_vip = (document.getElementById('qnt_vip') as HTMLInputElement)?.value;
+      formData.preco_vip = (document.getElementById('preco_vip') as HTMLInputElement)?.value;
+
+      formData.setor_backstage = (document.getElementById('setor_backstage') as HTMLInputElement)?.value;
+      formData.qnt_backstage = (document.getElementById('qnt_back') as HTMLInputElement)?.value;
+      formData.preco_backstage = (document.getElementById('preco_back') as HTMLInputElement)?.value;
+
+      formData.setor_camarote = (document.getElementById('setor_camarote') as HTMLInputElement)?.value;
+      formData.qnt_camarote = (document.getElementById('qnt_cam') as HTMLInputElement)?.value;
+      formData.preco_camarote = (document.getElementById('preco_cam') as HTMLInputElement)?.value;
+
+      formData.setor_nenhum = (document.getElementById('setor_nenhum') as HTMLInputElement)?.value;
+      formData.qnt_nenhum = (document.getElementById('qnt_nenhum') as HTMLInputElement)?.value;
+      formData.preco_nenhum = (document.getElementById('preco_nenhum') as HTMLInputElement)?.value;
+
 
 
       const res = await fetch('/api/evento', {
@@ -129,22 +150,26 @@ return(
             <CampoLocalEvento value={formData.localEvento} onChange={handleInputChange} name="localEvento"/>
             <CampoDataEvento value={formData.dataEvento} onChange={handleInputChange} name="dataEvento"/>
             <CampoHorarioEvento value={formData.horarioEvento} onChange={handleInputChange} name="horarioEvento"/>
-            <div style={{wordSpacing: '50px'}} >Setores Preço Quantidade</div>
+            <div style={{wordSpacing: '150px'}} >Setores Preço Quantidade</div>
             <div style={{display: "flex"}}>
-            <CampoSetorVip value={formData.setor} onChange={handleInputChange} name="setor"/> 
-            <CampoQntIngresso value={formData.qnt_vip} onChange={handleInputChange} name="qnt_vip"/>
+            <CampoSetorVip value={formData.setor_vip} onChange={handleInputChange} name="setor_vip"/>
+            <CampoPrecoVip value={formData.preco_vip} onChange={handleInputChange} name="preco_vip"/>
+            <CampoQntIngressoVip value={formData.qnt_vip} onChange={handleInputChange} name="qnt_vip"/>
             </div>
             <div className="" style={{display: "flex"}}>
-            <CampoSetorCamarote/> 
-            <CampoQntIngresso/>
+            <CampoSetorCamarote value={formData.setor_camarote} onChange={handleInputChange} name="setor_camarote"/> 
+            <CampoPrecoCamarote value={formData.preco_camarote} onChange={handleInputChange} name="preco_camarote"/>
+            <CampoQntIngressoCamarote value={formData.qnt_camarote} onChange={handleInputChange} name="qnt_camarote"/>
             </div>
             <div className="" style={{display: "flex"}}>
-            <CampoSetorBackstage/> 
-            <CampoQntIngresso/>
+            <CampoSetorBackstage value={formData.setor_backstage} onChange={handleInputChange} name="setor_backstage"/> 
+            <CampoPrecoBackstage value={formData.preco_backstage} onChange={handleInputChange} name="preco_backstage"/>
+            <CampoQntIngressoBackstage value={formData.qnt_backstage} onChange={handleInputChange} name="qnt_backstage"/>
             </div>
             <div className="" style={{display: "flex"}}>
-            <CampoSetorNenhum/> 
-            <CampoQntIngresso/>
+            <CampoSetorNenhum value={formData.setor_nenhum} onChange={handleInputChange} name="setor_nenhum"/> 
+            <CampoPrecoNenhum value={formData.preco_nenhum} onChange={handleInputChange} name="preco_nenhum"/>
+            <CampoQntIngressoNenhum value={formData.qnt_nenhum} onChange={handleInputChange} name="qnt_nenhum"/>
             </div>
             <CampoEnvioImagem  onChange={handleFileChange} name="imagem"/>
             <BotaoSubmitEvento/>

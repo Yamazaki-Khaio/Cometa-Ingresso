@@ -32,7 +32,7 @@ export default function CampoSetorVip(props: any) {
     
     <div className="flex flex-col gap-4 justify-center items-left ">
        <input 
-        id = "setor"
+        id = "setor_vip"
         type="text"
         className="border w-1/12 border-gray-400 rounded-md p-2 mb-8"
         value={setor}
@@ -48,15 +48,6 @@ export default function CampoSetorVip(props: any) {
       //style={{width: "150px"}}
       className="border w-10 border-gray-400 justify-center rounded-md">
       </input>
-      <input 
-        id = "VipPreco"
-        type="text"
-        placeholder="R$" 
-        className="border border-gray-400 justify-center rounded-md p-2 mb-8"
-        style={{width: "100px"}}
-        value={preco}
-        onChange={handlePrecoChange}
-      />
 
       </div>
       </div>
