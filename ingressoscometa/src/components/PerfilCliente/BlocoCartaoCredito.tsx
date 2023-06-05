@@ -101,12 +101,10 @@ export default function BlocoCartaoDeCredito() {
       <div style={{ marginBottom: "100px", marginTop: "40px" }}>
         <BotaoSalvarCartao />
       </div>
+      </form>
       <div style={{ marginRight: "300px", marginTop: "-200px" }}>
         <Image src="/chip.png" alt="chip" width="50" height="50" />
-        
       </div>
-      </form>
     </div>
-    
     );
   }
