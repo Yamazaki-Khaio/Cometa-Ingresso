@@ -64,10 +64,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     
     } else { (req.method === 'PUT') 
-      console.log("passo1")
+      console.log("passou no put cardc")
 
-      if (req.body['senha']){
-        const sql = 'UPDATE cartao SET senha = ? WHERE id = ?';
+      if (req.body['cvv']){
+        const sql = 'UPDATE cardc SET cvv = ? WHERE id = ?';
         connection.query(sql, [req.body, req.query.id], (error, results, fields) => {
           if (error) {
             console.error('Erro ao atualizar senha: ', error);
@@ -77,9 +77,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           res.json(results);
         });
       }
-      else if (req.body['nome']) {
-        console.log("passo2")
-        const sql = 'UPDATE usuario SET nome = ? WHERE id = ?';
+      else if (req.body['nCard']) {
+        console.log("passoou denovo")
+        const sql = 'UPDATE cardc SET nCard = ? WHERE id = ?';
+        connection.query(sql, [req.body['nome'], req.query.id], (error, results, fields) => {
+          if (error) {
+            console.error('Erro ao atualizar senha: ', error);
+            res.status(500).send('Erro ao atualizar senha.');
+            return;
+          }
+          res.json(results);
+        });
+      }
+      else if (req.body['data_validade']) {
+        console.log("passoou denovo")
+        const sql = 'UPDATE cardc SET data_validade = ? WHERE id = ?';
         connection.query(sql, [req.body['nome'], req.query.id], (error, results, fields) => {
           if (error) {
             console.error('Erro ao atualizar senha: ', error);
