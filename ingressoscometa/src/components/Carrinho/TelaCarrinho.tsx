@@ -1,20 +1,40 @@
 import React from "react";
 import BotaoFinalizarCompra from "./BotaoFinalizarCompra";
 import Tabela from "../RelatorioEventosPromoter/TabelaEvento";
+import { I18NConfig } from "next/dist/server/config-shared";
 
 interface Item {
     id: number;
     name: string;
+    place: string;
+    time: string;
     price: number;
   }
+
 interface CartProps {
     cartItems: Item[];
   }
-  
+
   const i1: Item = {
     id: 0,
     name: "festa latino",
+    place: "hotel plaza",
+    time: "28/01/2022, 18:00",
     price: 1.99
+  }
+
+  const i2: Item = {
+    id: 0,
+    name: "cer ve ja da",
+    place: "mod 8",
+    time: "12/02/2000, 19:00",
+    price: 2121.11
+  }
+
+  let items: [Item, Item] = [i1, i2];
+
+  const carrinho: CartProps{
+    cartItems: items,
   }
   
   export default function TelaCarrinho({ cartItems }: CartProps) {

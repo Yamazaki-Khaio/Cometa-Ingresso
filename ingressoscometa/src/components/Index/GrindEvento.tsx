@@ -1,7 +1,7 @@
 import React, { use, useEffect, useState } from 'react'
 import axios from 'axios';
 import { Buffer } from 'buffer';
-import Evento from '../cadastroEvento/Evento';
+import Evento from '../CadastroEvento/Evento';
 
 
 
