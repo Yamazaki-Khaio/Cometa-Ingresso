@@ -2,6 +2,7 @@ import React from "react";
 import BotaoFinalizarCompra from "./BotaoFinalizarCompra";
 import Tabela from "../RelatorioEventosPromoter/TabelaEvento";
 import { I18NConfig } from "next/dist/server/config-shared";
+import BotaoDelete from "./BotaoDeleteIngresso";
 
 interface Item {
     id: number;
@@ -39,9 +40,14 @@ interface CartProps {
               {item.name} - R${item.price.toFixed(2)}
               <div className="relative flex flex-wrap justify-start content-center h-60 w-screen ml-12 mr-12 border bg-white  rounded-3xl">
                 <form>
-                <p className="font-bold  text-3xl">{item.name}</p>
-                <p className="font-bold  text-3xl">Preço: {item.price}</p>
+                <p className="font-bold  text-3xl">{i1.name}</p>
+                <p className="font-bold  text-2xs">{i1.place}</p>
+                <p className="font-bold  text-2xs">{i1.time}</p>
+                <p className="font-bold  text-2xs">Preço: {i1.price}</p>
                 </form>
+                <div className="absolute top-8 right-8">
+                  <BotaoDelete/>
+                </div>
             </div>
             </li>
             
