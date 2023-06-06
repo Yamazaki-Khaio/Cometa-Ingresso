@@ -12,48 +12,41 @@ interface Item {
   }
 
 interface CartProps {
+    id: number,
     cartItems: Item[];
   }
 
-  const i1: Item = {
+  const carrinho: CartProps = {
     id: 0,
-    name: "festa latino",
-    place: "hotel plaza",
-    time: "28/01/2022, 18:00",
-    price: 1.99
-  }
-
-  const i2: Item = {
-    id: 0,
-    name: "cer ve ja da",
-    place: "mod 8",
-    time: "12/02/2000, 19:00",
-    price: 2121.11
-  }
-
-  let items: [Item, Item] = [i1, i2];
-
-  const carrinho: CartProps{
-    cartItems: items,
-  }
+    cartItems:[{id: 1,
+      name: "cer ve ja da",
+      place: "mod 8",
+      time: "12/02/2000, 19:00",
+      price: 2121.11}, {id: 2,
+        name: "festa no latino",
+        place: "ape",
+        time: "12/02/2000, 19:00",
+        price: 100.50}]
+  };
   
-  export default function TelaCarrinho({ cartItems }: CartProps) {
+  export default function TelaCarrinho() {
     return (
       <div className="flex flex-col items-center">
         <h2 className="text-2xl font-bold">Carrinho de Compras</h2>
         <ul className="mt-4">
-          {cartItems.map(() => (
-            <li key={i1.id}>
-              {i1.name} - R${i1.price.toFixed(2)}
-            </li>
-          ))}
-        </ul>
-        <div className="relative flex flex-wrap justify-start content-center h-60 w-screen ml-12 mr-12 border bg-white  rounded-3xl">
+          {carrinho.cartItems.map((item) => (
+            <li key={item.id}>
+              {item.name} - R${item.price.toFixed(2)}
+              <div className="relative flex flex-wrap justify-start content-center h-60 w-screen ml-12 mr-12 border bg-white  rounded-3xl">
                 <form>
-                <p className="font-bold  text-3xl">{i1.name}</p>
-                <p className="font-bold  text-3xl">Preço: {i1.price}</p>
+                <p className="font-bold  text-3xl">{item.name}</p>
+                <p className="font-bold  text-3xl">Preço: {item.price}</p>
                 </form>
             </div>
+            </li>
+            
+          ))}
+        </ul>
         <BotaoFinalizarCompra frase="Deseja confirmar sua compra?" caminho="/qrcode"/>
       </div>
     );
