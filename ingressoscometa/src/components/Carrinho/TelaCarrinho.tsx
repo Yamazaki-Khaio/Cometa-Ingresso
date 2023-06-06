@@ -2,6 +2,7 @@ import React from "react";
 import BotaoFinalizarCompra from "./BotaoFinalizarCompra";
 import Tabela from "../RelatorioEventosPromoter/TabelaEvento";
 import { I18NConfig } from "next/dist/server/config-shared";
+import BotaoDelete from "./BotaoDeleteIngresso";
 
 interface Item {
     id: number;
@@ -31,11 +32,11 @@ interface CartProps {
     price: 2121.11
   }
 
-  let items: [Item, Item] = [i1, i2];
+  /*let items: [Item, Item] = [i1, i2];
 
   const carrinho: CartProps{
     cartItems: items,
-  }
+  }*/
   
   export default function TelaCarrinho({ cartItems }: CartProps) {
     return (
@@ -51,8 +52,13 @@ interface CartProps {
         <div className="relative flex flex-wrap justify-start content-center h-60 w-screen ml-12 mr-12 border bg-white  rounded-3xl">
                 <form>
                 <p className="font-bold  text-3xl">{i1.name}</p>
-                <p className="font-bold  text-3xl">Preço: {i1.price}</p>
+                <p className="font-bold  text-2xs">{i1.place}</p>
+                <p className="font-bold  text-2xs">{i1.time}</p>
+                <p className="font-bold  text-2xs">Preço: {i1.price}</p>
                 </form>
+                <div className="absolute top-8 right-8">
+                  <BotaoDelete/>
+                </div>
             </div>
         <BotaoFinalizarCompra frase="Deseja confirmar sua compra?" caminho="/qrcode"/>
       </div>
