@@ -3,6 +3,9 @@ import BotaoFinalizarCompra from "./BotaoFinalizarCompra";
 import Tabela from "../RelatorioEventosPromoter/TabelaEvento";
 import { I18NConfig } from "next/dist/server/config-shared";
 import BotaoDelete from "./BotaoDeleteIngresso";
+import { isTemplateExpression } from "typescript";
+
+var total: number = 0;
 
 interface Item {
     id: number;
@@ -30,6 +33,7 @@ interface CartProps {
         price: 100.50}]
   };
   
+
   export default function TelaCarrinho() {
     return (
       <div className="flex flex-col items-center">
@@ -40,7 +44,7 @@ interface CartProps {
               {item.name} - R${item.price.toFixed(2)}
               <div className="relative flex flex-wrap justify-start content-center h-60 w-screen ml-12 mr-12 border bg-white  rounded-3xl">
                 <form>
-                <p className="font-bold  text-3xl">{item.name}</p>
+                <p className="font-bold  text-3xl ">{item.name}</p>
                 <p className="font-bold  text-2xs">{item.place}</p>
                 <p className="font-bold  text-2xs">{item.time}</p>
                 <p className="font-bold  text-2xs">Preço: {item.price}</p>
@@ -53,6 +57,10 @@ interface CartProps {
             
           ))}
         </ul>
+        Total: R${" "+carrinho.cartItems.map((item)=>(
+          total +=item.price
+        ))}
+        
         <BotaoFinalizarCompra frase="Deseja confirmar sua compra?" caminho="/qrcode"/>
       </div>
     );
