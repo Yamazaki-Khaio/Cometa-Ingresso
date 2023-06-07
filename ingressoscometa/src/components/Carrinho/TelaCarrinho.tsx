@@ -33,6 +33,27 @@ interface CartProps {
         price: 100.50}]
   };
   
+  let carrinho2: Item[] = [
+    {
+      id: 1,
+      name: "cer ve ja da",
+      place: "mod 8",
+      time: "12/02/2000, 19:00",
+      price: 2121.11
+    },
+    {
+      id: 2,
+      name: "festa no latino",
+      place: "ape",
+      time: "12/02/2000, 19:00",
+      price: 100.50
+    }
+  ];
+
+
+for (let item of carrinho2){
+  total+=item.price;
+}
 
   export default function TelaCarrinho() {
     return (
@@ -57,9 +78,7 @@ interface CartProps {
             
           ))}
         </ul>
-        Total: R${" "+carrinho.cartItems.map((item)=>(
-          total +=item.price
-        ))}
+        Total: R${total}
         
         <BotaoFinalizarCompra frase="Deseja confirmar sua compra?" caminho="/qrcode"/>
       </div>
