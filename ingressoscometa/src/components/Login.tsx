@@ -8,16 +8,28 @@ import { FormEventHandler } from "react";
 import { signIn } from "next-auth/react";
 
 export default function Login() {
-
     const hanldeSubmit: FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
         const menssage = document.getElementById('menssage');
         const cpf = document.getElementById('cpf');
         const senha = document.getElementById('senha');
+
         if (menssage?.style.display === 'block') {
             menssage.style.display = 'none';
             cpf.style.borderColor = '#808080';
             senha.style.borderColor = '#808080';
+        }
+
+        if (!cpf?.value && !senha?.value) {
+            // Verifica se ambos os campos estão vazios
+            alert('Preencha os campos vazios.');
+            return;
+        }
+
+        if (!cpf?.value || !senha?.value) {
+            // Verifica se algum campo está vazio
+            alert('Preencha os campos vazios.');
+            return;
         }
 
         const res = signIn("credentials", { cpf: cpf?.value, password: senha?.value, redirect: false });
@@ -40,7 +52,9 @@ export default function Login() {
             <form onSubmit={hanldeSubmit}>
                 <CampoCpf />
                 <CampoSenha />
-                <RadioButton />
+                <div className="flex justify-center w-full">
+                    <RadioButton />
+                </div>
                 <div className="flex justify-center w-full">
                     <BotaoEntrar />
                 </div>
