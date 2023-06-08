@@ -10,19 +10,52 @@ import BotaoSalvarPerfil from "./botaoSalvarPerfil";
 import BlocoCartaoDeCredito from "./BlocoCartaoCredito";
 import { FormEventHandler, useEffect, useState } from "react";
 import { getSession, useSession } from "next-auth/react";
+import axios from "axios";
+interface FormData {
+  nome: string,
+  cpf: string,
+  senha: string,
+  email: string,
+  telefone: string,
+  tipo:string
+}
 
 export default function Perfil(){
   const [id_usuario, setIdUsuario] = useState("");
+  const [formData, setFormData] = useState<FormData>({
+    nome: "",
+    cpf: "",
+    senha: "",
+    email: "",
+    telefone: "",
+    tipo:""
+  });
+  
+
 
   useEffect(() => {
+    
     async function getUserId() {
       const user = await getSession();
       const userId = user?.user.id;
       setIdUsuario(userId);
+      console.log(userId)
+      try {
+        const response = await axios.get(`/api/usuario?id=${userId}`);
+        const usuarioData = response.data;
+        updateForm("nome" , usuarioData[0].nome )
+        console.log(formData.nome)
+        console.log(usuarioData[0].nome)
+        
+        // Do something with the event data
+    } catch (error) {
+        console.log(error);
     }
-
+    }
     getUserId();
   }, []);
+
+
     
     const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
         e.preventDefault();
@@ -34,7 +67,7 @@ export default function Perfil(){
                 id: id_usuario
               };
             console.log(`/api/usuario?id=${formUsuario.id}`)
-            const resUsuario = await fetch(`/api/usuario?id=${form.id}`, {
+            const resUsuario = await fetch(`/api/usuario?id=${formUsuario.id}`, {
                 method: 'PUT',
                 headers: {
                   "Content-Type": "application/json"
@@ -68,14 +101,31 @@ export default function Perfil(){
       };
 
 
+       const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+  const updateForm = (attribute: any, value: any) => {
+    console.log(value)
+    setFormData((prevData) => ({
+      ...prevData,
+      [attribute]: value
+    }));
+  };
+
+
+
     return(
         
         <div className="grid grid-cols-8 p-4">
             <div className="col-start-2 col-span-2 flex justify-start items-start">
                 <form onSubmit={handleSubmit}>
-                    <PerfilCampoNome/>
+                    <PerfilCampoNome value={formData.nome} onChange={handleInputChange} name="nome" />
                     <PerfilCampoEmail/>
-                    <PerfilCampoCpf/>
+                    <PerfilCampoCpf value={formData.cpf} onChange={handleInputChange} name="cpf"/>
                     <PerfilCampoTelefone/>
                     <PerfilCampoCep/>
                     <PerfilCampoRua/>

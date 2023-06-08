@@ -4,7 +4,7 @@ import Botao from "../CabecalhoCadastro/botao";
 import { useState } from "react";
 
 export default function PerfilCampoCpf(props: any){
-  const [cpf, setCpf] = useState('11.111.111-11');
+  const [cpf, setCpf] = useState('111.111.111-11');
 
 
   function handleCpfChange(event: React.ChangeEvent<HTMLInputElement>) {
