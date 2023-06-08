@@ -38,7 +38,7 @@ interface CartProps {
           {carrinho.cartItems.map((item) => (
             <li key={item.id}>
               {item.name} - R${item.price.toFixed(2)}
-              <div className="relative flex flex-wrap justify-start content-center h-60 w-screen ml-12 mr-12 border bg-white  rounded-3xl">
+              <div className="relative flex flex-wrap justify-start content-center h-60 w-screen ml-20 mr-12 border bg-white  rounded-3xl">
                 <form>
                 <p className="font-bold  text-3xl">{item.name}</p>
                 <p className="font-bold  text-2xs">{item.place}</p>
