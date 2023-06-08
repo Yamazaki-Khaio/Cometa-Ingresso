@@ -61,18 +61,20 @@ export default  function handler(req: NextApiRequest, res: NextApiResponse){
             return
         })
         
+        
     }else if(req.method==='DELETE'){
         
         const sql = 'DELETE FROM banimento WHERE id_usuario=?'        
-        connection.query(sql,[req.body.id_usuario],(error,results, fields) =>{
+        connection.query(sql,[req.query['id_usuario']],(error,results, fields) =>{
             if(error){
                 console.error('Erro ao remover banimento: ', error);
                 res.status(500).send('Erro ao remover banimento');
-                return
+                
             }
             res.status(200).send('ok')
-            return
+            
         })
+        
     }
 
 }
