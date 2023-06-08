@@ -41,7 +41,7 @@ for (let item of carrinho.cartItems){
   carrinho.total+=item.price;
 }
 
-  export default function TelaCarrinho(props: any) {
+  export default function IngressoCarrinho(props: any) {
     return (
       <div className="flex flex-col items-center">
             <ul className="mt-4">
@@ -54,6 +54,7 @@ for (let item of carrinho.cartItems){
                 <p className="ml-5 font-bold  text-2xs">{props.place}</p>
                 <p className="ml-5 font-bold  text-2xs">{props.time}</p>
                 <p className="ml-5 font-bold  text-2xs">Preço: {props.price}</p>
+                <p className="ml-5 font-bold  text-2xs">Setor: {props.Setor}</p>
                 </form>
                 <div className="absolute top-8 right-8">
                   <BotaoDelete/>
