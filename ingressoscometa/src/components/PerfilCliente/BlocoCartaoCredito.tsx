@@ -31,7 +31,6 @@ export default function BlocoCartaoDeCredito() {
       cvv: document.getElementById('cvv').value,
       titular: document.getElementById('nomeCartao').value,
       }
-
       const res = await fetch(`/api/cardc?id_usuario=${formCartao.id}`, {
         method: 'POST',
         headers: {
@@ -85,7 +84,7 @@ export default function BlocoCartaoDeCredito() {
     >
       <form onSubmit={handleSubmit}>
       <div style={{ marginBottom: "10px" }}>
-        <CampoNomeCartao value/>
+        <CampoNomeCartao/>
       </div>
       <div style={{ marginBottom: "10px" }}>
         <CampoNumeroCartao />
