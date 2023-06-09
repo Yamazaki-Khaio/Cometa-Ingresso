@@ -62,8 +62,20 @@ export default function BlocoCartaoDeCredito() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify(formCartao)
+        
       });
-      window.location.reload();
+      if (res.status === 500) {
+        // Fazer algo específico para o erro 500, como exibir uma mensagem de erro
+        const res = await fetch(`/api/cardc?id_usuario=${formCartao.id}`, {
+        method: 'PUT',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formCartao)
+        
+      });
+      }
+     // window.location.reload();
     } catch(error){
       console.error("Erro ao enviar os dados:", error);
     }

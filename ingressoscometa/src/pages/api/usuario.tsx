@@ -138,7 +138,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     
     } else if (req.method === 'PUT') {
-      console.log("passo1")
       // Atualizar usuário
       if (req.body['senha']){
         const sql = 'UPDATE usuario SET senha = ? WHERE id = ?';
