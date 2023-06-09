@@ -1,9 +1,9 @@
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CampoNumeroCartao(props: any) {
-  const [numeroCartao, setNumeroCartao] = useState("");
+  const [numeroCartao, setNumeroCartao] = useState(props.numero);
   const [editando, setEditando] = useState(false);
 
   function handleNumeroCartaoChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -16,6 +16,11 @@ export default function CampoNumeroCartao(props: any) {
     setEditando(true);
     setNumeroCartao("");
   }
+  useEffect(() => {
+    if (!editando) {
+      setNumeroCartao(props.numero); // Atualiza o valor do nome apenas se não estiver editando
+    }
+  }, [props.numero, editando]);
 
   return (
     <>

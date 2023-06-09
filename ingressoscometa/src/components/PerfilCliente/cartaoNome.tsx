@@ -1,9 +1,9 @@
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CampoNomeCartao(props: any) {
-  const [nomeCartao, setNomeCartao] = useState("");
+  const [nomeCartao, setNomeCartao] = useState(props.nome);
   const [editando, setEditando] = useState(false);
 
   function handleNomeCartaoChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -15,6 +15,12 @@ export default function CampoNomeCartao(props: any) {
     setEditando(true);
     setNomeCartao("");
   }
+  useEffect(() => {
+    if (!editando) {
+      setNomeCartao(props.nome); // Atualiza o valor do nome apenas se não estiver editando
+    }
+  }, [props.nome, editando]);
+
 
   return (
     <>

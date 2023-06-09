@@ -1,9 +1,9 @@
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CampoCvv(props: any) {
-  const [cvv, setCvv] = useState("");
+  const [cvv, setCvv] = useState(props.cvv);
   const [editando, setEditando] = useState(false);
 
   function handleCvvChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -15,6 +15,11 @@ export default function CampoCvv(props: any) {
     setEditando(true);
     setCvv("");
   }
+  useEffect(() => {
+    if (!editando) {
+      setCvv(props.cvv); // Atualiza o valor do nome apenas se não estiver editando
+    }
+  }, [props.cvv, editando]);
 
   return (
     <>

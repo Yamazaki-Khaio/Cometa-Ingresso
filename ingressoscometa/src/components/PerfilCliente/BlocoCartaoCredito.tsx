@@ -6,8 +6,22 @@ import CampoValidade from "./cartaoValidade";
 import Image from 'next/image';
 import CampoNomeCartao from './cartaoNome';
 import { getSession } from 'next-auth/react';
+import axios from 'axios';
+
+interface FormData{
+  nomeCartao: string,
+  numero: string,
+  cvv: string,
+  validade: string,
+}
 
 export default function BlocoCartaoDeCredito() {
+  const [formData, setFormData] = useState<FormData>({
+    nomeCartao:'' ,
+    numero: '',
+    cvv: '',
+    validade:'' ,
+  });
 
   const [id_usuario, setIdUsuario] = useState("");
 
@@ -16,6 +30,17 @@ export default function BlocoCartaoDeCredito() {
       const user = await getSession();
       const userId = user?.user.id;
       setIdUsuario(userId);
+
+      try {
+        const response = await axios.get(`/api/cardc?id=${userId}`);
+        const cartaoData = response.data;
+        updateForm("nomeCartao" , cartaoData[0].titular )
+        updateForm("numero" , cartaoData[0].nCard )
+        updateForm("cvv", cartaoData[0].cvv)
+        updateForm("validade", cartaoData[0].data_validade)
+    } catch (error) {
+        console.log(error);
+    }
     }
 
     getUserId();
@@ -42,6 +67,15 @@ export default function BlocoCartaoDeCredito() {
       console.error("Erro ao enviar os dados:", error);
     }
   }
+
+  const updateForm = (attribute: any, value: any) => {
+    console.log(value)
+    setFormData((prevData) => ({
+      ...prevData,
+      [attribute]: value
+    }));
+  };
+
   
   const [hovered, setHovered] = useState(false);
 
@@ -84,17 +118,17 @@ export default function BlocoCartaoDeCredito() {
     >
       <form onSubmit={handleSubmit}>
       <div style={{ marginBottom: "10px" }}>
-        <CampoNomeCartao/>
+        <CampoNomeCartao nome = {formData.nomeCartao}/>
       </div>
       <div style={{ marginBottom: "10px" }}>
-        <CampoNumeroCartao />
+        <CampoNumeroCartao numero = {formData.numero}/>
       </div>
       <div className="flex">
         <div style={{ marginRight: "23px" }}>
-          <CampoCvv />
+          <CampoCvv cvv={formData.cvv} />
         </div>
         <div style={{ marginLeft: "23px" }}>
-          <CampoValidade />
+          <CampoValidade validade={formData.validade}/>
         </div>
       </div>
       <div style={{ marginBottom: "100px", marginTop: "40px" }}>
