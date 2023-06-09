@@ -50,18 +50,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           res.json(results);
         });
       }
-    } else if (req.method === 'DELETE') {
-      // Remover usuário
-      const sql = 'DELETE FROM cartao WHERE id=?';
-      connection.query(sql, [req.body.idUser], (error, results, fields) => {
-        if (error) {
-          console.error('Erro ao remover cartao: ', error);
-          res.status(500).send('Erro ao remover cartao.');
-          return;
-        }
-        res.json(results);
-      });
-
     
     } else { (req.method === 'PUT') 
       console.log("passou no put cardc")
