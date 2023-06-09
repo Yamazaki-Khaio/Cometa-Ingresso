@@ -37,7 +37,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
             // busca por id de telefone
             if(req.query['id']){
                 try{
-                    const sql = 'SELECT * FROM telefone WHERE id=?'
+                    const sql = 'SELECT * FROM telefone WHERE id_usuario=?'
                     connection.query(sql,[req.query['id']], (error, results, fields) => {
                         res.status(200).send(results)
                         return;

@@ -1,10 +1,23 @@
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Botao from "../CabecalhoCadastro/botao";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function PerfilCampoCpf(props: any){
-  const [cpf, setCpf] = useState('111.111.111-11');
+  const [cpf, setCpf] = useState(props.cpf);
+
+  function formatarCPF(cpf: string) {
+    if (!cpf) return cpf;
+
+    const cpfLimpo = cpf.replace(/\D/g, "");
+    const cpfFormatado = cpfLimpo
+      .slice(0, 11)
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+    return cpfFormatado;
+  }
 
 
   function handleCpfChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -16,6 +29,9 @@ export default function PerfilCampoCpf(props: any){
   }
 
   
+  useEffect(() => {
+    setCpf(formatarCPF(props.cpf)); // Atualiza o valor do cpf formatado quando a propriedade cpf é atualizada
+  }, [props.cpf]);
 
   return(
     <><label className="flex flex-col gap-1 rounded-md mb-2"  htmlFor="cpf">Cpf

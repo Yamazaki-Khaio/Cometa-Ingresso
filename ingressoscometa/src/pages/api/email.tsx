@@ -25,7 +25,30 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
           return;
         }
       });
-    } else {
+    
+    }else if (req.query.id){
+      const sql = 'SELECT * FROM email WHERE id_usuario = ?';
+      const param = req.query.id;
+      
+      connection.query(sql, param, (error, results, fields) => {
+        if (error) {
+          console.error('Erro ao buscar email:', error);
+          res.status(500).send('Erro ao buscar email.');
+          return;
+        }
+        
+        if (results.length > 0) {
+          console.log("email no banco")
+          res.json(results);
+          return;
+        } else {
+          console.log("email não esta no banco")
+          res.status(500).send("email não esta no banco");
+          return;
+        }
+      });
+
+    }else {
       // Listar todos os emails
       const sql = 'SELECT * FROM email';
 
