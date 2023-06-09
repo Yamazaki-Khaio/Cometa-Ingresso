@@ -9,6 +9,13 @@ import { createHash } from 'crypto';
 import CampoEmail from "./CampoEmail";
 import sendEmail from "@/pages/api/email_send";
 import CampoTelefone from "./CampoTelefone";
+import CepCadastro from "./CepCadastro";
+import CampoLocal from "../QRCode/CampoLocal";
+import ComplementoEnderecoCadastro from "./ComplementoEnderecoCadastro";
+import NumeroDaCasaCadastro from "./NumeroDaCasaCadastro";
+import RuaCadastro from "./RuaCadastro";
+import CampoCidade from "./CampoCidade";
+import CampoEstado from "./CampoEstado";
 interface FormData {
   nome: string,
   cpf: string,
@@ -125,6 +132,13 @@ export default function CadastroUsuario() {
         <CampoSenhaERepetirSenha value={formData.senha} onChange={handleInputChange} name="senha" />
         <RadioButton />
         <CampoTelefone value={formData.telefone} onChange={handleInputChange} name="telefone"/> 
+        <CampoLocal/>
+        <CepCadastro/>
+        <CampoCidade/>
+        <CampoEstado/>
+        <RuaCadastro/>
+        <NumeroDaCasaCadastro/>
+        <ComplementoEnderecoCadastro/>
         <CampoDataDeNascimento value={formData.data_nascimento} onChange={handleInputChange} name="data_nascimento" />
         <BotaoSubmitCadastro />
       </form>
