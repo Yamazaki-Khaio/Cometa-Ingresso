@@ -63,6 +63,7 @@ export default function BlocoCartaoDeCredito() {
         },
         body: JSON.stringify(formCartao)
       });
+      window.location.reload();
     } catch(error){
       console.error("Erro ao enviar os dados:", error);
     }
