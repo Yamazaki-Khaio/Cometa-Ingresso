@@ -26,7 +26,9 @@ export default  function handler(req: NextApiRequest, res: NextApiResponse){
                     res.status(500).send('Erro ao consultar banimentos');
                     return;
                 }
-                res.status(200).json(results)
+                const data = JSON.parse(JSON.stringify(results))
+                
+                res.status(200).json({result:data.length})
                 return; 
             })
         }
