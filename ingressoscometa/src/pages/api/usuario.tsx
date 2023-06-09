@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const sql = 'INSERT INTO usuario (cpf, nome, senha, data_nascimento, tipo_user) VALUES (?, ?, ?, ?, ?)';
       const emailSql = 'INSERT INTO email (id_usuario, email) VALUES (?, ?)';
       const telSql = 'INSERT INTO telefone (id_usuario, telefone) VALUES (?, ?)';
-      //const endSql = 'INSERT INTO endereco (id_usuario, cep, rua, numero, complemento, id_evento)  VALUES (?, ?, ?, ?, ?, ?)'
+      //const endSql = 'INSERT INTO endereco (id_usuario, cep, rua, numero, complemento, id_evento, cidade, estado)  VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
       const params = [
         req.body.cpf,
         req.body.nome,
@@ -46,7 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           req.body.rua,
           req.body.numero,
           req.body.complemento,
-          '1320'
+          '0'
         ]*/
 
         connection.query(telSql, telParams, (error, results, fields) => {
