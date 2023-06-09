@@ -23,7 +23,13 @@ interface FormData {
   senha: string,
   email: string,
   telefone: string,
-  tipo:string
+  tipo:string,
+  cep:string,
+  rua:string,
+  cidade:string,
+  estado:string,
+  complemento:string,
+  numero:string
 }
 
 function removerMascaraCpf(cpfComMascara: string): string {
@@ -42,7 +48,13 @@ export default function CadastroUsuario() {
     senha: "",
     email: "",
     telefone: "",
-    tipo:""
+    tipo:"",
+    cep: "",
+    rua: "",
+    complemento: "",
+    cidade: "",
+    estado: "",
+    numero: ""
   });
 
 
@@ -69,7 +81,13 @@ export default function CadastroUsuario() {
         senha: hash.digest('hex'),
         email:  document.getElementById('email').value,
         telefone: document.getElementById('telefone').value,
-        tipo: tipo.toString()
+        tipo: tipo.toString(),
+        cep: document.getElementById('cep').value,
+        rua: document.getElementById('rua').value,
+        cidade: document.getElementById('cidade').value,
+        complemento: document.getElementById('complemento').value,
+        estado: document.getElementById('estado').value,
+        numero: document.getElementById('numero').value,
       }
 
     
@@ -132,14 +150,14 @@ export default function CadastroUsuario() {
         <CampoSenhaERepetirSenha value={formData.senha} onChange={handleInputChange} name="senha" />
         <RadioButton />
         <CampoTelefone value={formData.telefone} onChange={handleInputChange} name="telefone"/> 
-        <CampoLocal/>
-        <CepCadastro/>
-        <CampoCidade/>
-        <CampoEstado/>
-        <RuaCadastro/>
-        <NumeroDaCasaCadastro/>
-        <ComplementoEnderecoCadastro/>
         <CampoDataDeNascimento value={formData.data_nascimento} onChange={handleInputChange} name="data_nascimento" />
+        <CampoLocal/>
+        <CepCadastro value={formData.cep} onChange={handleInputChange} name="cep"/>
+        <CampoCidade value={formData.cidade} onChange={handleInputChange} name="cidade"/>
+        <CampoEstado value={formData.estado} onChange={handleInputChange} name="estado"/>
+        <RuaCadastro value={formData.rua} onChange={handleInputChange} name="rua"/>
+        <NumeroDaCasaCadastro value={formData.numero} onChange={handleInputChange} name="numero"/>
+        <ComplementoEnderecoCadastro value={formData.complemento} onChange={handleInputChange} name="complemento"/>
         <BotaoSubmitCadastro />
       </form>
     </div>

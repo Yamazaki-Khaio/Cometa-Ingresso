@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const sql = 'INSERT INTO usuario (cpf, nome, senha, data_nascimento, tipo_user) VALUES (?, ?, ?, ?, ?)';
       const emailSql = 'INSERT INTO email (id_usuario, email) VALUES (?, ?)';
       const telSql = 'INSERT INTO telefone (id_usuario, telefone) VALUES (?, ?)';
-      //const endSql = 'INSERT INTO endereco (id_usuario, cep, rua, numero, complemento, id_evento, cidade, estado)  VALUES (?, ?, ?, ?, ?, ?, ?, ?)'
+      const endSql = 'INSERT INTO endereco (id_usuario, cep, rua, numero, complemento, id_evento, cidade, estado)  VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
       const params = [
         req.body.cpf,
         req.body.nome,
@@ -40,14 +40,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           usuarioId,
           req.body.telefone
         ]
-        /*const endParams = [
+        const endParams = [
           usuarioId,
           req.body.cep,
           req.body.rua,
           req.body.numero,
           req.body.complemento,
-          '0'
-        ]*/
+          '0',
+          req.body.cidade,
+          req.body.estado
+        ]
 
         connection.query(telSql, telParams, (error, results, fields) => {
           if (error) {
@@ -58,18 +60,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           res.json(results);
           return;
         });
-        /*connection.query(endSql, endParams, (error, results, fields) => {
-          if (error) {
-            console.error('Erro ao inserir novo endereco: ', error);
-            res.status(500).send('Erro ao inserir novo endereco.');
-            return;
-          }
-          res.json(results);
-        });*/
         connection.query(emailSql, emailParams, (error, results, fields) => {
           if (error) {
             console.error('Erro ao inserir novo email: ', error);
             res.status(500).send('Erro ao inserir novo email.');
+            return;
+          }
+          res.json(results);
+          return;
+        });
+        connection.query(endSql, endParams, (error, results, fields) => {
+          if (error) {
+            console.error('Erro ao inserir novo endereco: ', error);
+            res.status(500).send('Erro ao inserir novo endereco.');
             return;
           }
           res.json(results);
