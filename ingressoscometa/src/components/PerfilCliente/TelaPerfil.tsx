@@ -17,7 +17,6 @@ interface FormData {
   senha: string,
   email: string,
   telefone: string,
-  tipo:string
 }
 
 export default function Perfil(){
@@ -28,7 +27,6 @@ export default function Perfil(){
     senha: "",
     email: "",
     telefone: "",
-    tipo:""
   });
   
 
@@ -42,12 +40,15 @@ export default function Perfil(){
       console.log(userId)
       try {
         const response = await axios.get(`/api/usuario?id=${userId}`);
+        const response2 = await axios.get(`/api/email?id=${userId}`);
+        const response3 = await axios.get(`/api/telefone?id=${userId}`);
         const usuarioData = response.data;
+        const emailData = response2.data;
+        const telefoneData = response3.data;
         updateForm("nome" , usuarioData[0].nome )
-        console.log(formData.nome)
-        console.log(usuarioData[0].nome)
-        
-        // Do something with the event data
+        updateForm("cpf" , usuarioData[0].cpf )
+        updateForm("email", emailData[0].email)
+        updateForm("telefone", telefoneData[0].telefone)
     } catch (error) {
         console.log(error);
     }
@@ -123,10 +124,10 @@ export default function Perfil(){
         <div className="grid grid-cols-8 p-4">
             <div className="col-start-2 col-span-2 flex justify-start items-start">
                 <form onSubmit={handleSubmit}>
-                    <PerfilCampoNome value={formData.nome} onChange={handleInputChange} name="nome" />
-                    <PerfilCampoEmail/>
-                    <PerfilCampoCpf value={formData.cpf} onChange={handleInputChange} name="cpf"/>
-                    <PerfilCampoTelefone/>
+                    <PerfilCampoNome nome={formData.nome}/>
+                    <PerfilCampoEmail email ={formData.email}/>
+                    <PerfilCampoCpf cpf={formData.cpf}/>
+                    <PerfilCampoTelefone telefone = {formData.telefone}/>
                     <PerfilCampoCep/>
                     <PerfilCampoRua/>
                     <PerfilNumeroCasa/>

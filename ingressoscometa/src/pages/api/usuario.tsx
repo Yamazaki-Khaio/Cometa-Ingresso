@@ -56,6 +56,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return;
           }
           res.json(results);
+          return;
         });
         /*connection.query(endSql, endParams, (error, results, fields) => {
           if (error) {
@@ -72,6 +73,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return;
           }
           res.json(results);
+          return;
         });
       });
 
@@ -85,6 +87,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return;
           }
           res.json(results);
+          return;
         });
       } else if (req.query['cpf']) {
         const sql = 'SELECT * FROM usuario WHERE cpf=?';
@@ -95,6 +98,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return;
           }
           res.json(results);
+          return;
         });
       } else if (req.query['id']) {
         const sql = 'SELECT * FROM usuario WHERE id=?';
@@ -105,6 +109,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return;
           }
           res.json(results);
+          return;
         });
       } else {
         const sql = 'SELECT * FROM usuario';
@@ -115,6 +120,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return;
           }
           res.json(results);
+          return;
         });
       }
     } else if (req.method === 'DELETE') {
@@ -127,11 +133,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           return;
         }
         res.json(results);
+        return;
       });
 
     
     } else if (req.method === 'PUT') {
-      console.log("passo1")
       // Atualizar usuário
       if (req.body['senha']){
         const sql = 'UPDATE usuario SET senha = ? WHERE id = ?';
@@ -142,6 +148,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return;
           }
           res.json(results);
+          return;
         });
       }
       else if (req.body['nome']) {
@@ -154,6 +161,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return;
           }
           res.json(results);
+          return;
         });
       }
     }

@@ -1,9 +1,9 @@
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CampoValidade(props: any) {
-  const [validade, setValidade] = useState("");
+  const [validade, setValidade] = useState(props.validade);
   const [editando, setEditando] = useState(false);
 
   function handleValidadeChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -16,6 +16,12 @@ export default function CampoValidade(props: any) {
     setEditando(true);
     setValidade("");
   }
+  useEffect(() => {
+    if (!editando) {
+      setValidade(props.validade); // Atualiza o valor do nome apenas se não estiver editando
+    }
+  }, [props.validade, editando]);
+
 
   return (
     <>

@@ -29,9 +29,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
 
     } else if (req.method === 'GET') {
-      if (!req.query) {
-        const sql = 'SELECT * FROM cardc';
-        connection.query(sql, (error, results, fields) => {
+      if (req.query.id) {
+        const sql = 'SELECT * FROM cardc WHERE id_usuario = ?';
+        connection.query(sql, [req.query.id], (error, results, fields) => {
           if (error) {
             console.error('Erro ao buscar cartao: ', error);
             res.status(500).send('Erro ao buscar cartao.');

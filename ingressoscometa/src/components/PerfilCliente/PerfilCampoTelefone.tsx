@@ -1,10 +1,10 @@
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputMask from "react-input-mask";
 
 export default function PerfilCampoTelefone(props: any) {
-  const [telefone, setTelefone] = useState('(99)99999-9999');
+  const [telefone, setTelefone] = useState(props.telefone);
   const [editando, setEditando] = useState(false); // Estado de ediçãos
   function handleTelefoneChange(event: React.ChangeEvent<HTMLInputElement>) {
     let telefoneValue = event.target.value.replace(/\D/g, '');
@@ -17,6 +17,13 @@ export default function PerfilCampoTelefone(props: any) {
     setEditando(true); // Habilita a edição ao clicar no botão "Editar"
     setTelefone("")
   }
+
+  useEffect(() => {
+    if (!editando) {
+        setTelefone(props.telefone); // Atualiza o valor do nome apenas se não estiver editando
+    }
+  }, [props.telefone, editando]);
+
 
 
   return(
