@@ -4,7 +4,8 @@ import BotaoEntrar from "../CadastroUsuario/BotaoEntrar.1";
 import CampoEsqueciSenha from "../CadastroUsuario/CampoEsqueciSenha";
 import Message from "../CabecalhoCadastro/Mensagem";
 import { FormEventHandler } from "react";
-import { signIn } from "next-auth/react";
+import { signIn,getSession } from "next-auth/react";
+import NaoUtorizado from "../naoAutorizado";
 
 export default function loginAdm() {
 
@@ -21,9 +22,19 @@ const hanldeSubmit: FormEventHandler<HTMLFormElement> = (e) => {
 
     const res = signIn("credentials", { cpf: cpf?.value, password: senha?.value, redirect: false });
 
-    res.then((resultado) => {
-        if (resultado.ok) {
-            window.location.replace("/home");
+    res.then(async(resultado) => {
+        //somente o usuario de tipo 3 tem acesso
+        const session = await getSession()
+        if (resultado?.ok) {
+            if(session?.user.tipo==='3'){
+                window.location.replace("/homeadm");
+            }else{
+                const div = document.querySelector('id=main')
+                while(div?.firstChild){
+                    
+                }
+            }
+            
         } else {
             if (menssage) {
                 menssage.style.display = 'block';
@@ -35,7 +46,7 @@ const hanldeSubmit: FormEventHandler<HTMLFormElement> = (e) => {
 };
 
 return (
-    <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
+    <div id="main" className="flex flex-col justify-center items-center h-screen bg-gray-100">
         <form onSubmit={hanldeSubmit}>
             <CampoCpf />
             <CampoSenha />
