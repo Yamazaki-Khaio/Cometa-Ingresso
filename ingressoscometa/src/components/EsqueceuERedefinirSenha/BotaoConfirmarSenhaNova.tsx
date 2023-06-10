@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function BotaoConfirmar() {
+export default function BotaoConfirmar(props: {href: string}) {
     return (
       <div className="p-2">
         <input

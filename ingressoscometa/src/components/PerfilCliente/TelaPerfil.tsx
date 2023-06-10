@@ -124,6 +124,7 @@ export default function Perfil(){
           console.error("Erro ao enviar os dados:", error);
           // Lógica adicional para lidar com erros no envio dos dados
         }
+        window.location.reload();
       };
 
 

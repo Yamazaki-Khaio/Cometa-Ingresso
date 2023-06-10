@@ -75,7 +75,6 @@ export default function BlocoCartaoDeCredito() {
         });
         window.location.reload();
       }
-      console.log('aaaaaaaaa')
       window.location.reload();
     } catch(error){
       console.error("Erro ao enviar os dados:", error);
