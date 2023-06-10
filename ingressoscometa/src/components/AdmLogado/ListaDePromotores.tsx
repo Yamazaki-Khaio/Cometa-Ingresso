@@ -48,6 +48,7 @@ export default function ListaPromotores(props: any) {
                                 key={usuario.id}
                                 Nome={usuario.nome}
                                 Cpf={usuario.cpf}
+                                Id={usuario.id}
 
                             />
                         </div>
