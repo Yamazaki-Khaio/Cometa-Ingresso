@@ -11,6 +11,7 @@ import BlocoCartaoDeCredito from "./BlocoCartaoCredito";
 import { FormEventHandler, useEffect, useState } from "react";
 import { getSession, useSession } from "next-auth/react";
 import axios from "axios";
+import BotaoRedefinirSenha from "./botaoRedefinirSenha";
 interface FormData {
   nome: string,
   cpf: string,
@@ -159,6 +160,7 @@ export default function Perfil(){
                     <BotaoSalvarPerfil/>
                 </form>
             </div>
+            <BotaoRedefinirSenha/>
             <div className="col-start-3 col-span-4 flex justify-center items-start">
 
             </div>
