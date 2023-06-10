@@ -28,6 +28,13 @@ export default function Home(){
                     </div>
                 )
             }
+
+            default:
+                return(
+                    <div>
+                        <Layout pagina={<NaoUtorizado/>} />
+                    </div>
+                )
         }
     }else{
         return(

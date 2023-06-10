@@ -4,7 +4,7 @@ import BotaoEntrar from "../CadastroUsuario/BotaoEntrar.1";
 import CampoEsqueciSenha from "../CadastroUsuario/CampoEsqueciSenha";
 import Message from "../CabecalhoCadastro/Mensagem";
 import { FormEventHandler } from "react";
-import { signIn,getSession } from "next-auth/react";
+import { signIn,getSession,signOut } from "next-auth/react";
 import NaoUtorizado from "../naoAutorizado";
 
 export default function loginAdm() {
@@ -29,10 +29,14 @@ const hanldeSubmit: FormEventHandler<HTMLFormElement> = (e) => {
             if(session?.user.tipo==='3'){
                 window.location.replace("/homeadm");
             }else{
-                const div = document.querySelector('id=main')
+                signOut()
+                const div = document.getElementById('main')
                 while(div?.firstChild){
-                    
+                    div.removeChild(div.firstChild);
                 }
+                div?.insertAdjacentHTML('afterbegin','<div className="flex flex-col justify-center items-center h-screen bg-gray-100">'+
+                '<p>Você não está autorizado a acessar essa página</p>'+
+                '</div>')
             }
             
         } else {
