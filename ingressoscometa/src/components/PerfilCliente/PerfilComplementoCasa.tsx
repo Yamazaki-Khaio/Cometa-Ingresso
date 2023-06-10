@@ -1,11 +1,11 @@
 import {faPenToSquare} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React  from "react";
+import React, { useEffect }  from "react";
 import { useState } from "react";
 
 
 export default function PerfilComplementoCasa(props: any){
-    const [complemento, setComplemento] = useState('Condoomínio');
+    const [complemento, setComplemento] = useState(props.complemento);
     const [editando, setEditando] = useState(false); // Estado de edição
 
     function handleComplementoChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -16,7 +16,11 @@ export default function PerfilComplementoCasa(props: any){
         setEditando(true); // Habilita a edição ao clicar no botão "Editar"
         setComplemento("")
       }
-    
+      useEffect(() => {
+        if (!editando) {
+            setComplemento(props.complemento); // Atualiza o valor do nome apenas se não estiver editando
+        }
+      }, [props.complemento, editando]);
 
     return(
         <><label className="flex flex-col gap-1 rounded-md mb-2"  htmlFor="complemento">Complemento

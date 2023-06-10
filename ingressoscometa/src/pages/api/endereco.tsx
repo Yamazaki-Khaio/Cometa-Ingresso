@@ -22,7 +22,7 @@ router.use('/', async (req: NextApiRequest, res: NextApiResponse) => {
     } else if (req.method === 'GET') {
         if (req.query && req.query.id) {
             // Obter endereço por ID
-            const sql = 'SELECT * FROM endereco WHERE id_endereco=?';
+            const sql = 'SELECT * FROM endereco WHERE id_usuario=?';
             connection.query(sql, [req.query.id], (error, results, fields) => {
                 if (error) {
                     console.error('Erro ao buscar endereço:', error);
@@ -45,11 +45,14 @@ router.use('/', async (req: NextApiRequest, res: NextApiResponse) => {
         }
     } else if (req.method === 'PUT') {
         // Atualizar endereço
-        const { cep, rua, numero, complemento, UsuarioID } = req.headers;
         const sql =
-            'UPDATE endereco SET cep=?, rua=?, numero=?, complemento=?, UsuarioID=? WHERE id_endereco=?';
-        const params = [cep, rua, numero, complemento, UsuarioID, req.query.id];
-        connection.query(sql, params, (error, results, fields) => {
+            'UPDATE endereco SET cep=?, rua=?, numero=?, complemento=?  WHERE id_usuario=?';
+        connection.query(sql, [req.body.cep,
+            req.body.rua,
+            req.body.numero,
+            req.body.complemento,
+            req.body.id,
+        ], (error, results, fields) => {
             if (error) {
                 console.error('Erro ao atualizar endereço:', error);
                 res.status(500).send('Erro ao atualizar endereço.');
