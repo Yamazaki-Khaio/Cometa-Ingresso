@@ -27,7 +27,7 @@ export default  function handler(req: NextApiRequest, res: NextApiResponse){
                     return;
                 }
                 const data = JSON.parse(JSON.stringify(results))
-                
+                //retorna 1 caso bnido e 0 caso livre
                 res.status(200).json({result:data.length})
                 return; 
             })
