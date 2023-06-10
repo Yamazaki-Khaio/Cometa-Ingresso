@@ -1,11 +1,11 @@
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React  from "react";
+import React, { useEffect }  from "react";
 import { useState } from "react";
 
 
 export default function PerfilNumeroCasa(props: any){
-    const [numero, setNumero] = useState('10');
+    const [numero, setNumero] = useState(props.numemroCasa);
     const [editando, setEditando] = useState(false); // Estado de edição
 
 
@@ -17,7 +17,11 @@ export default function PerfilNumeroCasa(props: any){
         setEditando(true); // Habilita a edição ao clicar no botão "Editar"
         setNumero("")
       }
-    
+      useEffect(() => {
+        if (!editando) {
+            setNumero(props.numemroCasa); // Atualiza o valor do nome apenas se não estiver editando
+        }
+      }, [props.numemroCasa, editando]);
 
     return(
         <><label className="flex flex-col gap-1 rounded-md mb-2"  htmlFor="numero">Número da Casa

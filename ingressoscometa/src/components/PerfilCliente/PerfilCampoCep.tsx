@@ -1,11 +1,11 @@
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React  from "react";
+import React, { useEffect }  from "react";
 import { useState } from "react";
 
 
 export default function PerfilCampoCep(props: any){
-    const [cep, setCep] = useState('123.456-000');
+    const [cep, setCep] = useState(props.cep);
     const [editando, setEditando] = useState(false); // Estado de edição
 
     function handleCepChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -18,6 +18,11 @@ export default function PerfilCampoCep(props: any){
         setEditando(true); // Habilita a edição ao clicar no botão "Editar"
         setCep("")
       }
+      useEffect(() => {
+        if (!editando) {
+            setCep(props.cep); // Atualiza o valor do nome apenas se não estiver editando
+        }
+      }, [props.cep, editando]);
     
     return(
         <><label className="flex flex-col gap-1 rounded-md mb-2"  htmlFor="cep">Cep
