@@ -24,6 +24,8 @@ export default function ListaEventosCliente(props: any) {
     return `data:image/png;base64,${imageData}`;
   };
 
+//mudar set eventos e buscar especifico, pegar todos eventos do carrinho e por no componente "EventoLogado"
+//Fazer a rota
 
   return (
     <div className="flex flex-wrap gap-5 justify-center items-center p-4 bg-slate-200">

@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import Botao from '../CabecalhoCadastro/botao';
 export default function EventoLogado(props: any) {
+
+    //lógica aqui rotas, ajustar
+
     const { imageSizeClass } = props;
     return (
         <div className="relative flex flex-wrap justify-start content-center h-60 w-screen mx-12 border bg-white  rounded-3xl">
@@ -17,11 +20,6 @@ export default function EventoLogado(props: any) {
             <div className="absolute bottom-8 right-8">
                 <Botao href="/carrinho" NomeBotao="Adicionar ao carrinho" />
             </div>
-
         </div>
-
-
-
-
     )
 }
