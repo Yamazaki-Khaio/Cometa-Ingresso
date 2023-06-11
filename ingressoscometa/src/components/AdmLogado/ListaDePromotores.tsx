@@ -42,7 +42,7 @@ export default function ListaPromotores(props: any) {
                     <h2 className='text-4xl font-black'>Lista de Promotores</h2>
                 </div>
                 {usuarios.map((usuario: any, index: number) => (
-                    <Link className="relative flex  justify-start content-center h-60 w-full ml-12 mr-12 border bg-white shadow-md rounded-3xl" href={`/evento/?id=${usuario.id}`} key={usuario.id}>
+                    <div className="relative flex  justify-start content-center h-60 w-full ml-12 mr-12 border bg-white shadow-md rounded-3xl">
                         <div style={{ cursor: 'pointer' }}>
                             <PromotorAdm
                                 key={usuario.id}
@@ -52,7 +52,7 @@ export default function ListaPromotores(props: any) {
 
                             />
                         </div>
-                    </Link>
+                    </div>
 
                 ))}
             </div>

@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Botao from '../CabecalhoCadastro/botao';
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 export default function EventoPromoter(props: any) {
     const { imageSizeClass } = props;
     return (
@@ -9,7 +10,6 @@ export default function EventoPromoter(props: any) {
             <div className="w-92 h-44 ml-8">
                 <Image width={720} height={480} src={props.Image} alt={props.Nome} className=" w-full h-full object-cover rounded-3xl " />
             </div>
-
 
 
             <div className="ml-12">
