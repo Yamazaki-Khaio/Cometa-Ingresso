@@ -1,6 +1,7 @@
 import express from "express";
 import mysql from "mysql2";
 
+
 const app = express();
 
 // Configuração do banco de dados
@@ -32,9 +33,10 @@ app.get("/dados", (req, res) => {
     res.json(result);
   });
 });
-
 // Iniciando o servidor
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+export default connection;
