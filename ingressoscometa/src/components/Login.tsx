@@ -52,9 +52,7 @@ export default function Login() {
             <form onSubmit={hanldeSubmit}>
                 <CampoCpf />
                 <CampoSenha />
-                <div className="flex justify-center w-full">
-                    <RadioButton />
-                </div>
+
                 <div className="flex justify-center w-full">
                     <BotaoEntrar />
                 </div>

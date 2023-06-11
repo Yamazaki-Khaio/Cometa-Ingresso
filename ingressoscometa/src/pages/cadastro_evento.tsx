@@ -1,4 +1,4 @@
-import Layout from "@/components/CabecalhoCadastro/layout";
+import Layout from "@/components/CabecalhoPromoter/LayoutPromoter";
 import CadastroEvento from "@/components/CadastroEvento/Cadastro_Evento";
 import {useSession} from 'next-auth/react'
 import NaoUtorizado from "@/components/naoAutorizado";
@@ -8,7 +8,7 @@ export default function cadastro(){
     if(session&&session?.user.tipo==='2'){
         return(
             <div>
-                <Layout pagina={<CadastroEvento/>} exibirBotao={true} exibirBotao2={true} exibirBotao3={false}/>
+                <Layout pagina={<CadastroEvento/>} />
             </div>
         )
     }else{
