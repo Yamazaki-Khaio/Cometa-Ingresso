@@ -19,7 +19,7 @@ export default function CabecalhoAdm(props: any) {
                 <BotaoPerfilAdm Pagina="/perfiladm" NomeBotao="Perfil" />
                 <BotaoNotificacoesAdm Pagina="/notificacoes" NomeBotao="Notificações" />
                 <BotaoPromotersAdm Pagina="/promotores" NomeBotao="Promoters"/>
-                <BotaoBackup Pagina="/backup" NomeBotao="Backup"/>
+                <BotaoBackup Pagina="/api/backup" NomeBotao="Backup"/>
 
             </div>
             
