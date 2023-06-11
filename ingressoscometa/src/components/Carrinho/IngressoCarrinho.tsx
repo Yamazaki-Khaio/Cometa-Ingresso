@@ -1,9 +1,5 @@
 import React from "react";
-import BotaoFinalizarCompra from "./BotaoFinalizarCompra";
-import Tabela from "../RelatorioEventosPromoter/TabelaEvento";
-import { I18NConfig } from "next/dist/server/config-shared";
 import BotaoDelete from "./BotaoDeleteIngresso";
-import { isTemplateExpression } from "typescript";
 import Image from 'next/image'
 
 
@@ -21,7 +17,7 @@ interface CartProps {
     total: number;
   }
 
-  const carrinho: CartProps = {
+  /*const carrinho: CartProps = {
     id: 0,
     cartItems:[{id: 1,
       name: "cer ve ja da",
@@ -39,7 +35,7 @@ interface CartProps {
 
 for (let item of carrinho.cartItems){
   carrinho.total+=item.price;
-}
+}*/
 
   export default function IngressoCarrinho(props: any) {
     return (

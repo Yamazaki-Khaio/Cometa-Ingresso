@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Botao from '../CabecalhoCadastro/botao';
 export default function EventoLogado(props: any) {
     const { imageSizeClass } = props;
     return (
