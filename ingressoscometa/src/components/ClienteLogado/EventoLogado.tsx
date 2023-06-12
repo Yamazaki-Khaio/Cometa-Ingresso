@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Botao from '../CabecalhoCadastro/botao';
 import QuantitySelector from './QuantidadeSeletor';
+import ChoiceBox from './ChoiceBoxSetor';
 export default function EventoLogado(props: any) {
 
     //lógica aqui rotas, ajustar
@@ -16,8 +17,10 @@ export default function EventoLogado(props: any) {
                 <p className="font-sans text-4sm">Local: {props.Local}</p>
                 <p className="font-sans text-4sm">Data: {props.Data}</p>
                 <p className="font-sans text-4sm">A partir das: {props.Hora}</p>
+                
             </div>
             <div className="absolute bottom-8 right-8">
+                <ChoiceBox/>
                 <Botao href="/carrinho" NomeBotao="Adicionar ao carrinho" />
                 <QuantitySelector/>
                 <p className="font-sans  right-20 text-4sm">Quantidade disponível: {props.quant_ingresso}</p>
