@@ -1,7 +1,7 @@
 export default function BotaoSalvarPerfil(){
 
     return(
-        <div>
+        <div className="pb-8">
             <input type="submit" value="Salvar Perfil" className={`
                      w-48 h-12  // diminuindo o comprimento do botão
                      bg-teal-900 

@@ -64,7 +64,7 @@ export default function PerfilPromoter() {
                   */  };
 
   return (
-    <div className="flex flex-col justify-center items-center bg-gray-100 p-12">
+    <div className="flex flex-col w-4/6 mr-36 ml-auto justify-center items-center m-12 bg-white rounded-lg shadow-md shadow-xl-bottom">
       <form onSubmit={handleSubmit}>
             <PerfilCampoNome/>
             <PerfilCampoEmail/>
