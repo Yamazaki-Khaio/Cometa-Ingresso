@@ -2,11 +2,23 @@ import React, { use, useEffect, useState } from 'react'
 import axios from 'axios';
 import { Buffer } from 'buffer';
 import Link from 'next/link';
-import TelaCarrinho from './IngressoCarrinho';
+import { getSession } from 'next-auth/react';
 import IngressoCarrinho from './IngressoCarrinho';
 
 
 export default function ListaEventosCarrinho(props: any) {
+  const [id_usuario, setIdUsuario] = useState("");
+
+  useEffect(() => {
+    async function getUserId() {
+        const user = await getSession();
+        const userId = user?.user.id;
+        setIdUsuario(userId);
+        console.log(id_usuario)
+    }
+    getUserId();
+  }, []);
+
   const [eventos, setEventos] = useState([])
   useEffect(() => {
     fetchEventos()
@@ -17,6 +29,20 @@ export default function ListaEventosCarrinho(props: any) {
     fetchSetores()
   }, [])
 
+  const [carrinhoCompras, setCarrinhoCompras] = useState([])
+  useEffect(() => {
+    fetchCarrinho()
+  }, [])
+
+  const fetchCarrinho = async () => {
+    try {
+      const response = await axios.get(`/api/carrinhoCompras?id=${id_usuario}`)
+      setCarrinhoCompras(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+    console.log(carrinhoCompras);
+  }
 
   const fetchEventos = async () => {
     try {

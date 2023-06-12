@@ -21,11 +21,23 @@ export default function EventoLogado(props: any) {
 
 
     function handleBotaoClicado(): void {
-        console.log(props.setores)
-        const form = {
-            id_usuario,
-            id_evento: props.id,
-            quantidadeIngresso: document.getElementById("quantity"),
+        for (const setor of props.setores) {
+            if(setor.nome == document.getElementById("setor").value){
+                const form = {
+                    id_setor: setor.id,
+                    preco_ingresso: setor.preco,
+                    id_usuario,
+                    id_evento: props.id,
+                    quant_ingresso: parseInt(document.getElementById("quantity").value, 10),
+                }
+                    fetch(`/api/carrinhoCompras?id=${id_usuario}`, {
+                    method: 'POST',
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(form)
+                  });
+            }
         }
     }
 
@@ -40,7 +52,6 @@ export default function EventoLogado(props: any) {
                     <p className="font-sans text-4sm">Local: {props.Local}</p>
                     <p className="font-sans text-4sm">Data: {props.Data}</p>
                     <p className="font-sans text-4sm">A partir das: {props.Hora}</p>
-                    <p className="font-sans text-4sm">id: {props.id}</p>
 
                 </div>
                 <div className="absolute items-center justify-center bottom-6 gap-2 right-8">

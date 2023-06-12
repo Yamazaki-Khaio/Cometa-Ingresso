@@ -13,6 +13,13 @@ export default function QuantitySelector(props) {
     }
   };
 
+  const handleInputChange = (e) => {
+    const value = parseInt(e.target.value);
+    if (!isNaN(value)) {
+      setQuantity(value);
+    }
+  };
+
   return (
     <div className="flex items-center gap-4">
       <button
@@ -22,10 +29,10 @@ export default function QuantitySelector(props) {
         -
       </button>
       <input
-        type="text"
-        id = "quantity"
+        type= "number"
+        id="quantity"
         value={quantity}
-        readOnly
+        onChange={handleInputChange}
         className="border w-16 border-gray-400 rounded-md p-2 text-center"
       />
       <button

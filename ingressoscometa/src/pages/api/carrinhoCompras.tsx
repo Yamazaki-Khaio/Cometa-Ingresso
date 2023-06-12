@@ -1,6 +1,5 @@
 import express from 'express';
 import {connection} from './db';
-import Carrinho from './classes/Carrinho';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default function handler(req: NextApiRequest,res: NextApiResponse){
@@ -18,8 +17,8 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
       
         }else{
             if(req.query['id']){
-                const sql = 'SELECT * FROM carrinho WHERE id=?';
-                connection.query(sql,[req.query['id']], (error, results, fields) => {
+                const sql = 'SELECT * FROM carrinho WHERE id_usuario=?';
+                connection.query(sql,[req.query.id], (error, results, fields) => {
                     if (error) {
                     console.error('Erro ao buscar carrinho: ', error);
                     res.status(500).send('Erro ao buscar carrinho.');
@@ -32,14 +31,13 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
         }
     }else if(req.method === 'POST'){
 
-            const sql = 'INSERT INTO carrinho (id_usuario, id_ingresso, quant_ingresso)  VALUES (?, ?, ?)'
-
-            const usuarioId = results.insertId;
+            const sql = 'INSERT INTO carrinho (id_usuario, id_setor, id_evento, quant_ingresso)  VALUES (?, ?, ?, ?)'
 
             const params = [
                 req.body.id_usuario,
-               //constante que vai receber o iduser do usuario logado,
-               req.body.quant_ingresso
+                req.body.id_setor,
+                req.body.id_evento,
+                req.body.quant_ingresso
             ]
 
             connection.query(sql, params, (error, results, fields) => {
@@ -53,10 +51,10 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
     }
 }
 
-const router = express.Router();
+//const router = express.Router();
 
 // Criar carrinho
-router.post('/', async (req, res) => {
+/*router.post('/', async (req, res) => {
     const carrinho = new Carrinho(
         req.body.id_carrinho,
     );
@@ -115,5 +113,5 @@ router.put('/:id', async (req, res) => {
         }
     );
 });
-
+*/
 
