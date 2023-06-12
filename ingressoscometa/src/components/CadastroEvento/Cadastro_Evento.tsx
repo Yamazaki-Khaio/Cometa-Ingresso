@@ -127,7 +127,7 @@ export default function CadastroEvento() {
       formData.complemento = (document.getElementById('complemento') as HTMLInputElement)?.value;
       formData.numero = (document.getElementById('numero') as HTMLInputElement)?.value;
       formData.rua = (document.getElementById('rua') as HTMLInputElement)?.value;
-
+      console.log(formData)
       const res = await fetch('/api/evento', {
         method: 'POST',
         headers: {
