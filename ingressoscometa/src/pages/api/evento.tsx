@@ -15,14 +15,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const sql = "INSERT INTO evento (id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem, horario_evento) VALUES (?, ?, ?, ?, ?, ?, ?)";
       const setorSql = "INSERT INTO setor(nome, quantidade_ingresso, id_evento, preco) VALUES (?, ?, ?, ?)"
       const endSql = 'INSERT INTO endereco (id_usuario, cep, rua, numero, complemento, id_evento, cidade, estado)  VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+      const imageBuffer = Buffer.from(req.body.imagem.data);
+      
       const params = [
         '998',
         req.body.nome,
         req.body.dataEvento,
         req.body.descricao,
         '1',
-        '',
+        imageBuffer,
         req.body.horarioEvento,
+        
       ];
       connection.query(sql, params, (error, results, fields) => {
         if (error) {
