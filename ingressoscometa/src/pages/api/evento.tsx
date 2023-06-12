@@ -14,6 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       // Criar evento
       const sql = "INSERT INTO evento (id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem, horario_evento) VALUES (?, ?, ?, ?, ?, ?, ?)";
       const setorSql = "INSERT INTO setor(nome, quantidade_ingresso, id_evento, preco) VALUES (?, ?, ?, ?)"
+      const endSql = 'INSERT INTO endereco (id_usuario, cep, rua, numero, complemento, id_evento, cidade, estado)  VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
       const params = [
         '998',
         req.body.nome,
@@ -38,6 +39,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
        req.body.preco_vip,
       ];
 
+      const endParams = [
+        '0',
+        req.body.cep,
+        req.body.rua,
+        req.body.numero,
+        req.body.complemento,
+        eventoId,
+        req.body.cidade,
+        req.body.estado
+      ]
+
       const setorCamaroteParams = [
         req.body.setor_camarote,
         req.body.qnt_camarote,
@@ -59,6 +71,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
        req.body.preco_nenhum,
       ];
 
+      connection.query(endSql, endParams, (error, results, fields) => {
+        if (error) {
+          console.error('Erro ao inserir novo endereco: ', error);
+          res.status(500).send('Erro ao inserir novo endereco.');
+          return;
+        }
+        res.json(results);
+        return;
+      });
       if (req.body.setor_vip != ""){
       connection.query(setorSql, setorVipParams, (error, results, fields) => {
         if (error) {

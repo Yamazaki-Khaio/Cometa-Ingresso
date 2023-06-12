@@ -5,9 +5,6 @@ import CampoDataEvento from "./CampoDataEvento";
 import { FormEventHandler, cloneElement, useState } from "react";
 import CampoLocalEvento from "./CampoLocalEvento";
 import CampoEnvioImagem from "./CampoEnviarImagem";
-import CampoSetoresEvento from "./SetorEvento/CampoSetoresEvento";
-import CampoPrecoVi from "./PrecoEvento/CampoPreco";
-import CampoPreco from "./PrecoEvento/CampoPreco";
 import CampoSetorVip from "./SetorEvento/CampoSetorVip";
 import CampoSetorBackstage from "./SetorEvento/CampoSetorBackstage";
 import CampoSetorCamarote from "./SetorEvento/CampoSetorCamarote";
@@ -22,6 +19,13 @@ import CampoPrecoCamarote from "./PrecoEvento/CampoPrecoCam";
 import CampoPrecoBackstage from "./PrecoEvento/CampoPrecoBack";
 import CampoPrecoNenhum from "./PrecoEvento/CampoPrecoNenhum";
 import { FLOAT } from "sequelize";
+import CepCadastro from "./CepCadastro";
+import CampoCidade from "./CampoCidade";
+import CampoEstado from "./CampoEstado";
+import CampoLocal from "../QRCode/CampoLocal";
+import ComplementoEnderecoCadastro from "./ComplementoEnderecoCadastro";
+import NumeroDaCasaCadastro from "./NumeroDaCasaCadastro";
+import RuaCadastro from "./RuaCadastro";
 
 interface FormData {
   nome: string,
@@ -48,6 +52,13 @@ interface FormData {
   preco_camarote: string
   preco_backstage: string
   preco_nenhum: string
+
+  cep:string,
+  rua:string,
+  cidade:string,
+  estado:string,
+  complemento:string,
+  numero:string
   }
 
 
@@ -74,7 +85,15 @@ export default function CadastroEvento() {
     preco_vip: "",
     preco_camarote: "",
     preco_backstage: "",
-    preco_nenhum: ""
+    preco_nenhum: "",
+
+    cep: "",
+    rua: "",
+    complemento: "",
+    cidade: "",
+    estado: "",
+    numero: ""
+
   });
 
   const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
@@ -102,7 +121,12 @@ export default function CadastroEvento() {
       formData.qnt_nenhum = (document.getElementById('qnt_nenhum') as HTMLInputElement)?.value;
       formData.preco_nenhum = (document.getElementById('preco_nenhum') as HTMLInputElement)?.value;
 
-
+      formData.cep = (document.getElementById('cep') as HTMLInputElement)?.value;
+      formData.cidade = (document.getElementById('cidade') as HTMLInputElement)?.value;
+      formData.estado = (document.getElementById('estado') as HTMLInputElement)?.value;
+      formData.complemento = (document.getElementById('complemento') as HTMLInputElement)?.value;
+      formData.numero = (document.getElementById('numero') as HTMLInputElement)?.value;
+      formData.rua = (document.getElementById('rua') as HTMLInputElement)?.value;
 
       const res = await fetch('/api/evento', {
         method: 'POST',
@@ -147,7 +171,14 @@ return(
             <form onSubmit={handleSubmit}>
             <CampoNomeEvento value={formData.nome} onChange={handleInputChange} name="nome"/>
             <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao"/>
-            <CampoLocalEvento value={formData.localEvento} onChange={handleInputChange} name="localEvento"/>
+            //
+            <CampoLocal/>
+            <CepCadastro/>
+            <CampoCidade/>
+            <CampoEstado/>
+            <RuaCadastro/>
+            <ComplementoEnderecoCadastro/>
+            <NumeroDaCasaCadastro/>
             <CampoDataEvento value={formData.dataEvento} onChange={handleInputChange} name="dataEvento"/>
             <CampoHorarioEvento value={formData.horarioEvento} onChange={handleInputChange} name="horarioEvento"/>
             <div style={{wordSpacing: '150px'}} >Setores Preço Quantidade</div>
