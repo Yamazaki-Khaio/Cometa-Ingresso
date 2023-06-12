@@ -3,7 +3,9 @@ import { useState } from "react";
 export default function CampoPrecoNenhum(props: any){
   const [preco, setPreco] = useState(""); //Armazena o valor do preço do setor VIP
   function handlePrecoChange(event: React.ChangeEvent<HTMLInputElement>){//Modifica o valor da descrição do preço do setor VIP
-    setPreco(event.target.value);
+    let precinho = event.target.value.replace(/\D/g, '');
+    precinho = precinho.replace(/(\d{1})(\d{2})$/, '$1.$2');
+    setPreco(precinho);
   }
   return(
     <div className="flex flex-col justify-center ">
