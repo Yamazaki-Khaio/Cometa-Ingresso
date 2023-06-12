@@ -8,14 +8,25 @@ import BotaoPerfil from "./BotaoPerfil";
 export default function CabecalhoCliente(props: { isBotaoOcultoLogin?: boolean, isBotaoOcultoCadastro?: boolean, isBotaoOcultoEvento?: boolean }) {
     const { data: session } = useSession()
     const route = useRouter()
+    function formatarNome(nome: string | null | undefined): string {
+        if (nome == null) {
+            return ''; // ou faça algo adequado para tratar o valor nulo ou indefinido
+        }
+    
+        const nomesSeparados = nome.toLowerCase().split(' ');
+        const nomesFormatados = nomesSeparados.map((nome) => nome.charAt(0).toUpperCase() + nome.slice(1));
+        return nomesFormatados.join(' ');
+    }
+
     return (
         <div className="flex items-center justify-between p-8 w-screen h-40 bg-white">
             <div className="flex items-center gap-4">
                 <a href="/">
                     <img src="/cometa2.png" alt="Logo" width="200" height="200" />
                 </a>
-                <h2 className="font-bold text-xl">Olá {session?.user?.name}</h2>
+
             </div>
+                <h2 className='text-3xl font-black'>Olá, {formatarNome(session?.user?.name)}</h2>
             <div className="flex gap-6">
             
                 <a href="/carrinho"> <BotaoCarrinho />
@@ -23,8 +34,9 @@ export default function CabecalhoCliente(props: { isBotaoOcultoLogin?: boolean, 
                 <a href="/clienteIngressos"><BotaoIngressos /></a>
 
                 <BotaoEventos />
-                <a href="/perfil"> <BotaoPerfil />
-                <button className={`
+                <a href="/perfil"> <BotaoPerfil /></a>
+            </div>
+            <button className={`
                         w-40 h-12
                         bg-teal-900 
                         text-white 
@@ -32,12 +44,6 @@ export default function CabecalhoCliente(props: { isBotaoOcultoLogin?: boolean, 
                         rounded-xl`} role="button"
                         onClick={() => { signOut({ callbackUrl: 'http://localhost:3000/login' }) }} >Sair</button>
 
-
-                    
-
-
-                </a>
-            </div>
         </div>
     )
 }
