@@ -59,7 +59,7 @@ export default function EventoLogado(props: any) {
                     <QuantitySelector />
                     <p className="font-sans  right-20 text-4sm">Quantidade disponível: {props.quant_ingresso}</p>
                     <button onClick={() => handleBotaoClicado()}>
-                        <Botao href="/carrinho" NomeBotao="Adicionar ao carrinho" />
+                        <Botao href= '/carrinho' NomeBotao="Adicionar ao carrinho" />
                     </button>
                 </div>
             </div>

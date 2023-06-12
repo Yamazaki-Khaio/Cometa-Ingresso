@@ -7,18 +7,6 @@ import IngressoCarrinho from './IngressoCarrinho';
 
 
 export default function ListaEventosCarrinho(props: any) {
-  const [id_usuario, setIdUsuario] = useState("");
-
-  useEffect(() => {
-    async function getUserId() {
-        const user = await getSession();
-        const userId = user?.user.id;
-        setIdUsuario(userId);
-        console.log(id_usuario)
-    }
-    getUserId();
-  }, []);
-
   const [eventos, setEventos] = useState([])
   useEffect(() => {
     fetchEventos()
@@ -36,12 +24,13 @@ export default function ListaEventosCarrinho(props: any) {
 
   const fetchCarrinho = async () => {
     try {
-      const response = await axios.get(`/api/carrinhoCompras?id=${id_usuario}`)
+      const user = await getSession();
+      const userId = user?.user.id;
+      const response = await axios.get(`/api/carrinhoCompras?id=${userId}`)
       setCarrinhoCompras(response.data)
     } catch (error) {
       console.log(error)
     }
-    console.log(carrinhoCompras);
   }
 
   const fetchEventos = async () => {

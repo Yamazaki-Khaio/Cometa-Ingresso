@@ -18,13 +18,14 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
         }else{
             if(req.query['id']){
                 const sql = 'SELECT * FROM carrinho WHERE id_usuario=?';
-                connection.query(sql,[req.query.id], (error, results, fields) => {
+                connection.query(sql,[req.query['id']], (error, results, fields) => {
                     if (error) {
                     console.error('Erro ao buscar carrinho: ', error);
                     res.status(500).send('Erro ao buscar carrinho.');
                     return;
                     }
                     res.json(results);
+                    console.log(results)
                 });
                 
             }
