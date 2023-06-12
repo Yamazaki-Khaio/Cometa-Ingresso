@@ -43,7 +43,7 @@ export default function ListaEventosCliente(props: any) {
   };
 
   return (
-    <div className="flex flex-wrap gap-5 justify-center items-center p-4 bg-slate-200">
+    <div className="flex flex-wrap gap-5 w-screen justify-center items-center p-4 bg-slate-200">
       {eventos.map((evento: any) => (
         <div key={evento.id} style={{ cursor: 'pointer' }}>
           <EventoLogado

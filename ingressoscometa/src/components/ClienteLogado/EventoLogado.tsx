@@ -11,45 +11,48 @@ export default function EventoLogado(props: any) {
 
     useEffect(() => {
         async function getUserId() {
-          const user = await getSession();
-          const userId = user?.user.id;
-          setIdUsuario(userId);
-          console.log(userId)
+            const user = await getSession();
+            const userId = user?.user.id;
+            setIdUsuario(userId);
+            console.log(userId)
         }
         getUserId();
-      }, []);
-    
+    }, []);
+
 
     function handleBotaoClicado(): void {
         console.log(props.setores)
         const form = {
-        id_usuario,
-        id_evento: props.id,
-        quantidadeIngresso: document.getElementById("quantity"),
+            id_usuario,
+            id_evento: props.id,
+            quantidadeIngresso: document.getElementById("quantity"),
         }
     }
 
     return (
-        <div className="relative flex flex-wrap justify-start content-center h-60 w-screen mx-12 border bg-white  rounded-3xl">
-            <div className="w-92 h-44 ml-8">
-                <Image width={720} height={480} src={props.Image} alt={props.Nome} className=" w-full h-full object-fit rounded-3xl " />
-            </div>
-            <div className="ml-12">
-                <p className="font-bold  text-3xl">{props.Nome}</p>
-                <p className="font-sans text-4sm">Local: {props.Local}</p>
-                <p className="font-sans text-4sm">Data: {props.Data}</p>
-                <p className="font-sans text-4sm">A partir das: {props.Hora}</p>
-                <p className="font-sans text-4sm">id: {props.id}</p>
-                
-            </div>
-            <div className="absolute bottom-8 right-8">
-                <ChoiceBox setores = {props.setores}/>
-                <button onClick={() => handleBotaoClicado()}>Adicionar ao carrinho
-                    <Botao href="/carrinho" NomeBotao="Adicionar ao carrinho" />
-                </button>
-                <QuantitySelector/>
-                <p className="font-sans  right-20 text-4sm">Quantidade disponível: {props.quant_ingresso}</p>
+        <div className='w-screen h-60'>
+            <div className="relative flex flex-wrap justify-start content-center h-60 mx-12 border bg-white  rounded-3xl">
+                <div className="w-92 h-44 ml-8">
+                    <Image width={720} height={480} src={props.Image} alt={props.Nome} className=" w-full h-full object-fit rounded-3xl " />
+                </div>
+                <div className="ml-12">
+                    <p className="font-bold  text-3xl">{props.Nome}</p>
+                    <p className="font-sans text-4sm">Local: {props.Local}</p>
+                    <p className="font-sans text-4sm">Data: {props.Data}</p>
+                    <p className="font-sans text-4sm">A partir das: {props.Hora}</p>
+                    <p className="font-sans text-4sm">id: {props.id}</p>
+
+                </div>
+                <div className="absolute items-center justify-center bottom-6 gap-2 right-8">
+                    <ChoiceBox setores={props.setores} />
+                    <QuantitySelector />
+                    <p className="font-sans  right-20 text-4sm">Quantidade disponível: {props.quant_ingresso}</p>
+                    <button onClick={() => handleBotaoClicado()}>
+                        <Botao href="/carrinho" NomeBotao="Adicionar ao carrinho" />
+                    </button>
+                </div>
             </div>
         </div>
+
     )
 }

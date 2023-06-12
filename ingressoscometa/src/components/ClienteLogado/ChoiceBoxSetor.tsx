@@ -21,7 +21,7 @@ export default function ChoiceBox(props: Props) {
   };
 
   return (
-    <div>
+    <div className="">
       <select
         id="setor"
         value={selectedSetor || ""}
