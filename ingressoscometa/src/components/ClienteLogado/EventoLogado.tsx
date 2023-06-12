@@ -21,12 +21,18 @@ export default function EventoLogado(props: any) {
 
 
     function handleBotaoClicado(): void {
-        console.log(props.setores)
-        const form = {
-            id_usuario,
-            id_evento: props.id,
-            quantidadeIngresso: document.getElementById("quantity"),
+        for (const setor of props.setores) {
+            if(setor.nome == document.getElementById("setor").value){
+                const form = {
+                    id_setor: setor.id,
+                    preco_ingresso: setor.preco,
+                    id_usuario,
+                    id_evento: props.id,
+                    max_ingresso: document.getElementById("quantity"),
+                }
+            }
         }
+        
     }
 
     return (

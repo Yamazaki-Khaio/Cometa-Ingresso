@@ -11,10 +11,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   router.use('/', async (req: Request, res: Response) => {
     if (req.method === 'POST') {
-      const sql = "INSERT INTO ingresso (id_evento, id_usuario, max_ingresso, preco_ingresso) VALUES (?, ?, ?, ?)";
+      const sql = "INSERT INTO ingresso (id_evento, id_usuario,id_setor,  max_ingresso, preco_ingresso) VALUES (?, ?, ?, ?,?)";
       const params = [
         req.body.id_evento,
         req.body.id_usuario,
+        req.body.id_setor,
         req.body.max_ingresso,
         req.body.preco,
       ];
@@ -24,6 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           res.status(500).send('Erro ao inserir novo ingresso.');
           return;
         }
+        const ingressoID = results.insertId;
   });
 
     } else if (req.method === 'GET') {
