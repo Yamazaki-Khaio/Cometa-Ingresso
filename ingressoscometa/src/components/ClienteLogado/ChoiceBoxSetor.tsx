@@ -2,7 +2,17 @@ import React, { useState } from "react";
 
 type Setor = "VIP" | "Backstage" | "Camarote" | "Nenhum";
 
-export default function ChoiceBox(props:any) {
+type Props = {
+  setores: Array<{
+    id: number;
+    nome: string;
+    quantidade_ingresso: number;
+    id_evento: number;
+    preco: number;
+  }>;
+};
+
+export default function ChoiceBox(props: Props) {
   const [selectedSetor, setSelectedSetor] = useState<Setor | undefined>(undefined);
 
   const handleSetorChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -21,13 +31,11 @@ export default function ChoiceBox(props:any) {
         <option value="" disabled>
           Escolha seu setor
         </option>
-        {props.setor.map((setor: any, index: number)=>
-        <option value= {setor}>
-          {setor.nome}
-        </option>
-        
-        )
-        }
+        {props.setores.map((setor) => (
+          <option key={setor.id} value={setor.nome}>
+            {setor.nome}
+          </option>
+        ))}
       </select>
     </div>
   );
