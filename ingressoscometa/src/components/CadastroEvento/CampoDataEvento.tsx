@@ -6,18 +6,21 @@ export default function CampoDataEvento(props: any) {
     setDataEvento(event.target.value);
   }
   return (
-    <div className="flex flex-col gap-4">
-      <label htmlFor="data">Data</label>
-      <input
-        value={dataEvento}
-        type="date"
-        name="data"
-        id="data"
-        placeholder="  /  /  "
-        required
-        className="border w-128 border-gray-400 rounded-md p-2 mb-8"
-        onChange={handleDataEventoChange}
-      />
-    </div>
+    <div className="flex flex-col gap-1">
+    <label htmlFor="data">
+      Data do evento:<span className="text-red-600 text-bold"> *</span>
+    </label>
+    <input
+      value={dataEvento}
+      type="date"
+      name="data"
+      id="data"
+      placeholder="  /  /  "
+      required
+      className="border w-36 border-gray-400 rounded-md p-2 mb-8"
+      onChange={handleDataEventoChange}
+    />
+  </div>
+  
   );
 }

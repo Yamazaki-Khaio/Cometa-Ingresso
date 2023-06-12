@@ -167,7 +167,7 @@ export default function CadastroEvento() {
 
 
 return(
-        <div className="flex flex-col justify-center items-center p-12 bg-gray-100">
+<div className="flex flex-col w-4/6 mr-36 ml-auto justify-center items-center m-12 bg-white rounded-lg shadow-md shadow-xl-bottom">
             <form onSubmit={handleSubmit}>
             <CampoNomeEvento value={formData.nome} onChange={handleInputChange} name="nome"/>
             <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao"/>

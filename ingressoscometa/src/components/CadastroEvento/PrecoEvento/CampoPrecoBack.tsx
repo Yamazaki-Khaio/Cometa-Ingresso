@@ -6,7 +6,7 @@ export default function CampoPrecoBackstage(props: any){
     setPreco(event.target.value);
   }
   return(
-    <div className="flex flex-col gap-4 justify-center items-left ">
+    <div className="flex flex-col justify-center ">
         <input 
         id = ""
         type="text"
@@ -16,7 +16,7 @@ export default function CampoPrecoBackstage(props: any){
       
       <input 
         id = "preco_back"
-        type="text"
+        type="number"
         placeholder="R$" 
         className="border border-gray-400 rounded-md p-2"
         style={{width: "100px"}}

@@ -10,8 +10,10 @@ export default function ComplementoEnderecoCadastro(props: any){
     }
 
     return(
-        <div className="flex flex-col gap-4">
-            <label htmlFor="complemento">Complemento</label>
+        <div className="flex flex-col gap-1">
+            <label htmlFor="complemento">
+                Complemento:<span className="text-red-600 text-bold"> *</span>
+            </label>
             <input 
                 type="text" 
                 name="complemento" 

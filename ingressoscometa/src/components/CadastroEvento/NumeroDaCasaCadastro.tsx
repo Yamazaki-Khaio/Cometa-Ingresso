@@ -11,8 +11,10 @@ export default function NumeroDaCasaCadastro(props: any){
     }
 
     return(
-        <div className="flex flex-col gap-4">
-            <label htmlFor="numero">Número</label>
+        <div className="flex flex-col gap-1">
+            <label htmlFor="numero">
+                 Número:<span className="text-red-600 text-bold"> *</span>
+            </label>
             <input 
                 type="text" 
                 name="numero" 

@@ -12,8 +12,10 @@ export default function CepCadastro(props: any){
     }
 
     return(
-        <div className="flex flex-col gap-4">
-            <label htmlFor="cep">CEP</label>
+        <div className="flex flex-col gap-1">
+            <label htmlFor="cep">
+                CEP:<span className="text-red-600 text-bold"> *</span>
+            </label>
             <input 
                 type="text" 
                 name="cep" 

@@ -11,7 +11,7 @@ export default function CampoQntIngressoVip(props: any) {
     }
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-left ">
+    <div className="flex flex-col justify-center">
         <input 
         id = ""
         type="text"
@@ -21,7 +21,7 @@ export default function CampoQntIngressoVip(props: any) {
       
         <input 
         id = "qnt_vip"
-        type="text"
+        type="number"
         placeholder="Qtd." 
         className="border border-gray-400 rounded-md p-2"
         style={{width: "100px"}}

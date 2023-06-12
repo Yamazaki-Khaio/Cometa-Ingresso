@@ -30,7 +30,7 @@ export default function CampoSetorVip(props: any) {
 
   return (
     
-    <div className="flex flex-col gap-4 justify-center items-left ">
+    <div className="flex flex-col justify-center">
        <input 
         id = "setor_vip"
         type="text"

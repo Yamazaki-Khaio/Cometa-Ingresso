@@ -6,8 +6,10 @@ export default function CampoNomeEvento(props: any){
     setNome(event.target.value);
   }
   return(
-    <div className="flex flex-col gap-4">
-      <label htmlFor="nome">Nome</label>
+    <div className="flex flex-col gap-1">
+      <label htmlFor="nome">
+        Nome:<span className="text-red-600 text-bold"> *</span>
+      </label>
       <input 
         id = "nome"
         type="text"

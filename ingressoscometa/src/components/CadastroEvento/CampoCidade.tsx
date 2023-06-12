@@ -8,8 +8,10 @@ export default function CampoCidade(props: any) {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <label htmlFor="cidade">Cidade</label>
+    <div className="flex flex-col gap-1">
+      <label htmlFor="cidade">
+        Cidade:<span className="text-red-600 text-bold"> *</span>
+      </label>
       <input
         type="text"
         name="cidade"

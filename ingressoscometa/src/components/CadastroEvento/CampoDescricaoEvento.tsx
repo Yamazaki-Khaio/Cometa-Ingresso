@@ -6,8 +6,10 @@ export default function CampoDescricaoEvento(props: any){
     setDescricao(event.target.value);
   }
   return(
-    <div className="flex flex-col gap-4">
-      <label htmlFor="descricao">Descrição</label>
+    <div className="flex flex-col gap-1">
+      <label htmlFor="descricao">
+        Descrição:<span className="text-red-600 text-bold"> *</span>
+      </label>
       <input 
         id = "descricao"
         type = "text"

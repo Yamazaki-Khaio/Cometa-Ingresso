@@ -8,15 +8,17 @@ export default function CampoHorarioEvento(props: any) {
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <label htmlFor="horarioEvento">Horário</label>
+    <div className="flex flex-col gap-1">
+      <label htmlFor="horarioEvento">
+        Horário:<span className="text-red-600 text-bold"> *</span>
+      </label>
       <input
         id = "horarioEvento"
         type="time"
         placeholder="00:00"
         value={horarioEvento}
         onChange={handleHorarioChange}
-        className="border w-128 border-gray-400 rounded-md p-2 mb-8"
+        className="border w-24 border-gray-400 rounded-md p-2 mb-8"
       />
     </div>
   );
