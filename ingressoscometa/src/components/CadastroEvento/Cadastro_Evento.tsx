@@ -171,7 +171,6 @@ return(
             <form onSubmit={handleSubmit}>
             <CampoNomeEvento value={formData.nome} onChange={handleInputChange} name="nome"/>
             <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao"/>
-            //
             <CampoLocal/>
             <CepCadastro/>
             <CampoCidade/>
