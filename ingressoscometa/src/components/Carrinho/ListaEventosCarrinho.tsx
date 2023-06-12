@@ -53,7 +53,7 @@ export default function ListaEventosCarrinho(props: any) {
               time={new Date(evento.data_evento).toLocaleDateString()}
               Hora={new Date(evento.data_evento).toLocaleTimeString()}
               place={evento.local}
-              Setor = {setor.nome}
+              setor = {setor.nome}
               image={convertBufferToUrl(evento.imagem)}
             />
             ))}

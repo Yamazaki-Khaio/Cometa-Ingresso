@@ -43,7 +43,7 @@ export default function EventoLogado(props: any) {
                 
             </div>
             <div className="absolute bottom-8 right-8">
-                <ChoiceBox/>
+                <ChoiceBox setores = {props.setores}/>
                 <button onClick={() => handleBotaoClicado()}>Adicionar ao carrinho
                     <Botao href="/carrinho" NomeBotao="Adicionar ao carrinho" />
                 </button>
