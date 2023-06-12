@@ -23,6 +23,7 @@ export default function QuantitySelector(props) {
       </button>
       <input
         type="text"
+        id = "quantity"
         value={quantity}
         readOnly
         className="border w-16 border-gray-400 rounded-md p-2 text-center"
