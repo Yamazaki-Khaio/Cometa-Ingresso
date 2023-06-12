@@ -99,6 +99,7 @@ export default function CadastroEvento() {
   const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
     try{
       e.preventDefault()
+      
       formData.nome = (document.getElementById('nome') as HTMLInputElement)?.value;
       formData.descricao = (document.getElementById('descricao') as HTMLInputElement)?.value;
       formData.localEvento = (document.getElementById('localEvento') as HTMLInputElement)?.value;
@@ -127,7 +128,16 @@ export default function CadastroEvento() {
       formData.complemento = (document.getElementById('complemento') as HTMLInputElement)?.value;
       formData.numero = (document.getElementById('numero') as HTMLInputElement)?.value;
       formData.rua = (document.getElementById('rua') as HTMLInputElement)?.value;
+      const fileInput = document.getElementById('imagem') as HTMLInputElement;
+    if (fileInput?.files?.length) {
+      formData.imagem = {
+        type: fileInput.files[0].type,
+        data: Array.from(new Uint8Array(await fileInput.files[0].arrayBuffer()))
+      };
+    }
+      
       console.log(formData)
+      console.log(formData.imagem)
       const res = await fetch('/api/evento', {
         method: 'POST',
         headers: {
