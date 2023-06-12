@@ -29,7 +29,7 @@ export default function QuantitySelector(props) {
         -
       </button>
       <input
-        type="text"
+        type= "number"
         id="quantity"
         value={quantity}
         onChange={handleInputChange}

@@ -1,6 +1,5 @@
 import express from 'express';
 import {connection} from './db';
-import Carrinho from './classes/Carrinho';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default function handler(req: NextApiRequest,res: NextApiResponse){
@@ -52,10 +51,10 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
     }
 }
 
-const router = express.Router();
+//const router = express.Router();
 
 // Criar carrinho
-router.post('/', async (req, res) => {
+/*router.post('/', async (req, res) => {
     const carrinho = new Carrinho(
         req.body.id_carrinho,
     );
@@ -114,5 +113,5 @@ router.put('/:id', async (req, res) => {
         }
     );
 });
-
+*/
 
