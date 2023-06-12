@@ -148,7 +148,7 @@ export default function Perfil(){
     return(
         
         <div className="grid grid-cols-8 p-4">
-            <div className="col-start-2 col-span-2 flex justify-start items-start">
+            <div className="col-start-2 col-span-2 flex">
                 <form onSubmit={handleSubmit}>
                     <PerfilCampoNome nome={formData.nome}/>
                     <PerfilCampoEmail email ={formData.email}/>
@@ -158,17 +158,17 @@ export default function Perfil(){
                     <PerfilCampoRua rua = {formData.rua}/>
                     <PerfilNumeroCasa numemroCasa = {formData.casa}/>
                     <PerfilComplementoCasa complemento = {formData.complemento}/>
-                    <BotaoSalvarPerfil/>
+                    <BotaoRedefinirSenha/>
                 </form>
             </div>
-            <BotaoRedefinirSenha/>
+            
             <div className="col-start-3 col-span-4 flex justify-center items-start">
-
+            <BotaoSalvarPerfil/>
             </div>
-            <div>
-            <BlocoCartaoDeCredito/>
+            <div className="justify-center">
+              <BlocoCartaoDeCredito/>
             </div>
-            </div>
+          </div>
             
         )
 }
