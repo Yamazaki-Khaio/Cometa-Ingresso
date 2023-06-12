@@ -5,6 +5,7 @@ import BotaoPerfilAdm from "./BotaoPerfilAdm"
 import BotaoNotificacoesAdm from "./BotaoNotificacoesAdm"
 import BotaoPromotersAdm from "./BotaoPromotersAdm"
 import BotaoBackup from "./BotaoBackup"
+import BotaoSair from "../PerfilAdm/botaoSair"
 
 export default function CabecalhoAdm(props: any) {
     
@@ -20,7 +21,7 @@ export default function CabecalhoAdm(props: any) {
                 <BotaoNotificacoesAdm Pagina="/notificacoes" NomeBotao="Notificações" />
                 <BotaoPromotersAdm Pagina="/promotores" NomeBotao="Promoters"/>
                 <BotaoBackup Pagina="/api/backup" NomeBotao="Backup"/>
-
+                <BotaoSair/>
             </div>
             
         </div>
