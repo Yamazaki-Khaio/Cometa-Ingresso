@@ -16,7 +16,6 @@ export default function ListaEventosCarrinho(props: any) {
   useEffect(() => {
     fetchSetores()
   }, [])
-  console.log(setores)
 
 
   const fetchEventos = async () => {
