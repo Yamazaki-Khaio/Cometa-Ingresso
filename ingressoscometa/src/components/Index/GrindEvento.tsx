@@ -49,7 +49,7 @@ export default function GrindEvento(props: any) {
           Nome={evento.nome_evento}
           Data={new Date(evento.data_evento).toLocaleDateString()}
           Hora={(evento.horario_evento)}
-          Local={console.log(getEnderecoDoEvento(evento.id)[0])}
+          Local={getEnderecoDoEvento(evento.id)[0]?.cidade}
           Image={convertBufferToUrl(evento.imagem)}
           
            // Cria uma URL temporária para a imagem BLOB
