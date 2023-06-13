@@ -50,7 +50,7 @@ export default function ListaEventosCliente(props: any) {
             id={evento.id}
             Nome={evento.nome_evento}
             Data={new Date(evento.data_evento).toLocaleDateString()}
-            Hora={new Date(evento.data_evento).toLocaleTimeString()}
+            Hora={evento.data_evento}
             Local={evento.local}
             Image={convertBufferToUrl(evento.imagem)}
             setores={getSetoresDoEvento(evento.id)} // Filtra os setores correspondentes ao evento

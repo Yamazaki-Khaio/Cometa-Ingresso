@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express';
 import { connection } from './db';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { randomInt } from 'crypto';
+import { getSession, useSession  } from 'next-auth/react';
+import { useState, useEffect} from 'react';
 
 
 
@@ -17,8 +18,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const endSql = 'INSERT INTO endereco (id_usuario, cep, rua, numero, complemento, id_evento, cidade, estado)  VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
       const imageBuffer = Buffer.from(req.body.imagem.data);
       
+      
       const params = [
-        '998',
+        req.body.id_usuario,
         req.body.nome,
         req.body.dataEvento,
         req.body.descricao,

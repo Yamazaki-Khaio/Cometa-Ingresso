@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react'
 import axios from 'axios';
 import { Buffer } from 'buffer';
 import Evento from '../CadastroEvento/Evento';
+import { time } from 'console';
 
 
 
@@ -38,7 +39,7 @@ export default function GrindEvento(props: any) {
           key={evento.id}
           Nome={evento.nome_evento}
           Data={new Date(evento.data_evento).toLocaleDateString()}
-          Hora={new Date(evento.data_evento).toLocaleTimeString()}
+          Hora={(evento.horario_evento)}
           Local={evento.descricao_evento}
           Image={convertBufferToUrl(evento.imagem)}
           

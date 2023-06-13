@@ -7,9 +7,11 @@ import { Buffer } from 'buffer';
 // configuração do slider de eventos em destaque
 const settings = {
   className: "center mx-5",
-  dots: false,
+  dots: true,
   infinite: true,
+  arrows: false,
   centerPadding: "50px",
+  rows: 1,
   speed: 2000,
   slidesToShow: 3,
   autoplay: true,
@@ -17,7 +19,6 @@ const settings = {
   cssEase: "linear",
   adaptiveHeight: true,
   pauseOnHover: true,
-  initialSlide: 0,
   sliderWidth: 100,
   slideMargin: 100,
 };

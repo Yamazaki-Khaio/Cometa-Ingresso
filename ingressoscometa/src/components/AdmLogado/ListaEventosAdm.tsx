@@ -54,7 +54,7 @@ export default function ListaEventosAdm(props: any) {
                                 key={evento.id}
                                 Nome={evento.nome_evento}
                                 Data={new Date(evento.data_evento).toLocaleDateString()}
-                                Hora={new Date(evento.data_evento).toLocaleTimeString()}
+                                Hora={evento.data_evento}
                                 Local={evento.local}
                                 Image={convertBufferToUrl(evento.imagem)} // Aqui você precisa ajustar como a imagem é passada para o componente Evento
 

@@ -26,8 +26,10 @@ import CampoLocal from "../QRCode/CampoLocal";
 import ComplementoEnderecoCadastro from "./ComplementoEnderecoCadastro";
 import NumeroDaCasaCadastro from "./NumeroDaCasaCadastro";
 import RuaCadastro from "./RuaCadastro";
+import { getSession, useSession } from "next-auth/react";
 
 interface FormData {
+  id_usuario?: string,
   nome: string,
   descricao: string,
   localEvento: string,
@@ -65,6 +67,7 @@ interface FormData {
 export default function CadastroEvento() {
 
   const [formData, setFormData] = useState<FormData>({
+    id_usuario: "",
     nome: "",
     descricao: "",
     localEvento: "",
@@ -99,7 +102,9 @@ export default function CadastroEvento() {
   const handleSubmit:FormEventHandler<HTMLFormElement> = async (e) =>{
     try{
       e.preventDefault()
+      const session = await getSession()
       
+      formData.id_usuario = session?.user?.id
       formData.nome = (document.getElementById('nome') as HTMLInputElement)?.value;
       formData.descricao = (document.getElementById('descricao') as HTMLInputElement)?.value;
       formData.localEvento = (document.getElementById('localEvento') as HTMLInputElement)?.value;
@@ -137,6 +142,7 @@ export default function CadastroEvento() {
     }
       
       console.log(formData)
+      console.log(formData.id_usuario)
       console.log(formData.imagem)
       const res = await fetch('/api/evento', {
         method: 'POST',
