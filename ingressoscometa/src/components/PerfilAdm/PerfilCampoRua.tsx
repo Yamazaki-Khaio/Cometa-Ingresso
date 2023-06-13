@@ -1,11 +1,11 @@
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React  from "react";
+import React, { useEffect }  from "react";
 import { useState } from "react";
 
 
 export default function PerfilCampoRua(props: any){
-    const [rua, setRua] = useState('Rua 1');
+    const [rua, setRua] = useState(props.rua);
     const [editando, setEditando] = useState(false); // Estado de edição
 
     function handleRuaChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -16,7 +16,11 @@ export default function PerfilCampoRua(props: any){
         setEditando(true); // Habilita a edição ao clicar no botão "Editar"
         setRua("")
       }
-    
+      useEffect(() => {
+        if (!editando) {
+            setRua(props.rua); // Atualiza o valor do nome apenas se não estiver editando
+        }
+      }, [props.rua, editando]);
 
     return(
         <><label className="flex flex-col gap-1 rounded-md mb-2"  htmlFor="rua">Rua

@@ -1,9 +1,8 @@
-import { signOut } from "next-auth/react"
+export default function BotaoSubmitCadastro(){
 
-export default function BotaoSair(){
     return(
         <div>
-            <input type="button" onClick={() => {signOut({callbackUrl:"/login"})}} value="Sair" className={`
+            <input type="submit" value="Cadastrar" className={`
                      w-48 h-12  // diminuindo o comprimento do botão
                      bg-teal-900 
                      text-white 
@@ -17,4 +16,5 @@ export default function BotaoSair(){
          
         </div>
     )
+
 }

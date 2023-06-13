@@ -1,5 +1,5 @@
 import Notificacao from "@/components/AdmLogado/Notificacao"
-import Layout from "@/components/CabecalhoCadastro/layout"
+import LayoutAdm from "@/components/AdmLogado/LayoutAdm"
 import iNotificacao from "./api/classes/iNotificacao"
 
 //APENAS TESTE DO COMPONENTE
@@ -10,7 +10,7 @@ export default function notificacoes (){
     {key:3 ,href:'/home',descricao:'Promoter novo adicionado na plataforma! Aguardando aprovação.'}]
     return(
         <div>
-           <Layout pagina={<Notificacao notificacoes={links}/>}/>     
+           <LayoutAdm pagina={<Notificacao notificacoes={links}/>}/>     
         </div>
     )
 }
