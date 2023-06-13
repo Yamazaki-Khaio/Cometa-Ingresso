@@ -27,7 +27,9 @@ export default function ListaEventosCarrinho(props: any) {
       const user = await getSession();
       const userId = user?.user.id;
       const response = await axios.get(`/api/carrinhoCompras?id=${userId}`)
-      setCarrinhoCompras(response.data)
+      setCarrinhoCompras(carrinhoCompras)
+      console.log(response.data)
+     
     } catch (error) {
       console.log(error)
     }

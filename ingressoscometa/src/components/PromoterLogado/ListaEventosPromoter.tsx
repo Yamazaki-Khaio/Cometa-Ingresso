@@ -41,6 +41,7 @@ export default function ListaEventosPromoters(props: any) {
             {eventos.map((evento: any, index: number) => (
                 <EventoPromoter
                     key={evento.id}
+                    id={evento.id}
                     Nome={evento.nome_evento}
                     Data={new Date(evento.data_evento).toLocaleDateString()}
                     Hora={new Date(evento.data_evento).toLocaleTimeString()}

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function EventoPromoter(props: any) {
     const { imageSizeClass } = props;
+    console.log(props)
     return (
         <div className="relative flex flex-wrap justify-start content-center h-60 w-4/5 ml-12 mr-12 border bg-white shadow-md rounded-3xl">
             <div className="w-92 h-44 ml-8">
@@ -26,7 +27,7 @@ export default function EventoPromoter(props: any) {
                 <Botao href="/cancelar" NomeBotao="Cancelar" />
             </div>
             <div className="absolute bottom-3/4 right-8">
-                < a href="/editar" className="btn btn-default">
+                < a href={`/editar?id=${props.id}`} className="btn btn-default">
                     <button
                     type="button"
                     className="btn btn-default"
