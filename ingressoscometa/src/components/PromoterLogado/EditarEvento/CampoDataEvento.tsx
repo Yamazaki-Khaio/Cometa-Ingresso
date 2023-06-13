@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CampoDataEvento(props: any) {
-  const [dataEvento, setDataEvento] = useState("");
+  const [dataEvento, setDataEvento] = useState(props.data);
+
+  useEffect(()=>{
+    setDataEvento(props.data)
+  }, [props.data]);
+
   function handleDataEventoChange(event: React.ChangeEvent<HTMLInputElement>){//Modifica o valor do nome do evento
     setDataEvento(event.target.value);
   }

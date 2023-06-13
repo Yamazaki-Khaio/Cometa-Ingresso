@@ -1,9 +1,14 @@
-import React  from "react";
+import React, { useEffect }  from "react";
 import { useState } from "react";
 
 
 export default function ComplementoEnderecoCadastro(props: any){
-    const [complemento, setComplemento] = useState('');
+    const [complemento, setComplemento] = useState(props.complemento);
+
+    useEffect(()=>{
+        setComplemento(props.complemento)
+      }, [props.complemento]);
+      
 
     function handleComplementoChange(event: React.ChangeEvent<HTMLInputElement>) {
         setComplemento(event.target.value);

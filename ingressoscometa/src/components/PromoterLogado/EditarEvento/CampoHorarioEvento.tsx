@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function CampoHorarioEvento(props: any) {
-  const [horarioEvento, setHorarioEvento] = useState("");
+  const [horarioEvento, setHorarioEvento] = useState(props.horarioEvento);
+  
+  useEffect(()=>{
+    setHorarioEvento(props.horarioEvento)
+  }, [props.horarioEvento]);
 
   const handleHorarioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setHorarioEvento(event.target.value);

@@ -1,7 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function CampoCidade(props: any) {
-  const [cidade, setCidade] = useState('');
+  const [cidade, setCidade] = useState(props.cidade);
+
+  useEffect(()=>{
+    setCidade(props.cidade)
+  }, [props.cidade]);
+  
 
   function handleCidadeChange(event: React.ChangeEvent<HTMLInputElement>) {
     setCidade(event.target.value);

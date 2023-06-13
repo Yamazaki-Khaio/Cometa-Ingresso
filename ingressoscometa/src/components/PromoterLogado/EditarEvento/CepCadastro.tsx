@@ -1,15 +1,21 @@
-import React  from "react";
+import React, { useEffect }  from "react";
 import { useState } from "react";
 
 
 export default function CepCadastro(props: any){
-    const [cep, setCep] = useState('');
+    const [cep, setCep] = useState(props.cep);
+
+    useEffect(()=>{
+        setCep(props.cep)
+      }, [props.cep]);
+      
 
     function handleCepChange(event: React.ChangeEvent<HTMLInputElement>) {
         let cepValue = event.target.value.replace(/\D/g, '');
         cepValue = cepValue.replace(/(\d{5})(\d{1,3})$/, '$1-$2');
         setCep(cepValue);
     }
+    
 
     return(
         <div className="flex flex-col gap-1">

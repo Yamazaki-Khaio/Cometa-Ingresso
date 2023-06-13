@@ -1,9 +1,14 @@
-import React  from "react";
+import React, { useEffect }  from "react";
 import { useState } from "react";
 
 
 export default function RuaCadastro(props: any){
-    const [rua, setRua] = useState('');
+    const [rua, setRua] = useState(props.rua);
+
+    useEffect(()=>{
+        setRua(props.rua)
+      }, [props.rua]);
+      
 
     function handleRuaChange(event: React.ChangeEvent<HTMLInputElement>) {
         setRua(event.target.value);

@@ -1,11 +1,14 @@
-import React  from "react";
+import React, { useEffect }  from "react";
 import { useState } from "react";
 
 
 export default function NumeroDaCasaCadastro(props: any){
-    const [numero, setNumero] = useState('');
+    const [numero, setNumero] = useState(props.numero);
 
-
+    useEffect(()=>{
+        setNumero(props.numero)
+      }, [props.numero]);
+      
     function handleNumeroChange(event: React.ChangeEvent<HTMLInputElement>) {
         setNumero(event.target.value);
     }

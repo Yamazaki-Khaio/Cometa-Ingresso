@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function CampoEstado(props: any) {
-  const [estado, setEstado] = useState('');
+  const [estado, setEstado] = useState(props.estado);
 
   function handleEstadoChange(event: React.ChangeEvent<HTMLInputElement>) {
     setEstado(event.target.value);
   }
+
+  useEffect(()=>{
+    setEstado(props.estado)
+  }, [props.estado]);
+  
+
 
   return (
     <div className="flex flex-col gap-1">

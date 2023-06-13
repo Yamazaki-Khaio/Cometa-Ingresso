@@ -63,15 +63,16 @@ export default function CadastroEvento(props:any) {
       const response4 = await axios.get(`/api/endereco?id_evento=${props.id}`);
       const eventoData = response.data;
       const enderecoData = response4.data;
-      console.log(enderecoData)
-      updateForm("nome" , eventoData[0].nome )
-      updateForm("descricao" , eventoData[0].descricao )
-      updateForm("localEvento", eventoData[0].localEvento)
-      updateForm("horarioEvento", eventoData[0].horarioEvento)
-      updateForm("data", eventoData[0].data)
+      console.log(eventoData)
+      updateForm("nome" , eventoData.nome_evento )
+      updateForm("descricao" , eventoData.descricao_evento )
+      updateForm("horarioEvento", eventoData.horario_evento)
+      updateForm("dataEvento", eventoData.data_evento)
+      updateForm("cidade", enderecoData[0].cidade)
+      updateForm("estado", enderecoData[0].estado)
       updateForm("cep", enderecoData[0].cep)
       updateForm("rua", enderecoData[0].rua)
-      updateForm("casa", enderecoData[0].numero)
+      updateForm("numero", enderecoData[0].numero)
       updateForm("complemento", enderecoData[0].complemento)
 
   } catch (error) {
@@ -132,7 +133,6 @@ setFormData((prevData) => ({
 }));
 };
 const updateForm = (attribute: any, value: any) => {
-console.log(value)
 setFormData((prevData) => ({
   ...prevData,
   [attribute]: value
