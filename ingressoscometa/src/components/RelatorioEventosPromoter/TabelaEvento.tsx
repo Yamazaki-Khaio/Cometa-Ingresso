@@ -12,9 +12,9 @@ interface TabelaProps {
 
 const Tabela: React.FC<TabelaProps> = ({ dados }) => {
   return (
-    <table className="w-full border-collapse custom-table">
+    <table className="border-collapse custom-table">
       <thead>
-        <tr>
+        <tr className="">
           <th className="py-2 px-4 bg-blue-100 rounded-tl-lg">Eventos</th>
           <th className="py-2 px-4 bg-blue-100">Total de Ingressos Vendidos</th>
           <th className="py-2 px-4 bg-blue-100 rounded-tr-lg">Total Arrecadado R$</th>

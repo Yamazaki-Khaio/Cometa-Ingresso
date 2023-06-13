@@ -12,14 +12,14 @@ const dados = [
 
 const App: React.FC = () => {
   return (
-    <div className="flex">
+    <div className="flex ">
       <div className="flex-1">
         <div className="p-4 ml-60">
           <div className="mt-4">
-            <h1 className="text-2xl font-bold">Relatório de Eventos</h1>
+            <h1 className="w-5/6 mr-36 ml-auto text-2xl font-bold">Relatório de Eventos</h1>
           </div>
-          <div className="bg-white rounded-lg shadow-xl p-4 mt-4 ">
-            <h3 className="text-xl font-semibold">Tabela de Eventos</h3>
+          <div className="flex flex-col w-5/6 mr-36 ml-auto m-12 bg-white rounded-lg shadow-md shadow-xl-bottom">
+            <h3 className="text-xl font-semibold p-4">Tabela de Eventos</h3>
             <Tabela dados={dados} />
           </div>
         </div>
