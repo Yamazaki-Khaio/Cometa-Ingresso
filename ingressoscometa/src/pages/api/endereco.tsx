@@ -56,7 +56,7 @@ router.use('/', async (req: NextApiRequest, res: NextApiResponse) => {
         }
     } else if (req.method === 'PUT') {
         // Atualizar endereço
-        if (req.query.id){
+        if (req.query.id_usuario){
             const sql =
                 'UPDATE endereco SET cep=?, rua=?, numero=?, complemento=?  WHERE id_usuario=?';
             connection.query(sql, [req.body.cep,
