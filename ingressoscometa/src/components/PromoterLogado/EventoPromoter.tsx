@@ -3,7 +3,8 @@ import Botao from '../CabecalhoCadastro/botao';
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
-import Modal from '../Modal/Modal';
+import ModalEvento from './ModalEvento';
+import BotaoEditaEvento from './BotaoEditaEvento';
 
 export default function EventoPromoter(props: any) {
     const [modalCancelar, setModalCancelar] = useState(false);
@@ -47,12 +48,13 @@ export default function EventoPromoter(props: any) {
             {modalSuspender && (
                 <div className="fixed inset-0 flex items-center justify-center z-50">
                 <div className="bg-white p-6 rounded-lg shadow-xl">
-                <Modal
+                <ModalEvento
                     mensagem="Deseja suspender o evento?"
-                    link="/suspender"
+                    eventoId={props.id}
                     onClose={closeModalSuspender}
                 />
                 </div>
+                <BotaoEditaEvento/>
                 </div>
             )}
 
@@ -62,9 +64,9 @@ export default function EventoPromoter(props: any) {
             {modalCancelar && (
                 <div className="fixed inset-0 flex items-center justify-center z-50">
                 <div className="bg-white p-6 rounded-lg shadow-xl">
-                <Modal
+                <ModalEvento
                     mensagem="Deseja cancelar o evento?"
-                    link="/cancelar"
+                    eventoId={props.id}
                     onClose={closeModalCancelar}
                 />
                 </div>

@@ -155,7 +155,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       
       else{
         // Listar eventos
-        const sql = 'SELECT * FROM evento WHERE id !=0';
+        const sql = 'SELECT * FROM evento WHERE id !=0 AND ativado != 0';
         connection.query(sql, (error, results, fields) => {
           if (error) {
             console.error('Erro ao buscar eventos: ', error);
