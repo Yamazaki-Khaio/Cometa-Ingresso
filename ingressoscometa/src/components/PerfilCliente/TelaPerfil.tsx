@@ -158,12 +158,15 @@ export default function Perfil(){
                     <PerfilCampoRua rua = {formData.rua}/>
                     <PerfilNumeroCasa numemroCasa = {formData.casa}/>
                     <PerfilComplementoCasa complemento = {formData.complemento}/>
-                    <BotaoRedefinirSenha/>
+                    <div className="col-start-3 col-span-4 flex justify-center items-start">
+                    <BotaoSalvarPerfil/>
+                  </div>
+                    
                 </form>
             </div>
             
             <div className="col-start-3 col-span-4 flex justify-center items-start">
-            <BotaoSalvarPerfil/>
+            <BotaoRedefinirSenha/>
             </div>
             <div className="justify-center">
               <BlocoCartaoDeCredito/>
