@@ -22,8 +22,7 @@ export default function PerfilCampoEmail(props: any) {
   }
 
     return(
-      <><label className="flex flex-col gap-1 rounded-md mb-2"  htmlFor="email">E-mail
-      <span>*</span></label >
+      <><label className="flex flex-col gap-1 rounded-md mb-2"  htmlFor="email">E-mail</label >
       <div className="input-group border w-64 border-gray-400 rounded-md p-2 mb-4">
           <input
               disabled

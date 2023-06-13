@@ -12,7 +12,10 @@ export default function RuaCadastro(props: any){
     return(
         <div className="flex flex-col gap-1">
             <label htmlFor="rua">
-                Rua:<span className="text-red-600 text-bold"> *</span>
+                Rua:
+                {props.optional ? (
+                <span className="text-red-600 text-bold">*</span>
+                ) : null}
             </label>
             <input 
                 type="text" 
