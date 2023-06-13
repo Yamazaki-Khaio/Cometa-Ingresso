@@ -159,9 +159,8 @@ export default function Perfil(){
                     <PerfilNumeroCasa numemroCasa = {formData.casa}/>
                     <PerfilComplementoCasa complemento = {formData.complemento}/>
                     <div className="col-start-3 col-span-4 flex justify-center items-start">
-                    <BotaoSalvarPerfil/>
-                  </div>
-                    
+                      <BotaoSalvarPerfil/>
+                    </div>
                 </form>
             </div>
             

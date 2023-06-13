@@ -144,20 +144,20 @@ export default function CadastroUsuario() {
   return (
     <div className="flex flex-col justify-center items-center bg-gray-100 p-12">
       <form onSubmit={handleSubmit}>
-        <CampoNomeCompleto value={formData.nome} onChange={handleInputChange} name="nome" />
-        <CampoEmail value={formData.email} onChange={handleInputChange} name="email"/>
-        <CampoCpf value={formData.cpf} onChange={handleInputChange} name="cpf" />
-        <CampoSenhaERepetirSenha value={formData.senha} onChange={handleInputChange} name="senha" />
-        <RadioButton />
-        <CampoTelefone value={formData.telefone} onChange={handleInputChange} name="telefone"/> 
-        <CampoDataDeNascimento value={formData.data_nascimento} onChange={handleInputChange} name="data_nascimento" />
+        <CampoNomeCompleto optional={true} value={formData.nome} onChange={handleInputChange} name="nome" />
+        <CampoEmail optional={true} value={formData.email} onChange={handleInputChange} name="email"/>
+        <CampoCpf optional={true} value={formData.cpf} onChange={handleInputChange} name="cpf" />
+        <CampoSenhaERepetirSenha optional={true} value={formData.senha} onChange={handleInputChange} name="senha" />
+        <RadioButton optional={true} />
+        <CampoTelefone optional={true} value={formData.telefone} onChange={handleInputChange} name="telefone"/> 
+        <CampoDataDeNascimento optional={true} value={formData.data_nascimento} onChange={handleInputChange} name="data_nascimento" />
         <CampoLocal/>
-        <CepCadastro value={formData.cep} onChange={handleInputChange} name="cep"/>
-        <CampoCidade value={formData.cidade} onChange={handleInputChange} name="cidade"/>
-        <CampoEstado value={formData.estado} onChange={handleInputChange} name="estado"/>
-        <RuaCadastro value={formData.rua} onChange={handleInputChange} name="rua"/>
-        <NumeroDaCasaCadastro value={formData.numero} onChange={handleInputChange} name="numero"/>
-        <ComplementoEnderecoCadastro value={formData.complemento} onChange={handleInputChange} name="complemento"/>
+        <CepCadastro optional={true} value={formData.cep} onChange={handleInputChange} name="cep"/>
+        <CampoCidade optional={true} value={formData.cidade} onChange={handleInputChange} name="cidade"/>
+        <CampoEstado optional={true} value={formData.estado} onChange={handleInputChange} name="estado"/>
+        <RuaCadastro optional={true} value={formData.rua} onChange={handleInputChange} name="rua"/>
+        <NumeroDaCasaCadastro optional={true} value={formData.numero} onChange={handleInputChange} name="numero"/>
+        <ComplementoEnderecoCadastro optional={true} value={formData.complemento} onChange={handleInputChange} name="complemento"/>
         <BotaoSubmitCadastro />
       </form>
     </div>

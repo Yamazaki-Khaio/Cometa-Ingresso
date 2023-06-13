@@ -9,7 +9,11 @@ export default function CampoDataDeNascimento(props: any) {
 
   return (
     <div className="flex flex-col gap-4">
-      <label htmlFor="data">Data de Nascimento</label>
+      <label htmlFor="data">Data de Nascimento
+      {props.optional ? (
+          <span className="text-red-600 text-bold">*</span>
+        ) : null}
+        </label>
       <input
         type="date"
         name="data"

@@ -9,7 +9,11 @@ export default function CampoCidade(props: any) {
 
   return (
     <div className="flex flex-col gap-4">
-      <label htmlFor="cidade">Cidade</label>
+      <label htmlFor="cidade">Cidade
+      {props.optional ? (
+          <span className="text-red-600 text-bold">*</span>
+        ) : null}
+        </label>
       <input
         type="text"
         name="cidade"

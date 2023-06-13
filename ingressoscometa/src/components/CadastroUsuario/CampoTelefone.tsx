@@ -10,7 +10,11 @@ export default function CampoTelefone(props: any) {
 
   return (
     <div className="flex flex-col gap-4">
-      <label htmlFor="telefone">Telefone</label>
+      <label htmlFor="telefone">Telefone
+      {props.optional ? (
+          <span className="text-red-600 text-bold"> *</span>
+        ) : null}
+        </label>
       <InputMask
         mask="(99)99999-9999"
         type="tel"

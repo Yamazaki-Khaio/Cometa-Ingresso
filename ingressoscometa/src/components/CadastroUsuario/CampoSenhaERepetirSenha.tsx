@@ -25,7 +25,11 @@ export default function RepetirSenha(props: any) {
 
   return (
     <div className="flex flex-col gap-4">
-      <label htmlFor="senha">Senha</label>
+      <label htmlFor="senha">Senha
+      {props.optional ? (
+          <span className="text-red-600 text-bold"> *</span>
+        ) : null}
+        </label>
       <div className="relative">
         <input
           type={mostrarSenha ? "text" : "password"}
@@ -47,7 +51,11 @@ export default function RepetirSenha(props: any) {
           />
         </button>
       </div>
-      <label htmlFor="repetirSenha">Repetir Senha</label>
+      <label htmlFor="repetirSenha">Repetir Senha
+      {props.optional ? (
+          <span className="text-red-600 text-bold">*</span>
+        ) : null}
+        </label>
       <div className="relative">
         <input
           type={mostrarSenha ? "text" : "password"}

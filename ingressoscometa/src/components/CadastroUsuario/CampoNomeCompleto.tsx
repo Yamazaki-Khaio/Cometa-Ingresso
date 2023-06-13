@@ -14,7 +14,10 @@ export default function CampoNomeCompleto(props: any) {
 
   return (
     <div className="flex flex-col gap-4">
-      <label htmlFor="nomeCompleto">Nome Completo</label>
+      <label htmlFor="nomeCompleto">Nome Completo
+      {props.optional ? (
+          <span className="text-red-600 text-bold"> *</span>
+        ) : null}</label>
       <input
         type="text"
         name="nomeCompleto"

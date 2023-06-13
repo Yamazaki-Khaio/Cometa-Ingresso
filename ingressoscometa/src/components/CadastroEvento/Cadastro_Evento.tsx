@@ -182,7 +182,7 @@ return(
             <CampoNomeEvento value={formData.nome} onChange={handleInputChange} name="nome"/>
             <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao"/>
             <CampoLocal/>
-            <CepCadastro/>
+            <CepCadastro optional={true}/>
             <CampoCidade/>
             <CampoEstado/>
             <RuaCadastro/>

@@ -14,7 +14,10 @@ export default function CepCadastro(props: any){
     return(
         <div className="flex flex-col gap-1">
             <label htmlFor="cep">
-                CEP:<span className="text-red-600 text-bold"> *</span>
+                CEP:
+                {props.optional ? (
+                    <span className="text-red-600 text-bold">*</span>
+                ) : null}
             </label>
             <input 
                 type="text" 

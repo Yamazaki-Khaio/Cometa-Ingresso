@@ -14,7 +14,10 @@ export default function CampoEmail(props: any) {
 
   return (
     <div className="flex flex-col gap-4">
-      <label htmlFor="email">Email</label>
+      <label htmlFor="email">Email
+      {props.optional ? (
+          <span className="text-red-600 text-bold"> *</span>
+        ) : null}</label>
       <input
         type="text"
         name="email"
