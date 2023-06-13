@@ -25,7 +25,7 @@ const Tabela: React.FC<TabelaProps> = ({ dados }) => {
           <tr key={index}>
             <td className="py-2 px-4 border text-center">{item.evento}</td>
             <td className="py-2 px-4 border text-center">{item.ingressosVendidos}</td>
-            <td className="py-2 px-4 border text-center">{item.totalArrecadado}</td>
+            <td className="py-2 px-4 border text-center">{item.totalArrecadado.toFixed(2)}</td>
           </tr>
         ))}
       </tbody>

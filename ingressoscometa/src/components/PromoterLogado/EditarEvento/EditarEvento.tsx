@@ -67,7 +67,7 @@ export default function CadastroEvento(props:any) {
       updateForm("nome" , eventoData.nome_evento )
       updateForm("descricao" , eventoData.descricao_evento )
       updateForm("horarioEvento", eventoData.horario_evento)
-      updateForm("dataEvento", eventoData.data_evento)
+      updateForm("dataEvento", eventoData.data_evento.substring(0,10))
       updateForm("cidade", enderecoData[0].cidade)
       updateForm("estado", enderecoData[0].estado)
       updateForm("cep", enderecoData[0].cep)
