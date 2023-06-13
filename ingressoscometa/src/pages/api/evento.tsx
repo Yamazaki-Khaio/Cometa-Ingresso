@@ -139,7 +139,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           }
           res.json(results[0]); // Retorna apenas o primeiro resultado (evento)
         });
-      } else {
+      } else if (req.query['id_usuario']) {
+        // Buscar evento pelo ID
+        const sql = 'SELECT * FROM evento WHERE id_usuario=?';
+        connection.query(sql, [req.query['id_usuario']], (error, results, fields) => {
+          if (error) {
+            console.error('Erro ao buscar evento: ', error);
+            res.status(500).send('Erro ao buscar evento.');
+            return;
+          }
+          res.json(results); // Retorna apenas o primeiro resultado (evento)
+        });
+      }
+      
+      
+      else{
         // Listar eventos
         const sql = 'SELECT * FROM evento WHERE id !=0';
         connection.query(sql, (error, results, fields) => {

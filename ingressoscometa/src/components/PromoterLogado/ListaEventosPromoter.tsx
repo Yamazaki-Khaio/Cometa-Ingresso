@@ -16,7 +16,7 @@ export default function ListaEventosPromoters(props: any) {
         const user = await getSession();
         const userId = user?.user.id;
         try {
-            const response = await axios.get(`/api/evento?id=${userId}`)
+            const response = await axios.get(`/api/evento?id_usuario=${userId}`)
             setEventos(response.data)
         } catch (error) {
             console.log(error)
