@@ -6,11 +6,11 @@ import { useRouter } from "next/router";
 export default function cadastro(){
     const { data: session } = useSession()
     const router = useRouter()
-    const{eventoId} = router.query
+    console.log(router.query)
     if(session&&session?.user.tipo==='2'){
         return(
             <div>
-                <Layout pagina={<EditarEvento id={eventoId} />} />
+                <Layout pagina={<EditarEvento id={router.query['id']} />} />
             </div>
         )
     }else{
