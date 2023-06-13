@@ -27,7 +27,7 @@ export default function EventoPromoter(props: any) {
                 <Botao href="/cancelar" NomeBotao="Cancelar" />
             </div>
             <div className="absolute bottom-3/4 right-8">
-                < a href={`/editar?id=${props.id}`} className="btn btn-default">
+                < a href={`/editar_evento?id=${props.id}`} className="btn btn-default">
                     <button
                     type="button"
                     className="btn btn-default"
