@@ -1,14 +1,16 @@
 import Layout from "@/components/CabecalhoPromoter/LayoutPromoter";
-import CadastroEvento from "@/components/CadastroEvento/Cadastro_Evento";
 import {useSession} from 'next-auth/react'
 import NaoUtorizado from "@/components/naoAutorizado";
+import EditarEvento from "@/components/PromoterLogado/EditarEvento";
+import { useRouter } from "next/router";
 export default function cadastro(){
     const { data: session } = useSession()
-
+    const router = useRouter()
+    const{eventoId} = router.query
     if(session&&session?.user.tipo==='2'){
         return(
             <div>
-                <Layout pagina={<CadastroEvento/>} />
+                <Layout pagina={<EditarEvento id={eventoId} />} />
             </div>
         )
     }else{
