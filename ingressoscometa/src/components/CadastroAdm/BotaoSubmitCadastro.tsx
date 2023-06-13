@@ -1,8 +1,8 @@
-export default function BotaoSalvarPerfil(){
+export default function BotaoSubmitCadastro(){
 
     return(
         <div className="p-8">
-            <input type="submit" value="Salvar Perfil" className={`
+            <input type="submit" value="Cadastrar" className={`
                      w-48 h-12  // diminuindo o comprimento do botão
                      bg-teal-900 
                      text-white 

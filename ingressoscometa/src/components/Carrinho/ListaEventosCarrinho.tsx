@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import axios from 'axios';
 import { Buffer } from 'buffer';
 import Link from 'next/link';
@@ -17,28 +17,18 @@ export default function ListaEventosCarrinho(props: any) {
     fetchSetores()
   }, [])
 
-  const [carrinhoCompras, setCarrinhoCompras] = useState([])
-  useEffect(() => {
-    fetchCarrinho()
-  }, [])
-
-  const fetchCarrinho = async () => {
-    try {
-      const user = await getSession();
-      const userId = user?.user.id;
-      const response = await axios.get(`/api/carrinhoCompras?id=${userId}`)
-      setCarrinhoCompras(carrinhoCompras)
-      console.log(response.data)
-     
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  
 
   const fetchEventos = async () => {
     try {
       const response = await axios.get('/api/evento')
-      setEventos(response.data)
+      const user = await getSession();
+      const userId = user?.user.id;
+      const response2 = await axios.get(`/api/carrinhoCompras?id=${userId}`)
+      const eve = response.data.filter(evento => {
+        return response2.data.some(item => item.id_evento === evento.id)
+      })
+      setEventos(eve)
     } catch (error) {
       console.log(error)
     }

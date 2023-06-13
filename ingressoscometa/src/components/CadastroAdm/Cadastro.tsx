@@ -38,7 +38,7 @@ function removerMascaraCpf(cpfComMascara: string): string {
   return cpfSemMascara;
 }
 
-export default function CadastroUsuario() {
+export default function CadastroAdm() {
 
   const [formData, setFormData] = useState<FormData>({
     nome: "",
@@ -80,7 +80,7 @@ export default function CadastroUsuario() {
         senha: hash.digest('hex'),
         email:  document.getElementById('email').value,
         telefone: document.getElementById('telefone').value,
-        tipo: tipo.toString(),
+        tipo: 3,
         cep: document.getElementById('cep').value,
         rua: document.getElementById('rua').value,
         cidade: document.getElementById('cidade').value,
@@ -141,13 +141,12 @@ export default function CadastroUsuario() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center bg-gray-100 p-12">
+    <div className="flex flex-col w-5/6 mr-36 ml-auto justify-center items-center m-12 bg-white rounded-lg shadow-md shadow-xl-bottom">
       <form onSubmit={handleSubmit}>
         <CampoNomeCompleto optional={true} value={formData.nome} onChange={handleInputChange} name="nome" />
         <CampoEmail optional={true} value={formData.email} onChange={handleInputChange} name="email"/>
         <CampoCpf optional={true} value={formData.cpf} onChange={handleInputChange} name="cpf" />
         <CampoSenhaERepetirSenha optional={true} value={formData.senha} onChange={handleInputChange} name="senha" />
-        <RadioButton optional={true} />
         <CampoTelefone optional={true} value={formData.telefone} onChange={handleInputChange} name="telefone"/> 
         <CampoDataDeNascimento optional={true} value={formData.data_nascimento} onChange={handleInputChange} name="data_nascimento" />
         <CampoLocal/>

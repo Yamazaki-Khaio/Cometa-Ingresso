@@ -9,21 +9,30 @@ import { time } from 'console';
 
 export default function GrindEvento(props: any) {
   const [eventos, setEventos] = useState([])
+  const [endereco, setEnderecos] = useState([]);
+
   useEffect(() => {
     fetchEventos()
   }, [])
+
 //busca todos os eventos no banco de dados
   const fetchEventos = async () => {
     try {
       const response = await axios.get('/api/evento')
       setEventos(response.data)
+      const response2 = await axios.get('/api/endereco')
+      setEnderecos(response2.data)
       
-      
-
     } catch (error) {
       console.log(error)
     }
   }
+
+  const getEnderecoDoEvento = (eventoId: string) => {
+    return endereco.filter((endereco: any) => endereco.id_evento === eventoId);
+  };
+
+
   //converte buffer to url image base64
   const convertBufferToUrl = (buffer: any) => {
     const imageData = Buffer.from(buffer.data).toString('base64');
@@ -40,7 +49,7 @@ export default function GrindEvento(props: any) {
           Nome={evento.nome_evento}
           Data={new Date(evento.data_evento).toLocaleDateString()}
           Hora={(evento.horario_evento)}
-          Local={evento.descricao_evento}
+          Local={console.log(getEnderecoDoEvento(evento.id)[0])}
           Image={convertBufferToUrl(evento.imagem)}
           
            // Cria uma URL temporária para a imagem BLOB

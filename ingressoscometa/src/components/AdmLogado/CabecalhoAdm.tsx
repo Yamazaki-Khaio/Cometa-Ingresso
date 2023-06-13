@@ -6,6 +6,7 @@ import BotaoNotificacoesAdm from "./BotaoNotificacoesAdm"
 import BotaoPromotersAdm from "./BotaoPromotersAdm"
 import BotaoBackup from "./BotaoBackup"
 import BotaoSair from "../PerfilAdm/botaoSair"
+import BotaoCadastrarAdm from "./BotaoCadastrarAdm"
 
 export default function CabecalhoAdm(props: any) {
     
@@ -15,11 +16,12 @@ export default function CabecalhoAdm(props: any) {
                 <Link href="/homeadm">
                     <img src="/cometa2.png" alt="Logo" width="200" height="200" />
                 </Link>
-                <BotaoEventosAdm Pagina="/eventos" NomeBotao="Eventos" />
+                <BotaoEventosAdm Pagina="/homeadm" NomeBotao="Eventos" />
                 <BotaoRelatorioAdm Pagina="/relatoriosadm" NomeBotao="Relatórios" />
                 <BotaoPerfilAdm Pagina="/perfiladm" NomeBotao="Perfil" />
                 <BotaoNotificacoesAdm Pagina="/notificacoes" NomeBotao="Notificações" />
                 <BotaoPromotersAdm Pagina="/promotores" NomeBotao="Promoters"/>
+                <BotaoCadastrarAdm Pagina="/cadastroadm" NomeBotao="Cadastrar administrador"/>
                 <BotaoBackup Pagina="/api/backup" NomeBotao="Backup"/>
                 <BotaoSair/>
             </div>

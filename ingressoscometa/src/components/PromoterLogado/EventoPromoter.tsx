@@ -3,7 +3,8 @@ import Botao from '../CabecalhoCadastro/botao';
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
-import Modal from '../Modal/Modal';
+import ModalEvento from './ModalEvento';
+import BotaoEditaEvento from './BotaoEditaEvento';
 
 export default function EventoPromoter(props: any) {
     const [modalCancelar, setModalCancelar] = useState(false);
@@ -28,7 +29,9 @@ export default function EventoPromoter(props: any) {
     return (
         <div className="relative flex flex-wrap justify-start content-center h-60 w-4/5 ml-12 mr-12 border bg-white shadow-md rounded-3xl">
             <div className="w-92 h-44 ml-8">
-                <Image width={720} height={480} src={props.Image} alt={props.Nome} className="w-full h-full object-cover rounded-3xl" />
+                <Image width={720} height={480} src={props.Image} alt={props.Nome} className="w-80 h-40 object-cover rounded-3xl" />
+                
+
             </div>
 
             <div className="ml-12">
@@ -45,12 +48,13 @@ export default function EventoPromoter(props: any) {
             {modalSuspender && (
                 <div className="fixed inset-0 flex items-center justify-center z-50">
                 <div className="bg-white p-6 rounded-lg shadow-xl">
-                <Modal
+                <ModalEvento
                     mensagem="Deseja suspender o evento?"
-                    link="/suspender"
+                    eventoId={props.id}
                     onClose={closeModalSuspender}
                 />
                 </div>
+                <BotaoEditaEvento/>
                 </div>
             )}
 
@@ -60,9 +64,9 @@ export default function EventoPromoter(props: any) {
             {modalCancelar && (
                 <div className="fixed inset-0 flex items-center justify-center z-50">
                 <div className="bg-white p-6 rounded-lg shadow-xl">
-                <Modal
+                <ModalEvento
                     mensagem="Deseja cancelar o evento?"
-                    link="/cancelar"
+                    eventoId={props.id}
                     onClose={closeModalCancelar}
                 />
                 </div>

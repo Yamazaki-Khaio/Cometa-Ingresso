@@ -27,11 +27,11 @@ export default function RelatoriosAdm(props: any) {
 
     const { data: session } = useSession()
     return (
-        <div>
+        <div className="flex flex-col w-5/6 mr-36 ml-auto justify-center items-center m-12 bg-white rounded-lg shadow-md shadow-xl-bottom">
 
             <div className="flex flex-wrap gap-5 justify-center w-5/6 items-center p-4 ">
                 <div className='justify-start w-5/6'>
-                    <h2>Olá {session?.user?.name}</h2>
+                    <h2 className="font-bold">Olá {session?.user?.name}</h2>
                 </div>
                 {eventos.map((evento: any, index: number) => (
                     <EventoAdm
