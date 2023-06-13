@@ -1,7 +1,7 @@
 export default function BotaoSubmitCadastro(){
 
     return(
-        <div>
+        <div className="p-8">
             <input type="submit" value="Cadastrar" className={`
                      w-48 h-12  // diminuindo o comprimento do botão
                      bg-teal-900 

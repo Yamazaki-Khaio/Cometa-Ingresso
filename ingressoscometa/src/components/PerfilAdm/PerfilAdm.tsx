@@ -146,7 +146,7 @@ export default function Perfil(){
 
     return(
         
-        <div className="grid grid-cols-8 p-4 m-12">
+        <div className="flex flex-col w-5/6 mr-36 ml-auto justify-center items-center m-12 bg-white rounded-lg shadow-md shadow-xl-bottom">
             <div className="col-start-2 col-span-2 flex itens-center">
                 <form onSubmit={handleSubmit}>
                     <PerfilCampoNome nome={formData.nome}/>
