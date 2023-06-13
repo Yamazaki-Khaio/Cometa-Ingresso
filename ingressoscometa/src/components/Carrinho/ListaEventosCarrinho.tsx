@@ -12,6 +12,8 @@ export default function ListaEventosCarrinho(props: any) {
     fetchEventos()
   }, [])
 
+  const[carrinho, setCarrinho] = useState([])
+
   const [setores, setSetores] = useState([])
   useEffect(() => {
     fetchSetores()
@@ -25,10 +27,10 @@ export default function ListaEventosCarrinho(props: any) {
       const user = await getSession();
       const userId = user?.user.id;
       const response2 = await axios.get(`/api/carrinhoCompras?id=${userId}`)
-      const eve = response.data.filter(evento => {
-        return response2.data.some(item => item.id_evento === evento.id)
-      })
-      setEventos(eve)
+      setCarrinho(response2.data)
+      setEventos(response.data)
+      setCarrinho(getEventoCarrinho(userId))
+      console.log(response.data)
     } catch (error) {
       console.log(error)
     }
@@ -42,6 +44,11 @@ export default function ListaEventosCarrinho(props: any) {
       console.log(error)
     }
   }
+
+  const getEventoCarrinho = (idUsuario: string) => {
+    return carrinho.filter((carrinho: any) => carrinho.id_evento === idUsuario);
+  };
+
 
   const convertBufferToUrl = (buffer: any) => {
     const imageData = Buffer.from(buffer.data).toString('base64');

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Buffer } from 'buffer';
 import EventoPromoter from './EventoPromoter';
-import { useSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 import Botao from '../CabecalhoCadastro/botao';
 
 
@@ -15,7 +15,9 @@ export default function ListaEventosPromoters(props: any) {
 
     const fetchEventos = async () => {
         try {
-            const response = await axios.get('/api/evento')
+            const user = await getSession();
+            const userId = user?.user.id;
+            const response = await axios.get(`/api/evento?id_usuario=${userId}`)
             setEventos(response.data)
             const response2 = await axios.get('/api/endereco')
             setEnderecos(response2.data)
