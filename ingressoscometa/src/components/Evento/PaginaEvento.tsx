@@ -47,7 +47,7 @@ export default function PaginaEvento(props: any) {
                         <p className=' font-black text-3xl'>{evento.nome_evento}</p>
                         <p className=' font-thin'>{evento.local}</p>
                         <p className=' font-thin text-xl'>{new Date(evento.data_evento).toLocaleDateString()}</p>
-                        <p className=' font-thin text-md'>{evento.data_evento}</p>
+                        <p className=' font-thin text-md'>{evento.horario_evento}</p>
                         <p className=' font-normal text-xl'>{evento.descricao_evento}</p>
                     </div>
                 </div>
