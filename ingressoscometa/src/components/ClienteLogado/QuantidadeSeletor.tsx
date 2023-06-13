@@ -15,7 +15,9 @@ export default function QuantitySelector(props) {
 
   const handleInputChange = (e) => {
     const value = parseInt(e.target.value);
-    if (!isNaN(value)) {
+
+    // Verifica se o valor é um número válido e não é negativo
+    if (!isNaN(value) && value > 0) {
       setQuantity(value);
     }
   };
@@ -29,11 +31,12 @@ export default function QuantitySelector(props) {
         -
       </button>
       <input
-        type= "number"
+        type="number"
         id="quantity"
         value={quantity}
         onChange={handleInputChange}
         className="border w-16 border-gray-400 rounded-md p-2 text-center"
+        min="0" // Define o valor mínimo como 0
       />
       <button
         onClick={handleIncrement}
