@@ -12,36 +12,18 @@ export default function Home(){
     const { data: session } = useSession()
     if(session){
         const tipo = Number(session?.user.tipo)
-        switch(tipo){
-            case 1:{
-                return(
-                    <div> 
-                        <Layout pagina={<ClienteLogado/>}/>
-                    </div>
-                )
-            }
-            
-            case 2:{
-                return(
-                    <div>
-                        <CabecalhoPromoter/>
-                    </div>
-                )
-            }
-
-            default:
-                return(
-                    <div>
-                        <Layout pagina={<NaoUtorizado/>} />
-                    </div>
-                )
+        console.log(session?.user.tipo)
+        if (session?.user.tipo === '1'){
+            return(
+                <div> 
+                    <Layout pagina={<ClienteLogado/>}/>
+                </div>
+            )
+        } else if (session?.user.tipo === '2'){
+            window.location.replace("/homepromoter");
+        } else {
+            window.location.replace("/homeadm");
         }
-    }else{
-        return(
-            <div>
-                <Layout pagina={<NaoUtorizado/>} />
-            </div>
-        )
     }
     
 
