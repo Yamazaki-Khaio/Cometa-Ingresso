@@ -70,33 +70,50 @@ export default function CadastroEvento(props:any) {
 
   });
   
-  const [id_evento, setIdEvento] = useState("");
+  useEffect(() => {
 
-  console.log(props)
+  async function getEventoId() {
+    try {
+      const response = await axios.get(`/api/evento?id=${props.id}`);
+      const response4 = await axios.get(`/api/endereco?id_evento=${props.id}`);
+      const eventoData = response.data;
+      const enderecoData = response4.data;
+      console.log(enderecoData)
+      updateForm("nome" , eventoData[0].nome )
+      updateForm("descricao" , eventoData[0].descricao )
+      updateForm("localEvento", eventoData[0].localEvento)
+      updateForm("horarioEvento", eventoData[0].horarioEvento)
+      updateForm("data", eventoData[0].data)
+      updateForm("cep", enderecoData[0].cep)
+      updateForm("rua", enderecoData[0].rua)
+      updateForm("casa", enderecoData[0].numero)
+      updateForm("complemento", enderecoData[0].complemento)
 
+  } catch (error) {
+      console.log(error);
+    }
+  }
+  getEventoId();
+}, []);
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
-    setIdEvento(props.id)
-    console.log("B", props)
-
-    try {   
-
-        const formUsuario = {
+      const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+        e.preventDefault();
+        try{
+        const formEvento = {
             nome: (document.getElementById('nome') as HTMLInputElement)?.value,
             descricao: (document.getElementById('descricao') as HTMLInputElement)?.value,
             localEvento: (document.getElementById('localEvento') as HTMLInputElement)?.value,
             horarioEvento: (document.getElementById('horarioEvento') as HTMLInputElement)?.value,
            dataEvento: (document.getElementById('data') as HTMLInputElement)?.value,
-            id: id_evento
+            id: props.id
           };
-        console.log(`/api/usuario?id=${formUsuario.id}`)
-        const resUsuario = await fetch(`/api/usuario?id=${formUsuario.id}`, {
+        console.log(`/api/evento?id=${formEvento.id}`)
+        const resEvento = await fetch(`/api/evento?id=${formEvento.id}`, {
             method: 'PUT',
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify(formUsuario)
+            body: JSON.stringify(formEvento)
           });
 
           const formEndereco = {
@@ -104,9 +121,9 @@ export default function CadastroEvento(props:any) {
             rua:(document.getElementById('rua')as HTMLInputElement)?.value,
             numero:(document.getElementById('numero')as HTMLInputElement)?.value,
             complemento:(document.getElementById('complemento')as HTMLInputElement)?.value,
-            id: id_evento
+            id: props.id
           };
-        const resEndereco = await fetch(`/api/endereco?id_usuario=${formEndereco.id}`, {
+        const resEndereco = await fetch(`/api/endereco?id_evento=${formEndereco.id}`, {
             method: 'PUT',
             headers: {
               "Content-Type": "application/json"
