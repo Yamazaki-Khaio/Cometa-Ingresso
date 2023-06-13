@@ -20,7 +20,7 @@ router.use('/', async (req: NextApiRequest, res: NextApiResponse) => {
             res.json(results);
         });
     } else if (req.method === 'GET') {
-        if (req.query && req.query.id) {
+        if (req.query.id) {
             // Obter endereço por ID
             const sql = 'SELECT * FROM endereco WHERE id_usuario=?';
             connection.query(sql, [req.query.id], (error, results, fields) => {
@@ -31,7 +31,18 @@ router.use('/', async (req: NextApiRequest, res: NextApiResponse) => {
                 }
                 res.json(results);
             });
-        } else {
+        } else if (req.query.id_evento) {
+            // Obter endereço por ID
+            const sql = 'SELECT * FROM endereco WHERE id_evento=?';
+            connection.query(sql, [req.query.id_evento], (error, results, fields) => {
+                if (error) {
+                    console.error('Erro ao buscar endereço:', error);
+                    res.status(500).send('Erro ao buscar endereço.');
+                    return;
+                }
+                res.json(results);
+            });
+        }  else {
             // Obter todos os endereços
             const sql = 'SELECT * FROM endereco';
             connection.query(sql, (error, results, fields) => {
@@ -45,21 +56,39 @@ router.use('/', async (req: NextApiRequest, res: NextApiResponse) => {
         }
     } else if (req.method === 'PUT') {
         // Atualizar endereço
-        const sql =
-            'UPDATE endereco SET cep=?, rua=?, numero=?, complemento=?  WHERE id_usuario=?';
-        connection.query(sql, [req.body.cep,
-            req.body.rua,
-            req.body.numero,
-            req.body.complemento,
-            req.body.id,
-        ], (error, results, fields) => {
-            if (error) {
-                console.error('Erro ao atualizar endereço:', error);
-                res.status(500).send('Erro ao atualizar endereço.');
-                return;
-            }
-            res.json(results);
-        });
+        if (req.query.id){
+            const sql =
+                'UPDATE endereco SET cep=?, rua=?, numero=?, complemento=?  WHERE id_usuario=?';
+            connection.query(sql, [req.body.cep,
+                req.body.rua,
+                req.body.numero,
+                req.body.complemento,
+                req.body.id,
+            ], (error, results, fields) => {
+                if (error) {
+                    console.error('Erro ao atualizar endereço:', error);
+                    res.status(500).send('Erro ao atualizar endereço.');
+                    return;
+                }
+                res.json(results);
+            });
+        } else if (req.query.id_evento){
+            const sql =
+                'UPDATE endereco SET cep=?, rua=?, numero=?, complemento=?  WHERE id_evento=?';
+            connection.query(sql, [req.body.cep,
+                req.body.rua,
+                req.body.numero,
+                req.body.complemento,
+                req.body.id,
+            ], (error, results, fields) => {
+                if (error) {
+                    console.error('Erro ao atualizar endereço:', error);
+                    res.status(500).send('Erro ao atualizar endereço.');
+                    return;
+                }
+                res.json(results);
+            });
+        }
     } else if (req.method === 'DELETE') {
         // Deletar endereço
         const sql = 'DELETE FROM endereco WHERE id_endereco=?';
