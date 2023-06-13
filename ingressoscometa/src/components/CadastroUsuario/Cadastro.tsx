@@ -119,7 +119,7 @@ export default function CadastroUsuario() {
             console.log(responseData.message);
           })
           .catch((error) => {
-            alert('Erro ao enviar o e-mail de boas-vindas:')
+            alert('Cadastro efetuado, realize o login')
             console.error('Erro ao enviar o e-mail de boas-vindas:', error);
           });
 
