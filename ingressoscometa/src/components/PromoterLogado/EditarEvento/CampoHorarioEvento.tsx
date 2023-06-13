@@ -14,7 +14,10 @@ export default function CampoHorarioEvento(props: any) {
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor="horarioEvento">
-        Horário:<span className="text-red-600 text-bold"> *</span>
+        Horário:
+        {props.optional ? (
+          <span className="text-red-600 text-bold">*</span>
+        ) : null}
       </label>
       <input
         id = "horarioEvento"

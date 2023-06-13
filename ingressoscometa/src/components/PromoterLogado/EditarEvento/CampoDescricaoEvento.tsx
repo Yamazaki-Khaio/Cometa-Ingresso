@@ -14,7 +14,11 @@ useEffect(()=>{
   return(
     <div className="flex flex-col gap-1">
       <label htmlFor="descricao">
-        Descrição:<span className="text-red-600 text-bold"> *</span>
+        Descrição:
+        {props.optional ? (
+          <span className="text-red-600 text-bold">*</span>
+        ) : null}
+        
       </label>
       <input 
         id = "descricao"

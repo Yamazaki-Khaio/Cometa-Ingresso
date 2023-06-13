@@ -179,18 +179,22 @@ export default function CadastroEvento() {
 return(
 <div className="flex flex-col w-4/6 mr-36 ml-auto justify-center items-center m-12 bg-white rounded-lg shadow-md shadow-xl-bottom">
             <form onSubmit={handleSubmit}>
-            <CampoNomeEvento value={formData.nome} onChange={handleInputChange} name="nome"/>
-            <CampoDescricaoEvento value={formData.descricao} onChange={handleInputChange} name="descricao"/>
+            <CampoNomeEvento optional={true} value={formData.nome} onChange={handleInputChange} name="nome"/>
+            <CampoDescricaoEvento optional={true} value={formData.descricao} onChange={handleInputChange} name="descricao"/>
             <CampoLocal/>
             <CepCadastro optional={true}/>
-            <CampoCidade/>
-            <CampoEstado/>
-            <RuaCadastro/>
-            <ComplementoEnderecoCadastro/>
-            <NumeroDaCasaCadastro/>
-            <CampoDataEvento value={formData.dataEvento} onChange={handleInputChange} name="dataEvento"/>
-            <CampoHorarioEvento value={formData.horarioEvento} onChange={handleInputChange} name="horarioEvento"/>
-            <div style={{wordSpacing: '150px'}} >Setores Preço Quantidade</div>
+            <CampoCidade optional={true}/>
+            <CampoEstado optional={true}/>
+            <RuaCadastro optional={true}/>
+            <ComplementoEnderecoCadastro optional={true}/>
+            <NumeroDaCasaCadastro optional={true}/>
+            <CampoDataEvento optional={true} value={formData.dataEvento} onChange={handleInputChange} name="dataEvento"/>
+            <CampoHorarioEvento optional={true} value={formData.horarioEvento} onChange={handleInputChange} name="horarioEvento"/>
+            <div style={{wordSpacing: '150px'}} >
+              Setores<span className="text-red-600 text-bold">* </span> 
+              Preço<span className="text-red-600 text-bold">* </span> 
+              Quantidade<span className="text-red-600 text-bold">* </span> 
+              </div>
             <div style={{display: "flex"}}>
             <CampoSetorVip value={formData.setor_vip} onChange={handleInputChange} name="setor_vip"/>
             <CampoPrecoVip value={formData.preco_vip} onChange={handleInputChange} name="preco_vip"/>

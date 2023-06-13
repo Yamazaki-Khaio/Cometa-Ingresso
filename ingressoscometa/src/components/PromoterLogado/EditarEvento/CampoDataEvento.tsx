@@ -13,7 +13,10 @@ export default function CampoDataEvento(props: any) {
   return (
     <div className="flex flex-col gap-1">
     <label htmlFor="data">
-      Data do evento:<span className="text-red-600 text-bold"> *</span>
+      Data do evento:
+      {props.optional ? (
+          <span className="text-red-600 text-bold">*</span>
+        ) : null}
     </label>
     <input
       value={dataEvento}

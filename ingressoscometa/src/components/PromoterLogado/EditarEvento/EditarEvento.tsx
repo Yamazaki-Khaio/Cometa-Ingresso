@@ -150,17 +150,17 @@ setFormData((prevData) => ({
 return(
 <div className="flex flex-col w-4/6 mr-36 ml-auto justify-center items-center m-12 bg-white rounded-lg shadow-md shadow-xl-bottom">
             <form onSubmit={handleSubmit}>
-            <CampoNomeEvento nome = {formData.nome}/>
-            <CampoDescricaoEvento descricao = {formData.descricao}/>
+            <CampoNomeEvento optional={false} nome = {formData.nome}/>
+            <CampoDescricaoEvento optional={false} descricao = {formData.descricao}/>
             <CampoLocal/>
-            <CepCadastro cep = {formData.cep}/>
-            <CampoCidade cidade = {formData.cidade}/>
-            <CampoEstado estado = {formData.estado}/>
-            <RuaCadastro rua = {formData.rua}/>
-            <ComplementoEnderecoCadastro complemento = {formData.complemento}/>
-            <NumeroDaCasaCadastro numero = {formData.numero}/>
-            <CampoDataEvento data = {formData.dataEvento}/>
-            <CampoHorarioEvento horarioEvento = {formData.horarioEvento}/>
+            <CepCadastro optional={false} cep = {formData.cep}/>
+            <CampoCidade optional={false} cidade = {formData.cidade}/>
+            <CampoEstado optional={false} estado = {formData.estado}/>
+            <RuaCadastro optional={false} rua = {formData.rua}/>
+            <ComplementoEnderecoCadastro optional={false} complemento = {formData.complemento}/>
+            <NumeroDaCasaCadastro optional={false} numero = {formData.numero}/>
+            <CampoDataEvento optional={false} data = {formData.dataEvento}/>
+            <CampoHorarioEvento optional={false} horarioEvento = {formData.horarioEvento}/>
             <BotaoEditaEvento/>
             </form>
         </div>

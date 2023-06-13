@@ -8,7 +8,10 @@ export default function CampoNomeEvento(props: any){
   return(
     <div className="flex flex-col gap-1">
       <label htmlFor="nome">
-        Nome:<span className="text-red-600 text-bold"> *</span>
+        Nome:
+        {props.optional ? (
+          <span className="text-red-600 text-bold">*</span>
+        ) : null}
       </label>
       <input 
         id = "nome"

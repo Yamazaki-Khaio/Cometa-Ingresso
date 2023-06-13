@@ -16,7 +16,10 @@ export default function CampoEstado(props: any) {
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor="estado">
-        Estado:<span className="text-red-600 text-bold"> *</span>
+        Estado:
+        {props.optional ? (
+          <span className="text-red-600 text-bold">*</span>
+        ) : null}
       </label>
       <input
         type="text"
