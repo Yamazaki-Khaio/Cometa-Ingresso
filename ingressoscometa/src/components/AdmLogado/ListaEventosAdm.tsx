@@ -20,6 +20,7 @@ function formatarNome(nome: string | null | undefined): string {
 
 export default function ListaEventosAdm(props: any) {
     const [eventos, setEventos] = useState([])
+    const [endereco, setEnderecos] = useState([]);
     useEffect(() => {
         fetchEventos()
     }, [])
@@ -28,10 +29,18 @@ export default function ListaEventosAdm(props: any) {
         try {
             const response = await axios.get('/api/evento')
             setEventos(response.data)
+            const response2 = await axios.get('/api/endereco')
+            setEnderecos(response2.data)
+      
+            
         } catch (error) {
             console.log(error)
         }
     }
+    
+    const getEnderecoDoEvento = (eventoId: string) => {
+        return endereco.filter((endereco: any) => endereco.id_evento === eventoId);
+      };
 
     const convertBufferToUrl = (buffer: any) => {
         const imageData = Buffer.from(buffer.data).toString('base64');
@@ -55,7 +64,7 @@ export default function ListaEventosAdm(props: any) {
                                 Nome={evento.nome_evento}
                                 Data={new Date(evento.data_evento).toLocaleDateString()}
                                 Hora={evento.horario_evento}
-                                Local={evento.local}
+                                Local={getEnderecoDoEvento(evento.id)[0]?.cidade}
                                 Image={convertBufferToUrl(evento.imagem)} // Aqui você precisa ajustar como a imagem é passada para o componente Evento
 
                             />
