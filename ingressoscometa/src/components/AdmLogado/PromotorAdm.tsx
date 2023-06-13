@@ -3,6 +3,7 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios';
 import { useEffect, useState } from "react";
+import Modal from '../Modal/Modal';
 interface FormData {
     email: string,
     telefone: string,
@@ -11,6 +12,33 @@ interface FormData {
   }
 
 export default function EventoPromoter(props: any) {
+    const [modalLiberar, setModalLiberar] = useState(false);
+    const [modalSuspender, setModalSuspender] = useState(false);
+    const [modalRemover, setModalRemover] = useState(false);
+
+    const abrirModalLiberar = () => {
+        setModalLiberar(true);
+    };
+      
+    const fecharModalLiberar = () => {
+        setModalLiberar(false);
+    };
+
+    const abrirModalSuspender = () => {
+        setModalSuspender(true);
+    };
+      
+    const fecharModalSuspender = () => {
+        setModalSuspender(false);
+    };
+
+    const abrirModalRemover = () => {
+        setModalRemover(true);
+    };
+      
+    const fecharModalRemover = () => {
+        setModalRemover(false);
+    };
 
     const [formData, setFormData] = useState<FormData>({
         email: "Sem E-mail cadastrado",
@@ -86,14 +114,37 @@ export default function EventoPromoter(props: any) {
                 <p className="font-sans text-4sm">Status: {props.Status}</p>
 
                 <div className="absolute top-3/4 left-1/4">
-                    <button onClick={banirUsuario(props.Id, "liberar")} className='bg-teal-700 w-40 h-12 rounded-xl text-white text-md font black'>Liberar</button>
+                <button onClick={() => { banirUsuario(props.Id, "liberar"); abrirModalLiberar(); }} className='bg-teal-700 w-40 h-12 rounded-xl text-white text-md font black'>Liberar</button>
                 </div>
+                
+                        {modalLiberar && (
+                        <Modal
+                        mensagem="Deseja liberar o promoter?"
+                        link="/promotores"
+                        onClose={fecharModalLiberar}
+                        />
+                        )}
+
                 <div className="absolute top-3/4 left-2/4">
-                    <button onClick={banirUsuario(props.Id, "banir")} className='bg-teal-700 w-40 h-12 rounded-xl text-white text-md font black'>Suspender</button>
+                <button onClick={() => { banirUsuario(props.Id, "banir"); abrirModalSuspender(); }} className='bg-teal-700 w-40 h-12 rounded-xl text-white text-md font black'>Suspender</button>
                 </div>
+                {modalSuspender && (
+                <Modal
+                mensagem="Deseja suspender o promoter?"
+                link="/promotores"
+                onClose={fecharModalSuspender}
+                />
+                )}
                 <div className="absolute top-3/4 left-3/4">
-                    <button onClick={banirUsuario(props.Id, "remover")} className='bg-teal-700 w-40 h-12 rounded-xl text-white text-md font black'>Remover</button>
+                <button onClick={() => { banirUsuario(props.Id, "remover"); abrirModalRemover(); }} className='bg-teal-700 w-40 h-12 rounded-xl text-white text-md font black'>Remover</button>
                 </div>
+                {modalRemover && (
+                <Modal
+                mensagem="Deseja remover o promoter?"
+                link="/promotores"
+                onClose={fecharModalRemover}
+                />
+                )}
             </div>
         </div>
 
