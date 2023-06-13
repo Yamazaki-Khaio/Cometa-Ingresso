@@ -1,35 +1,20 @@
-import BotaoSubmitEvento from "../CadastroEvento/BotaoSubmitEvento";
-import CampoDescricaoEvento from "../CadastroEvento/CampoDescricaoEvento";
-import CampoNomeEvento from "../CadastroEvento/CampoNomeEvento";
-import CampoDataEvento from "../CadastroEvento/CampoDataEvento";
+import CampoDescricaoEvento from "./CampoDescricaoEvento";
+import CampoNomeEvento from "./CampoNomeEvento";
+import CampoDataEvento from "./CampoDataEvento";
 import { FormEventHandler, cloneElement, useEffect, useState } from "react";
-import CampoLocalEvento from "../CadastroEvento/CampoLocalEvento";
-import CampoEnvioImagem from "../CadastroEvento/CampoEnviarImagem";
-import CampoSetorVip from "../CadastroEvento/SetorEvento/CampoSetorVip";
-import CampoSetorBackstage from "../CadastroEvento/SetorEvento/CampoSetorBackstage";
-import CampoSetorCamarote from "../CadastroEvento/SetorEvento/CampoSetorCamarote";
-import CampoSetorNenhum from "../CadastroEvento/SetorEvento/CampoSetorNenhum";
-import CampoHorarioEvento from "../CadastroEvento/CampoHorarioEvento";
-import CampoQntIngressoVip from "../CadastroEvento/QntEvento/CampoQntIngresso";
-import CampoQntIngressoBackstage from "../CadastroEvento/QntEvento/CampoQntIngressoBack";
-import CampoQntIngressoCamarote from "../CadastroEvento/QntEvento/CampoQntIngressoCam";
-import CampoQntIngressoNenhum from "../CadastroEvento/QntEvento/CampoQntIngressoNenhum";
-import CampoPrecoVip from "../CadastroEvento/PrecoEvento/CampoPreco";
-import CampoPrecoCamarote from "../CadastroEvento/PrecoEvento/CampoPrecoCam";
-import CampoPrecoBackstage from "../CadastroEvento/PrecoEvento/CampoPrecoBack";
-import CampoPrecoNenhum from "../CadastroEvento/PrecoEvento/CampoPrecoNenhum";
+import CampoHorarioEvento from "./CampoHorarioEvento";
 import { FLOAT } from "sequelize";
-import CepCadastro from "../CadastroEvento/CepCadastro";
-import CampoCidade from "../CadastroEvento/CampoCidade";
-import CampoEstado from "../CadastroEvento/CampoEstado";
-import CampoLocal from "../QRCode/CampoLocal";
-import ComplementoEnderecoCadastro from "../CadastroEvento/ComplementoEnderecoCadastro";
-import NumeroDaCasaCadastro from "../CadastroEvento/NumeroDaCasaCadastro";
-import RuaCadastro from "../CadastroEvento/RuaCadastro";
+import CepCadastro from "./CepCadastro";
+import CampoCidade from "./CampoCidade";
+import CampoEstado from "./CampoEstado";
+import CampoLocal from "../../QRCode/CampoLocal";
+import ComplementoEnderecoCadastro from "./ComplementoEnderecoCadastro";
+import NumeroDaCasaCadastro from "./NumeroDaCasaCadastro";
+import RuaCadastro from "./RuaCadastro";
 import { getSession } from "next-auth/react";
 import axios from "axios";
-import Botao from "../CabecalhoCadastro/botao";
-import BotaoEditaEvento from "./BotaoEditaEvento";
+import Botao from "../../CabecalhoCadastro/botao";
+import BotaoEditaEvento from "../BotaoEditaEvento";
 
 interface FormData {
   nome: string,
@@ -165,17 +150,17 @@ setFormData((prevData) => ({
 return(
 <div className="flex flex-col w-4/6 mr-36 ml-auto justify-center items-center m-12 bg-white rounded-lg shadow-md shadow-xl-bottom">
             <form onSubmit={handleSubmit}>
-            <CampoNomeEvento/>
-            <CampoDescricaoEvento/>
+            <CampoNomeEvento nome = {formData.nome}/>
+            <CampoDescricaoEvento descricao = {formData.descricao}/>
             <CampoLocal/>
-            <CepCadastro/>
-            <CampoCidade/>
-            <CampoEstado/>
-            <RuaCadastro/>
-            <ComplementoEnderecoCadastro/>
-            <NumeroDaCasaCadastro/>
-            <CampoDataEvento/>
-            <CampoHorarioEvento/>
+            <CepCadastro cep = {formData.cep}/>
+            <CampoCidade cidade = {formData.cidade}/>
+            <CampoEstado estado = {formData.estado}/>
+            <RuaCadastro rua = {formData.rua}/>
+            <ComplementoEnderecoCadastro complemento = {formData.complemento}/>
+            <NumeroDaCasaCadastro numero = {formData.numero}/>
+            <CampoDataEvento data = {formData.dataEvento}/>
+            <CampoHorarioEvento horarioEvento = {formData.horarioEvento}/>
             <BotaoEditaEvento/>
             </form>
         </div>
