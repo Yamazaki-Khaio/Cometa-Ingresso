@@ -1,5 +1,6 @@
-import { ChangeEventHandler ,useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 import { FaTimes } from "react-icons/fa";
+import Compressor from "compressorjs";
 
 interface ImageData {
   type: string;
@@ -7,14 +8,19 @@ interface ImageData {
 }
 
 interface CampoEnvioImagemProps {
-  onChange: (file: ImageData | undefined ) => void;
+  onChange: (file: ImageData | undefined) => void;
   name: string;
 }
 
-export default function CampoEnvioImagem({ onChange, name }: CampoEnvioImagemProps) {
+export default function CampoEnvioImagem({
+  onChange,
+  name
+}: CampoEnvioImagemProps) {
   const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
 
-  const handleFileChange: ChangeEventHandler<HTMLInputElement> = async (event) => {
+  const handleFileChange: ChangeEventHandler<HTMLInputElement> = async (
+    event
+  ) => {
     const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -25,12 +31,27 @@ export default function CampoEnvioImagem({ onChange, name }: CampoEnvioImagemPro
         setImageUrl(URL.createObjectURL(file));
       };
       reader.readAsArrayBuffer(file);
+
+      // Comprimir a imagem antes do envio
+      new Compressor(file, {
+        quality: 0.6,
+        maxWidth: 1024,
+        maxHeight: 1024,
+        success: (result) => {
+          const compressedFile = new File([result], file.name, {
+            type: result.type
+          });
+          reader.readAsArrayBuffer(compressedFile);
+        },
+        error: (error) => {
+          console.error("Erro ao comprimir a imagem:", error);
+        }
+      });
     } else {
       onChange(undefined);
       setImageUrl(undefined);
     }
   };
-  
 
   const handleRemoveImage = () => {
     setImageUrl(undefined);
