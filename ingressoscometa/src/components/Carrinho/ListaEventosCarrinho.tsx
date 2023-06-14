@@ -4,10 +4,60 @@ import { Buffer } from 'buffer';
 import Link from 'next/link';
 import { getSession } from 'next-auth/react';
 import IngressoCarrinho from './IngressoCarrinho';
+import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
+
+type Dados = {eventosCarrinho:any[],
+setoresCarrinho:any[]}
+
+export  const getServerSideProps = async () => {
+  console.log('entrei')
+  var eventosTodos:any[] = [];
+  var carrinho:any[] = [];
+  var setores:any[] ;
+  var setoresCarrinho:any[] = []
+  var eventosCarrinho:any[] = [];
+  const user = await getSession();
+  const userId = user?.user.id;
+  const responseCarrinho = await axios.get(`/api/carrinhoCompras?id=${userId}`)
+  carrinho = await responseCarrinho.data
+  const responseEvento = await axios.get('/api/evento')
+  eventosTodos = await responseEvento.data
+  const responseSetores = await axios.get('/api/setor')
+  setores = await responseSetores.data
+  eventosCarrinho = eventosTodos.filter( evento => {
+    return carrinho.some(item => item.id_evento === evento.id);
+  })
+
+  setoresCarrinho = setores.filter(setor => {
+    return carrinho.some( item => item.id_setor === setor.id)
+  })
+
+  var repo:Dados =  {
+    eventosCarrinho, setoresCarrinho
+  }
+  return{
+    props:{
+      repo
+      
+    }
+  }
+  
+  
+}
 
 
-export default function ListaEventosCarrinho(props: any) {
-  const [eventos, setEventos] = useState([])
+
+
+
+
+export default function ListaEventosCarrinho({repo}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+
+  console.log(repo) 
+  
+
+
+
+  /*const [eventos, setEventos] = useState([])
   const[carrinho, setCarrinho] = useState([])
   const [setores, setSetores] = useState([])
   useEffect(() => {
@@ -52,7 +102,7 @@ export default function ListaEventosCarrinho(props: any) {
     return carrinho.filter((carrinho: any) => carrinho.id_evento === idUsuario);
   };
 
-
+  */
   const convertBufferToUrl = (buffer: any) => {
     const imageData = Buffer.from(buffer.data).toString('base64');
     return `data:image/png;base64,${imageData}`;
@@ -61,10 +111,10 @@ export default function ListaEventosCarrinho(props: any) {
 
   return (
     <div className="flex flex-wrap gap-5 justify-center items-center p-4 bg-slate-200">
-      {eventos.map((evento: any, index: number) => (
+      {repo.eventosCarrinho.map((evento: any, index: number) => (
         //
           <div style={{ cursor: 'pointer' }}>
-            {setores.filter((setor: any) => setor.id_evento === evento.id).map((setor: any, index: number) => (
+            {repo.setoresCarrinho.filter((setor: any) => setor.id_evento === evento.id).map((setor: any, index: number) => (
             <IngressoCarrinho
               name={evento.nome_evento}
               time={new Date(evento.data_evento).toLocaleDateString()}
@@ -79,4 +129,7 @@ export default function ListaEventosCarrinho(props: any) {
       ))}
     </div>
   );
+
+
 }
+
