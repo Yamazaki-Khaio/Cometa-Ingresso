@@ -20,7 +20,7 @@ export default function BlocoQrCode() {
           height: "100%",
         }}
       >
-        <QrCode/>
+        QRCODE aq
       </span>
     </div>
   );
