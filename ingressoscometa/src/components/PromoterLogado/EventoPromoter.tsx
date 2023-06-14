@@ -4,18 +4,20 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from 'react';
 import ModalSuspEvento from './ModalSuspEvento';
-import ModalCancelarEvento from './ModalCancelarEvento';
+import ModalReativarEvento from './ModalReativarEvento';
 
 export default function EventoPromoter(props: any) {
-    const [modalCancelar, setModalCancelar] = useState(false);
+    const [modalReativar, setModalReativar] = useState(false);
     const [modalSuspender, setModalSuspender] = useState(false);
+    var SuspenderVisivel: string;
+    var ReativarVisivel: string;
 
-    const openModalCancelar = () => {
-        setModalCancelar(true);
+    const openModalReativar = () => {
+        setModalReativar(true);
     };
     
-    const closeModalCancelar = () => {
-        setModalCancelar(false);
+    const closeModalReativar = () => {
+        setModalReativar(false);
     };
 
     const openModalSuspender = () => {
@@ -25,6 +27,15 @@ export default function EventoPromoter(props: any) {
     const closeModalSuspender = () => {
         setModalSuspender(false);
     };
+
+    if(props.ativado==1){
+        //Escolhe qual botão fica visível e qual não
+        ReativarVisivel = "collapse"
+        SuspenderVisivel = ""
+    }else{
+        SuspenderVisivel = "collapse"
+        ReativarVisivel = ""
+    }
 
     return (
         <div className="relative flex flex-wrap justify-start content-center h-60 w-4/5 ml-12 mr-12 border bg-white shadow-md rounded-3xl">
@@ -42,7 +53,7 @@ export default function EventoPromoter(props: any) {
                 <p className="font-sans text-4sm">{props.Descricao}</p>
             </div>
 
-            <div className="absolute bottom-1/3 right-8">
+            <div className="absolute bottom-1/4 right-8" style={{visibility: SuspenderVisivel}}>
                 <Botao onClick={openModalSuspender} NomeBotao="Suspender" />
             </div>
             {modalSuspender && (
@@ -57,16 +68,18 @@ export default function EventoPromoter(props: any) {
                 </div>
             )}
 
-            <div className="absolute bottom-5 right-8">
-                
+
+            
+            <div className="absolute bottom-1/4 right-8" style={{visibility: ReativarVisivel}}>
+            <Botao onClick={openModalReativar} NomeBotao="Reativar" />
             </div>
-            {modalCancelar && (
+            {modalReativar && (
                 <div className="fixed inset-0 flex items-center justify-center z-50">
                 <div className="bg-white p-6 rounded-lg shadow-xl">
-                <ModalCancelarEvento
-                    mensagem="Deseja cancelar o evento?"
+                <ModalReativarEvento
+                    mensagem="Deseja reativar o evento?"
                     eventoId={props.id}
-                    onClose={closeModalCancelar}
+                    onClose={closeModalReativar}
                 />
                 </div>
                 </div>
