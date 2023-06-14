@@ -3,7 +3,7 @@ import GrindEvento from "./GrindEvento";
 
 export default function HomeNaoLogin(props:any ){
     return(
-        <div>
+        <div className="bg-gray-100">
             <DestaqueSemana/>
             <GrindEvento/>   
         </div>

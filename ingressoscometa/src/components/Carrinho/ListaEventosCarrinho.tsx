@@ -8,13 +8,12 @@ import IngressoCarrinho from './IngressoCarrinho';
 
 export default function ListaEventosCarrinho(props: any) {
   const [eventos, setEventos] = useState([])
-  useEffect(() => {
-    fetchEventos()
-  }, [])
-
+  const[carrinho, setCarrinho] = useState([])
   const [setores, setSetores] = useState([])
   useEffect(() => {
+    fetchEventos()
     fetchSetores()
+    fetchCarrinho()
   }, [])
 
   
@@ -22,13 +21,7 @@ export default function ListaEventosCarrinho(props: any) {
   const fetchEventos = async () => {
     try {
       const response = await axios.get('/api/evento')
-      const user = await getSession();
-      const userId = user?.user.id;
-      const response2 = await axios.get(`/api/carrinhoCompras?id=${userId}`)
-      const eve = response.data.filter(evento => {
-        return response2.data.some(item => item.id_evento === evento.id)
-      })
-      setEventos(eve)
+      setEventos(response.data)
     } catch (error) {
       console.log(error)
     }
@@ -43,6 +36,23 @@ export default function ListaEventosCarrinho(props: any) {
     }
   }
 
+  const fetchCarrinho = async () => {
+    try {
+      const user = await getSession();
+      const userId = user?.user.id;
+      const response2 = await axios.get(`/api/carrinhoCompras?id=${userId}`)
+      setCarrinho(response2.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+  const getEventoCarrinho = (idUsuario: string) => {
+    return carrinho.filter((carrinho: any) => carrinho.id_evento === idUsuario);
+  };
+
+
   const convertBufferToUrl = (buffer: any) => {
     const imageData = Buffer.from(buffer.data).toString('base64');
     return `data:image/png;base64,${imageData}`;
@@ -52,7 +62,7 @@ export default function ListaEventosCarrinho(props: any) {
   return (
     <div className="flex flex-wrap gap-5 justify-center items-center p-4 bg-slate-200">
       {eventos.map((evento: any, index: number) => (
-        <Link href={`/evento/?id=${evento.id}`} key={evento.id}>
+        //
           <div style={{ cursor: 'pointer' }}>
             {setores.filter((setor: any) => setor.id_evento === evento.id).map((setor: any, index: number) => (
             <IngressoCarrinho
@@ -65,7 +75,7 @@ export default function ListaEventosCarrinho(props: any) {
             />
             ))}
           </div>
-        </Link>
+        //
       ))}
     </div>
   );

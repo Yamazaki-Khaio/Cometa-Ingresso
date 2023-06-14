@@ -40,7 +40,7 @@ export default function CabecalhoCliente(props: { isBotaoOcultoLogin?: boolean, 
                         w-40 h-12
                         bg-teal-900 
                         text-white 
-                        text-24 
+                        text-24 ml-6
                         rounded-xl`} role="button"
                         onClick={() => { signOut({ callbackUrl: 'http://localhost:3000/login' }) }} >Sair</button>
 

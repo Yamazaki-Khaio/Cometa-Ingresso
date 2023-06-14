@@ -8,20 +8,27 @@ import Botao from '../CabecalhoCadastro/botao';
 
 export default function ListaEventosPromoters(props: any) {
     const [eventos, setEventos] = useState([])
+    const [endereco, setEnderecos] = useState([])
     useEffect(() => {
         fetchEventos()
     }, [])
 
     const fetchEventos = async () => {
-        const user = await getSession();
-        const userId = user?.user.id;
         try {
+            const user = await getSession();
+            const userId = user?.user.id;
             const response = await axios.get(`/api/evento?id_usuario=${userId}`)
             setEventos(response.data)
+            const response2 = await axios.get('/api/endereco')
+            setEnderecos(response2.data)
         } catch (error) {
             console.log(error)
         }
     }
+    
+    const getEnderecoDoEvento = (eventoId: string) => {
+        return endereco.filter((endereco: any) => endereco.id_evento === eventoId);
+      };
 
     const convertBufferToUrl = (buffer: any) => {
         const imageData = Buffer.from(buffer.data).toString('base64');

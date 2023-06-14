@@ -14,7 +14,7 @@ export default function Carrinho() {
     if(session&&session.user.tipo==='1'){
         return (
             <div>
-                <LayoutCarrinho pagina={<ListaEventosCarrinho/>} exibirBotao={false} exibirBotao2={false} exibirBotao3={false} exibirBotao4={true} />
+                <LayoutCarrinho pagina={<ListaEventosCarrinho id = {session?.user.id}/>} exibirBotao={false} exibirBotao2={false} exibirBotao3={false} exibirBotao4={true} />
             </div>
         )
     }else{

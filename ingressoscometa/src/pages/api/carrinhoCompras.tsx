@@ -49,70 +49,25 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
                 }
             res.json(results);
         });
-    }
+
+        }else if (req.method === "DELETE") {
+            console.log("entrou aquiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+            if (!req.query.id) {
+              res.status(400).send("ID do item de carrinho não fornecido.");
+              return;
+            }
+        
+            const itemId = Number(req.query.id);
+        
+            const sql = "DELETE FROM carrinho WHERE id = ?";
+            connection.query(sql, [itemId], (error, results, fields) => {
+              if (error) {
+                console.error("Erro ao excluir item do carrinho: ", error);
+                res.status(500).send("Erro ao excluir item do carrinho.");
+                return;
+              }
+              res.json(results);
+            });
+          }
 }
-
-//const router = express.Router();
-
-// Criar carrinho
-/*router.post('/', async (req, res) => {
-    const carrinho = new Carrinho(
-        req.body.id_carrinho,
-    );
-    const sql = 'INSERT INTO carrinho (id_usuario, id_ingresso, quant_ingresso)  VALUES (?, ?, ?)'
-    connection.query(sql, carrinho, (error, results, fields) => {
-        if (error) {
-        console.error('Erro ao inserir novo carrinho de compras: ', error);
-        res.status(500).send('Erro ao inserir novo carrinho de compras.');
-        return;
-        }
-        res.json(results);
-    });
-});
-  
-
-// Listar carrinhos
-router.get('/', async (req, res) => {
-    const sql = 'SELECT * FROM carrinho';
-    connection.query(sql, (error, results, fields) => {
-        if (error) {
-        console.error('Erro ao buscar carrinho de compras: ', error);
-        res.status(500).send('Erro ao buscar carrinho de compras.');
-        return;
-        }
-        res.json(results);
-    });
-});
-  
-
-// Buscar carrinho por ID
-router.get('/:id', async (req, res) => {
-    const sql = 'SELECT * FROM carrinho WHERE id_carrinho=?';
-    connection.query(sql, [req.params.id], (error, results, fields) => {
-        if (error) {
-            console.error('Erro ao buscar carrinho de compras: ', error);
-            res.status(500).send('Erro ao buscar carrinho de compras.');
-            return;
-        }
-        res.json(results);
-    });
-});
-
-// Atualizar carrinho:
-router.put('/:id', async (req, res) => {
-    const sql = 'UPDATE carrinho SET ? WHERE id_carrinho=?';
-    connection.query(
-        sql,
-        [req.body, req.params.id],
-        (error, results, fields) => {
-        if (error) {
-            console.error('Erro ao atualizar carrinho de compras: ', error);
-            res.status(500).send('Erro ao atualizar carrinho de compras.');
-            return;
-        }
-        res.json(results);
-        }
-    );
-});
-*/
 

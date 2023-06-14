@@ -9,6 +9,7 @@ import { getSession } from 'next-auth/react';
 export default function ListaEventosCliente(props: any) {
   const [eventos, setEventos] = useState([]);
   const [setores, setSetores] = useState([]);
+  const [endereco, setEnderecos] = useState([]);
 
   useEffect(() => {
     fetchEventos();
@@ -19,6 +20,8 @@ export default function ListaEventosCliente(props: any) {
     try {
       const response = await axios.get('/api/evento');
       setEventos(response.data);
+      const response2 = await axios.get('/api/endereco')
+      setEnderecos(response2.data)
     } catch (error) {
       console.log(error);
     }
@@ -42,6 +45,10 @@ export default function ListaEventosCliente(props: any) {
     return setores.filter((setor: any) => setor.id_evento === eventoId);
   };
 
+  const getEnderecoDoEvento = (eventoId: string) => {
+    return endereco.filter((endereco: any) => endereco.id_evento === eventoId);
+  };
+
   return (
     <div className="flex flex-wrap gap-5 w-screen justify-center items-center p-4 bg-slate-200">
       {eventos.map((evento: any) => (
@@ -51,7 +58,7 @@ export default function ListaEventosCliente(props: any) {
             Nome={evento.nome_evento}
             Data={new Date(evento.data_evento).toLocaleDateString()}
             Hora={evento.horario_evento}
-            Local={evento.local}
+            Local={getEnderecoDoEvento(evento.id)[0]?.cidade}
             Image={convertBufferToUrl(evento.imagem)}
             setores={getSetoresDoEvento(evento.id)} // Filtra os setores correspondentes ao evento
           />
