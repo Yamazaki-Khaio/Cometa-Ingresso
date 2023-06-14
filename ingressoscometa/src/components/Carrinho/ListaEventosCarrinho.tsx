@@ -37,7 +37,7 @@ useEffect(() => {
           <div style={{ cursor: 'pointer' }}>
             {carrinho.map((c: any, index: number) => (
             <IngressoCarrinho
-              key={c.id}
+              id={c.id}
               name={c.nome_evento}
               data={new Date(c.data_evento).toLocaleDateString()}
               setor={c.nome}

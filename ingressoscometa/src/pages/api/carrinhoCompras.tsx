@@ -57,7 +57,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
               return;
             }
         
-            const itemId = Number(req.query.id);
+            const itemId = Number(req.query['id']);
         
             const sql = "DELETE FROM carrinho WHERE id = ?";
             connection.query(sql, [itemId], (error, results, fields) => {
@@ -68,6 +68,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
               }
               res.json(results);
             });
+            console.log(req.query['id'])
           }
 }
 

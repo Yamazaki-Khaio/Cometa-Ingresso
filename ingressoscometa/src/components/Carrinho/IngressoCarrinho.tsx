@@ -11,17 +11,10 @@ interface Item {
   price: number;
 }
 
-interface CartProps {
-  id: number;
-  cartItems: Item[];
-  total: number;
-}
-
 export default function IngressoCarrinho(props: any) {
   const handleDelete = async () => {
     try {
-      console.log("aaaaaaaaaaaaaaaaq");
-      const response = await axios.delete(`/api/carrinhoCompras?id=16`);
+      const response = await axios.delete(`/api/carrinhoCompras?id=${props.id}`);
       console.log(response.data);
     } catch (error) {
       console.error('Erro ao deletar item do carrinho: ', error);
