@@ -47,7 +47,7 @@ export default function ListaEventosPromoters(props: any) {
                     Nome={evento.nome_evento}
                     Data={new Date(evento.data_evento).toLocaleDateString()}
                     Hora={evento.horario_evento}
-                    Local={evento.local}
+                    rua={evento.rua}
                     Image={convertBufferToUrl(evento.imagem)} // Aqui você precisa ajustar como a imagem é passada para o componente Evento
 
                 />

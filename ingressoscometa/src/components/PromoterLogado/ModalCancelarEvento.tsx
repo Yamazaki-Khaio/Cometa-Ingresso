@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import BotaoCancelar from "../Modal/BotaoCancelarModal";
 import BotaoConfirmarCompra from "../Modal/BotaoConfirmarModal";
 import axios from "axios";
@@ -10,20 +10,24 @@ interface ModalProps {
   onClose: () => void;
 }
 
-const ModalEvento: React.FC<ModalProps> = ({ mensagem, onClose, eventoId }) => {
-  async function Suspender(event: React.ChangeEvent<HTMLInputElement>){
+interface FormData {
+  id: string
+}
+
+
+
+const ModalCancelarEvento: React.FC<ModalProps> = ({ mensagem, onClose, eventoId }) => {
+  const [formData, setFormData] = useState<FormData>({
+    id: eventoId.toString()
+  });
+  async function Deletar(event: React.ChangeEvent<HTMLInputElement>){
   try{
-  const formEvento = {
-      id: eventoId,
-      ativado: 0
-    };
-  const resEvento = await fetch(`/api/evento?id=${formEvento.id}`, {
-      method: 'PUT',
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(formEvento)
+      await fetch(`/api/evento?id=${eventoId}`, {
+      method: 'DELETE',
+      body: JSON.stringify(formData)
     });
+    console.log(formData)
+    
   } catch (error) {
     console.error("Erro ao enviar os dados:", error);
     // Lógica adicional para lidar com erros no envio dos dados
@@ -37,11 +41,11 @@ const ModalEvento: React.FC<ModalProps> = ({ mensagem, onClose, eventoId }) => {
         <p className="text-lg font-bold text-center">{mensagem}</p>
         <div className="flex p-4">
           <BotaoCancelar onClick={onClose}/>
-          <BotaoConfirmar onClick={Suspender}/>
+          <BotaoConfirmar onClick={Deletar}/>
         </div>
       </div>
     </div>
   );
 };
 
-export default ModalEvento;
+export default ModalCancelarEvento;
