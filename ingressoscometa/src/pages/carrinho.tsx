@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Layout from "@/components/CabecalhoCadastro/layout"
-import TelaCarrinho from "@/components/Carrinho/TelaCarrinho"
 import LayoutCarrinho from "@/components/Carrinho/LayoutCarrinho"
 import ListaEventosCarrinho from '@/components/Carrinho/ListaEventosCarrinho'
 import NaoUtorizado from "@/components/naoAutorizado";

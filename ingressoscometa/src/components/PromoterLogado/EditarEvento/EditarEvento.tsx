@@ -42,7 +42,7 @@ export default function CadastroEvento(props:any) {
     nome: "",
     descricao: "",
     localEvento: "",
-    dataEvento: "",
+    dataEvento: undefined,
     horarioEvento: "",
     imagem: undefined,
 
@@ -67,7 +67,7 @@ export default function CadastroEvento(props:any) {
       updateForm("nome" , eventoData.nome_evento )
       updateForm("descricao" , eventoData.descricao_evento )
       updateForm("horarioEvento", eventoData.horario_evento)
-      updateForm("dataEvento", eventoData.data_evento.substring(0,10))
+      updateForm("dataEvento", new Date(eventoData.data_evento));
       updateForm("cidade", enderecoData[0].cidade)
       updateForm("estado", enderecoData[0].estado)
       updateForm("cep", enderecoData[0].cep)
@@ -86,11 +86,10 @@ export default function CadastroEvento(props:any) {
         e.preventDefault();
         try{
         const formEvento = {
-            nome: (document.getElementById('nome') as HTMLInputElement)?.value,
-            descricao: (document.getElementById('descricao') as HTMLInputElement)?.value,
-            localEvento: (document.getElementById('localEvento') as HTMLInputElement)?.value,
-            horarioEvento: (document.getElementById('horarioEvento') as HTMLInputElement)?.value,
-           dataEvento: (document.getElementById('data') as HTMLInputElement)?.value,
+            nome_evento: (document.getElementById('nome') as HTMLInputElement)?.value,
+            descricao_evento: (document.getElementById('descricao') as HTMLInputElement)?.value,
+            horario_evento: (document.getElementById('horarioEvento') as HTMLInputElement)?.value,
+            data_evento: (document.getElementById('data') as HTMLInputElement)?.value,
             id: props.id
           };
         console.log(`/api/evento?id=${formEvento.id}`)
@@ -159,7 +158,7 @@ return(
             <RuaCadastro optional={false} rua = {formData.rua}/>
             <ComplementoEnderecoCadastro optional={false} complemento = {formData.complemento}/>
             <NumeroDaCasaCadastro optional={false} numero = {formData.numero}/>
-            <CampoDataEvento optional={false} data = {formData.dataEvento}/>
+            <CampoDataEvento optional={false} data={formData.dataEvento instanceof Date ? formData.dataEvento.toISOString().split('T')[0] : ''}/>
             <CampoHorarioEvento optional={false} horarioEvento = {formData.horarioEvento}/>
             <BotaoEditaEvento/>
             </form>
