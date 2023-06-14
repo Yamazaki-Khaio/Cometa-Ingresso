@@ -1,24 +1,19 @@
-import React, { useState } from "react" ; 
-import { QRCodeCanvas } from "qrcode.react" ; 
-const QrCode = () => {  
-    const [url, setUrl] = useState( "" );    
-    const qrCodeEncoder = ( e ) => {  setUrl(e.target.value); };  
-    const qrcode = (    < QRCodeCanvas
-    id = "qrCode"
-    value = {url}
-    size = {300}
-    bgColor = { "#00ff00"}      level = { " H "}  />
-);  return (    < div className = "qrcode__container" >
-    < div > 
-        {qrcode} 
-    </ div >
-    < div className = "input__group" >    
-        < label > Enter URL </ label >
-        < input
-          type = "text"
-          value = {url}
-          onChange = {qrCodeEncoder}
-          placeholder = "https://hackernoon.com"/>
-    </ div >
-  </ div >
-); }; export default QrCode;
+import React from "react";
+import ReactDOM from "react-dom";
+import QRCode from "react-qr-code";
+
+//ReactDOM.render(<QRCode value="hey" />, document.getElementById("Container"));
+
+export default function QRCodeConfirmacao(){
+  const value="hey"
+  return(
+    <div style={{ height: "auto", margin: "0 auto", maxWidth: 230, width: "100%" }}>
+      <QRCode
+      size={256}
+      style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+      value={value}
+      viewBox={`0 0 256 256`}
+      />
+    </div>
+  )
+}

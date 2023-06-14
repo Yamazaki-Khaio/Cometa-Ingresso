@@ -1,4 +1,4 @@
-import QrCode from "./QRCode";
+import QRCodeConfirmacao from "./QRCode";
 export default function BlocoQrCode() {
   return (
     <div
@@ -20,7 +20,7 @@ export default function BlocoQrCode() {
           height: "100%",
         }}
       >
-        QRCODE aq
+        <QRCodeConfirmacao/>
       </span>
     </div>
   );
