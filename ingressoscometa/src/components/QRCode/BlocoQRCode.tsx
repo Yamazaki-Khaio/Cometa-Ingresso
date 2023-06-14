@@ -1,3 +1,4 @@
+import QrCode from "./QRCode";
 export default function BlocoQrCode() {
   return (
     <div
@@ -19,7 +20,7 @@ export default function BlocoQrCode() {
           height: "100%",
         }}
       >
-        QRCODE aq
+        <QrCode/>
       </span>
     </div>
   );
