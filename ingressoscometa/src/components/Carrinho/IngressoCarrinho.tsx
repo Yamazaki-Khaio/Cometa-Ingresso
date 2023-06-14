@@ -40,7 +40,7 @@ export default function IngressoCarrinho(props: any) {
             <p className="ml-5 font-bold text-2xs">{props.place}</p>
             <p className="ml-5 font-bold text-2xs">{props.time}</p>
             <p className="ml-5 font-bold text-2xs">Preço: {props.price}</p>
-            <p className="ml-5 font-bold text-2xs">Setor: {props.Setor}</p>
+            <p className="ml-5 font-bold text-2xs">Setor: {props.setor}</p>
           </form>
           <div className="absolute top-8 right-8">
             <BotaoDelete id={props.id} onDelete={handleDelete} />

@@ -11,13 +11,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   router.use('/', async (req: Request, res: Response) => {
     if (req.method === 'POST') {
-      const sql = "INSERT INTO ingresso (id_evento, id_usuario,id_setor,  max_ingresso, preco_ingresso) VALUES (?, ?, ?, ?,?)";
+      const sql = "INSERT INTO ingresso (id_evento, id_setor, max_ingresso, preco_ingresso, id_carrinho) VALUES (?, ?, ?, ?, ?)";
       const params = [
         req.body.id_evento,
-        req.body.id_usuario,
         req.body.id_setor,
         req.body.max_ingresso,
         req.body.preco,
+        req.body.id_carrinho
       ];
       connection.query(sql, params, (error, results, fields) => {
         if (error) {
@@ -31,8 +31,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } else if (req.method === 'GET') {
       if (req.query.id) {
         // Buscar evento pelo ID
-        const sql = 'SELECT * FROM ingresso WHERE id_evento=?';
-        connection.query(sql, [req.query.id, req.body.id_setor], (error, results, fields) => {
+        const sql = 'SELECT * FROM ingresso';
+        connection.query(sql, req.query['id_carrinho'], (error, results, fields) => {
           if (error) {
             console.error('Erro ao buscar ingresso: ', error);
             res.status(500).send('Erro ao buscar ingresso.');

@@ -17,7 +17,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
       
         }else{
             if(req.query['id']){
-                const sql = 'SELECT * FROM carrinho WHERE id_usuario=?';
+                const sql = 'SELECT c.id, s.preco, e.nome_evento, e.data_evento, s.nome, l.cidade, e.imagem FROM usuario u, ingresso i, carrinho c, setor s, endereco l, evento e WHERE e.id = i.id_evento AND s.id = i.id_setor AND l.id_evento = e.id AND i.id_carrinho = c.id AND u.id=?;                ';
                 connection.query(sql,[req.query['id']], (error, results, fields) => {
                     if (error) {
                     console.error('Erro ao buscar carrinho: ', error);
