@@ -67,7 +67,8 @@ export default function CadastroEvento(props:any) {
       updateForm("nome" , eventoData.nome_evento )
       updateForm("descricao" , eventoData.descricao_evento )
       updateForm("horarioEvento", eventoData.horario_evento)
-      updateForm("dataEvento", eventoData.data_evento.substring(0,10))
+      updateForm("dataEvento", eventoData.data_evento)
+      console.log(eventoData.data_evento)
       updateForm("cidade", enderecoData[0].cidade)
       updateForm("estado", enderecoData[0].estado)
       updateForm("cep", enderecoData[0].cep)
@@ -86,11 +87,10 @@ export default function CadastroEvento(props:any) {
         e.preventDefault();
         try{
         const formEvento = {
-            nome: (document.getElementById('nome') as HTMLInputElement)?.value,
-            descricao: (document.getElementById('descricao') as HTMLInputElement)?.value,
-            localEvento: (document.getElementById('localEvento') as HTMLInputElement)?.value,
-            horarioEvento: (document.getElementById('horarioEvento') as HTMLInputElement)?.value,
-           dataEvento: (document.getElementById('data') as HTMLInputElement)?.value,
+            nome_evento: (document.getElementById('nome') as HTMLInputElement)?.value,
+            descricao_evento: (document.getElementById('descricao') as HTMLInputElement)?.value,
+            horario_evento: (document.getElementById('horarioEvento') as HTMLInputElement)?.value,
+            data_evento: (document.getElementById('data') as HTMLInputElement)?.value,
             id: props.id
           };
         console.log(`/api/evento?id=${formEvento.id}`)
