@@ -20,8 +20,9 @@ export default function EventoLogado(props: any) {
     }, []);
 
 
-    function handleBotaoClicado(): void {
-        for (const setor of props.setores) {
+    function handleBotaoClicado(setores: any): void {
+        console.log(document.getElementById("setor").value)
+        for (const setor of setores) {
             if(setor.nome == document.getElementById("setor").value){
                 const form = {
                     id_setor: setor.id,
@@ -61,7 +62,7 @@ export default function EventoLogado(props: any) {
                     <ChoiceBox setores={props.setores} />
                     <QuantitySelector />
                     <p className="font-sans  right-20 text-4sm">Quantidade disponível: {props.quant_ingresso}</p>
-                    <button onClick={() => handleBotaoClicado()}>
+                    <button onClick={() => handleBotaoClicado(props.setores)}>
                         <Botao href= '/carrinho' NomeBotao="Adicionar ao carrinho" />
                     </button>
                 </div>

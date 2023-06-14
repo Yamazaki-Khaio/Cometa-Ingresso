@@ -45,9 +45,9 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
                         res.status(500).send('Erro ao inserir novo carrinho de compras.');
                     return;
                 }
-            
-
-            const idCarrinho = params[0];
+                const idCarrinho = results.insertId; // Obtém o ID do usuário recém-inserido
+                console.log(idCarrinho)
+                
 
             console.log(idCarrinho + "ESSE SERIA O ID DE CARRINHO?")
 
