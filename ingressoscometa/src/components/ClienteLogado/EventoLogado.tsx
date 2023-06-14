@@ -64,6 +64,5 @@ export default function EventoLogado(props: any) {
                 </div>
             </div>
         </div>
-
     )
 }
