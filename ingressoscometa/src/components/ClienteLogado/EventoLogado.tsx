@@ -27,6 +27,7 @@ export default function EventoLogado(props: any) {
                     id_setor: setor.id,
                     preco_ingresso: setor.preco,
                     id_usuario,
+                    max_ingresso: setor.quantidade_ingresso,
                     id_evento: props.id,
                     quant_ingresso: parseInt(document.getElementById("quantity").value, 10),
                 }
@@ -35,8 +36,10 @@ export default function EventoLogado(props: any) {
                     headers: {
                       "Content-Type": "application/json"
                     },
+
                     body: JSON.stringify(form)
                   });
+                  console.log(setor.id)
             }
         }
     }
@@ -64,5 +67,6 @@ export default function EventoLogado(props: any) {
                 </div>
             </div>
         </div>
+
     )
 }

@@ -31,14 +31,12 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
             }
         }
     }else if(req.method === 'POST'){
-
-            const sql = 'INSERT INTO carrinho (id_usuario, id_setor, id_evento, quant_ingresso)  VALUES (?, ?, ?, ?)'
-
+            console.log("entrou no POST")
+            const sql = 'INSERT INTO carrinho (id_usuario)  VALUES (?)'
+            
+            
             const params = [
                 req.body.id_usuario,
-                req.body.id_setor,
-                req.body.id_evento,
-                req.body.quant_ingresso
             ]
 
             connection.query(sql, params, (error, results, fields) => {
@@ -47,8 +45,33 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
                         res.status(500).send('Erro ao inserir novo carrinho de compras.');
                     return;
                 }
+            
+
+            const idCarrinho = params[0];
+
+            console.log(idCarrinho + "ESSE SERIA O ID DE CARRINHO?")
+
+            const ingressoSql = 'INSERT INTO ingresso (id_evento, id_setor, max_ingresso, preco_ingresso, id_carrinho)  VALUES (?,?,?,?,?)'
+           
+            const ingressosparam = [
+                req.body.id_evento,
+                req.body.id_setor,
+                req.body.max_ingresso,
+                req.body.preco_ingresso,
+                idCarrinho
+            ]
+
+            connection.query(ingressoSql, ingressosparam, (error, results, fields) => {
+                if (error) {
+                        console.error('Erro ao inserir novo ingresso: ', error);
+                        res.status(500).send('Erro ao inserir novo ingresso.');
+                    return;
+                }
             res.json(results);
         });
+        res.json(results);
+    });
+            
 
         }else if (req.method === "DELETE") {
             console.log("entrou aquiiiiiiiiiiiiiiiiiiiiiiiiiiii")
@@ -59,7 +82,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
         
             const itemId = Number(req.query['id']);
         
-            const sql = "DELETE FROM carrinho WHERE id = ?";
+            const sql = "DELETE i FROM usuario u JOIN ingresso i ON u.id = i.id_carrinho JOIN carrinho c ON i.id_carrinho= c.id JOIN setor s ON i.id_setor = s.id JOIN endereco l ON l.id_evento = i.id_evento JOIN evento e ON e.id = i.id_evento WHERE u.id = ?";
             connection.query(sql, [itemId], (error, results, fields) => {
               if (error) {
                 console.error("Erro ao excluir item do carrinho: ", error);
