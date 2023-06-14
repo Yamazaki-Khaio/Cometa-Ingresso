@@ -62,7 +62,7 @@ export default function ListaEventosCarrinho(props: any) {
   return (
     <div className="flex flex-wrap gap-5 justify-center items-center p-4 bg-slate-200">
       {eventos.map((evento: any, index: number) => (
-        <Link href={`/evento/?id=${evento.id}`} key={evento.id}>
+        //
           <div style={{ cursor: 'pointer' }}>
             {setores.filter((setor: any) => setor.id_evento === evento.id).map((setor: any, index: number) => (
             <IngressoCarrinho
@@ -75,7 +75,7 @@ export default function ListaEventosCarrinho(props: any) {
             />
             ))}
           </div>
-        </Link>
+        //
       ))}
     </div>
   );

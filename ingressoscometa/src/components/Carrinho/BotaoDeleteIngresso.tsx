@@ -1,10 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
-export default function BotaoDelete() {
+interface BotaoDeleteProps {
+  id: number;
+  onDelete: () => void;
+}
+
+export default function BotaoDelete({ id, onDelete }: BotaoDeleteProps) {
   return (
     <div>
       <button
+        onClick={onDelete} // Adicionando a lógica do clique
         className={`
           flex items-center
           bg-transparent
