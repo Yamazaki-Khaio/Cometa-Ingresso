@@ -58,7 +58,7 @@ export default function EventoPromoter(props: any) {
             )}
 
             <div className="absolute bottom-5 right-8">
-                <Botao onClick={openModalCancelar} NomeBotao="Cancelar" />
+                
             </div>
             {modalCancelar && (
                 <div className="fixed inset-0 flex items-center justify-center z-50">

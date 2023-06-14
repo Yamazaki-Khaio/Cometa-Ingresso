@@ -168,7 +168,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } else if (req.method === 'DELETE') {
       // Remover evento
       const sql = 'DELETE FROM evento WHERE id=?';
-      connection.query(sql, [req.body.idUser], (error, results, fields) => {
+      connection.query(sql, [req.query.id], (error, results, fields) => {
         if (error) {
           console.error('Erro ao remover evento: ', error);
           res.status(500).send('Erro ao remover evento.');

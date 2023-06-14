@@ -22,11 +22,13 @@ const ModalCancelarEvento: React.FC<ModalProps> = ({ mensagem, onClose, eventoId
   });
   async function Deletar(event: React.ChangeEvent<HTMLInputElement>){
   try{
-      await fetch(`/api/evento?id=${eventoId}`, {
+    await fetch(`/api/evento?id=${formData.id}`, {
       method: 'DELETE',
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify(formData)
     });
-    console.log(formData)
     
   } catch (error) {
     console.error("Erro ao enviar os dados:", error);
