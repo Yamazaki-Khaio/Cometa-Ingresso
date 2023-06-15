@@ -12,14 +12,25 @@ interface Item {
 }
 
 export default function IngressoCarrinho(props: any) {
-  const handleDelete = async () => {
-    try {
-      const response = await axios.delete(`/api/carrinhoCompras?id=${props.id}`);
-      console.log(response.data);
+  async function Suspender(event: React.ChangeEvent<HTMLInputElement>){
+    try{
+    const formData = {
+        id: props.id_ingresso,
+        ativado: 0
+      };
+    const resEvento = await fetch(`/api/evento?id=${formData.id}`, {
+        method: 'PUT',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
     } catch (error) {
-      console.error('Erro ao deletar item do carrinho: ', error);
+      console.error("Erro ao enviar os dados:", error);
+      // Lógica adicional para lidar com erros no envio dos dados
     }
-  }; //implementar lógica de pegar id e deletar-lo aqui<<
+    window.location.reload();
+    }
 
   return (
     <div className="flex flex-col items-center">
@@ -36,7 +47,7 @@ export default function IngressoCarrinho(props: any) {
             <p className="ml-5 font-bold text-2xs">Setor: {props.setor}</p>
           </form>
           <div className="absolute top-8 right-8">
-            <BotaoDelete id={props.id} onDelete={handleDelete} />
+            <BotaoDelete id={props.id} onDelete={Suspender} />
           </div>
         </div>
       </ul>

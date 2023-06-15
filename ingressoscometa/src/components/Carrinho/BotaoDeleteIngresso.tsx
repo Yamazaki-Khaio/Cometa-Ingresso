@@ -6,11 +6,11 @@ interface BotaoDeleteProps {
   onDelete: () => void;
 }
 
-export default function BotaoDelete({ id, onDelete }: BotaoDeleteProps) {
+export default function BotaoDelete(props:any) {
   return (
     <div>
       <button
-        onClick={onDelete} // Adicionando a lógica do clique
+        onClick={props.onDelete} // Adicionando a lógica do clique
         className={`
           flex items-center
           bg-transparent

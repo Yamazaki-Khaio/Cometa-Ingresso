@@ -17,7 +17,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
       
         }else{
             if(req.query['id']){
-                const sql = 'SELECT c.id, s.preco, e.nome_evento, e.data_evento, s.nome, l.cidade, e.imagem FROM usuario u, ingresso i, carrinho c, setor s, endereco l, evento e WHERE e.id = i.id_evento AND s.id = i.id_setor AND l.id_evento = e.id AND i.id_carrinho = c.id AND u.id=?;                ';
+                const sql = 'SELECT c.id, s.preco, e.nome_evento, e.data_evento, s.nome, l.cidade, e.imagem FROM usuario u, ingresso i, carrinho c, setor s, endereco l, evento e WHERE e.id = i.id_evento AND s.id = i.id_setor AND l.id_evento = e.id AND i.id_carrinho = c.id AND c.id = u.id AND u.id=?';
                 connection.query(sql,[req.query['id']], (error, results, fields) => {
                     if (error) {
                     console.error('Erro ao buscar carrinho: ', error);
@@ -46,10 +46,7 @@ export default function handler(req: NextApiRequest,res: NextApiResponse){
                     return;
                 }
                 const idCarrinho = results.insertId; // Obtém o ID do usuário recém-inserido
-                console.log(idCarrinho)
-                
-
-            console.log(idCarrinho + "ESSE SERIA O ID DE CARRINHO?")
+        
 
             const ingressoSql = 'INSERT INTO ingresso (id_evento, id_setor, max_ingresso, preco_ingresso, id_carrinho)  VALUES (?,?,?,?,?)'
            

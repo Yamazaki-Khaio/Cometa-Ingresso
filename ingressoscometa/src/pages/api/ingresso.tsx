@@ -31,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } else if (req.method === 'GET') {
       if (req.query.id) {
         // Buscar evento pelo ID
-        const sql = 'SELECT * FROM ingresso';
+        const sql = 'SELECT * FROM ingresso AND ativado != 0';
         connection.query(sql, req.query['id_carrinho'], (error, results, fields) => {
           if (error) {
             console.error('Erro ao buscar ingresso: ', error);
