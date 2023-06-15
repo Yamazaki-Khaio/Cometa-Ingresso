@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Buffer } from 'buffer';
 import Link from 'next/link';
@@ -6,14 +6,16 @@ import { getSession } from 'next-auth/react';
 import IngressoCarrinho from './IngressoCarrinho';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 
-export default function ListaEventosCarrinho( props:any) {
-  const[carrinho, setCarrinho] = useState([])
+export default function ListaEventosCarrinho(props: any) {
+  const [carrinho, setCarrinho] = useState([])
 
-useEffect(() => {
-  fetchCarrinho()
-}, []
+  useEffect(() => {
+    fetchCarrinho()
+    console.log(carrinho)
 
-) 
+  }, []
+  
+  )
 
   const fetchCarrinho = async () => {
     try {
@@ -26,7 +28,7 @@ useEffect(() => {
       console.log(error)
     }
   }
-  
+
   const convertBufferToUrl = (buffer: any) => {
     const imageData = Buffer.from(buffer.data).toString('base64');
     return `data:image/png;base64,${imageData}`;
@@ -34,19 +36,21 @@ useEffect(() => {
 
   return (
     <div className="flex flex-wrap gap-5 justify-center items-center p-4 bg-slate-200">
-          <div style={{ cursor: 'pointer' }}>
-            {carrinho.map((c: any, index: number) => (
-            <IngressoCarrinho
-              id={c.id}
-              name={c.nome_evento}
-              data={new Date(c.data_evento).toLocaleDateString()}
-              setor={c.nome}
-              price={c.preco}
-              place={c.cidade}
-              image={convertBufferToUrl(c.imagem)}
-            />
-            ))}
-          </div>
+      <div style={{ cursor: 'pointer' }}>
+        {carrinho.map((c: any, index: number) => (
+          <IngressoCarrinho
+            key={index} // Add a unique key prop here
+            id={c.id}
+            name={c.nome_evento}
+            data={new Date(c.data_evento).toLocaleDateString()}
+            setor={c.nome}
+            price={c.preco}
+            place={c.cidade}
+            image={convertBufferToUrl(c.imagem)}
+          />
+        ))}
+
+      </div>
     </div>
   );
 
