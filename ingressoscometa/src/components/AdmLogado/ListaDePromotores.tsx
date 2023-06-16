@@ -25,7 +25,7 @@ export default function ListaPromotores(props: any) {
 
     const fetchUsuarios = async () => {
         try {
-            const response = await axios.get('/api/usuario')
+            const response = await axios.get('/api/promoter')
             setUsuarios(response.data)
         } catch (error) {
             console.log(error)
