@@ -41,9 +41,9 @@ export default function ListaEventosCarrinho(props: any) {
             name={c.nome_evento}
             data={new Date(c.data_evento).toLocaleDateString()}
             setor={c.nome}
-            price={c.preco}
+            price={c.valor}
             place={c.cidade}
-            //image={convertBufferToUrl(c.imagem)}
+            image={convertBufferToUrl(c.imagem)}
           />
         ))}
 

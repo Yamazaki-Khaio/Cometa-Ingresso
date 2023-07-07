@@ -11,7 +11,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
     const userId = parseInt(req.query.id as string);
 
-    const sql = 'SELECT * FROM carrinho WHERE usuario_id = ?';
+    const sql = 'SELECT s.valor, s.nome, e.imagem, e.nome_evento, l.cidade, i.tipo, c.quantidade FROM setor s, evento e, carrinho c, ingresso i, endereco l WHERE usuario_id = ? and c.id_ingresso = i.id and i.evento_id = e.id';
     connection.query(sql, [userId], (error, results, fields) => {
       if (error) {
         console.error('Erro ao buscar carrinho: ', error);
@@ -20,18 +20,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       }
       res.json(results);
     });
-} else if (req.query['id_usuario']) {
-  // Buscar evento pelo ID
-  const sql = 'SELECT * FROM carrinho WHERE usuario_id?';
-  connection.query(sql, [req.query['id_usuario']], (error, results, fields) => {
-    if (error) {
-      console.error('Erro ao buscar evento: ', error);
-      res.status(500).send('Erro ao buscar evento.');
-      return;
-    }
-    res.json(results); // Retorna apenas o primeiro resultado (evento)
-  });
-  } else if (req.method === 'POST') {
+} 
+   else if (req.method === 'POST') {
     console.log('entrou no POST');
 
     // Verifique se o ingresso ainda está disponível
