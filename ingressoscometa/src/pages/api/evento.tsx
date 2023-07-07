@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'POST') {
       // Criar evento
       const sql = "INSERT INTO evento (id_usuario, nome_evento, data_evento, descricao_evento, ativado, imagem, horario_evento) VALUES (?, ?, ?, ?, ?, ?, ?)";
-      const setorSql = "INSERT INTO setor(nome, quantidade_ingresso, id_evento, preco) VALUES (?, ?, ?, ?)"
+      const setorSql = "INSERT INTO setor(nome, quantidade_ingresso, id_evento, valor) VALUES (?, ?, ?, ?)"
       const endSql = 'INSERT INTO endereco (id_usuario, cep, rua, numero, complemento, id_evento, cidade, estado)  VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
       const imageBuffer = Buffer.from(req.body.imagem.data);
       
@@ -40,8 +40,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const setorVipParams = [
         req.body.setor_vip,
         req.body.qnt_vip,
-       eventoId,
-       req.body.preco_vip,
+        eventoId,
+        req.body.preco_vip,
       ];
 
       const endParams = [

@@ -47,7 +47,7 @@ export default function EventoPromoter(props: any) {
 
             <div className="ml-12">
                 <p className="font-bold text-3xl">{props.Nome}</p>
-                <p className="font-sans text-4sm">Local: {props.rua}</p>
+                <p className="font-sans text-4sm">Local: {props.Local}</p>
                 <p className="font-sans text-4sm">Data: {props.Data}</p>
                 <p className="font-sans text-4sm">A partir das: {props.Hora}</p>
                 <p className="font-sans text-4sm">{props.Descricao}</p>

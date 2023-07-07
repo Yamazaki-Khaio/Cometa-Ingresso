@@ -13,7 +13,6 @@ export default function ListaEventosCliente(props: any) {
 
   useEffect(() => {
     fetchEventos();
-    fetchSetores();
   }, []);
 
   const fetchEventos = async () => {
@@ -22,15 +21,8 @@ export default function ListaEventosCliente(props: any) {
       setEventos(response.data);
       const response2 = await axios.get('/api/endereco')
       setEnderecos(response2.data)
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchSetores = async () => {
-    try {
-      const response = await axios.get('/api/setor');
-      setSetores(response.data);
+      const response3 = await axios.get('/api/setor')
+      setSetores(response3.data)
     } catch (error) {
       console.log(error);
     }

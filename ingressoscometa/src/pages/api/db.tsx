@@ -6,9 +6,9 @@ const app = express();
 
 // Configuração do banco de dados
 export const connection = mysql.createConnection({
-  host: "cometacngressosserver.mysql.database.azure.com",
-  user: "cometaingressos",
-  password: "Vaidormir23",
+  host: "127.0.0.1",
+  user: "root",
+  password: "adm1",
   database: "cometadb",
 });
 

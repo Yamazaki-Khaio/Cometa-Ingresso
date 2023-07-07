@@ -25,7 +25,7 @@ export default function EventoLogado(props: any) {
         for (const setor of setores) {
             if(setor.nome == document.getElementById("setor").value){
                 const form = {
-                    id_setor: setor.id,
+                    tipo: setor.nome,
                     preco_ingresso: setor.preco,
                     id_usuario,
                     max_ingresso: setor.quantidade_ingresso,

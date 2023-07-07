@@ -1,33 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import axios from 'axios';
 import { Buffer } from 'buffer';
 import Link from 'next/link';
-import { getSession } from 'next-auth/react';
 import IngressoCarrinho from './IngressoCarrinho';
+import { getSession, useSession } from 'next-auth/react';
 import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
 
 export default function ListaEventosCarrinho(props: any) {
   const [carrinho, setCarrinho] = useState([])
-
-  useEffect(() => {
-    fetchCarrinho()
-    console.log(carrinho)
-
-  }, []
+  //lógica aqui rotas, ajustar
   
-  )
+  useEffect(() => {
+    fetchEventos();
+  }, []);
 
-  const fetchCarrinho = async () => {
+  const fetchEventos = async () => {
     try {
       const user = await getSession();
       const userId = user?.user.id;
-      const response2 = await axios.get(`/api/carrinhoCompras?id=${21}`)
-      setCarrinho(response2.data)
+      const response = await axios.get(`/api/carrinhoCompras?id=${userId}`)
+      setCarrinho(response.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-
+  };
+  
+ 
   const convertBufferToUrl = (buffer: any) => {
     const imageData = Buffer.from(buffer.data).toString('base64');
     return `data:image/png;base64,${imageData}`;
@@ -45,7 +43,7 @@ export default function ListaEventosCarrinho(props: any) {
             setor={c.nome}
             price={c.preco}
             place={c.cidade}
-            image={convertBufferToUrl(c.imagem)}
+            //image={convertBufferToUrl(c.imagem)}
           />
         ))}
 
