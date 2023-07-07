@@ -1,25 +1,30 @@
 import express from 'express';
 import {connection} from './db';
-import Compra from './classes/Compra';
+
 
 const router = express.Router();
 
 // Criar compra
 router.post('/', async (req, res) => {
-    const compra = new Compra(
-        req.body.id_compra,
-        req.body.id_carrinho,
-        req.body.data
-    );
-    const sql = 'INSERT INTO compra SET ?';
-    connection.query(sql, compra, (error, results, fields) => {
-        if (error) {
-        console.error('Erro ao inserir nova compra: ', error);
-        res.status(500).send('Erro ao inserir nova compra.');
-        return;
-        }
-        res.json(results);
-    });
+    const { id_usuario, id_cardc, id_carrinho, preco_total } = req.body;
+    try {
+        const sql = `INSERT INTO compra (id_usuario, id_cardc, data, id_carrinho, preco_total)
+            VALUES (?, ?, CURDATE(), ?, ?)`;
+        connection.query(
+            sql,
+            [id_usuario, id_cardc, id_carrinho, preco_total],
+            (error, results, fields) => {
+                if (error) {
+                    console.error('Erro ao criar compra: ', error);
+                    res.status(500).send('Erro ao criar compra.');
+                    return;
+                }
+                res.status(201).send({ id: results.insertId });
+            }
+        );
+    } catch (err) {
+        res.status(500).send({ message: err.message });
+    }
 });
   
 
