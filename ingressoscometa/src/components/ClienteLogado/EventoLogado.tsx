@@ -2,7 +2,6 @@ import Image from 'next/image'
 import Botao from '../CabecalhoCadastro/botao';
 import QuantitySelector from './QuantidadeSeletor';
 import ChoiceBox from './ChoiceBoxSetor';
-import ChoiceBoxT from './ChoiceBoxTipo';
 import { getSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
 
@@ -27,8 +26,8 @@ export default function EventoLogado(props: any) {
             if(setor.nome == document.getElementById("setor").value){
                 const form = {
                     tipo: setor.nome,
-                    id_usuario,
-                    id_evento: props.id,
+                    evento_id: props.id,
+                    qunatidade: props.quantidade,
                 }
                     fetch(`/api/ingresso?id=${id_usuario}`, {
                     method: 'POST',

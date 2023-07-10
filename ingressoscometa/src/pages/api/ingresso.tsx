@@ -13,25 +13,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   router.use('/', async (req: Request, res: Response) => {
     if (req.method === 'POST') {
       const sql = "INSERT INTO ingresso (tipo, evento_id, user_id) VALUES (?, ?, ?)";
+      const usuarioID = req.query.id;
       const params = [
         req.body.tipo,
-        req.body.evento_id,
-        req.body.usuario_id,
-        
-        
+        req.body.evento_id,        
+        usuarioID,
       ];
-      connection.query(sql, params, (error, results, fields) => {
+      connection.query(sql,params, (error, results, fields) => {
         if (error) {
           console.error('Erro ao inserir novo ingresso', error);
           res.status(500).send('Erro ao inserir novo ingresso.');
           return;
         }
         const ingressoID = results.insertId;
-        const sql2 = "INSERT INTO carrinho (id_ingresso, quantidade, id_usuario) VALUES (?, ?, ?)";
+        const sql2 = "INSERT INTO carrinho (id_ingresso, quantidade, usuario_id) VALUES (?, ?, ?)";
+        
         const params2 = [
           ingressoID,
           req.body.quantidade,
-          req.body.id_usuario,
+          usuarioID,
         ];
         connection.query(sql2, params2, (error, results, fields) => {
           if (error) {
