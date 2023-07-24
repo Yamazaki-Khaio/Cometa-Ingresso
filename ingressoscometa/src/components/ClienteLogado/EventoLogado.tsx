@@ -4,6 +4,7 @@ import QuantitySelector from './QuantidadeSeletor';
 import ChoiceBox from './ChoiceBoxSetor';
 import { getSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export default function EventoLogado(props: any) {
     const [id_usuario, setIdUsuario] = useState("");
@@ -22,22 +23,33 @@ export default function EventoLogado(props: any) {
 
     function handleBotaoClicado(setores: any): void {
         console.log(document.getElementById("setor").value)
+        console.log(props.id)
+        console.log(props.quant_ingresso)
+        console.log(id_usuario)
+        console.log(setores)
         for (const setor of setores) {
-            if(setor.nome == document.getElementById("setor").value){
+            if (setor.nome == document.getElementById("setor").value) {
                 const form = {
                     tipo: setor.nome,
-                    evento_id: props.id,
-                    qunatidade: props.quantidade,
+                    evento_id: props.id, // Use the 'evento_id' from props
+                    quantidade: 1,
                 }
-                    fetch(`/api/ingresso?id=${id_usuario}`, {
-                    method: 'POST',
-                    headers: {
-                      "Content-Type": "application/json"
-                    },
+                console.log(setor.nome)
+                console.log(props.id)
+                console.log(props.quant_ingresso)
+                console.log(form)
+                axios.post(`/api/ingresso?id=${id_usuario}`, form, {
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    .then((response) => {
+                        console.log(response.data);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
 
-                    body: JSON.stringify(form)
-                  });
-                  console.log(setor.id)
             }
         }
     }
@@ -60,7 +72,7 @@ export default function EventoLogado(props: any) {
                     <QuantitySelector />
                     <p className="font-sans  right-20 text-4sm">Quantidade disponível: {props.quant_ingresso}</p>
                     <button onClick={() => handleBotaoClicado(props.setores)}>
-                        <Botao href= '/carrinho' NomeBotao="Adicionar ao carrinho" />
+                        <Botao href= {`/carrinho?id=${id_usuario}`} NomeBotao="Adicionar ao carrinho" />
                     </button>
                 </div>
             </div>
